@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mineração das Rochas Escarlates — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Características */
+.caracteristicas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.caracteristica-item {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Ferramentas */
+.ferramentas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.ferramenta-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 18px;
+    transition: all .3s;
+}
+
+.ferramenta-card:hover {
+    background: rgba(30,18,8,.9);
+    transform: translateX(3px);
+}
+
+.ferramenta-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.ferramenta-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.ferramenta-card p {
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+/* Minerais */
+.minerais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.mineral-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.mineral-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.mineral-card .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.mineral-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.mineral-card .utilizacao {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+    font-size: 0.85rem;
+}
+
+/* Riscos */
+.riscos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.risco-item {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 8px 18px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Cristais */
+.cristais-destaque {
+    background: rgba(212,160,23,.15);
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.cristais-destaque h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.cristais-destaque .caracteristicas {
+    margin-top: 15px;
+    text-align: left;
+    display: inline-block;
+}
+
+.cristais-destaque .caracteristicas li {
+    padding: 5px 0;
+    list-style: none;
+}
+
+/* Fissuras Subterrâneas */
+.fissuras-card {
+    background: linear-gradient(135deg, rgba(20,12,5,.9), rgba(10,6,3,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.fissuras-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.fissuras-card .descricoes {
+    margin-top: 15px;
+}
+
+.fissuras-card .descricoes li {
+    padding: 5px 0;
+    list-style: none;
+    margin-left: 20px;
+}
+
+.fissuras-card .descricoes li::before {
+    content: "🌀";
+    margin-right: 10px;
+}
+
+/* Segurança */
+.seguranca-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.seguranca-list li {
+    padding: 8px 0;
+    padding-left: 32px;
+    position: relative;
+    counter-increment: seguranca;
+}
+
+.seguranca-list {
+    counter-reset: seguranca;
+}
+
+.seguranca-list li::before {
+    content: counter(seguranca);
+    background: #d4a017;
+    color: #1a0f05;
+    font-weight: bold;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+
+.citacao-seguranca {
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+    color: #f2d49b;
+}
+
+/* Criaturas */
+.criaturas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.criatura-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.criatura-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.criatura-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.criatura-card p {
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+/* Mistério */
+.misterio-card {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.misterio-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.misterio-card .descricoes {
+    margin-top: 15px;
+}
+
+.misterio-card .descricoes li {
+    padding: 5px 0;
+    list-style: none;
+    margin-left: 20px;
+}
+
+.misterio-card .descricoes li::before {
+    content: "❓";
+    margin-right: 10px;
+}
+
+/* Juramento */
+.juramento {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.juramento p {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .ferramentas-grid { grid-template-columns: 1fr; }
+    .minerais-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>⛏️ Mineração das Rochas Escarlates</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Jafar al-Kharim, Mestre Minerador das Rochas Escarlates</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 482 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "O ouro pode enriquecer um homem. Mas são as pedras escondidas sob a areia que constroem reinos."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            As <strong>Rochas Escarlates</strong> representam uma das maiores fontes de riqueza de Zaharam. Suas montanhas avermelhadas escondem jazidas valiosas, minerais raros e vestígios de eras esquecidas.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Durante séculos, mineradores arriscaram suas vidas explorando cavernas profundas, escavações perigosas e formações rochosas instáveis em busca dos recursos que sustentam o comércio e a expansão do reino.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            Este tomo reúne os conhecimentos acumulados pelas Guildas de Mineradores de Zaharam.
+        </p>
+    </div>
+
+    <!-- A Formação das Rochas Escarlates -->
+    <div class="section">
+        <h2 class="section-title">🔴 A Formação das Rochas Escarlates</h2>
+        <p>Segundo os estudiosos, as Rochas Escarlates surgiram há milhares de anos.</p>
+        <p style="margin-top: 10px;"><strong>Características da região:</strong></p>
+        
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-item">🏔️ Montanhas avermelhadas</div>
+            <div class="caracteristica-item">🏞️ Grandes cânions</div>
+            <div class="caracteristica-item">🕳️ Cavernas profundas</div>
+            <div class="caracteristica-item">🌡️ Temperaturas extremas</div>
+            <div class="caracteristica-item">💎 Presença abundante de minerais</div>
+        </div>
+        
+        <p style="margin-top: 10px;"><em>A coloração vermelha das rochas é atribuída à alta concentração de metais presentes no solo.</em></p>
+    </div>
+
+    <!-- Ferramentas Fundamentais -->
+    <div class="section">
+        <h2 class="section-title">🔧 Ferramentas Fundamentais</h2>
+        <p>Todo minerador deve possuir:</p>
+        
+        <div class="ferramentas-grid">
+            <div class="ferramenta-card">
+                <span class="emoji">⛏️</span><h4>Picareta de Extração</h4>
+                <p>Utilizada para quebrar rochas e abrir passagens</p>
+            </div>
+            <div class="ferramenta-card">
+                <span class="emoji">🪓</span><h4>Martelo de Minério</h4>
+                <p>Usado para separar minerais valiosos da pedra comum</p>
+            </div>
+            <div class="ferramenta-card">
+                <span class="emoji">🏮</span><h4>Lanterna de Óleo</h4>
+                <p>Essencial para exploração subterrânea</p>
+            </div>
+            <div class="ferramenta-card">
+                <span class="emoji">🪢</span><h4>Cordas de Segurança</h4>
+                <p>Utilizadas em descidas e resgates</p>
+            </div>
+            <div class="ferramenta-card">
+                <span class="emoji">📜</span><h4>Diário de Jazidas</h4>
+                <p>Todo minerador experiente mantém registros de suas descobertas</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minerais Mais Comuns -->
+    <div class="section">
+        <h2 class="section-title">💎 Minerais Mais Comuns</h2>
+        
+        <div class="minerais-grid">
+            <div class="mineral-card">
+                <span class="emoji">🪨</span>
+                <h4>Ferro Escarlate</h4>
+                <p>O minério mais abundante da região.</p>
+                <div class="utilizacao">
+                    <strong>Utilizado em:</strong> Ferramentas, armas, estruturas metálicas
+                </div>
+            </div>
+            <div class="mineral-card">
+                <span class="emoji">🔴</span>
+                <h4>Cobre Vermelho</h4>
+                <p>Muito procurado por artesãos e engenheiros.</p>
+            </div>
+            <div class="mineral-card">
+                <span class="emoji">✨</span>
+                <h4>Quartzo Solar</h4>
+                <p>Cristal utilizado em ornamentos e artefatos simples.</p>
+            </div>
+            <div class="mineral-card">
+                <span class="emoji">⚪</span>
+                <h4>Prata das Dunas</h4>
+                <p>Material raro encontrado apenas em determinadas profundidades.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jazidas Profundas -->
+    <div class="section">
+        <h2 class="section-title">⚠️ Jazidas Profundas</h2>
+        <p>As minas mais lucrativas costumam ser também as mais perigosas. Os riscos incluem:</p>
+        
+        <div class="riscos-grid">
+            <div class="risco-item">💥 Desabamentos</div>
+            <div class="risco-item">😤 Falta de oxigênio</div>
+            <div class="risco-item">🕳️ Túneis instáveis</div>
+            <div class="risco-item">🐉 Criaturas subterrâneas</div>
+        </div>
+        
+        <p style="margin-top: 15px;"><em>Por esse motivo, nenhuma equipe deve explorar sozinha.</em></p>
+    </div>
+
+    <!-- Cristais das Profundezas -->
+    <div class="section">
+        <div class="cristais-destaque">
+            <h4>🔮 Cristais das Profundezas</h4>
+            <p>Alguns mineradores relatam encontrar cristais incomuns em regiões próximas às Fissuras.</p>
+            <div class="caracteristicas">
+                <p><strong>Características registradas:</strong></p>
+                <li>✨ Emitem brilho suave</li>
+                <li>⚡ Armazenam energia mágica</li>
+                <li>📈 Crescem diretamente nas paredes das cavernas</li>
+            </div>
+            <p style="margin-top: 15px;"><em>A Guilda de Mineradores recomenda extrema cautela ao manuseá-los.</em></p>
+        </div>
+    </div>
+
+    <!-- As Fissuras Subterrâneas -->
+    <div class="section">
+        <h2 class="section-title">🌀 As Fissuras Subterrâneas</h2>
+        <p>Diversas minas abandonadas possuem ligação com pequenas Fissuras encontradas abaixo da superfície.</p>
+        
+        <div class="fissuras-card">
+            <h4>Relatos descrevem:</h4>
+            <div class="descricoes">
+                <li>Correntes de ar inexplicáveis</li>
+                <li>Vibrações constantes</li>
+                <li>Sons distantes vindos da escuridão</li>
+                <li>Equipamentos mágicos funcionando de maneira irregular</li>
+            </div>
+        </div>
+        
+        <p><em>Muitas dessas áreas foram interditadas.</em></p>
+    </div>
+
+    <!-- Segurança nas Minas -->
+    <div class="section">
+        <h2 class="section-title">🛡️ Segurança nas Minas</h2>
+        <p>As regras básicas de sobrevivência são:</p>
+        
+        <ul class="seguranca-list">
+            <li>Nunca minerar sozinho</li>
+            <li>Testar a estabilidade das paredes</li>
+            <li>Manter rotas de fuga desobstruídas</li>
+            <li>Registrar todos os túneis explorados</li>
+            <li>Abandonar imediatamente áreas instáveis</li>
+        </ul>
+        
+        <div class="citacao-seguranca">
+            "O minério perdido pode ser encontrado novamente. Uma vida perdida não."
+        </div>
+    </div>
+
+    <!-- Criaturas das Cavernas -->
+    <div class="section">
+        <h2 class="section-title">🦂 Criaturas das Cavernas</h2>
+        <p>Habitantes comuns das minas profundas:</p>
+        
+        <div class="criaturas-grid">
+            <div class="criatura-card">
+                <span class="emoji">🦂</span><h4>Escorpião de Pedra</h4>
+                <p>Capaz de se camuflar entre as rochas</p>
+            </div>
+            <div class="criatura-card">
+                <span class="emoji">🦎</span><h4>Lagarto Escarlate</h4>
+                <p>Alimenta-se de pequenos cristais minerais</p>
+            </div>
+            <div class="criatura-card">
+                <span class="emoji">🕷️</span><h4>Aranha das Fendas</h4>
+                <p>Constrói teias em túneis abandonados</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- O Mistério da Mina Silenciosa -->
+    <div class="section">
+        <h2 class="section-title">❓ O Mistério da Mina Silenciosa</h2>
+        <p>Um dos capítulos mais famosos relata a descoberta de uma mina abandonada nas profundezas das Rochas Escarlates.</p>
+        
+        <div class="misterio-card">
+            <h4>Segundo os registros:</h4>
+            <div class="descricoes">
+                <li>Nenhuma ferramenta foi encontrada</li>
+                <li>Nenhum corpo foi localizado</li>
+                <li>As paredes apresentavam marcas desconhecidas</li>
+                <li>Fragmentos de anotações mencionavam as Fissuras</li>
+            </div>
+        </div>
+        
+        <p><em>O local permanece fechado até os dias atuais.</em></p>
+    </div>
+
+    <!-- O Juramento dos Mineradores -->
+    <div class="juramento">
+        <p><strong>⛏️ Juramento dos Mineradores</strong></p>
+        <p style="margin-top: 15px;">"Que minhas mãos retirem riqueza da pedra.</p>
+        <p>Que meus olhos reconheçam o perigo.</p>
+        <p>Que minha ganância jamais supere minha prudência.</p>
+        <p>E que eu sempre encontre o caminho de volta à superfície."</p>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"As dunas escondem tesouros.</p>
+        <p>As montanhas os protegem.</p>
+        <p>E apenas aqueles dispostos a enfrentar a escuridão podem encontrá-los."</p>
+        <div class="autor">— Jafar al-Kharim</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Técnicas básicas de mineração</li>
+            <li>Identificação de minerais valiosos</li>
+            <li>Segurança em escavações subterrâneas</li>
+            <li>História das minas das Rochas Escarlates</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+35 EXP Minerador</div>
+        <div class="nea">+0,1% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

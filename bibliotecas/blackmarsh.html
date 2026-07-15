@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Santuário das Águas Escuras — Black Marsh</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===========================
+   RESET
+=========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===========================
+   BODY
+=========================== */
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(rgba(8, 12, 8, .88),
+                    rgba(6, 10, 6, .94)),
+
+                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #f4e7c1;
+        }
+
+        /* ===========================
+   HEADER
+=========================== */
+
+        header {
+
+            padding: 70px 20px;
+
+            text-align: center;
+
+            border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+            backdrop-filter: blur(2px);
+        }
+
+        header h1 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 3.8rem;
+
+            color: #f5d48b;
+
+            text-shadow:
+                0 0 15px rgba(245, 212, 139, .35);
+
+            margin-bottom: 15px;
+        }
+
+        header .subtitulo {
+
+            font-size: 1.5rem;
+
+            color: #d8c79d;
+
+            font-style: italic;
+
+            margin-bottom: 20px;
+        }
+
+        header .descricao {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            font-size: 1.25rem;
+
+            line-height: 1.7;
+
+            color: #e7d7b1;
+        }
+
+        /* ===========================
+   CONTAINER
+=========================== */
+
+        .container {
+
+            max-width: 1500px;
+
+            margin: auto;
+
+            padding: 50px 30px 80px;
+        }
+
+        /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+        .secao-titulo {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 2rem;
+
+            color: #f5d48b;
+
+            margin-bottom: 10px;
+
+            text-shadow:
+                0 0 8px rgba(245, 212, 139, .25);
+        }
+
+        .secao-descricao {
+
+            font-size: 1.2rem;
+
+            color: #d7c59b;
+
+            margin-bottom: 30px;
+
+            line-height: 1.7;
+        }
+
+        .separador {
+
+            margin: 60px 0;
+
+            height: 2px;
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    rgba(214, 170, 83, .6),
+                    transparent);
+        }
+
+        /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(320px, 1fr));
+
+            gap: 25px;
+        }
+
+        /* ===========================
+   CARD PADRÃO
+=========================== */
+
+        .card {
+
+            background:
+                rgba(35, 25, 15, .93);
+
+            border: 2px solid #8f6b2c;
+
+            border-radius: 14px;
+
+            padding: 24px;
+
+            transition: .35s;
+
+            box-shadow:
+                0 0 15px rgba(0, 0, 0, .45);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 4px;
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    #d6aa53,
+                    transparent);
+        }
+
+        .card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: #d6aa53;
+
+            box-shadow:
+                0 0 25px rgba(214, 170, 83, .20);
+        }
+
+        .card h3 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 1.25rem;
+
+            color: #f5d48b;
+
+            margin-bottom: 10px;
+
+            line-height: 1.4;
+        }
+
+        .categoria {
+
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            background:
+                rgba(214, 170, 83, .12);
+
+            border: 1px solid rgba(214, 170, 83, .25);
+
+            border-radius: 20px;
+
+            font-size: .95rem;
+
+            margin-bottom: 15px;
+
+            color: #f3d18b;
+        }
+
+        .card p {
+
+            font-size: 1.08rem;
+
+            line-height: 1.6;
+
+            color: #e6d7b5;
+
+            margin-bottom: 18px;
+        }
+
+        /* ===========================
+   RECOMPENSAS
+=========================== */
+
+        .recompensa {
+
+            background:
+                rgba(0, 0, 0, .20);
+
+            border-left: 4px solid #d6aa53;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            font-size: 1rem;
+
+            margin-bottom: 18px;
+
+            line-height: 1.6;
+        }
+
+        .recompensa strong {
+
+            color: #f5d48b;
+        }
+
+        /* ===========================
+   BOTÃO
+=========================== */
+
+        .btn {
+
+            width: 100%;
+
+            border: none;
+
+            cursor: pointer;
+
+            padding: 12px;
+
+            font-size: 1rem;
+
+            font-weight: bold;
+
+            font-family: 'Cinzel', serif;
+
+            border-radius: 8px;
+
+            background: #8f6b2c;
+
+            color: white;
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+
+            background: #d6aa53;
+
+            color: #23170d;
+        }
+
+        /* ===========================
+   LIVRO RARO
+=========================== */
+
+        .raro {
+
+            border: 2px solid #c9a84a;
+
+            background:
+                rgba(58, 44, 18, .94);
+        }
+
+        .raro::before {
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    #ffd369,
+                    transparent);
+        }
+
+        .raro h3 {
+
+            color: #ffd369;
+        }
+
+        /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+        .proibido {
+
+            background:
+                rgba(30, 10, 10, .95);
+
+            border: 2px solid #8f1d1d;
+        }
+
+        .proibido::before {
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    #d64040,
+                    transparent);
+        }
+
+        .proibido h3 {
+
+            color: #ff7b7b;
+        }
+
+        .proibido .categoria {
+
+            background:
+                rgba(255, 0, 0, .10);
+
+            border-color:
+                rgba(255, 0, 0, .25);
+
+            color: #ff9b9b;
+        }
+
+        .proibido .btn {
+
+            background: #7f1d1d;
+        }
+
+        .proibido .btn:hover {
+
+            background: #c73434;
+
+            color: white;
+        }
+
+        /* ===========================
+   VOLTAR
+=========================== */
+
+        .voltar {
+
+            text-align: center;
+
+            margin-top: 60px;
+        }
+
+        .voltar a {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            padding: 12px 25px;
+
+            border-radius: 8px;
+
+            background: #8f6b2c;
+
+            color: white;
+
+            font-family: 'Cinzel', serif;
+
+            transition: .3s;
+        }
+
+        .voltar a:hover {
+
+            background: #d6aa53;
+
+            color: #23170d;
+        }
+
+        /* ===========================
+   FOOTER
+=========================== */
+
+        footer {
+
+            text-align: center;
+
+            padding: 40px;
+
+            border-top: 1px solid rgba(214, 170, 83, .15);
+
+            color: #c9b27a;
+
+            font-size: 1rem;
+        }
+
+        /* ===========================
+   RESPONSIVO
+=========================== */
+
+        @media(max-width:768px) {
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header .descricao {
+                font-size: 1.1rem;
+            }
+
+            .secao-titulo {
+                font-size: 1.6rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>🐍 Santuário das Águas Escuras</h1>
+
+        <div class="subtitulo">
+            "Oculta nas profundezas dos pântanos venenosos, a biblioteca dos Serpenthari é um dos lugares mais secretos
+            do continente."
+        </div>
+
+        <div class="descricao">
+
+            Seus registros são armazenados em recipientes alquímicos selados, cápsulas de âmbar e pergaminhos
+            resistentes à umidade. Muitos dos conhecimentos aqui guardados são considerados perigosos até mesmo pelos
+            próprios habitantes de Black Marsh.
+
+        </div>
+
+    </header>
+
+    <div class="container">
+
+
+        <!-- ====================================================
+📚 LIVROS DISPONÍVEIS
+==================================================== -->
+
+        <h2 class="secao-titulo">📚 Registros Disponíveis em Black Marsh</h2>
+
+        <p class="secao-descricao">
+            Sistema de Recompensa de Leitura<br>
+            EXP de Ofício: 20 a 40<br>
+            NEA (Nível de Energia Ancestral): 0,1% a 0,5%<br>
+            Cada livro pode ser lido apenas uma vez para obter recompensas.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>📖 Venenos e Antídotos do Pântano</h3>
+                <div class="categoria">Alquimista</div>
+                <p>Catálogo das toxinas naturais da região.</p>
+                <div class="recompensa">
+                    <strong>Recompensa:</strong><br>
+                    +40 EXP Alquimista<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('381')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Anatomia das Serpentes Gigantes</h3>
+                <div class="categoria">Médico</div>
+                <p>Estudo das criaturas mais perigosas dos pântanos.</p>
+                <div class="recompensa">
+                    +35 EXP Médico<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('417')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Caça Silenciosa</h3>
+                <div class="categoria">Caçador</div>
+                <p>Técnicas de rastreamento e emboscada.</p>
+                <div class="recompensa">
+                    +40 EXP Caçador<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('592')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 O Manual do Coletor de Ervas Tóxicas</h3>
+                <div class="categoria">Herbalista</div>
+                <p>Guia de plantas venenosas e medicinais.</p>
+                <div class="recompensa">
+                    +35 EXP Herbalista<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('208')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Navegação em Águas Escuras</h3>
+                <div class="categoria">Navegador</div>
+                <p>Métodos para atravessar regiões pantanosas.</p>
+                <div class="recompensa">
+                    +30 EXP Navegador<br>
+                    +0,1% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('734')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Agricultura dos Pântanos</h3>
+                <div class="categoria">Agricultor</div>
+                <p>Cultivo de fungos e plantas raras.</p>
+                <div class="recompensa">
+                    +25 EXP Agricultor<br>
+                    +0,1% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('651')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Bestiário de Black Marsh</h3>
+                <div class="categoria">Pesquisador Natural</div>
+                <p>Registro das criaturas da região.</p>
+                <div class="recompensa">
+                    +40 EXP Pesquisador Natural<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('146')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 A Arte da Camuflagem</h3>
+                <div class="categoria">Assassino</div>
+                <p>Métodos utilizados pelos caçadores Serpenthari.</p>
+                <div class="recompensa">
+                    +35 EXP Assassino<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('883')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Construções Sobre as Águas</h3>
+                <div class="categoria">Arquiteto</div>
+                <p>Técnicas para erguer vilarejos em áreas alagadas.</p>
+                <div class="recompensa">
+                    +35 EXP Arquiteto<br>
+                    +0,1% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('327')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Fungos do Brejo Profundo</h3>
+                <div class="categoria">Micologista</div>
+                <p>Catálogo de espécies raras.</p>
+                <div class="recompensa">
+                    +25 EXP Micologista<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('719')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 O Código das Escamas</h3>
+                <div class="categoria">Diplomata</div>
+                <p>Leis e tradições dos Serpenthari.</p>
+                <div class="recompensa">
+                    +30 EXP Diplomata<br>
+                    +0,1% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('455')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Técnicas de Sobrevivência Pantanosa</h3>
+                <div class="categoria">Sobrevivencialista</div>
+                <p>Métodos para sobreviver em ambientes hostis.</p>
+                <div class="recompensa">
+                    +40 EXP Sobrevivencialista<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('624')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Relatos dos Caçadores do Brejo</h3>
+                <div class="categoria">Historiador</div>
+                <p>Grandes feitos dos guerreiros locais.</p>
+                <div class="recompensa">
+                    +35 EXP Historiador<br>
+                    +0,1% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('872')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 As Águas que Curam</h3>
+                <div class="categoria">Curandeiro</div>
+                <p>Uso medicinal de minerais e plantas aquáticas.</p>
+                <div class="recompensa">
+                    +35 EXP Curandeiro<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('291')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 O Olho da Serpente</h3>
+                <div class="categoria">Rastreador</div>
+                <p>Métodos avançados de observação e perseguição.</p>
+                <div class="recompensa">
+                    +40 EXP Rastreador<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('538')">Ler Livro</button>
+            </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- ====================================================
+📜 REGISTRO LENDÁRIO
+==================================================== -->
+
+        <h2 class="secao-titulo">📜 Registro Lendário</h2>
+
+        <div class="grid">
+
+            <div class="card raro">
+
+                <h3>📕 As Escamas de Sszaryth</h3>
+
+                <div class="categoria">
+                    Alquimista / Assassino
+                </div>
+
+                <p>
+                    Conjunto de placas orgânicas atribuídas ao lendário fundador dos Serpenthari.
+                </p>
+
+                <div class="recompensa">
+
+                    +40 EXP Alquimista<br>
+                    +40 EXP Assassino<br>
+                    +0,5% NEA<br><br>
+
+                    <strong>
+                        Título Desbloqueado: 🐍 Herdeiro das Escamas Antigas
+                    </strong>
+
+                </div>
+
+                <button class="btn" onclick="abrirLivro('999')">
+                    Acessar Tomo Raro
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- ====================================================
+🔒 ALA PROIBIDA — ABISMO DAS ÁGUAS IMÓVEIS
+==================================================== -->
+
+        <h2 class="secao-titulo">🔒 Ala Proibida — Abismo das Águas Imóveis</h2>
+
+        <p class="secao-descricao">
+
+            Acesso permitido apenas aos Anciões Serpenthari.<br><br>
+
+            "Há coisas que afundaram porque o mundo não deveria encontrá-las novamente."
+
+        </p>
+
+        <div class="grid">
+
+            <div class="card proibido">
+                <h3>📕 O Milênio Afogado</h3>
+                <div class="categoria">História Proibida</div>
+                <p>Relatos de cidades submersas anteriores aos reinos modernos.</p>
+                <div class="recompensa">
+                    +40 EXP Historiador Arcano<br>
+                    +0,5% NEA<br>
+                    <em>Segredo: Afirma que parte do continente atual já esteve sob o oceano.</em>
+                </div>
+                <button class="btn" onclick="abrirLivro('741')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 A Quinta Maré</h3>
+                <div class="categoria">5th Magic</div>
+                <p>Primeiro documento de Black Marsh sobre a 5th Magic.</p>
+                <div class="recompensa">
+                    +40 EXP Arcanista<br>
+                    +40 EXP Alquimista<br>
+                    +0,5% NEA<br>
+                    <em>Segredo: A Quinta Magia é descrita como capaz de alterar conceitos como fluxo, transformação e
+                        adaptação.</em>
+                </div>
+                <button class="btn" onclick="abrirLivro('515')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 O Reino Sob o Brejo</h3>
+                <div class="categoria">Arquivos Removidos</div>
+                <p>Relatos de uma civilização encontrada abaixo dos pântanos.</p>
+                <div class="recompensa">
+                    +40 EXP Arqueólogo Arcano<br>
+                    +40 EXP Historiador<br>
+                    +0,5% NEA<br>
+                    <em>Segredo: As ruínas possuem símbolos que não pertencem a nenhuma raça conhecida.</em>
+                </div>
+                <button class="btn" onclick="abrirLivro('303')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 Os Filhos da Profundeza</h3>
+                <div class="categoria">Pesquisa Proibida</div>
+                <p>Registro de criaturas encontradas durante expedições proibidas.</p>
+                <div class="recompensa">
+                    +40 EXP Pesquisador Arcano<br>
+                    +40 EXP Caçador<br>
+                    +0,5% NEA<br>
+                    <em>Segredo: Algumas criaturas aparentam ter surgido antes mesmo do Milênio Perdido.</em>
+                </div>
+                <button class="btn" onclick="abrirLivro('848')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 O Cântico das Águas Negras</h3>
+                <div class="categoria">Classificação Máxima</div>
+                <p>
+                    O documento mais antigo e temido do Santuário.
+                </p>
+                <div class="recompensa">
+                    +40 EXP Arcanista<br>
+                    +40 EXP Historiador Arcano<br>
+                    +0,5% NEA<br>
+                    <strong>Título Desbloqueado: 🌑 Ouvinte das Águas Profundas</strong><br>
+                    <em>Última Inscrição: "Quando a Quinta Magia tocou os oceanos primordiais, as águas passaram a
+                        guardar memórias. E elas nunca esqueceram o que viram."</em><br>
+                    <em>Segredo Final: Os Anciões Serpenthari acreditam que existe uma consciência adormecida sob os
+                        pântanos de Black Marsh. Não um deus, nem uma criatura, mas algo muito mais antigo que ambos —
+                        uma entidade que observa o continente desde antes do Milênio Perdido.</em>
+                </div>
+                <button class="btn" onclick="abrirLivro('111')">
+                    Acessar Registro
+                </button>
+            </div>
+
+        </div>
+
+        <div class="voltar">
+            <a href="../bibliotecas.html">
+                ← Voltar às Bibliotecas
+            </a>
+        </div>
+
+
+
+    </div>
+
+    <footer>
+
+        Santuário das Águas Escuras • Black Marsh • Ano 5002
+
+    </footer>
+
+
+    <script>
+
+        const livros = {
+
+            // REGISTROS COMUNS
+            livro1: { senha: "VENENO-401", arquivo: "livros/venenos-antidotos-pantano.html" },
+            livro2: { senha: "SERPENTE-402", arquivo: "livros/anatomia-serpentes-gigantes.html" },
+            livro3: { senha: "CACA-403", arquivo: "livros/caca-silenciosa.html" },
+            livro4: { senha: "ERVAS-404", arquivo: "livros/coletor-ervas-toxicas.html" },
+            livro5: { senha: "AGUAS-405", arquivo: "livros/navegacao-aguas-escuras.html" },
+            livro6: { senha: "PANTANO-406", arquivo: "livros/agricultura-pantanos.html" },
+            livro7: { senha: "BESTIARIO-407", arquivo: "livros/bestiario-black-marsh.html" },
+            livro8: { senha: "CAMUFLAGEM-408", arquivo: "livros/arte-camuflagem.html" },
+            livro9: { senha: "PALAFITA-409", arquivo: "livros/construcoes-sobre-aguas.html" },
+            livro10: { senha: "FUNGOS-410", arquivo: "livros/fungos-brejo-profundo.html" },
+            livro11: { senha: "ESCAMAS-411", arquivo: "livros/codigo-das-escamas.html" },
+            livro12: { senha: "SOBREVIVER-412", arquivo: "livros/sobrevivencia-pantanosa.html" },
+            livro13: { senha: "BREJO-413", arquivo: "livros/relatos-cacadores-brejo.html" },
+            livro14: { senha: "CURA-414", arquivo: "livros/aguas-que-curam.html" },
+            livro15: { senha: "OLHO-415", arquivo: "livros/olho-da-serpente.html" },
+
+            // REGISTRO LENDÁRIO
+            livroRaro: {
+                senha: "SSZARYTH-999",
+                arquivo: "livros/escamas-de-sszaryth.html"
+            },
+
+            // ALA PROIBIDA
+            proibido1: {
+                senha: "AFOGADO-501",
+                arquivo: "livros/o-milenio-afogado.html"
+            },
+
+            proibido2: {
+                senha: "QUINTA-MARE-502",
+                arquivo: "livros/a-quinta-mare.html"
+            },
+
+            proibido3: {
+                senha: "BREJO-503",
+                arquivo: "livros/o-reino-sob-o-brejo.html"
+            },
+
+            proibido4: {
+                senha: "PROFUNDEZA-504",
+                arquivo: "livros/os-filhos-da-profundeza.html"
+            },
+
+            proibido5: {
+                senha: "AGUAS-NEGRAS-505",
+                arquivo: "livros/o-cantico-das-aguas-negras.html"
+            }
+        };
+
+        function abrirLivro(id) {
+
+            const livro = livros[id];
+
+            if (!livro) {
+                alert("Registro inexistente.");
+                return;
+            }
+
+            const senha = prompt("Digite a senha de acesso:");
+
+            if (senha === null) return;
+
+            if (senha.toUpperCase() === livro.senha.toUpperCase()) {
+
+                window.location.href = livro.arquivo;
+
+            } else {
+
+                alert("Senha incorreta.");
+
+            }
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

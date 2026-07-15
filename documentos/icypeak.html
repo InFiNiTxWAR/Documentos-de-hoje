@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Correspondência de Elyndor — Icy Peak</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                linear-gradient(rgba(8, 8, 8, .90), rgba(8, 8, 8, .90)),
+                url("https://images.unsplash.com/photo-1511497584788-876760111969");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            padding: 60px;
+
+            color: #2e1b0f;
+
+        }
+
+        .documento {
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            background:
+                linear-gradient(to bottom,
+                    #f8ebcc,
+                    #ecd4a6);
+
+            padding: 70px;
+
+            border: 8px solid #8b6a35;
+
+            box-shadow:
+                0 0 60px rgba(0, 0, 0, .75),
+                inset 0 0 80px rgba(0, 0, 0, .12);
+
+            position: relative;
+
+        }
+
+        .documento::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 18px;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
+
+            border: 2px solid rgba(80, 60, 30, .35);
+
+            pointer-events: none;
+
+        }
+
+        .selo {
+
+            font-size: 70px;
+
+            text-align: center;
+
+            margin-bottom: 15px;
+
+            color: #476b8f;
+
+        }
+
+        h1 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 52px;
+
+            text-align: center;
+
+            color: #2f1d11;
+
+            margin-bottom: 5px;
+
+        }
+
+        h2 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 26px;
+
+            text-align: center;
+
+            color: #5f4732;
+
+            font-style: italic;
+
+            margin-bottom: 25px;
+
+            border: none;
+
+        }
+
+        h3 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 26px;
+
+            margin-top: 40px;
+
+            margin-bottom: 15px;
+
+            padding-bottom: 8px;
+
+            border-bottom: 2px solid rgba(90, 60, 30, .25);
+
+            color: #402614;
+
+        }
+
+        .classificacao {
+
+            text-align: center;
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 15px;
+
+            letter-spacing: 2px;
+
+            color: #5c1010;
+
+            font-weight: bold;
+
+            margin-bottom: 25px;
+
+            line-height: 1.8;
+
+        }
+
+        hr {
+
+            border: none;
+
+            height: 2px;
+
+            background: rgba(80, 60, 30, .25);
+
+            margin-bottom: 35px;
+
+        }
+
+        p {
+
+            font-size: 24px;
+
+            line-height: 1.8;
+
+            margin-bottom: 18px;
+
+        }
+
+        ul {
+
+            margin-left: 40px;
+
+            margin-top: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+        li {
+
+            font-size: 23px;
+
+            margin-bottom: 10px;
+
+            line-height: 1.6;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 20px;
+            margin-bottom: 35px;
+
+            background: rgba(255, 255, 255, .15);
+
+        }
+
+        table th {
+
+            background: #6a4a27;
+
+            color: white;
+
+            font-family: 'Cinzel', serif;
+
+            padding: 15px;
+
+            font-size: 18px;
+
+        }
+
+        table td {
+
+            padding: 14px;
+
+            font-size: 21px;
+
+            border: 1px solid rgba(80, 60, 30, .20);
+
+        }
+
+        blockquote {
+
+            font-size: 30px;
+
+            font-style: italic;
+
+            text-align: center;
+
+            padding: 30px;
+
+            margin: 40px 0;
+
+            border-top: 2px solid rgba(80, 60, 30, .25);
+            border-bottom: 2px solid rgba(80, 60, 30, .25);
+
+            color: #45301f;
+
+        }
+
+        .alerta {
+
+            background: rgba(130, 0, 0, .08);
+
+            border-left: 6px solid #8d0000;
+
+            padding: 25px;
+
+            margin: 35px 0;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            font-family: 'Cinzel', serif;
+
+            color: #6d0000;
+
+        }
+
+        .citacao-final {
+
+            font-size: 34px;
+
+            font-weight: bold;
+
+            color: #183b62;
+
+        }
+
+        .assinatura {
+
+            margin-top: 80px;
+
+            text-align: right;
+
+        }
+
+        .assinatura p {
+
+            font-size: 22px;
+
+            font-style: italic;
+
+            margin-bottom: 15px;
+
+        }
+
+        .assinatura span {
+
+            display: block;
+
+            font-size: 38px;
+
+            letter-spacing: 8px;
+
+            color: #1f3b5c;
+
+            font-family: 'Cinzel', serif;
+
+        }
+
+        strong {
+
+            color: #1d3f63;
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="documento">
+
+        <div class="selo">❄ ✦ ❄</div>
+
+        <h1>Correspondência de Elyndor</h1>
+        <h2>Relatório de Icy Peak</h2>
+
+        <div class="classificacao">
+            Arquivo Oficial da Coroa Lunar de Elyndor<br>
+            Prioridade: Alta<br>
+            Destino: Conselho de Zaharam
+        </div>
+
+        <hr>
+
+        <p>
+            Aos membros do Conselho Regente,
+        </p>
+
+        <p>
+            Conforme solicitado por Sua Majestade,
+            exploradores e patrulhas das regiões de
+            <strong>Icy Peak</strong> conduziram investigações
+            sobre anomalias recentes registradas nas montanhas do norte.
+        </p>
+
+        <h3>Ocorrências Confirmadas</h3>
+
+        <ul>
+            <li>Desaparecimentos sem vestígios.</li>
+            <li>Fissuras surgindo em formações glaciais.</li>
+            <li>Distorções mágicas persistentes.</li>
+            <li>Alterações incomuns no comportamento da fauna local.</li>
+            <li>Falhas em instrumentos arcanos de navegação.</li>
+        </ul>
+
+        <h3>Registro dos Desaparecimentos</h3>
+
+        <table>
+            <tr>
+                <th>Data</th>
+                <th>Patrulha</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>12º Dia Maio</td>
+                <td>Exploradores do Norte</td>
+                <td>Desaparecidos</td>
+            </tr>
+            <tr>
+                <td>13º Dia Maio</td>
+                <td>Caçadores Felynár</td>
+                <td>Desaparecidos</td>
+            </tr>
+            <tr>
+                <td>14º Dia Maio</td>
+                <td>Patrulha da Coroa</td>
+                <td>Retorno parcial</td>
+            </tr>
+        </table>
+
+        <h3>A Fissura Glacial</h3>
+
+        <p>
+            Testemunhas relatam a abertura de uma
+            rachadura luminosa sob o gelo.
+        </p>
+
+        <blockquote>
+            “A neve não caiu ao chão.
+            Foi puxada para dentro da própria fissura.”
+        </blockquote>
+
+        <p>
+            Magos de Luminathis identificaram
+            assinaturas energéticas incompatíveis com
+            qualquer fenômeno natural conhecido.
+        </p>
+
+        <h3>Distorções Dimensionais</h3>
+
+        <p>
+            Observadores relataram ecos sonoros sem origem,
+            sombras deslocadas da luz natural
+            e reflexos incompatíveis com o ambiente.
+        </p>
+
+        <p>
+            Em dois registros distintos,
+            exploradores afirmaram visualizar
+            estruturas impossíveis através da rachadura,
+            semelhantes a cidades ou formações
+            pertencentes a outro plano.
+        </p>
+
+        <div class="alerta">
+            Classificação Arcana: Nível Carmesim
+        </div>
+
+        <h3>Comparação com Solania</h3>
+
+        <p>
+            Após análise dos relatos sobreviventes da tragédia de Solania,
+            especialistas concluíram que as semelhanças
+            excedem coincidências estatísticas.
+        </p>
+
+        <ul>
+            <li>Fissuras de mesma coloração.</li>
+            <li>Anomalias dimensionais semelhantes.</li>
+            <li>Desaparecimentos sem evidências físicas.</li>
+            <li>Distorções mágicas persistentes.</li>
+        </ul>
+
+        <blockquote class="citacao-final">
+            “O fenômeno replica Solania.”
+        </blockquote>
+
+        <p>
+            Recomendamos vigilância máxima
+            e cooperação imediata entre os reinos.
+        </p>
+
+        <div class="assinatura">
+            <p>
+                Selado em Luminathis<br>
+                Pela Coroa Lunar de Elyndor
+            </p>
+
+            <span>
+                ᛖᛚᚨᚱᛁᛟᚾ
+            </span>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

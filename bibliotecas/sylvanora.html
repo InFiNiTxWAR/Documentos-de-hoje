@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Sylvanora — Biblioteca da Raiz Eterna</title>
+
+   <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+   <style>
+      /* ===========================
+   RESET
+=========================== */
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      html {
+         scroll-behavior: smooth;
+      }
+
+      /* ===========================
+   BODY
+=========================== */
+
+      body {
+
+         min-height: 100vh;
+
+         background:
+            linear-gradient(rgba(8, 12, 8, .88),
+               rgba(6, 10, 6, .94)),
+
+            url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+
+         font-family: 'Cormorant Garamond', serif;
+
+         color: #f4e7c1;
+      }
+
+      /* ===========================
+   HEADER
+=========================== */
+
+      header {
+
+         padding: 70px 20px;
+
+         text-align: center;
+
+         border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+         backdrop-filter: blur(2px);
+      }
+
+      header h1 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 3.8rem;
+
+         color: #f5d48b;
+
+         text-shadow:
+            0 0 15px rgba(245, 212, 139, .35);
+
+         margin-bottom: 15px;
+      }
+
+      header .subtitulo {
+
+         font-size: 1.5rem;
+
+         color: #d8c79d;
+
+         font-style: italic;
+
+         margin-bottom: 20px;
+      }
+
+      header .descricao {
+
+         max-width: 900px;
+
+         margin: auto;
+
+         font-size: 1.25rem;
+
+         line-height: 1.7;
+
+         color: #e7d7b1;
+      }
+
+      /* ===========================
+   CONTAINER
+=========================== */
+
+      .container {
+
+         max-width: 1500px;
+
+         margin: auto;
+
+         padding: 50px 30px 80px;
+      }
+
+      /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+      .secao-titulo {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 2rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         text-shadow:
+            0 0 8px rgba(245, 212, 139, .25);
+      }
+
+      .secao-descricao {
+
+         font-size: 1.2rem;
+
+         color: #d7c59b;
+
+         margin-bottom: 30px;
+
+         line-height: 1.7;
+      }
+
+      .separador {
+
+         margin: 60px 0;
+
+         height: 2px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               rgba(214, 170, 83, .6),
+               transparent);
+      }
+
+      /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+      .grid {
+
+         display: grid;
+
+         grid-template-columns:
+            repeat(auto-fit, minmax(320px, 1fr));
+
+         gap: 25px;
+      }
+
+      /* ===========================
+   CARD PADRÃO
+=========================== */
+
+      .card {
+
+         background:
+            rgba(35, 25, 15, .93);
+
+         border: 2px solid #8f6b2c;
+
+         border-radius: 14px;
+
+         padding: 24px;
+
+         transition: .35s;
+
+         box-shadow:
+            0 0 15px rgba(0, 0, 0, .45);
+
+         position: relative;
+
+         overflow: hidden;
+      }
+
+      .card::before {
+
+         content: "";
+
+         position: absolute;
+
+         top: 0;
+         left: 0;
+
+         width: 100%;
+         height: 4px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d6aa53,
+               transparent);
+      }
+
+      .card:hover {
+
+         transform: translateY(-8px);
+
+         border-color: #d6aa53;
+
+         box-shadow:
+            0 0 25px rgba(214, 170, 83, .20);
+      }
+
+      .card h3 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 1.25rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         line-height: 1.4;
+      }
+
+      .categoria {
+
+         display: inline-block;
+
+         padding: 5px 10px;
+
+         background:
+            rgba(214, 170, 83, .12);
+
+         border: 1px solid rgba(214, 170, 83, .25);
+
+         border-radius: 20px;
+
+         font-size: .95rem;
+
+         margin-bottom: 15px;
+
+         color: #f3d18b;
+      }
+
+      .card p {
+
+         font-size: 1.08rem;
+
+         line-height: 1.6;
+
+         color: #e6d7b5;
+
+         margin-bottom: 18px;
+      }
+
+      /* ===========================
+   RECOMPENSAS
+=========================== */
+
+      .recompensa {
+
+         background:
+            rgba(0, 0, 0, .20);
+
+         border-left: 4px solid #d6aa53;
+
+         padding: 12px;
+
+         border-radius: 6px;
+
+         font-size: 1rem;
+
+         margin-bottom: 18px;
+
+         line-height: 1.6;
+      }
+
+      .recompensa strong {
+
+         color: #f5d48b;
+      }
+
+      /* ===========================
+   BOTÃO
+=========================== */
+
+      .btn {
+
+         width: 100%;
+
+         border: none;
+
+         cursor: pointer;
+
+         padding: 12px;
+
+         font-size: 1rem;
+
+         font-weight: bold;
+
+         font-family: 'Cinzel', serif;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         transition: .3s;
+      }
+
+      .btn:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   LIVRO RARO
+=========================== */
+
+      .raro {
+
+         border: 2px solid #c9a84a;
+
+         background:
+            rgba(58, 44, 18, .94);
+      }
+
+      .raro::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #ffd369,
+               transparent);
+      }
+
+      .raro h3 {
+
+         color: #ffd369;
+      }
+
+      /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+      .proibido {
+
+         background:
+            rgba(30, 10, 10, .95);
+
+         border: 2px solid #8f1d1d;
+      }
+
+      .proibido::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d64040,
+               transparent);
+      }
+
+      .proibido h3 {
+
+         color: #ff7b7b;
+      }
+
+      .proibido .categoria {
+
+         background:
+            rgba(255, 0, 0, .10);
+
+         border-color:
+            rgba(255, 0, 0, .25);
+
+         color: #ff9b9b;
+      }
+
+      .proibido .btn {
+
+         background: #7f1d1d;
+      }
+
+      .proibido .btn:hover {
+
+         background: #c73434;
+
+         color: white;
+      }
+
+      /* ===========================
+   VOLTAR
+=========================== */
+
+      .voltar {
+
+         text-align: center;
+
+         margin-top: 60px;
+      }
+
+      .voltar a {
+
+         display: inline-block;
+
+         text-decoration: none;
+
+         padding: 12px 25px;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         font-family: 'Cinzel', serif;
+
+         transition: .3s;
+      }
+
+      .voltar a:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+
+      footer {
+
+         text-align: center;
+
+         padding: 40px;
+
+         border-top: 1px solid rgba(214, 170, 83, .15);
+
+         color: #c9b27a;
+
+         font-size: 1rem;
+      }
+
+      /* ===========================
+   RESPONSIVO
+=========================== */
+
+      @media(max-width:768px) {
+
+         header h1 {
+            font-size: 2.5rem;
+         }
+
+         header .descricao {
+            font-size: 1.1rem;
+         }
+
+         .secao-titulo {
+            font-size: 1.6rem;
+         }
+
+         .grid {
+            grid-template-columns: 1fr;
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+
+      <h1>🌳 Biblioteca da Raiz Eterna</h1>
+
+      <div class="subtitulo">
+         "Toda memória retorna às raízes."
+      </div>
+
+      <div class="descricao">
+
+         Uma biblioteca viva construída dentro de uma árvore milenar.
+         Os registros são preservados na própria madeira ancestral,
+         e cada tomo guarda fragmentos da história de Sylvanora.
+
+      </div>
+
+   </header>
+
+   <div class="container">
+
+
+      <!-- ====================================================
+📚 LIVROS DISPONÍVEIS
+==================================================== -->
+
+      <h2 class="secao-titulo">📚 Livros Disponíveis</h2>
+
+      <p class="secao-descricao">
+         Sistema de Recompensa de Leitura<br>
+         EXP de Ofício: 20 a 40<br>
+         NEA (Nível de Energia Ancestral): 0,1% a 0,5%<br>
+         Cada livro pode ser lido apenas uma vez para obter recompensas.
+      </p>
+
+      <div class="grid">
+
+         <div class="card">
+            <h3>📖 Herbarium de Celestium</h3>
+            <div class="categoria">Herbalista</div>
+            <p>Um catálogo de mais de 300 ervas da floresta ancestral.</p>
+            <div class="recompensa">
+               <strong>Recompensa:</strong><br>
+               +40 EXP Herbalista<br>
+               +0,4% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('381')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Cultivo da Seiva Dourada</h3>
+            <div class="categoria">Herbalista</div>
+            <p>Técnicas avançadas de cultivo mágico.</p>
+            <div class="recompensa">
+               +30 EXP Herbalista<br>
+               +0,3% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('417')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Medicina dos Guardiões Verdes</h3>
+            <div class="categoria">Médico</div>
+            <p>Tratamentos utilizando plantas espirituais.</p>
+            <div class="recompensa">
+               +35 EXP Médico<br>
+               +0,3% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('592')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Anatomia das Criaturas da Floresta</h3>
+            <div class="categoria">Médico</div>
+            <p>Estudo anatômico de criaturas mágicas.</p>
+            <div class="recompensa">
+               +40 EXP Médico<br>
+               +0,2% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('208')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Orações à Raiz Eterna</h3>
+            <div class="categoria">Clérigo</div>
+            <p>Manuscrito utilizado por sacerdotes naturais.</p>
+            <div class="recompensa">
+               +25 EXP Clérigo<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('734')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Caminhos da Harmonia</h3>
+            <div class="categoria">Clérigo</div>
+            <p>Ensina equilíbrio espiritual e purificação.</p>
+            <div class="recompensa">
+               +30 EXP Clérigo<br>
+               +0,4% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('651')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Manual dos Druidas Iniciantes</h3>
+            <div class="categoria">Druida</div>
+            <p>Livro básico para jovens aprendizes.</p>
+            <div class="recompensa">
+               +20 EXP Druida<br>
+               +0,2% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('146')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Os Segredos da Floresta Eterna</h3>
+            <div class="categoria">Druida</div>
+            <p>Conhecimentos avançados sobre espíritos naturais.</p>
+            <div class="recompensa">
+               +40 EXP Druida<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('883')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Bestiário dos Pactos Antigos</h3>
+            <div class="categoria">Domador Espiritual</div>
+            <p>Registros sobre criaturas vinculadas a Sylvanora.</p>
+            <div class="recompensa">
+               +35 EXP Domador Espiritual<br>
+               +0,3% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('327')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 A Voz das Fadas</h3>
+            <div class="categoria">Encantador</div>
+            <p>Estudo sobre comunicação feérica.</p>
+            <div class="recompensa">
+               +25 EXP Encantador<br>
+               +0,4% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('719')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Manual do Apicultor Arcano</h3>
+            <div class="categoria">Apicultor Mágico</div>
+            <p>Criação de abelhas produtoras de mel encantado.</p>
+            <div class="recompensa">
+               +20 EXP Apicultor Mágico<br>
+               +0,2% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('455')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Alquimia das Flores Lunares</h3>
+            <div class="categoria">Alquimista</div>
+            <p>Receitas de poções produzidas com flores raras.</p>
+            <div class="recompensa">
+               +40 EXP Alquimista<br>
+               +0,4% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('624')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 As Canções que Curam</h3>
+            <div class="categoria">Bardo Curandeiro</div>
+            <p>Uso de música para tratamento espiritual.</p>
+            <div class="recompensa">
+               +30 EXP Bardo Curandeiro<br>
+               +0,3% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('872')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Registro dos Primeiros Sylvari</h3>
+            <div class="categoria">Historiador Arcano</div>
+            <p>Relatos dos fundadores ocultos da floresta.</p>
+            <div class="recompensa">
+               +35 EXP Historiador Arcano<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('291')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Jardim das Mil Almas</h3>
+            <div class="categoria">Jardineiro Espiritual</div>
+            <p>Técnicas para cultivar plantas ligadas à energia vital.</p>
+            <div class="recompensa">
+               +40 EXP Jardineiro Espiritual<br>
+               +0,4% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('538')">Ler Livro</button>
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <!-- ====================================================
+📜 LIVRO RARO
+==================================================== -->
+
+      <h2 class="secao-titulo">📜 Livro Raro</h2>
+
+      <div class="grid">
+
+         <div class="card raro">
+
+            <h3>📕 Codex da Raiz Primordial</h3>
+
+            <div class="categoria">
+               Druida / Clérigo
+            </div>
+
+            <p>
+               Dizem que foi escrito pela própria Elyndriel Vaelor,
+               a Voz da Raiz Eterna.
+               Apenas membros de alto escalão possuem acesso.
+            </p>
+
+            <div class="recompensa">
+
+               +40 EXP Druida<br>
+               +40 EXP Clérigo<br>
+               +0,5% NEA<br><br>
+
+               <strong>
+                  Desbloqueia conhecimento sobre Pactos Espirituais Antigos.
+               </strong>
+
+            </div>
+
+            <button class="btn" onclick="abrirLivro('999')">
+               Acessar Tomo Raro
+            </button>
+
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <!-- ====================================================
+🔒 ALA PROIBIDA
+==================================================== -->
+
+      <h2 class="secao-titulo">🔒 Ala Proibida — Raiz Negra</h2>
+
+      <p class="secao-descricao">
+
+         Acesso: Mestre Druida, Arquivista Real ou autorização
+         do Conselho das Raízes.<br><br>
+
+         "Alguns conhecimentos não foram esquecidos.
+         Foram enterrados."
+
+      </p>
+
+      <div class="grid">
+
+         <div class="card proibido">
+            <h3>📕 Crônicas do Milênio Perdido</h3>
+            <div class="categoria">História Proibida</div>
+            <p>Civilizações desaparecidas e as Guerras do Alvorecer.</p>
+            <div class="recompensa">
+               +40 EXP Historiador Arcano<br>
+               +40 EXP Arqueólogo Arcano<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('741')">
+               Acessar Registro
+            </button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Quinto Véu da Magia</h3>
+            <div class="categoria">5th Magic</div>
+            <p>Primeiro documento conhecido sobre a Quinta Magia.</p>
+            <div class="recompensa">
+               +40 EXP Pesquisador Arcano<br>
+               +40 EXP Mago<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('515')">
+               Acessar Registro
+            </button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Livro das Eras Silenciadas</h3>
+            <div class="categoria">Arquivos Removidos</div>
+            <p>Eventos apagados dos registros oficiais.</p>
+            <div class="recompensa">
+               +40 EXP Historiador Arcano<br>
+               +30 EXP Diplomata<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('303')">
+               Acessar Registro
+            </button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 Teoria da Quinta Corrente</h3>
+            <div class="categoria">Pesquisa Proibida</div>
+            <p>Estudos sobre a origem da Quinta Magia.</p>
+            <div class="recompensa">
+               +40 EXP Arcanista<br>
+               +35 EXP Alquimista<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('848')">
+               Acessar Registro
+            </button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 Fragmentos do Deus Ausente</h3>
+            <div class="categoria">Classificação Máxima</div>
+            <p>
+               O livro mais proibido de toda Sylvanora.
+            </p>
+            <div class="recompensa">
+               +40 EXP Pesquisador Arcano<br>
+               +40 EXP Clérigo<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('111')">
+               Acessar Registro
+            </button>
+         </div>
+
+      </div>
+
+      <div class="voltar">
+         <a href="../bibliotecas.html">
+            ← Voltar às Bibliotecas
+         </a>
+      </div>
+
+
+
+   </div>
+
+   <footer>
+
+      Biblioteca da Raiz Eterna • Reino de Sylvanora • Ano 5002
+
+   </footer>
+
+
+   <script>
+
+      const livros = {
+
+         /* ==========================
+            LIVROS COMUNS
+         ========================== */
+
+         "381": "livros/herbarium-celestium.html",
+         "417": "livros/cultivo-seiva-dourada.html",
+         "592": "livros/medicina-guardioes_verdes.html",
+         "208": "livros/anatomia_criaturas_floresta.html",
+         "734": "livros/oracoes_raiz_eterna.html",
+         "651": "livros/caminhos_harmonia.html",
+         "146": "livros/manual_druidas_iniciantes.html",
+         "883": "livros/segredos_floresta_eterna.html",
+         "327": "livros/bestiario_pactos_antigos.html",
+         "719": "livros/voz_das_fadas.html",
+         "455": "livros/manual_apicultor_arcano.html",
+         "624": "livros/alquimia_flores_lunares.html",
+         "872": "livros/cancoes_que_curam.html",
+         "291": "livros/registro_primeiros_sylvari.html",
+         "538": "livros/jardim_mil_almas.html",
+
+         /* ==========================
+            LIVRO RARO
+         ========================== */
+
+         "999": "livros/codex_raiz_primordial.html",
+
+         /* ==========================
+            ALA PROIBIDA
+         ========================== */
+
+         "741": "livros/cronicas_milenio_perdido.html",
+         "515": "livros/quinto_veu_magia.html",
+         "303": "livros/livro_eras_silenciadas.html",
+         "848": "livros/teoria_quinta_corrente.html",
+         "111": "livros/fragmentos_deus_ausente.html"
+
+      };
+
+      function abrirLivro(codigoEsperado) {
+
+         const codigo = prompt(
+            "🌳 Insira o código do tomo:"
+         );
+
+         if (codigo === null) {
+            return;
+         }
+
+         if (codigo === codigoEsperado) {
+
+            window.location.href =
+               livros[codigoEsperado];
+
+         } else {
+
+            alert(
+               "❌ As raízes ancestrais rejeitam sua tentativa de acesso.\n\nCódigo inválido."
+            );
+
+         }
+
+      }
+
+   </script>
+
+
+
+</body>
+
+</html>

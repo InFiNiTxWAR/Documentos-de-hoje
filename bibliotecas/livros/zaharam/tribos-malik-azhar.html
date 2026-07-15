@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>As Tribos de Malik Azhar — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Malik Azhar */
+.malik-destaque {
+    background: rgba(212,160,23,.15);
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.malik-destaque h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.malik-destaque p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+/* Tribos Fundadoras */
+.tribos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.tribo-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.tribo-card:hover {
+    background: rgba(30,18,8,.9);
+    transform: translateX(3px);
+}
+
+.tribo-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.tribo-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.tribo-card .descricao {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+    font-size: 0.9rem;
+}
+
+/* Garrakhai */
+.garrakhai-destaque {
+    background: linear-gradient(135deg, rgba(30,25,15,.95), rgba(25,20,10,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    margin: 20px 0;
+}
+
+.garrakhai-destaque h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.garrakhai-destaque .pilares {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.garrakhai-destaque .pilares span {
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 6px 20px;
+    font-size: 0.9rem;
+}
+
+/* K'Thar */
+.kthar-card {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.kthar-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.kthar-card p {
+    font-size: 0.95rem;
+    margin: 8px 0;
+}
+
+/* Tiberio */
+.tiberio-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.tiberio-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* Profecia */
+.profecia-card {
+    background: linear-gradient(135deg, rgba(20,12,5,.9), rgba(10,6,3,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.profecia-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.profecia-card .texto {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Legado */
+.legado-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.legado-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .tribos-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🏜️ As Tribos de Malik Azhar</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Hassan ibn Faruk, Cronista Imperial de Zaharam</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 843 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Antes de Zaharam ser um reino, era um conjunto de fogueiras espalhadas pelo deserto."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            <strong>As Tribos de Malik Azhar</strong> é considerado o mais completo registro sobre os povos que deram origem ao Reino de Zaharam.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            A obra reúne relatos preservados por anciões, líderes tribais, exploradores e historiadores ao longo de séculos.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            Segundo os registros, foram as tribos que construíram as primeiras rotas, descobriram os primeiros oásis permanentes e estabeleceram os valores que moldariam toda a cultura zaharamita.
+        </p>
+    </div>
+
+    <!-- Malik Azhar, o Unificador -->
+    <div class="malik-destaque">
+        <h3>👑 Malik Azhar, o Unificador</h3>
+        <p>Muito antes do surgimento das grandes cidades, as tribos viviam isoladas.</p>
+        <p>Disputas por água, caça e território eram constantes.</p>
+        <p>Foi nesse período que surgiu <strong>Malik Azhar</strong>, um líder viajante que percorreu o deserto formando alianças entre povos rivais.</p>
+        <p><em>Ao invés de conquistar pela força, Malik conquistou pela diplomacia.</em></p>
+        <p style="margin-top: 10px;">Os registros afirmam que sua maior realização foi criar a primeira aliança duradoura entre as tribos do deserto.</p>
+    </div>
+
+    <!-- As Sete Tribos Fundadoras -->
+    <div class="section">
+        <h2 class="section-title">🏛️ As Sete Tribos Fundadoras</h2>
+        <p>Embora existissem dezenas de povos menores, sete tribos são tradicionalmente reconhecidas como fundadoras de Zaharam.</p>
+        
+        <div class="tribos-grid">
+            <div class="tribo-card">
+                <span class="emoji">🐫</span><h4>Al'Kharim</h4>
+                <div class="descricao">Especialistas em comércio e caravanas. Foram responsáveis pelas primeiras rotas comerciais.</div>
+            </div>
+            <div class="tribo-card">
+                <span class="emoji">🐪</span><h4>Rash'Nar</h4>
+                <div class="descricao">Grandes criadores de montarias. Seus animais abasteciam expedições por todo o reino.</div>
+            </div>
+            <div class="tribo-card">
+                <span class="emoji">⚔️</span><h4>Sol'Rakan</h4>
+                <div class="descricao">Guerreiros responsáveis pela proteção das caravanas.</div>
+            </div>
+            <div class="tribo-card">
+                <span class="emoji">⭐</span><h4>Tazarim</h4>
+                <div class="descricao">Astrônomos e navegadores do deserto. Foram os primeiros a registrar as constelações utilizadas até hoje.</div>
+            </div>
+            <div class="tribo-card">
+                <span class="emoji">⛏️</span><h4>Vashir</h4>
+                <div class="descricao">Mineradores e exploradores das Rochas Escarlates.</div>
+            </div>
+            <div class="tribo-card">
+                <span class="emoji">💧</span><h4>Nahir</h4>
+                <div class="descricao">Mestres dos oásis e da agricultura desértica.</div>
+            </div>
+            <div class="tribo-card">
+                <span class="emoji">🦁</span><h4>Garrakhai</h4>
+                <div class="descricao">Os Guardiões da Terra. Uma tribo gnoll conhecida por sua profunda ligação com a natureza, a caça e os espíritos ancestrais.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Os Garrakhai -->
+    <div class="garrakhai-destaque">
+        <h4>🦁 Os Garrakhai</h4>
+        <p>Entre todas as tribos fundadoras, poucas são cercadas por tantas histórias quanto os Garrakhai.</p>
+        <p>Ao contrário da maioria dos povos de Zaharam, eles não construíam grandes cidades. Preferiam viver próximos às florestas, cânions e regiões selvagens.</p>
+        <p>Suas tradições eram baseadas em três pilares:</p>
+        <div class="pilares">
+            <span>🛡️ Honra</span>
+            <span>🏹 Caça</span>
+            <span>🌍 Proteção do território</span>
+        </div>
+        <p style="margin-top: 15px;"><em>Todo membro da tribo precisava provar seu valor diante dos espíritos antes de ser reconhecido como adulto.</em></p>
+        <p>Muitos dos costumes preservados pelos Garrakhai existem até os dias atuais.</p>
+    </div>
+
+    <!-- K'Thar, o Leão das Areias -->
+    <div class="section">
+        <h2 class="section-title">🦁 K'Thar, o Leão das Areias</h2>
+        <p>Diversos registros mencionam um lendário guerreiro gnoll chamado <strong>K'Thar</strong>.</p>
+        
+        <div class="kthar-card">
+            <h4>📜 As Lendas de K'Thar</h4>
+            <p>Segundo os relatos, ele nasceu entre os Garrakhai durante os primeiros séculos de Zaharam.</p>
+            <p>Suas façanhas tornaram-se lendas. Dizem que derrotou sozinho uma Matriarca Escorpião que aterrorizava três tribos.</p>
+            <p>Também é descrito como companheiro e amigo do lendário mago <strong>Tharzul</strong>, com quem teria viajado por inúmeras regiões do continente.</p>
+            <p style="margin-top: 10px;"><em>Embora muitos detalhes tenham sido exagerados pelo tempo, historiadores concordam que K'Thar realmente existiu.</em></p>
+            <p>Até hoje os guerreiros Garrakhai contam histórias sobre ele ao redor das fogueiras.</p>
+        </div>
+    </div>
+
+    <!-- O Homem Chamado Tiberio -->
+    <div class="section">
+        <h2 class="section-title">📖 O Homem Chamado Tiberio</h2>
+        <p>Entre os registros mais antigos da época de Malik Azhar existe a menção de um estudioso conhecido apenas como <strong>Tiberio</strong>.</p>
+        
+        <div class="tiberio-card">
+            <h4>🔍 Relatos Antigos</h4>
+            <p>Seu nome aparece em poucos documentos, mas sempre associado a eventos incomuns.</p>
+            <p>Relatos afirmam que ele teria visitado diversas tribos durante suas pesquisas sobre as Fissuras.</p>
+            <p>Alguns anciões dos Garrakhai afirmavam que Tiberio passou uma estação inteira vivendo entre os caçadores da tribo.</p>
+            <p>Segundo a tradição oral, ele demonstrava enorme interesse pelas lendas dos espíritos antigos e pelas histórias transmitidas pelos xamãs.</p>
+            <p><em>Nenhum registro confirma o que ele procurava.</em></p>
+        </div>
+    </div>
+
+    <!-- A Profecia dos Garrakhai -->
+    <div class="section">
+        <h2 class="section-title">🔮 A Profecia dos Garrakhai</h2>
+        <p>Um capítulo preservado pelos anciões menciona uma antiga profecia tribal.</p>
+        
+        <div class="profecia-card">
+            <h4>📜 A Profecia</h4>
+            <div class="texto">
+                <p>"Um caçador sem nome que partirá de sua terra natal.</p>
+                <p>Carregará o símbolo de sua tribo sobre o peito.</p>
+                <p>Andará ao lado de heróis vindos de terras distantes.</p>
+                <p>E enfrentará sombras muito maiores do que ele próprio."</p>
+            </div>
+        </div>
+        
+        <p>Os estudiosos discordam sobre o significado da profecia. Alguns acreditam que se refere a um herói do passado. Outros acreditam que ela ainda não foi cumprida.</p>
+    </div>
+
+    <!-- O Legado das Tribos -->
+    <div class="section">
+        <h2 class="section-title">🏛️ O Legado das Tribos</h2>
+        <p>Mesmo após o surgimento das cidades, as tribos continuaram influenciando Zaharam. Diversas tradições modernas surgiram delas:</p>
+        
+        <ul class="legado-list">
+            <li>Os códigos de honra dos guerreiros</li>
+            <li>As rotas das caravanas</li>
+            <li>Os festivais dos oásis</li>
+            <li>Os juramentos dos navegadores</li>
+            <li>As cerimônias de passagem</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><em>"Os reinos mudam. As cidades crescem. Mas as tribos permanecem vivas na memória de seu povo."</em></p>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"Quando observamos Zaharam, vemos muralhas, mercados e palácios.</p>
+        <p>Mas abaixo de tudo isso ainda existem as pegadas daqueles que cruzaram o deserto primeiro."</p>
+        <div class="autor">— Hassan ibn Faruk</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>História das tribos fundadoras de Zaharam</li>
+            <li>Cultura e tradições dos Garrakhai</li>
+            <li>Lendas sobre K'Thar e Tharzul</li>
+            <li>Primeiros registros de Tiberio entre os povos do deserto</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Historiador</div>
+        <div class="nea">+0,2% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Memórias de Samira al-Nahir — Livro Raro — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(20,12,5,.95), rgba(15,8,3,.98)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #e8d5a8;
+    position: relative;
+}
+
+/* Efeito de pergaminho antigo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            rgba(212,160,23,.03) 0px,
+            rgba(212,160,23,.03) 2px,
+            transparent 2px,
+            transparent 8px
+        ),
+        radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,.4) 100%);
+    z-index: 0;
+}
+
+/* Header Especial */
+header {
+    padding: 80px 20px 60px;
+    text-align: center;
+    border-bottom: 2px solid rgba(212,160,23,.6);
+    background: rgba(10,6,3,.85);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 50px rgba(212,160,23,.1);
+}
+
+header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: #f5d48b;
+    text-shadow: 0 0 30px rgba(245,212,139,.5), 0 0 10px #d4a017;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+}
+
+.rare-badge {
+    display: inline-block;
+    padding: 8px 25px;
+    background: linear-gradient(135deg, #d4a017, #b8860b);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #1a0f05;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(212,160,23,.5);
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.2);
+    border: 1px solid rgba(212,160,23,.6);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #f2d49b;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: #f5d48b;
+    border-left: 3px solid #d4a017;
+    padding-left: 30px;
+    text-align: left;
+    font-family: 'Great Vibes', cursive;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Páginas do Diário */
+.diary-page {
+    background: linear-gradient(145deg, rgba(25,18,10,.92), rgba(20,12,5,.96));
+    border: 2px solid rgba(212,160,23,.5);
+    border-radius: 20px;
+    padding: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,.5), inset 0 0 20px rgba(212,160,23,.05);
+}
+
+.diary-page::before {
+    content: "✧";
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    font-size: 1rem;
+    color: #d4a017;
+    opacity: 0.5;
+}
+
+.diary-page::after {
+    content: "✧";
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+    font-size: 1rem;
+    color: #d4a017;
+    opacity: 0.5;
+}
+
+.page-number {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #d4a017;
+    margin-bottom: 25px;
+    letter-spacing: 4px;
+}
+
+.diary-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: #f5d48b;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(245,212,139,.3);
+}
+
+.diary-text {
+    font-size: 1.08rem;
+    line-height: 1.9;
+    text-align: justify;
+    color: #e0d0a0;
+}
+
+.diary-text p {
+    margin-bottom: 20px;
+    text-indent: 40px;
+}
+
+.diary-text p:first-of-type {
+    text-indent: 0;
+}
+
+.diary-text .dropcap {
+    font-size: 3.5rem;
+    font-family: 'Great Vibes', cursive;
+    float: left;
+    line-height: 0.8;
+    margin-right: 12px;
+    color: #f5d48b;
+    text-shadow: 0 0 5px rgba(245,212,139,.5);
+}
+
+.diary-text strong {
+    color: #f5d48b;
+}
+
+.diary-text em {
+    color: #d4a017;
+    font-style: italic;
+}
+
+.citacao-diario {
+    font-style: italic;
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    border-top: 1px dashed rgba(212,160,23,.4);
+    border-bottom: 1px dashed rgba(212,160,23,.4);
+    font-size: 1.15rem;
+    color: #f2d49b;
+}
+
+/* Frase de K'Thar */
+.kthar-frase {
+    background: rgba(212,160,23,.1);
+    border-left: 4px solid #d4a017;
+    padding: 20px 25px;
+    margin: 25px 0;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+/* Inscrições */
+.inscricoes {
+    font-family: 'Cinzel', serif;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 25px 0;
+    padding: 15px;
+    background: rgba(0,0,0,.3);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.inscricoes span {
+    color: #d4a017;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+}
+
+/* Conselho Final */
+.conselho-final {
+    background: linear-gradient(135deg, rgba(212,160,23,.1), rgba(212,160,23,.05));
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.conselho-final p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.conselho-final p:first-child {
+    font-weight: bold;
+    color: #f5d48b;
+}
+
+/* Frase Final */
+.frase-final {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin: 40px 0 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(212,160,23,.3);
+    color: #f5d48b;
+}
+
+/* Conhecimento Raro */
+.rare-knowledge {
+    background: linear-gradient(135deg, rgba(212,160,23,.15), rgba(212,160,23,.05));
+    border: 2px solid #d4a017;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px 0;
+}
+
+.rare-knowledge h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5d48b;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rare-knowledge .conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.rare-knowledge .conhecimento-list li {
+    background: rgba(212,160,23,.2);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    padding: 8px 22px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa Especial */
+.recompensa-rare {
+    background: linear-gradient(135deg, rgba(212,160,23,.2), rgba(20,12,5,.98));
+    border: 2px solid #f5d48b;
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    margin: 40px 0 20px;
+    box-shadow: 0 0 30px rgba(245,212,139,.2);
+}
+
+.recompensa-rare h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5d48b;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(245,212,139,.3);
+}
+
+.recompensa-rare .exp {
+    font-size: 2rem;
+    color: #a8e6a0;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.recompensa-rare .nea {
+    font-size: 1.5rem;
+    color: #f5d48b;
+    margin: 10px 0;
+}
+
+.titulo-especial {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(212,160,23,.15);
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.titulo-especial span {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #f5d48b;
+    letter-spacing: 2px;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 30px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #b8860b, #8f6b2c);
+    color: #1a0f05;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    transition: .3s;
+    border: 1px solid #d4a017;
+}
+
+.voltar a:hover {
+    background: linear-gradient(135deg, #d4a017, #b8860b);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212,160,23,.4);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2.5rem; }
+    .diary-page { padding: 25px; }
+    .diary-title { font-size: 1.3rem; }
+    .inscricoes { gap: 15px; flex-wrap: wrap; }
+    .inscricoes span { font-size: 0.9rem; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="rare-badge">🌟 LIVRO RARO 🌟</div>
+    <h1>📔 Memórias de Samira al-Nahir</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Samira al-Nahir, a Chama da Aurora</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📜</i> Diário Pessoal Preservado</span>
+        <span class="header-badge"><i>📄</i> 2 Páginas Restauradas</span>
+    </div>
+    <div class="epigrafe">
+        "Os reis escrevem decretos. Os generais escrevem relatórios. Mas apenas os viajantes escrevem a verdade."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Página I -->
+    <div class="diary-page">
+        <div class="page-number">✧ PÁGINA I — OS ÚLTIMOS DIAS DA ANTIGA ZAHARAM ✧</div>
+        
+        <div class="diary-text">
+            <p><span class="dropcap">E</span>screvo estas palavras já próxima do fim de minha jornada.</p>
+            <p>Vi cidades nascerem. Vi cidades desaparecerem. Vi tribos tornarem-se reinos. E vi homens acreditarem que poderiam controlar forças muito maiores do que eles próprios.</p>
+            <p>Os jovens acreditam que Zaharam sempre foi forte. Não foi. Houve uma época em que nossas cidades eram pequenas fortalezas cercadas por um oceano de areia e medo. As caravanas desapareciam. As Fissuras cresciam. E rumores percorriam as rotas comerciais mais rápido do que qualquer mercador.</p>
+            <p>Naqueles dias ouvi pela primeira vez o nome de um homem que jamais esqueci. <strong>Tiberio.</strong> Não era um rei. Não era um general. Não era um conquistador. Era um estudioso. Um mago. Talvez o mais inteligente que já conheci.</p>
+            <p>Lembro-me de vê-lo apenas uma vez. Foi durante uma reunião entre estudiosos, exploradores e líderes tribais próximos às Rochas Escarlates. Enquanto todos discutiam riquezas, guerras e comércio, Tiberio fazia perguntas. Sempre perguntas. Perguntas sobre as Fissuras. Sobre magia ancestral. Sobre acontecimentos que ninguém mais parecia considerar importantes.</p>
+            <p>Confesso que ele me causava desconforto. Não porque fosse arrogante. Mas porque parecia enxergar algo que ninguém mais conseguia ver.</p>
+        </div>
+        
+        <div class="citacao-diario">
+            <p>Na mesma época encontrei novamente meu velho amigo <strong>K'Thar</strong>.</p>
+            <p>O lendário Leão das Areias.</p>
+        </div>
+        
+        <div class="diary-text">
+            <p>Poucos homens percorreram tantas terras quanto ele. Poucos sobreviveram a tantas aventuras. K'Thar dizia que havia viajado ao lado do arquimago <strong>Tharzul</strong> durante muitos anos. Os dois procuravam ruínas antigas. Templos esquecidos. Vestígios dos primeiros povos do continente.</p>
+            <p>Segundo ele, algumas dessas ruínas continham magias tão antigas que nem mesmo os maiores magos modernos conseguiam compreendê-las completamente.</p>
+        </div>
+        
+        <div class="kthar-frase">
+            "O conhecimento enterrado é mais perigoso do que qualquer espada."
+        </div>
+        
+        <div class="diary-text">
+            <p>Na época achei exagero. Hoje não tenho tanta certeza.</p>
+        </div>
+    </div>
+
+    <!-- Página II -->
+    <div class="diary-page">
+        <div class="page-number">✧ PÁGINA II — AS SOMBRAS SOB A AREIA ✧</div>
+        
+        <div class="diary-text">
+            <p><span class="dropcap">D</span>urante meus anos como diplomata visitei quase todos os reinos conhecidos.</p>
+            <p>Aprendi algo importante. Toda civilização possui segredos. Mas Zaharam possui mais do que segredos. Possui cicatrizes. As Fissuras são a prova disso. Muitos acreditam que são apenas rachaduras na terra. Outros acreditam que são fenômenos naturais. Mas os registros antigos contam histórias diferentes. Histórias muito mais antigas do que qualquer reino.</p>
+        </div>
+        
+        <div class="inscricoes">
+            <span>"TEMPO"</span>
+            <span>"ESTRELAS"</span>
+            <span>"PORTÕES"</span>
+            <span>"RETORNO"</span>
+        </div>
+        
+        <div class="diary-text">
+            <p>Durante uma expedição às profundezas das Rochas Escarlates encontrei inscrições extremamente antigas. Grande parte estava destruída. Mas algumas palavras permaneciam legíveis. Entre elas os termos acima. Jamais descobrimos o significado completo daqueles textos. Nem mesmo Tharzul conseguiu traduzi-los totalmente.</p>
+            <p>Curiosamente, anos depois ouvi Tiberio mencionar símbolos semelhantes. Ele parecia fascinado por aqueles registros. Como se estivesse procurando respostas para perguntas que ninguém mais fazia. Nunca descobri quais eram essas perguntas. Talvez tenha sido melhor assim.</p>
+            <p>Os velhos xamãs dos Garrakhai acreditavam que existem conhecimentos que não foram esquecidos por acidente. Foram esquecidos por necessidade. K'Thar concordava com eles. Tharzul também. Eu mesma comecei a acreditar nisso com o passar dos anos.</p>
+        </div>
+        
+        <div class="conselho-final">
+            <p>📜 Se alguém encontrar este diário no futuro, deixo apenas um conselho:</p>
+            <p style="margin-top: 10px;">Busquem conhecimento. Mas respeitem seus limites.</p>
+            <p>Pois existem mistérios que observam de volta aqueles que tentam compreendê-los.</p>
+            <p style="margin-top: 15px;">E se algum dia ouvirem falar novamente de <strong>Tiberio</strong>... Escutem com atenção.</p>
+            <p>Porque homens comuns desaparecem da história. Mas nomes como o dele permanecem.</p>
+        </div>
+        
+        <div class="frase-final">
+            "Sobrevivi às guerras.<br>
+            Sobrevivi ao deserto.<br>
+            Sobrevivi aos reis.<br>
+            Mas algumas perguntas permanecerão sem resposta para sempre."
+        </div>
+        
+        <div class="diary-text" style="text-align: right; margin-top: 20px;">
+            <p>— Samira al-Nahir, a Chama da Aurora</p>
+        </div>
+    </div>
+
+    <!-- Conhecimento Raro -->
+    <div class="rare-knowledge">
+        <h3>🌟 Conhecimento Raro Adquirido</h3>
+        <ul class="conhecimento-list">
+            <li>Relatos pessoais sobre K'Thar e Tharzul</li>
+            <li>Primeiras referências históricas a Tiberio</li>
+            <li>Fragmentos sobre magias ancestrais esquecidas</li>
+            <li>Estudos antigos relacionados às Fissuras</li>
+            <li>Registros diplomáticos da antiga Zaharam</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa Especial -->
+    <div class="recompensa-rare">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Diplomata</div>
+        <div class="exp">+40 EXP Guerreiro do Deserto</div>
+        <div class="nea">+0,5% NEA</div>
+        
+        <div class="titulo-especial">
+            <span>🏜️ Título Desbloqueado: Herdeiro das Areias 🏜️</span>
+        </div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

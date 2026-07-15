@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ferraria das Dunas — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Desafio */
+.desafio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.desafio-item {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Metais */
+.metais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.metal-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.metal-card:hover {
+    background: rgba(30,18,8,.9);
+    transform: translateX(3px);
+}
+
+.metal-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.metal-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.metal-card .caracteristicas {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+    font-size: 0.9rem;
+}
+
+.metal-card .uso {
+    margin-top: 8px;
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+/* Forja */
+.forja-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.forja-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.forja-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.forja-card .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.forja-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.forja-card p {
+    font-size: 0.85rem;
+}
+
+/* Processo */
+.processo-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.processo-step {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    width: 160px;
+    padding: 20px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.processo-step:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.processo-step .numero {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f5c542;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.processo-step strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.processo-step span {
+    font-size: 0.8rem;
+}
+
+.citacao-tempera {
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+    color: #f2d49b;
+}
+
+/* Armas */
+.armas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.arma-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.arma-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.arma-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.arma-card p {
+    font-size: 0.85rem;
+    margin-top: 8px;
+}
+
+/* Armaduras */
+.armaduras-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.armaduras-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 8px 25px;
+    font-size: 1rem;
+}
+
+/* Forjas Perdidas */
+.forjas-perdidas {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.forjas-perdidas h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.forjas-perdidas .descricoes {
+    margin-top: 15px;
+}
+
+.forjas-perdidas .descricoes p {
+    margin: 8px 0;
+}
+
+/* Martelo de Malik */
+.martelo-card {
+    background: linear-gradient(135deg, rgba(20,12,5,.9), rgba(10,6,3,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.martelo-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Mandamentos */
+.mandamentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.mandamento-card {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #f5c542;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .metais-grid { grid-template-columns: 1fr; }
+    .processo-steps { flex-direction: column; align-items: center; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>⚒️ Ferraria das Dunas</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Rakhim al-Farad, Mestre Ferreiro de Zaharam</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 517 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "O fogo molda o metal. O deserto molda o ferreiro."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Entre todas as profissões de Zaharam, poucas são tão respeitadas quanto a dos ferreiros.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Enquanto mercadores cruzam as dunas e guerreiros defendem as cidades, são os ferreiros que produzem as armas, armaduras e ferramentas que mantêm o reino funcionando.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            <strong>Ferraria das Dunas</strong> reúne séculos de conhecimento acumulado nas forjas de Zaharam, ensinando como trabalhar metais sob temperaturas extremas e condições que destruiriam oficinas comuns.
+        </p>
+    </div>
+
+    <!-- O Desafio do Deserto -->
+    <div class="section">
+        <h2 class="section-title">🔥 O Desafio do Deserto</h2>
+        <p>A maioria dos métodos utilizados em outros reinos não funciona adequadamente em Zaharam. Os ferreiros precisam lidar com:</p>
+        
+        <div class="desafio-grid">
+            <div class="desafio-item">🌡️ Calor excessivo</div>
+            <div class="desafio-item">🌪️ Tempestades de areia</div>
+            <div class="desafio-item">🪵 Escassez de combustível</div>
+            <div class="desafio-item">⛏️ Transporte difícil de minério</div>
+            <div class="desafio-item">🌙 Variações extremas de temperatura</div>
+        </div>
+        
+        <p style="margin-top: 15px;"><em>Por esse motivo, a ferraria zaharamita desenvolveu técnicas próprias ao longo dos séculos.</em></p>
+    </div>
+
+    <!-- Os Metais de Zaharam -->
+    <div class="section">
+        <h2 class="section-title">⚒️ Os Metais de Zaharam</h2>
+        
+        <div class="metais-grid">
+            <div class="metal-card">
+                <span class="emoji">🔴</span><h4>Ferro Escarlate</h4>
+                <div class="caracteristicas">Resistente • Fácil de trabalhar • Abundante nas Rochas Escarlates</div>
+                <div class="uso">Utilizado em armas, armaduras e ferramentas</div>
+            </div>
+            <div class="metal-card">
+                <span class="emoji">⚙️</span><h4>Aço das Dunas</h4>
+                <div class="caracteristicas">Grande durabilidade • Boa resistência ao calor</div>
+                <div class="uso">Excelente para espadas e lanças</div>
+            </div>
+            <div class="metal-card">
+                <span class="emoji">🏺</span><h4>Bronze Solar</h4>
+                <div class="caracteristicas">Resistente à corrosão • Fácil manutenção</div>
+                <div class="uso">Construções e adornos</div>
+            </div>
+            <div class="metal-card">
+                <span class="emoji">⚪</span><h4>Prata das Areias</h4>
+                <div class="caracteristicas">Excelente condutor mágico • Metal raro</div>
+                <div class="uso">Utilizado por magos e encantadores</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- A Forja do Deserto -->
+    <div class="section">
+        <h2 class="section-title">🏭 A Forja do Deserto</h2>
+        <p>As forjas de Zaharam possuem características únicas.</p>
+        
+        <div class="forja-grid">
+            <div class="forja-card">
+                <span class="emoji">🏛️</span>
+                <h4>Estrutura Fechada</h4>
+                <p>Protege o fogo contra ventos fortes</p>
+            </div>
+            <div class="forja-card">
+                <span class="emoji">🏭</span>
+                <h4>Chaminés Altas</h4>
+                <p>Permitem a circulação adequada do calor</p>
+            </div>
+            <div class="forja-card">
+                <span class="emoji">🪨</span>
+                <h4>Pedra Térmica</h4>
+                <p>Conserva temperatura durante longos períodos</p>
+            </div>
+            <div class="forja-card">
+                <span class="emoji">💧</span>
+                <h4>Reservatórios de Água</h4>
+                <p>Resfriamento do metal e segurança</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- O Processo de Forjamento -->
+    <div class="section">
+        <h2 class="section-title">🔨 O Processo de Forjamento</h2>
+        <p>Todo ferreiro deve dominar quatro etapas.</p>
+        
+        <div class="processo-steps">
+            <div class="processo-step">
+                <span class="numero">1</span>
+                <strong>Extração</strong>
+                <span>Obtenção do minério</span>
+            </div>
+            <div class="processo-step">
+                <span class="numero">2</span>
+                <strong>Purificação</strong>
+                <span>Remoção de impurezas</span>
+            </div>
+            <div class="processo-step">
+                <span class="numero">3</span>
+                <strong>Moldagem</strong>
+                <span>Transformação do metal</span>
+            </div>
+            <div class="processo-step">
+                <span class="numero">4</span>
+                <strong>Têmpera</strong>
+                <span>Resfriamento controlado</span>
+            </div>
+        </div>
+        
+        <div class="citacao-tempera">
+            "Uma espada nasce na forja, mas sua qualidade nasce na têmpera."
+        </div>
+    </div>
+
+    <!-- Armas Tradicionais -->
+    <div class="section">
+        <h2 class="section-title">🗡️ Armas Tradicionais de Zaharam</h2>
+        
+        <div class="armas-grid">
+            <div class="arma-card">
+                <span class="emoji">🗡️</span><h4>Cimitarra das Dunas</h4>
+                <p>Curvatura elegante • Corte eficiente • Boa utilização montada</p>
+            </div>
+            <div class="arma-card">
+                <span class="emoji">🛡️</span><h4>Escudo Solar</h4>
+                <p>Projetado para suportar calor intenso</p>
+            </div>
+            <div class="arma-card">
+                <span class="emoji">🏹</span><h4>Pontas Escarlates</h4>
+                <p>Pontas de flecha produzidas com Ferro Escarlate refinado</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Armaduras do Deserto -->
+    <div class="section">
+        <h2 class="section-title">🛡️ Armaduras do Deserto</h2>
+        <p>Os ferreiros aprenderam que armaduras excessivamente pesadas podem matar um guerreiro antes mesmo do combate. Por isso, as armaduras zaharamitas priorizam:</p>
+        
+        <ul class="armaduras-list">
+            <li>🏃 Mobilidade</li>
+            <li>💨 Ventilação</li>
+            <li>💪 Resistência</li>
+            <li>⚖️ Peso reduzido</li>
+        </ul>
+    </div>
+
+    <!-- As Forjas Perdidas -->
+    <div class="forjas-perdidas">
+        <h4>🔥 As Forjas Perdidas</h4>
+        <p>Diversos registros mencionam antigas forjas escondidas nas Rochas Escarlates.</p>
+        <div class="descricoes">
+            <p>📜 Produziam armas excepcionais</p>
+            <p>📜 Utilizavam técnicas desconhecidas</p>
+            <p>📜 Operavam próximas às Fissuras</p>
+        </div>
+        <p style="margin-top: 15px;"><em>Nenhum desses locais foi encontrado de forma definitiva.</em></p>
+    </div>
+
+    <!-- O Martelo de Malik -->
+    <div class="martelo-card">
+        <h4>🔨 O Martelo de Malik</h4>
+        <p>Uma das histórias mais populares do livro fala sobre um lendário martelo utilizado durante a época de Malik Azhar.</p>
+        <p>A lenda afirma que ele foi utilizado para fabricar as primeiras armas que protegeram as caravanas fundadoras de Zaharam.</p>
+        <p><em>Seu paradeiro permanece desconhecido.</em></p>
+    </div>
+
+    <!-- Os Mandamentos do Ferreiro -->
+    <div class="section">
+        <h2 class="section-title">📜 Os Mandamentos do Ferreiro</h2>
+        
+        <div class="mandamentos-grid">
+            <div class="mandamento-card">1. Respeite o fogo</div>
+            <div class="mandamento-card">2. Conheça seu metal</div>
+            <div class="mandamento-card">3. Nunca apresse a têmpera</div>
+            <div class="mandamento-card">4. Inspecione cada peça produzida</div>
+            <div class="mandamento-card">5. O orgulho excessivo destrói mais armas do que o calor</div>
+        </div>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"O guerreiro recebe a glória.</p>
+        <p>O rei recebe as honras.</p>
+        <p>Mas toda espada lendária começou nas mãos de um ferreiro."</p>
+        <div class="autor">— Rakhim al-Farad</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Técnicas de ferraria em clima desértico</li>
+            <li>Identificação dos principais metais de Zaharam</li>
+            <li>Produção de armas e armaduras tradicionais</li>
+            <li>Funcionamento das grandes forjas do reino</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+35 EXP Ferreiro</div>
+        <div class="nea">+0,1% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

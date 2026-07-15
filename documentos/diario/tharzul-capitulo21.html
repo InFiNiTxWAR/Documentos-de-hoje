@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grimório Ardente de Thar-Zul — Capítulo XXI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Cormorant Garamond", serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .grimorio {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .grimorio::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 10;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .cabecalho .titulo-principal {
+            font-family: "Cinzel", serif;
+            font-size: 2.8rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: "Cinzel", serif;
+            font-size: 1.2rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+        }
+
+        .cabecalho .selo {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #6a3a2a;
+            border: 2px solid #6a3a2a;
+            padding: 4px 12px;
+            border-radius: 2px;
+            letter-spacing: 2px;
+            background: rgba(80,40,20,.1);
+        }
+
+        .cabecalho .data {
+            font-family: "Cinzel", serif;
+            font-size: 0.75rem;
+            color: #5a4a3a;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 5;
+        }
+
+        .conteudo p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .conteudo .dropcap {
+            font-size: 3.5rem;
+            font-family: "Cinzel", serif;
+            float: left;
+            line-height: 0.8;
+            margin-right: 12px;
+            color: #d4a74f;
+            text-shadow: 0 0 10px rgba(212,167,79,.15);
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+        }
+
+        .conteudo .citacao-dialogo {
+            font-style: italic;
+            color: #d4a74f;
+            padding: 12px 20px;
+            border-left: 3px solid #d4a74f;
+            margin: 15px 0 15px 20px;
+            background: rgba(40,30,15,.2);
+            border-radius: 4px;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-vermelho {
+            color: #b86a4a;
+            font-weight: bold;
+        }
+
+        .conteudo .simbolo {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #6a3a2a;
+            margin: 20px 0;
+            letter-spacing: 8px;
+        }
+
+        .conteudo .observacao {
+            margin: 30px 0;
+            padding: 20px 25px;
+            border-left: 3px solid #6a4a2a;
+            background: rgba(40,30,15,.2);
+            border-radius: 4px;
+        }
+
+        .conteudo .observacao .obs-titulo {
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .conteudo .pedra-negra {
+            text-align: center;
+            margin: 25px 0;
+            padding: 25px;
+            border: 1px solid #6a4a2a;
+            background: rgba(30,20,10,.5);
+            border-radius: 6px;
+        }
+
+        .conteudo .pedra-negra .simbolo-pedra {
+            font-family: "Cinzel", serif;
+            font-size: 2.5rem;
+            color: #d4a74f;
+            letter-spacing: 6px;
+        }
+
+        .conteudo .pedra-negra .frase {
+            font-style: italic;
+            color: #c4a86a;
+            margin-top: 12px;
+            font-size: 1.05rem;
+            border-top: 1px dashed rgba(106,74,42,.3);
+            padding-top: 12px;
+        }
+
+        .conteudo .revelacao {
+            margin: 25px 0;
+            padding: 20px 25px;
+            border: 2px solid #6a3a2a;
+            background: rgba(60,30,20,.15);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .conteudo .revelacao .texto-revelacao {
+            font-size: 1.1rem;
+            color: #d4a74f;
+            line-height: 1.8;
+        }
+
+        .conteudo .duvida {
+            font-style: italic;
+            color: #8a6a3a;
+            padding: 15px 20px;
+            border-left: 3px solid #5a4a3a;
+            margin: 20px 0;
+            background: rgba(40,30,15,.15);
+            border-radius: 4px;
+        }
+
+        .assinatura {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: right;
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .assinatura .nome {
+            font-size: 1.2rem;
+            color: #d4a74f;
+        }
+
+        .navegacao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .navegacao .info {
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #6a4a2a;
+            letter-spacing: 2px;
+        }
+
+        .navegacao .btn-nav {
+            padding: 8px 25px;
+            background: #6a4a2a;
+            border: none;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #d4c8a0;
+            transition: .3s;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navegacao .btn-nav:hover {
+            background: #8a6a3a;
+            color: #f0e0b0;
+        }
+
+        .voltar-topo {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #4a3520;
+            border: 1px solid #6a4a2a;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #bca77a;
+            transition: .3s;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .voltar-topo:hover {
+            background: #6a4a2a;
+            color: #f0e0b0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .grimorio { padding: 30px 25px; }
+            .cabecalho .titulo-principal { font-size: 2rem; }
+            .cabecalho .selo { position: relative; top: 0; right: 0; display: inline-block; margin-top: 10px; }
+            .conteudo p { font-size: 1rem; }
+            .navegacao { flex-direction: column; text-align: center; }
+            .conteudo .pedra-negra .simbolo-pedra { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .grimorio { padding: 20px 15px; }
+            .cabecalho .titulo-principal { font-size: 1.5rem; }
+            .conteudo p { font-size: 0.9rem; }
+            .conteudo .dropcap { font-size: 2.5rem; }
+            .conteudo .citacao-dialogo { margin-left: 5px; padding: 10px 15px; }
+            .conteudo .pedra-negra .simbolo-pedra { font-size: 1.4rem; }
+            .conteudo .revelacao .texto-revelacao { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grimorio">
+
+        <div class="cabecalho">
+            <div class="selo">⚔️ XXI ⚔️</div>
+            <div class="titulo-principal">Grimório Ardente</div>
+            <div class="subtitulo">de Thar-Zul</div>
+            <div style="margin-top:8px; font-family:'Cinzel',serif; font-size:0.8rem; color:#6a4a2a; letter-spacing:2px;">
+                Capítulo XXI — O Nome Esquecido
+            </div>
+            <div class="data">Ano 736 — Outono</div>
+        </div>
+
+        <div class="conteudo">
+
+            <p>
+                <span class="dropcap">S</span>eis anos.
+            </p>
+
+            <p>
+                Foram necessários seis anos para que minha busca deixasse de ser composta apenas por perguntas.
+            </p>
+
+            <p>
+                Hoje... tenho uma resposta.
+            </p>
+
+            <p>
+                Ou, pelo menos... um nome.
+            </p>
+
+            <div class="citacao" style="border-left-color:#d4a74f; font-size:1.3rem; text-align:center;">
+                <span class="destaque">K'Thar.</span>
+            </div>
+
+            <p>
+                Desde que encontrei aquele selo, não consigo pensar em outra coisa.
+            </p>
+
+            <p>
+                Nenhum livro o menciona claramente. Nenhum reino admite conhecê-lo.
+            </p>
+
+            <p>
+                Mas sempre que pronuncio esse nome... as pessoas mudam.
+            </p>
+
+            <p>
+                Algumas ficam em silêncio. Outras encerram imediatamente a conversa. As mais velhas apenas fazem o sinal da Aurora sobre o peito.
+            </p>
+
+            <div class="citacao">
+                "Como se tentassem afastar algo invisível."
+            </div>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Minha primeira tentativa aconteceu em <span class="destaque">Auroram</span>.
+            </p>
+
+            <p>
+                Passei dias consultando os Arquivos Reais. Mais de quatro mil pergaminhos.
+            </p>
+
+            <p>
+                Nenhum resultado.
+            </p>
+
+            <p>
+                Um dos bibliotecários sugeriu que eu procurasse registros proibidos.
+            </p>
+
+            <p>
+                Naquela noite... alguém invadiu meu quarto na hospedaria.
+            </p>
+
+            <p>
+                Nada foi roubado. Apenas minhas anotações sobre K'Thar haviam desaparecido.
+            </p>
+
+            <p>
+                Todo o resto permaneceu intacto. Dinheiro. Roupas. Artefatos.
+            </p>
+
+            <div class="citacao">
+                "Somente aquelas páginas. Como se alguém desejasse atrasar minha investigação."
+            </div>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Refiz minhas anotações de memória.
+            </p>
+
+            <p>
+                Percebi que já não confiava mais em guardar conhecimento apenas no papel.
+            </p>
+
+            <p>
+                Passei a decorar tudo o que aprendia.
+            </p>
+
+            <div class="citacao">
+                "Se queimassem meus livros... ainda restaria minha memória."
+            </div>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Segui para <span class="destaque">Zaharam</span>.
+            </p>
+
+            <p>
+                Durante semanas procurei sacerdotes, cronistas e anciões. Quase todos negaram conhecer aquele nome.
+            </p>
+
+            <p>
+                Até encontrar uma mulher extremamente idosa vivendo nos arredores de <span class="destaque">Zafira</span>.
+            </p>
+
+            <p>
+                Ela não parecia surpresa. Apenas perguntou:
+            </p>
+
+            <div class="citacao-dialogo">
+                "Quem lhe contou esse nome?"
+            </div>
+
+            <p>
+                Respondi que ninguém.
+            </p>
+
+            <p>
+                Ela permaneceu em silêncio durante vários minutos.
+            </p>
+
+            <p>
+                Depois respondeu:
+            </p>
+
+            <div class="citacao-dialogo" style="border-left-color:#8a4a2a;">
+                "Então ele escolheu você."
+            </div>
+
+            <p>
+                <span class="destaque">Não compreendi o significado.</span>
+            </p>
+
+            <p>
+                Quando tentei perguntar novamente... ela recusou-se a continuar.
+            </p>
+
+            <p>
+                Antes que eu fosse embora, entregou-me apenas um pequeno pedaço de <span class="destaque">pedra negra</span>.
+            </p>
+
+            <div class="pedra-negra">
+                <div class="simbolo-pedra">◈ ⌂ ◈</div>
+                <p style="margin-top:10px; color:#bca77a;">Nele havia exatamente o mesmo símbolo que eu havia reconstruído.</p>
+                <div class="frase">
+                    "Todo nome possui um dono."
+                </div>
+                <div class="frase" style="border-top:1px dashed rgba(106,74,42,.2);">
+                    "Alguns donos conseguem ouvir quando são chamados."
+                </div>
+            </div>
+
+            <p>
+                Naquele instante senti um frio que nenhuma magia conseguiu explicar.
+            </p>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Voltei imediatamente ao meu quarto.
+            </p>
+
+            <p>
+                Passei horas comparando o símbolo da pedra com os desenhos encontrados em Luminathis.
+            </p>
+
+            <p>
+                E então percebi algo.
+            </p>
+
+            <p>
+                Eu havia cometido um erro durante todos esses anos.
+            </p>
+
+            <div class="revelacao">
+                <div class="texto-revelacao">
+                    "Aquele selo... não era um brasão."
+                </div>
+                <div class="texto-revelacao" style="color:#b86a4a;">
+                    "Não era o símbolo de uma ordem. Nem de um reino."
+                </div>
+                <div class="texto-revelacao" style="color:#d4a74f; font-size:1.3rem;">
+                    "Era um <span class="destaque-vermelho">selo de contenção</span>."
+                </div>
+            </div>
+
+            <p>
+                Algo havia sido aprisionado.
+            </p>
+
+            <p>
+                E diversos povos espalhados pelo continente dedicaram séculos para impedir que seu nome fosse lembrado.
+            </p>
+
+            <p>
+                Mas o tempo destruiu muralhas. Queimou bibliotecas. Enterrou templos.
+            </p>
+
+            <div class="citacao">
+                "E, lentamente... o esquecimento começou a desaparecer."
+            </div>
+
+            <div class="duvida">
+                <p style="font-weight:bold; color:#8a6a3a;">"Se isso for verdade..."</p>
+                <p style="font-weight:bold; color:#8a6a3a;">"...não estou procurando uma pessoa."</p>
+                <p style="font-weight:bold; color:#d4a74f; font-size:1.1rem;">"Estou seguindo os rastros de algo muito mais antigo."</p>
+                <p style="font-weight:bold; color:#b86a4a; font-size:1.1rem;">"Muito mais perigoso."</p>
+            </div>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Passei a noite inteira sem dormir.
+            </p>
+
+            <p>
+                Pela primeira vez desde que comecei esta jornada... pensei em desistir.
+            </p>
+
+            <p>
+                Talvez algumas histórias realmente devam permanecer esquecidas.
+            </p>
+
+            <p>
+                Talvez existam perguntas que nunca deveriam ser feitas.
+            </p>
+
+            <p>
+                Mas então lembrei da Profecia.
+            </p>
+
+            <p>
+                Se ela realmente existe... alguém precisará compreendê-la.
+            </p>
+
+            <div class="citacao" style="border-left-color:#d4a74f;">
+                "Se ninguém estiver disposto... então esse alguém serei eu."
+            </div>
+            <div class="citacao" style="border-left-color:#8a4a2a;">
+                "Mesmo que isso custe minha vida."
+            </div>
+
+            <div class="simbolo">· · ·</div>
+
+            <div class="observacao">
+                <div class="obs-titulo">📜 Observação pessoal</div>
+                <p>Hoje percebi algo estranho.</p>
+                <p>Sempre que escrevo o nome <span class="destaque">K'Thar</span>, a tinta demora mais para secar.</p>
+                <p>Achei que fosse impressão. Então utilizei três tipos diferentes de tinta.</p>
+                <p style="font-weight:bold; color:#d4a74f;">O resultado foi exatamente o mesmo.</p>
+                <p style="font-style:italic; color:#8a6a3a;">Talvez seja coincidência.</p>
+                <p style="font-style:italic; color:#8a6a3a;">Espero que seja.</p>
+                <p style="margin-top:15px;">Amanhã partirei para <span class="destaque">Volovunn</span>.</p>
+                <p>Um velho cartógrafo afirmou existir uma cidade abandonada sob as montanhas, construída antes da fundação dos reinos atuais.</p>
+                <p style="color:#c4a86a;">Segundo ele... foi lá que o nome <span class="destaque">K'Thar</span> apareceu pela primeira vez.</p>
+                <p style="font-weight:bold; color:#d4a74f; margin-top:10px;">Se essa informação estiver correta... estou prestes a encontrar o registro mais antigo de toda a minha vida.</p>
+            </div>
+
+            <div class="assinatura">
+                <div class="nome">— Thar-Zul</div>
+                <div style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">O Nome Esquecido</div>
+            </div>
+
+        </div>
+
+        <div class="navegacao">
+            <span class="info">📜 Página 6 — Capítulo XXI</span>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="tharzul-capitulo5.html" class="btn-nav">← Anterior</a>
+                <a href="tharzul-capitulo22.html" class="btn-nav">Próximo →</a>
+            </div>
+        </div>
+
+        <div class="text-center" style="margin-top:20px;">
+            <a href="../documentos.html" class="voltar-topo">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

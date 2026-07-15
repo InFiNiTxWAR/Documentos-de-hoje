@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQUIVO DA PRIMEIRA MEMÓRIA — O HOMEM DAS CINCO TEMPESTADES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Cormorant Garamond', serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .documento {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .documento::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 0;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cabecalho .titulo {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 6px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
+        .cabecalho .classif {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #5a4a3a;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            border: 1px solid #5a4a3a;
+            padding: 4px 15px;
+            display: inline-block;
+            background: rgba(40,30,15,.2);
+            border-radius: 3px;
+        }
+
+        .cabecalho .status {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #8a6a3a;
+            margin-top: 8px;
+            letter-spacing: 2px;
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 1;
+        }
+
+        .conteudo .secao {
+            margin-bottom: 30px;
+        }
+
+        .conteudo .secao .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(106,74,42,.2);
+            padding-bottom: 5px;
+        }
+
+        .conteudo p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 16px;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-vermelho {
+            color: #b86a4a;
+            font-weight: bold;
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 20px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .conteudo .citacao-central {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 20px 30px;
+            border: 1px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.4);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .conteudo .titulos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 20px;
+            margin: 15px 0 20px;
+        }
+
+        .conteudo .titulos .titulo-item {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: #b0a088;
+            padding: 6px 16px;
+            border: 1px solid rgba(106,74,42,.3);
+            border-radius: 4px;
+            background: rgba(40,30,15,.2);
+            letter-spacing: 1px;
+        }
+
+        .conteudo .titulos .titulo-item.destaque-titulo {
+            border-color: #d4a74f;
+            color: #d4a74f;
+        }
+
+        .conteudo .epiteto {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #d4a74f;
+            text-align: center;
+            letter-spacing: 6px;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(212,167,79,.1);
+        }
+
+        .conteudo .linha-decorativa {
+            width: 60px;
+            height: 2px;
+            margin: 20px auto;
+            background: linear-gradient(90deg, transparent, #6a4a2a, transparent);
+        }
+
+        .conteudo .anotacao {
+            margin-top: 25px;
+            padding: 20px 25px;
+            border-left: 3px solid #6a4a2a;
+            background: rgba(40,30,15,.25);
+            border-radius: 4px;
+        }
+
+        .conteudo .anotacao .label-anotacao {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #5a4a3a;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .conteudo .anotacao p {
+            font-size: 0.95rem;
+            color: #b0a088;
+            font-style: italic;
+        }
+
+        .conteudo .anotacao .destaque-anotacao {
+            color: #c4a86a;
+        }
+
+        .conteudo .ultima-anotacao {
+            margin-top: 25px;
+            padding: 20px 25px;
+            border: 1px solid #6a4a2a;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .conteudo .ultima-anotacao p {
+            font-size: 1rem;
+            color: #c4a86a;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .conteudo .ultima-anotacao .destaque-ultima {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .assinatura {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: right;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .voltar {
+            text-align: center;
+            margin-top: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .voltar a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: rgba(60,50,35,0.6);
+            color: #b0a088;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: .3s;
+            border: 1px solid rgba(160,140,110,0.15);
+            border-radius: 4px;
+        }
+
+        .voltar a:hover {
+            background: rgba(80,70,50,0.8);
+            color: #d4c8b0;
+            border-color: rgba(160,140,110,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .documento { padding: 30px 25px; }
+            .cabecalho .titulo { font-size: 1.5rem; }
+            .conteudo p { font-size: 0.95rem; }
+            .conteudo .epiteto { font-size: 1.3rem; }
+            .conteudo .titulos .titulo-item { font-size: 0.75rem; padding: 4px 12px; }
+            .conteudo .citacao-central { font-size: 1rem; padding: 15px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .documento { padding: 20px 15px; }
+            .cabecalho .titulo { font-size: 1.2rem; letter-spacing: 3px; }
+            .conteudo p { font-size: 0.85rem; }
+            .conteudo .epiteto { font-size: 1rem; letter-spacing: 3px; }
+            .conteudo .titulos { gap: 5px 10px; }
+            .conteudo .titulos .titulo-item { font-size: 0.65rem; padding: 3px 10px; }
+            .conteudo .citacao { font-size: 0.9rem; padding: 12px 15px; }
+            .conteudo .citacao-central { font-size: 0.9rem; padding: 12px 15px; }
+            .conteudo .ultima-anotacao p { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="documento">
+
+        <div class="cabecalho">
+            <div class="titulo">📜 ARQUIVO DA PRIMEIRA MEMÓRIA</div>
+            <div class="subtitulo">Registro Histórico Nº 0417</div>
+            <div class="classif">Classificação: Figura Histórica</div>
+            <div class="status">Estado do Registro: Parcialmente preservado</div>
+        </div>
+
+        <div class="conteudo">
+
+            <div class="secao">
+                <div class="label">🌀 O HOMEM DAS CINCO TEMPESTADES</div>
+                <div class="citacao" style="border-left-color:#d4a74f;">
+                    "Os reinos deram-lhe muitos nomes.<br>Nenhum permaneceu por tempo suficiente."
+                </div>
+                <p>Não registramos seu verdadeiro nome.</p>
+                <p>Os nomes pertencem aos homens. Os títulos pertencem à história.</p>
+                <p>Foi chamado de:</p>
+                <div class="titulos">
+                    <span class="titulo-item">O Homem Branco</span>
+                    <span class="titulo-item">O Cronista</span>
+                    <span class="titulo-item">O Portador da Quinta Tempestade</span>
+                    <span class="titulo-item">O Último Mago</span>
+                    <span class="titulo-item">Aquele que Caminhou Contra o Tempo</span>
+                </div>
+                <p>Mas foi o título <span class="destaque">Homem das Cinco Tempestades</span> que sobreviveu às eras.</p>
+            </div>
+
+            <div class="secao">
+                <div class="label">🌑 SOBRE SUA NATUREZA</div>
+                <p>Não existem registros que indiquem ter buscado um reino.</p>
+                <p>Não existem registros que indiquem ter desejado um trono.</p>
+                <p>Não existem registros que indiquem ter perseguido riqueza.</p>
+                <div class="citacao">
+                    "Tudo indica que buscava apenas uma única coisa.<br><span class="destaque">Uma resposta.</span>"
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">📖 SOBRE SEU CONHECIMENTO</div>
+                <p>Os Arquivistas discordam quanto à origem de seu poder.</p>
+                <p>Alguns afirmam que dominava os cinco grandes caminhos da magia.</p>
+                <p>Outros acreditam que a magia jamais foi sua verdadeira força.</p>
+                <div class="citacao">
+                    "Sua maior habilidade parecia ser compreender aquilo que nenhum outro homem conseguia compreender."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">⚔️ SOBRE A GUERRA ESCARLATE</div>
+                <p>Os registros preservados divergem.</p>
+                <p>Alguns o chamam de <span class="destaque-vermelho">responsável</span>.</p>
+                <p>Outros o chamam de <span class="destaque">vítima</span>.</p>
+                <p>Outros afirmam que ambas as afirmações são verdadeiras.</p>
+                <div class="citacao">
+                    "Nenhuma conclusão definitiva foi alcançada."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">💔 SOBRE SUA QUEDA</div>
+                <p>Há consenso apenas em um ponto.</p>
+                <div class="citacao" style="border-left-color:#b86a4a;">
+                    "Depois da morte da <span class="destaque-vermelho">Mulher da Aurora</span>...<br>O Homem das Cinco Tempestades jamais voltou a sorrir."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">📜 FRAGMENTO PRESERVADO</div>
+                <div class="citacao-central">
+                    "Há homens que mudam cidades.<br>Há homens que mudam reinos.<br><span class="destaque">Ele mudou o próprio curso da história.</span>"
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">👁️ OBSERVAÇÃO DOS ARQUIVISTAS</div>
+                <div class="citacao">
+                    "Quanto mais estudamos sua vida...<br>Menos compreendemos quem ele realmente foi."
+                </div>
+            </div>
+
+            <div class="anotacao">
+                <div class="label-anotacao">✍️ ANOTAÇÃO MARGINAL</div>
+                <p>Escrita por um Arquivista desconhecido, aproximadamente trezentos anos após a Guerra Escarlate.</p>
+                <p style="margin-top:8px;">"Os jovens perguntam se ele foi um herói.</p>
+                <p>Os velhos perguntam se ele foi um vilão.</p>
+                <p>Nós fazemos outra pergunta.</p>
+                <p style="font-weight:bold; color:#c4a86a; font-style:normal;">Quanto sofrimento é necessário para que um homem desafie o próprio tempo?"</p>
+            </div>
+
+            <div class="ultima-anotacao">
+                <p>"Não tememos o Homem das Cinco Tempestades.</p>
+                <p><span class="destaque-ultima">Tememos descobrir que, em seu lugar, teríamos feito exatamente a mesma escolha.</span>"</p>
+            </div>
+
+            <div class="assinatura">
+                <p>📜 Arquivo da Primeira Memória — Black Marsh</p>
+                <p style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">Registro Nº 0417 — O Homem das Cinco Tempestades</p>
+            </div>
+
+        </div>
+
+        <div class="voltar">
+            <a href="../documentos.html">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

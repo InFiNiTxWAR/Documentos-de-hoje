@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>O Milênio Sob as Dunas — Livro Proibido — Arquivos Selados</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(8,3,1,.96), rgba(3,1,0,.98)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #8b7a5a;
+    position: relative;
+}
+
+/* Efeito de corrupção nas bordas */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(139,0,0,.02) 0px,
+            rgba(139,0,0,.02) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.6) 100%);
+    z-index: 0;
+}
+
+/* Header Proibido */
+header {
+    padding: 60px 20px 50px;
+    text-align: center;
+    border-bottom: 2px solid rgba(139,0,0,.6);
+    background: rgba(0,0,0,.85);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 40px rgba(139,0,0,.2);
+}
+
+.forbidden-badge {
+    display: inline-block;
+    padding: 8px 30px;
+    background: linear-gradient(135deg, #8b0000, #4a0000);
+    border-radius: 0px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #8b5a2b;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #8b0000;
+    box-shadow: 0 0 15px rgba(139,0,0,.5);
+    text-shadow: 0 0 5px rgba(0,0,0,.5);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.2rem;
+    color: #8b3a2a;
+    text-shadow: 0 0 20px rgba(139,0,0,.5), 2px 2px 0 #1a0000;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(139,0,0,.2);
+    border: 1px solid rgba(139,0,0,.5);
+    border-radius: 0px;
+    font-size: 0.85rem;
+    margin: 8px 5px;
+    color: #9b6a4a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #8b5a3a;
+    border-left: 3px solid #8b0000;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.epigrafe strong {
+    color: #8b3a2a;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Advertência */
+.advertencia {
+    background: linear-gradient(135deg, rgba(30,5,5,.95), rgba(15,2,2,.98));
+    border: 2px solid #8b0000;
+    border-radius: 0px;
+    padding: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(139,0,0,.3), inset 0 0 20px rgba(139,0,0,.1);
+}
+
+.advertencia h3 {
+    font-family: 'Cinzel', serif;
+    color: #8b3a2a;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.advertencia p {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 10px 0;
+    color: #9b6a5a;
+}
+
+.advertencia .simbolo {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #8b0000;
+}
+
+/* Páginas Proibidas */
+.forbidden-page {
+    background: linear-gradient(145deg, rgba(10,5,3,.96), rgba(5,2,1,.98));
+    border: 1px solid rgba(139,0,0,.4);
+    border-radius: 0px;
+    padding: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 5px 30px rgba(0,0,0,.8), inset 0 0 30px rgba(139,0,0,.05);
+}
+
+.forbidden-page::before {
+    content: "⚠️";
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 0.9rem;
+    color: #8b0000;
+    opacity: 0.6;
+}
+
+.forbidden-page::after {
+    content: "⚠️";
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 0.9rem;
+    color: #8b0000;
+    opacity: 0.6;
+}
+
+.page-number {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #8b0000;
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+}
+
+.forbidden-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #8b3a2a;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 5px rgba(139,0,0,.3);
+    border-bottom: 1px solid rgba(139,0,0,.3);
+    display: inline-block;
+    width: auto;
+    padding-bottom: 10px;
+}
+
+.forbidden-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: justify;
+    color: #8b7a6a;
+}
+
+.forbidden-text p {
+    margin-bottom: 20px;
+}
+
+.forbidden-text .dropcap {
+    font-size: 3.2rem;
+    font-family: 'Cinzel', serif;
+    float: left;
+    line-height: 0.8;
+    margin-right: 12px;
+    color: #8b3a2a;
+    text-shadow: 0 0 5px rgba(139,0,0,.3);
+}
+
+.citacao-proibida {
+    font-style: italic;
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    border-top: 1px solid rgba(139,0,0,.3);
+    border-bottom: 1px solid rgba(139,0,0,.3);
+    font-size: 1rem;
+    color: #9b6a5a;
+}
+
+/* Nome Proibido */
+.nome-proibido {
+    background: rgba(139,0,0,.1);
+    border-left: 4px solid #8b0000;
+    padding: 20px;
+    margin: 25px 0;
+    text-align: center;
+}
+
+.nome-proibido .nome {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #8b3a2a;
+    letter-spacing: 4px;
+    text-shadow: 0 0 5px rgba(139,0,0,.3);
+}
+
+/* Teoria */
+.teoria-card {
+    background: rgba(0,0,0,.4);
+    border: 1px solid rgba(139,0,0,.3);
+    padding: 25px;
+    margin: 25px 0;
+    text-align: center;
+}
+
+.teoria-card h4 {
+    color: #8b3a2a;
+    margin-bottom: 15px;
+}
+
+/* Último Capítulo */
+.ultimo-capitulo {
+    background: linear-gradient(135deg, rgba(30,5,5,.8), rgba(15,2,2,.9));
+    border: 2px solid #8b0000;
+    padding: 35px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.ultimo-capitulo p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #8b5a4a;
+}
+
+/* Nota dos Arquivistas */
+.nota-arquivistas {
+    background: rgba(0,0,0,.6);
+    border: 1px solid #8b0000;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+.nota-arquivistas h4 {
+    color: #8b3a2a;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.nota-arquivistas ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.nota-arquivistas ul li {
+    background: rgba(139,0,0,.15);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    color: #9b6a5a;
+}
+
+/* Trecho Final */
+.trecho-final {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin: 40px 0 30px;
+    padding: 30px;
+    border-top: 2px solid rgba(139,0,0,.3);
+    border-bottom: 2px solid rgba(139,0,0,.3);
+    color: #8b5a3a;
+}
+
+/* Conhecimento Proibido */
+.forbidden-knowledge {
+    background: linear-gradient(135deg, rgba(139,0,0,.15), rgba(139,0,0,.05));
+    border: 2px solid #8b0000;
+    border-radius: 0px;
+    padding: 30px;
+    margin: 40px 0;
+}
+
+.forbidden-knowledge h3 {
+    font-family: 'Cinzel', serif;
+    color: #8b3a2a;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.forbidden-knowledge .conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.forbidden-knowledge .conhecimento-list li {
+    background: rgba(139,0,0,.2);
+    border: 1px solid rgba(139,0,0,.4);
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    color: #9b6a5a;
+}
+
+/* Recompensa Proibida */
+.recompensa-proibida {
+    background: linear-gradient(135deg, rgba(139,0,0,.2), rgba(10,3,2,.98));
+    border: 2px solid #8b0000;
+    border-radius: 0px;
+    padding: 35px;
+    text-align: center;
+    margin: 40px 0 20px;
+    box-shadow: 0 0 30px rgba(139,0,0,.2);
+}
+
+.recompensa-proibida h3 {
+    font-family: 'Cinzel', serif;
+    color: #8b3a2a;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.recompensa-proibida .exp {
+    font-size: 1.8rem;
+    color: #8b5a3a;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.recompensa-proibida .nea {
+    font-size: 1.4rem;
+    color: #8b3a2a;
+    margin: 10px 0;
+}
+
+.marca-oculta {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(139,0,0,.2);
+    border: 1px solid #8b0000;
+    display: inline-block;
+}
+
+.marca-oculta span {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: #8b3a2a;
+    letter-spacing: 2px;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 30px;
+    background: linear-gradient(135deg, #4a0000, #2a0000);
+    color: #8b5a3a;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    transition: .3s;
+    border: 1px solid #8b0000;
+    letter-spacing: 1px;
+}
+
+.voltar a:hover {
+    background: linear-gradient(135deg, #6a0000, #4a0000);
+    color: #9b6a4a;
+    box-shadow: 0 0 20px rgba(139,0,0,.4);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(139,0,0,.2);
+    color: #5a3a2a;
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .forbidden-page { padding: 25px; }
+    .forbidden-title { font-size: 1.2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="forbidden-badge">🔒 PROIBIDO 🔒</div>
+    <h1>📕 O Milênio Sob as Dunas</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Autor: Desconhecido</span>
+        <span class="header-badge"><i>🏛️</i> Arquivos Selados da Biblioteca das Areias</span>
+        <span class="header-badge"><i>⚠️</i> Classificação: PROIBIDO</span>
+        <span class="header-badge"><i>👑</i> Acesso Restrito por Decreto Real</span>
+        <span class="header-badge"><i>📄</i> 1.142 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Antes de Zaharam existir, existiram reinos que desapareceram sem deixar herdeiros. <strong>Apenas areia.</strong>"
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Advertência -->
+    <div class="advertencia">
+        <h3>⚠️ ADVERTÊNCIA ⚠️</h3>
+        <div class="simbolo">◈ ◈ ◈</div>
+        <p>Este livro foi removido da circulação diversas vezes ao longo da história.</p>
+        <p>Diversos governantes ordenaram sua destruição. Partes do manuscrito foram queimadas, censuradas ou ocultadas.</p>
+        <p>Os poucos exemplares sobreviventes encontram-se trancados em cofres protegidos por magia.</p>
+        <div class="simbolo">◈ ◈ ◈</div>
+        <p><em>O motivo da proibição permanece desconhecido.</em></p>
+    </div>
+
+    <!-- Introdução -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ INTRODUÇÃO ✧</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">A</span> história oficial ensina que Zaharam surgiu após a união das tribos de Malik Azhar.</p>
+            <p>Segundo este manuscrito, isso é apenas uma pequena parte da verdade.</p>
+            <p>Muito antes das tribos. Muito antes das cidades. Muito antes das caravanas. Existiram civilizações inteiras onde hoje existe apenas deserto. Impérios que governaram durante séculos. Nações tão antigas que seus nomes foram apagados da memória do mundo.</p>
+        </div>
+    </div>
+
+    <!-- O Primeiro Império -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ O PRIMEIRO IMPÉRIO ✧</div>
+        
+        <div class="forbidden-text">
+            <p>Os fragmentos mais antigos mencionam uma civilização chamada:</p>
+        </div>
+        
+        <div class="nome-proibido">
+            <div class="nome">Azh-Khalum</div>
+            <p style="margin-top: 10px;">Descrita como a Primeira Cidade do Deserto.</p>
+        </div>
+        
+        <div class="forbidden-text">
+            <p><strong>Segundo os registros:</strong></p>
+            <p>✦ Possuía muralhas maiores que montanhas.<br>
+            ✦ Dominava magia desconhecida.<br>
+            ✦ Mantinha contato com povos distantes.<br>
+            ✦ Existiu durante centenas de anos.</p>
+            <p><em>Nenhum vestígio confirmado da cidade foi encontrado.</em></p>
+        </div>
+    </div>
+
+    <!-- As Estradas de Pedra Negra -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ AS ESTRADAS DE PEDRA NEGRA ✧</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">M</span>uito antes das caravanas, enormes estradas cruzavam Zaharam.</p>
+            <p>Os relatos afirmam que permaneciam intactas por milhares de quilômetros. Não eram afetadas pelo tempo. Ligavam cidades atualmente desaparecidas.</p>
+            <p>Diversos exploradores alegaram encontrar fragmentos dessas estruturas enterrados sob as dunas.</p>
+        </div>
+    </div>
+
+    <!-- Os Reis do Horizonte -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ OS REIS DO HORIZONTE ✧</div>
+        
+        <div class="forbidden-text">
+            <p>Azh-Khalum teria sido governada por uma linhagem conhecida apenas como <strong>Os Reis do Horizonte</strong>.</p>
+            <p>Pouco se sabe sobre eles. As poucas descrições sobreviventes afirmam que possuíam conhecimentos considerados impossíveis para sua época.</p>
+            <p>Alguns estudiosos acreditam que dominavam formas de magia que já não existem.</p>
+        </div>
+    </div>
+
+    <!-- A Primeira Aparição das Fissuras -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ A PRIMEIRA APARIÇÃO DAS FISSURAS ✧</div>
+        
+        <div class="citacao-proibida">
+            "Este é o trecho que levou à proibição do livro."
+        </div>
+        
+        <div class="forbidden-text">
+            <p>Os registros afirmam que as Fissuras não surgiram após a queda dos impérios. Elas já existiam antes. Muito antes.</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Quando os primeiros reis chegaram ao deserto, as feridas já estavam abertas."
+        </div>
+    </div>
+
+    <!-- As Cidades Enterradas -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ AS CIDADES ENTERRADAS ✧</div>
+        
+        <div class="forbidden-text">
+            <p>O livro descreve dezenas de cidades desaparecidas. Entre elas:</p>
+            <p>✦ Nahar-Vel<br>
+            ✦ Azh-Khalum<br>
+            ✦ Serakar<br>
+            ✦ Vash-Tor<br>
+            ✦ O Reino de Areth</p>
+            <p><em>Todas desapareceram. Nenhuma deixou descendentes conhecidos.</em></p>
+        </div>
+    </div>
+
+    <!-- O Arquivo de Tharzul -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ O ARQUIVO DE THARZUL ✧</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">U</span>m dos capítulos mais controversos reproduz fragmentos atribuídos ao arquimago <strong>Tharzul</strong>.</p>
+            <p>Neles, o mago afirma que certas ruínas encontradas sob Zaharam eram muito mais antigas do que qualquer registro histórico conhecido.</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Não encontramos restos de uma civilização. Encontramos restos de várias."
+        </div>
+    </div>
+
+    <!-- O Encontro de K'Thar -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ O ENCONTRO DE K'THAR ✧</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">O</span>utro capítulo reproduz anotações de <strong>K'Thar, o Leão das Areias</strong>.</p>
+            <p>Durante uma expedição subterrânea nas Rochas Escarlates, ele descreve a descoberta de um salão gigantesco soterrado.</p>
+            <p><strong>Segundo o relato:</strong></p>
+            <p>✦ Nenhuma entrada visível.<br>
+            ✦ Colunas maiores que torres.<br>
+            ✦ Símbolos desconhecidos.<br>
+            ✦ Ausência completa de esqueletos ou artefatos.</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Algo aconteceu aqui. Algo que ninguém quis registrar."
+        </div>
+    </div>
+
+    <!-- O Nome Proibido -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ O NOME PROIBIDO ✧</div>
+        
+        <div class="forbidden-text">
+            <p>Diversas cópias antigas do livro apresentam páginas arrancadas. Curiosamente, quase todas elas possuem referências a um mesmo nome.</p>
+        </div>
+        
+        <div class="nome-proibido">
+            <div class="nome">Tiberio</div>
+        </div>
+        
+        <div class="forbidden-text">
+            <p>Os estudiosos não sabem se ele foi autor de comentários posteriores ou se apenas pesquisava o mesmo assunto.</p>
+            <p>Os poucos trechos preservados afirmam:</p>
+            <p>✦ "Ele procurava respostas entre as ruínas mais antigas."<br>
+            ✦ "Acreditava que os impérios desaparecidos estavam ligados às Fissuras."<br>
+            ✦ "Seu interesse pelos registros proibidos tornou-se obsessivo."</p>
+            <p><em>Nenhuma explicação adicional sobre Tiberio foi encontrada.</em></p>
+        </div>
+    </div>
+
+    <!-- A Teoria do Milênio Perdido -->
+    <div class="forbidden-page">
+        <div class="page-number">✧ A TEORIA DO MILÊNIO PERDIDO ✧</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">A</span> hipótese central do livro afirma que existe aproximadamente um milênio inteiro de história desaparecida.</p>
+            <p>Um período do qual quase nenhum registro sobreviveu. Como se alguém tivesse removido deliberadamente parte da história do continente.</p>
+        </div>
+        
+        <div class="teoria-card">
+            <h4>⚔️ Controvérsia ⚔️</h4>
+            <p>Os historiadores oficiais rejeitam essa teoria. Porém nenhum deles conseguiu explicá-la completamente.</p>
+        </div>
+    </div>
+
+    <!-- O Último Capítulo -->
+    <div class="ultimo-capitulo">
+        <h3>📜 O Último Capítulo</h3>
+        <p>As páginas finais são as mais danificadas.</p>
+        <p>Apenas algumas linhas permanecem legíveis.</p>
+        <div style="margin: 20px 0; font-style: italic;">
+            <p>"As cidades não foram destruídas."</p>
+            <p>"Foram esquecidas."</p>
+            <p>"O deserto não cobriu suas ruínas."</p>
+            <p>"O deserto foi criado sobre elas."</p>
+        </div>
+    </div>
+
+    <!-- Nota dos Arquivistas -->
+    <div class="nota-arquivistas">
+        <h4>⚠️ Nota dos Arquivistas ⚠️</h4>
+        <p>Por ordem de diversos governantes ao longo da história, este livro foi classificado como perigoso.</p>
+        <p>A justificativa oficial afirma que seu conteúdo contém:</p>
+        <ul>
+            <li>Informações não verificadas</li>
+            <li>Relatos contraditórios</li>
+            <li>Teorias heréticas</li>
+            <li>Conhecimentos proibidos</li>
+        </ul>
+        <p style="margin-top: 15px;"><em>Apesar disso, inúmeros estudiosos continuam tentando localizar os capítulos perdidos.</em></p>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        "Toda cidade possui ruínas.<br>
+        Toda ruína possui uma história.<br>
+        Mas algumas histórias são tão antigas que o mundo prefere esquecê-las."
+        <div style="margin-top: 10px; font-size: 0.8rem;">— Autor Desconhecido</div>
+    </div>
+
+    <!-- Conhecimento Proibido -->
+    <div class="forbidden-knowledge">
+        <h3>📕 Conhecimento Proibido Adquirido</h3>
+        <ul class="conhecimento-list">
+            <li>Registros dos impérios anteriores a Zaharam</li>
+            <li>Primeiras menções históricas às Fissuras</li>
+            <li>Estudos perdidos de Tharzul</li>
+            <li>Relatos de exploração de K'Thar</li>
+            <li>Fragmentos das pesquisas de Tiberio</li>
+            <li>A Teoria do Milênio Perdido</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa Proibida -->
+    <div class="recompensa-proibida">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Historiador Arcano</div>
+        <div class="nea">+0,5% NEA</div>
+        
+        <div class="marca-oculta">
+            <span>☠️ Marca Oculta Obtida: Portador das Histórias Esquecidas ☠️</span>
+        </div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Arquivos Selados da Biblioteca das Areias • Zaharam • Ano 5002<br>
+    "Alguns conhecimentos não foram esquecidos. Foram trancados."
+</footer>
+
+</body>
+</html>

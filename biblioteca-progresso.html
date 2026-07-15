@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Biblioteca Pessoal — Primeiro Alvorecer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:
+linear-gradient(rgba(8,8,8,.9),rgba(8,8,8,.95)),
+url('https://images.unsplash.com/photo-1507842217343-583bb7270b66');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+min-height:100vh;
+font-family:'Cormorant Garamond',serif;
+color:#f2e2b8;
+}
+
+header{
+text-align:center;
+padding:60px 20px;
+border-bottom:1px solid rgba(214,170,83,.3);
+}
+
+header h1{
+font-family:'Cinzel',serif;
+font-size:3.5rem;
+color:#f5d48b;
+text-shadow:0 0 15px rgba(245,212,139,.3);
+margin-bottom:15px;
+}
+
+header p{
+font-size:1.2rem;
+max-width:900px;
+margin:auto;
+color:#d8c79d;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:20px;
+}
+
+.top-bar{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+margin-bottom:30px;
+}
+
+.btn-add{
+background:#8f6b2c;
+color:white;
+padding:15px 25px;
+border-radius:10px;
+font-size:1rem;
+border:none;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+}
+
+.btn-add:hover{
+background:#d6aa53;
+color:#22160c;
+}
+
+/* Filtros */
+.filtros{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+margin-bottom:30px;
+}
+
+.filtro-select{
+background:#2a1f12;
+border:1px solid #8f6b2c;
+color:#f2e2b8;
+padding:12px 20px;
+border-radius:8px;
+font-family:'Cormorant Garamond',serif;
+font-size:1rem;
+cursor:pointer;
+min-width:200px;
+}
+
+.filtro-select option{
+background:#2a1f12;
+}
+
+.busca-input{
+background:#2a1f12;
+border:1px solid #8f6b2c;
+color:#f2e2b8;
+padding:12px 20px;
+border-radius:8px;
+font-family:'Cormorant Garamond',serif;
+font-size:1rem;
+min-width:250px;
+}
+
+.busca-input::placeholder{
+color:#8f6b2c;
+}
+
+.btn-limpar{
+background:#4a3520;
+color:#f2e2b8;
+padding:12px 20px;
+border-radius:8px;
+border:1px solid #8f6b2c;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn-limpar:hover{
+background:#6b4f2c;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.stat{
+background:rgba(35,25,15,.92);
+border:1px solid #8f6b2c;
+padding:20px;
+border-radius:10px;
+text-align:center;
+backdrop-filter:blur(4px);
+}
+
+.stat h3{
+font-size:1rem;
+margin-bottom:10px;
+color:#d8c79d;
+letter-spacing:2px;
+}
+
+.stat span{
+font-size:2rem;
+color:#f5d48b;
+font-weight:bold;
+}
+
+.table-box{
+overflow-x:auto;
+border-radius:12px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:rgba(25,18,10,.95);
+border-radius:12px;
+}
+
+th{
+background:#8f6b2c;
+padding:15px;
+font-family:'Cinzel',serif;
+font-weight:600;
+color:#22160c;
+}
+
+td{
+padding:15px;
+border-bottom:1px solid rgba(255,255,255,.1);
+text-align:center;
+}
+
+.progress{
+width:100%;
+height:20px;
+background:#2a1f12;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-fill{
+height:100%;
+background:#d6aa53;
+border-radius:20px;
+transition:width .3s;
+}
+
+.status-concluido{
+color:#7cb342;
+font-weight:bold;
+}
+
+.status-lendo{
+color:#f5d48b;
+}
+
+.actions{
+display:flex;
+gap:10px;
+justify-content:center;
+}
+
+.btn-small{
+padding:8px 12px;
+border-radius:6px;
+color:white;
+border:none;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+}
+
+.edit{
+background:#2c6a9c;
+}
+
+.edit:hover{
+background:#3a8bc9;
+}
+
+.remove{
+background:#b13434;
+}
+
+.remove:hover{
+background:#d44545;
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-content{
+background:#22160c;
+border:2px solid #8f6b2c;
+padding:30px;
+border-radius:12px;
+width:90%;
+max-width:500px;
+}
+
+.modal-content h2{
+font-family:'Cinzel',serif;
+color:#f5d48b;
+margin-bottom:20px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+background:#2a1f12;
+color:#f2e2b8;
+border:1px solid #8f6b2c;
+border-radius:8px;
+font-family:'Cormorant Garamond',serif;
+font-size:1rem;
+}
+
+input:focus,select:focus{
+outline:none;
+border-color:#d6aa53;
+}
+
+.modal-buttons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.save{
+background:#2f8a42;
+color:white;
+padding:12px;
+flex:1;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.save:hover{
+background:#3da855;
+}
+
+.cancel{
+background:#8a2f2f;
+color:white;
+padding:12px;
+flex:1;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.cancel:hover{
+background:#b33d3d;
+}
+
+.info-paginas{
+font-size:0.85rem;
+color:#8f6b2c;
+margin-top:-10px;
+margin-bottom:10px;
+}
+
+.vazio{
+text-align:center;
+padding:60px;
+color:#8f6b2c;
+font-style:italic;
+}
+
+.reino-badge{
+display:inline-block;
+padding:4px 10px;
+border-radius:20px;
+font-size:0.75rem;
+font-weight:bold;
+}
+
+.reino-Primeiro{ background:#c9a84a; color:#22160c; }
+.reino-Sylvanora{ background:#2d5a27; color:#f2e2b8; }
+.reino-Voldoun{ background:#5d4037; color:#f2e2b8; }
+.reino-Zaharam{ background:#d4a017; color:#22160c; }
+.reino-Solharis{ background:#ff6f00; color:#22160c; }
+.reino-Silver{ background:#bf360c; color:#f2e2b8; }
+.reino-Nethis{ background:#37474f; color:#f2e2b8; }
+.reino-Lunaris{ background:#1a237e; color:#f2e2b8; }
+.reino-Black{ background:#1b5e20; color:#f2e2b8; }
+
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>📖 Biblioteca Pessoal</h1>
+<p>Gerencie todos os livros que seu personagem está lendo.<br>
+<em>"O conhecimento é a espada mais afiada."</em></p>
+</header>
+
+<div class="container">
+
+<div class="top-bar">
+<button class="btn-add" onclick="abrirModal()">+ Adicionar Livro</button>
+</div>
+
+<div class="filtros">
+<select id="filtroReino" class="filtro-select" onchange="aplicarFiltros()">
+<option value="">📚 Todos os Reinos</option>
+<option value="Primeiro Alvorecer">🏛️ Primeiro Alvorecer</option>
+<option value="Sylvanora">🌿 Sylvanora</option>
+<option value="Voldoun">⛰️ Voldoun</option>
+<option value="Zaharam">🏜️ Zaharam</option>
+<option value="Solharis">☀️ Solharis</option>
+<option value="Silver Rise">🔥 Silver Rise</option>
+<option value="Nethis">🛡️ Nethis</option>
+<option value="Lunaris">🌙 Lunaris</option>
+<option value="Black Marsh">🐍 Black Marsh</option>
+</select>
+
+<input type="text" id="buscaNome" class="busca-input" placeholder="🔍 Buscar livro..." onkeyup="aplicarFiltros()">
+
+<button class="btn-limpar" onclick="limparFiltros()">Limpar Filtros</button>
+</div>
+
+<div class="stats">
+<div class="stat">
+<h3>📖 Livros em Leitura</h3>
+<span id="livrosLeitura">0</span>
+</div>
+<div class="stat">
+<h3>✅ Livros Concluídos</h3>
+<span id="livrosConcluidos">0</span>
+</div>
+<div class="stat">
+<h3>📚 Total de Livros</h3>
+<span id="livrosTotal">0</span>
+</div>
+<div class="stat">
+<h3>📄 Páginas Lidas</h3>
+<span id="paginasLidas">0</span>
+</div>
+</div>
+
+<div class="table-box">
+<table>
+<thead>
+<tr>
+<th>Livro</th>
+<th>Reino</th>
+<th>Páginas</th>
+<th>Progresso</th>
+<th>Status</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="tabelaLivros">
+</tbody>
+</table>
+</div>
+
+</div>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<h2>📕 Adicionar Livro</h2>
+
+<select id="nomeLivro" onchange="atualizarPaginasPorLivro()">
+<option value="">Selecione um Livro</option>
+</select>
+
+<input type="number" id="paginaAtual" placeholder="Página atual (0 para começar)" value="0">
+<div id="infoPaginas" class="info-paginas"></div>
+
+<div class="modal-buttons">
+<button class="save" onclick="salvarLivro()">Salvar</button>
+<button class="cancel" onclick="fecharModal()">Cancelar</button>
+</div>
+</div>
+</div>
+
+<script>
+// ============================================
+// CATÁLOGO COMPLETO DE LIVROS (216 TOMOS)
+// ============================================
+
+const catalogoLivros = [
+    // ========== PRIMEIRO ALVORECER - ARQUIVOS FUNDAMENTAIS ==========
+    { nome: "O Livro dos Primeiros Reis", paginas: 782, reino: "Primeiro Alvorecer" },
+    { nome: "Crônicas da Fundação do Mundo Conhecido", paginas: 1204, reino: "Primeiro Alvorecer" },
+    { nome: "Atlas Original do Continente", paginas: 612, reino: "Primeiro Alvorecer" },
+    { nome: "O Século Perdido", paginas: 891, reino: "Primeiro Alvorecer" },
+    { nome: "As 999 Cidades Esquecidas", paginas: 1457, reino: "Primeiro Alvorecer" },
+
+    // ========== PRIMEIRO ALVORECER - CAMINHOS MARCIAIS ==========
+    { nome: "O Caminho das Raízes Eternas", paginas: 678, reino: "Primeiro Alvorecer" },
+    { nome: "Fluxo de Estelaris", paginas: 734, reino: "Primeiro Alvorecer" },
+    { nome: "Disciplina Solar Suprema", paginas: 856, reino: "Primeiro Alvorecer" },
+    { nome: "Véu Celestial Original", paginas: 923, reino: "Primeiro Alvorecer" },
+    { nome: "Caminho das Dunas Ancestrais", paginas: 645, reino: "Primeiro Alvorecer" },
+    { nome: "Martelo Primordial", paginas: 1012, reino: "Primeiro Alvorecer" },
+    { nome: "Olho Absoluto", paginas: 789, reino: "Primeiro Alvorecer" },
+    { nome: "Coração Magmático Original", paginas: 703, reino: "Primeiro Alvorecer" },
+    { nome: "Presa Primordial", paginas: 671, reino: "Primeiro Alvorecer" },
+
+    // ========== PRIMEIRO ALVORECER - DRAGÕES ==========
+    { nome: "O Primeiro Voo", paginas: 1234, reino: "Primeiro Alvorecer" },
+    { nome: "Xavier: O Registro Original", paginas: 892, reino: "Primeiro Alvorecer" },
+    { nome: "Os Nove Dragões Primordiais", paginas: 1567, reino: "Primeiro Alvorecer" },
+    { nome: "Ritual dos Condutores", paginas: 1003, reino: "Primeiro Alvorecer" },
+
+    // ========== PRIMEIRO ALVORECER - POVOS ==========
+    { nome: "Contos para Crianças de Sylvanora", paginas: 412, reino: "Primeiro Alvorecer" },
+    { nome: "As Aventuras do Pequeno Sol", paginas: 398, reino: "Primeiro Alvorecer" },
+    { nome: "O Escudeiro e o Dragão", paginas: 445, reino: "Primeiro Alvorecer" },
+    { nome: "As Cem Fábulas do Continente", paginas: 527, reino: "Primeiro Alvorecer" },
+
+    // ========== PRIMEIRO ALVORECER - CONHECIMENTO MORTAL ==========
+    { nome: "A Arte da Ferraria", paginas: 689, reino: "Primeiro Alvorecer" },
+    { nome: "O Grande Livro das Receitas", paginas: 1892, reino: "Primeiro Alvorecer" },
+    { nome: "Anatomia Universal", paginas: 1345, reino: "Primeiro Alvorecer" },
+    { nome: "Manual Imperial de Agricultura", paginas: 723, reino: "Primeiro Alvorecer" },
+    { nome: "Tratado da Arquitetura Mundial", paginas: 1101, reino: "Primeiro Alvorecer" },
+
+    // ========== PRIMEIRO ALVORECER - NÚCLEO PROIBIDO ==========
+    { nome: "O Verdadeiro Milênio Perdido", paginas: 2014, reino: "Primeiro Alvorecer" },
+    { nome: "O Livro da Fissura", paginas: 1678, reino: "Primeiro Alvorecer" },
+    { nome: "Os Arquitetos da Realidade", paginas: 1823, reino: "Primeiro Alvorecer" },
+    { nome: "As Cinco Leis Fundamentais", paginas: 945, reino: "Primeiro Alvorecer" },
+    { nome: "O Nome dos Deuses Mortos", paginas: 1456, reino: "Primeiro Alvorecer" },
+    { nome: "Registro Zero", paginas: 987, reino: "Primeiro Alvorecer" },
+    { nome: "O Último Livro", paginas: 3002, reino: "Primeiro Alvorecer" },
+
+    // ========== SYLVANORA - RAIZ ETERNA ==========
+    { nome: "Herbarium de Celestium", paginas: 734, reino: "Sylvanora" },
+    { nome: "O Cultivo da Seiva Dourada", paginas: 512, reino: "Sylvanora" },
+    { nome: "Medicina dos Guardiões Verdes", paginas: 678, reino: "Sylvanora" },
+    { nome: "Anatomia das Criaturas da Floresta", paginas: 823, reino: "Sylvanora" },
+    { nome: "Orações à Raiz Eterna", paginas: 445, reino: "Sylvanora" },
+    { nome: "Caminhos da Harmonia", paginas: 567, reino: "Sylvanora" },
+    { nome: "Manual dos Druidas Iniciantes", paginas: 401, reino: "Sylvanora" },
+    { nome: "Os Segredos da Floresta Eterna", paginas: 912, reino: "Sylvanora" },
+    { nome: "Bestiário dos Pactos Antigos", paginas: 789, reino: "Sylvanora" },
+    { nome: "A Voz das Fadas", paginas: 456, reino: "Sylvanora" },
+    { nome: "O Manual do Apicultor Arcano", paginas: 398, reino: "Sylvanora" },
+    { nome: "Alquimia das Flores Lunares", paginas: 623, reino: "Sylvanora" },
+    { nome: "As Canções que Curam", paginas: 534, reino: "Sylvanora" },
+    { nome: "Registro dos Primeiros Sylvari", paginas: 1234, reino: "Sylvanora" },
+    { nome: "O Jardim das Mil Almas", paginas: 678, reino: "Sylvanora" },
+    { nome: "Codex da Raiz Primordial", paginas: 1892, reino: "Sylvanora" },
+    { nome: "Crônicas do Milênio Perdido", paginas: 2345, reino: "Sylvanora" },
+    { nome: "O Quinto Véu da Magia", paginas: 1567, reino: "Sylvanora" },
+    { nome: "O Livro das Eras Silenciadas", paginas: 2101, reino: "Sylvanora" },
+    { nome: "Teoria da Quinta Corrente", paginas: 1234, reino: "Sylvanora" },
+    { nome: "Fragmentos do Deus Ausente", paginas: 2890, reino: "Sylvanora" },
+
+    // ========== VOLDOUN - MONTANHAS ==========
+    { nome: "Primeiros Forjadores", paginas: 734, reino: "Voldoun" },
+    { nome: "Mineração nas Profundezas", paginas: 612, reino: "Voldoun" },
+    { nome: "Engenharia de Fortalezas", paginas: 891, reino: "Voldoun" },
+    { nome: "Manual dos Vigias da Montanha", paginas: 456, reino: "Voldoun" },
+    { nome: "Ligas Raras", paginas: 545, reino: "Voldoun" },
+    { nome: "Sobrevivência nas Alturas", paginas: 423, reino: "Voldoun" },
+    { nome: "Armaduras de Guerra", paginas: 678, reino: "Voldoun" },
+    { nome: "Código dos Clãs", paginas: 789, reino: "Voldoun" },
+    { nome: "Anatomia dos Gigantes Alpinos", paginas: 623, reino: "Voldoun" },
+    { nome: "Rotas dos Desfiladeiros", paginas: 512, reino: "Voldoun" },
+    { nome: "Hidromel dos Anciões", paginas: 398, reino: "Voldoun" },
+    { nome: "Táticas do Martelo de Guerra", paginas: 734, reino: "Voldoun" },
+    { nome: "Construções Esculpidas na Rocha", paginas: 856, reino: "Voldoun" },
+    { nome: "O Valor do Aço", paginas: 445, reino: "Voldoun" },
+    { nome: "Crônicas do Martelo das Montanhas", paginas: 1012, reino: "Voldoun" },
+    { nome: "As Tábuas de Kaelor Drath", paginas: 1567, reino: "Voldoun" },
+    { nome: "O Milênio Sob a Pedra", paginas: 1892, reino: "Voldoun" },
+    { nome: "A Quinta Forja", paginas: 1234, reino: "Voldoun" },
+    { nome: "O Trono de Basalto", paginas: 1456, reino: "Voldoun" },
+    { nome: "As Profundezas sem Fim", paginas: 2001, reino: "Voldoun" },
+    { nome: "Coração da Montanha Primordial", paginas: 2345, reino: "Voldoun" },
+
+    // ========== ZAHARAM - DESERTO ==========
+    { nome: "Rotas das Dunas Eternas", paginas: 567, reino: "Zaharam" },
+    { nome: "Manual das Grandes Caravanas", paginas: 734, reino: "Zaharam" },
+    { nome: "Sobrevivência Entre as Areias", paginas: 489, reino: "Zaharam" },
+    { nome: "Código dos Mercadores Livres", paginas: 612, reino: "Zaharam" },
+    { nome: "Anatomia das Serpentes do Deserto", paginas: 523, reino: "Zaharam" },
+    { nome: "Especiarias dos Cem Oásis", paginas: 678, reino: "Zaharam" },
+    { nome: "Arte da Orientação Estelar", paginas: 445, reino: "Zaharam" },
+    { nome: "Criação de Montarias do Deserto", paginas: 398, reino: "Zaharam" },
+    { nome: "Construções Contra o Sol", paginas: 534, reino: "Zaharam" },
+    { nome: "Relatos da Primeira Caravana", paginas: 789, reino: "Zaharam" },
+    { nome: "Mineração das Rochas Escarlates", paginas: 456, reino: "Zaharam" },
+    { nome: "Tribos de Malik Azhar", paginas: 623, reino: "Zaharam" },
+    { nome: "Ferraria das Dunas", paginas: 512, reino: "Zaharam" },
+    { nome: "O Chamado do Horizonte", paginas: 387, reino: "Zaharam" },
+    { nome: "Cem Formas de Resistência", paginas: 891, reino: "Zaharam" },
+    { nome: "Memórias de Samira al-Nahir", paginas: 1234, reino: "Zaharam" },
+    { nome: "O Milênio Sob as Dunas", paginas: 1678, reino: "Zaharam" },
+    { nome: "A Quinta Tempestade", paginas: 1456, reino: "Zaharam" },
+    { nome: "Solania: O Registro Original", paginas: 1892, reino: "Zaharam" },
+    { nome: "O Coração Enterrado", paginas: 2103, reino: "Zaharam" },
+    { nome: "Crônicas do Sol Negro", paginas: 2567, reino: "Zaharam" },
+
+    // ========== SOLHARIS - REINO DO SOL ==========
+    { nome: "Fundamentos da Engenharia Heliônica", paginas: 734, reino: "Solharis" },
+    { nome: "Arquitetura das Cidades Douradas", paginas: 892, reino: "Solharis" },
+    { nome: "O Livro dos Cem Generais", paginas: 1234, reino: "Solharis" },
+    { nome: "Agricultura dos Campos Radiantes", paginas: 567, reino: "Solharis" },
+    { nome: "Diplomacia Entre os Reinos", paginas: 678, reino: "Solharis" },
+    { nome: "O Forno do Sol", paginas: 456, reino: "Solharis" },
+    { nome: "Metalurgia Solar", paginas: 623, reino: "Solharis" },
+    { nome: "Comércio e Rotas de Auroram", paginas: 534, reino: "Solharis" },
+    { nome: "Anatomia para Curandeiros", paginas: 789, reino: "Solharis" },
+    { nome: "Manual do Construtor", paginas: 445, reino: "Solharis" },
+    { nome: "Astronomia Aplicada", paginas: 712, reino: "Solharis" },
+    { nome: "Cristais e Condutores Arcanos", paginas: 891, reino: "Solharis" },
+    { nome: "Liderança e Governo", paginas: 678, reino: "Solharis" },
+    { nome: "Bestas de Carga e Cavalaria", paginas: 456, reino: "Solharis" },
+    { nome: "A Luz que Alimenta o Mundo", paginas: 423, reino: "Solharis" },
+    { nome: "O Legado de Icarus Alarion", paginas: 1345, reino: "Solharis" },
+    { nome: "Os Mil Anos Apagados", paginas: 1567, reino: "Solharis" },
+    { nome: "A Quinta Luz", paginas: 1234, reino: "Solharis" },
+    { nome: "Projeto Aurora", paginas: 1892, reino: "Solharis" },
+    { nome: "As Equações do Alvorecer", paginas: 2001, reino: "Solharis" },
+    { nome: "O Último Manuscrito de Alarion", paginas: 2456, reino: "Solharis" },
+
+    // ========== SILVER RISE - IFRITIANOS ==========
+    { nome: "O Caminho do Fogo Interior", paginas: 678, reino: "Silver Rise" },
+    { nome: "Geologia das Profundezas", paginas: 823, reino: "Silver Rise" },
+    { nome: "A Forja Magmática", paginas: 734, reino: "Silver Rise" },
+    { nome: "Criaturas do Núcleo Ardente", paginas: 567, reino: "Silver Rise" },
+    { nome: "Anatomia dos Ifritianos", paginas: 612, reino: "Silver Rise" },
+    { nome: "Manual do Escalador Vulcânico", paginas: 456, reino: "Silver Rise" },
+    { nome: "As Correntes de Magma", paginas: 523, reino: "Silver Rise" },
+    { nome: "Construções Resistentes ao Fogo", paginas: 678, reino: "Silver Rise" },
+    { nome: "Código dos Clãs Ardentes", paginas: 789, reino: "Silver Rise" },
+    { nome: "Sobrevivência em Regiões Vulcânicas", paginas: 445, reino: "Silver Rise" },
+    { nome: "Metalurgia das Chamas Eternas", paginas: 891, reino: "Silver Rise" },
+    { nome: "Legado dos Primeiros Ifritianos", paginas: 1023, reino: "Silver Rise" },
+    { nome: "Agricultura em Cavernas Quentes", paginas: 398, reino: "Silver Rise" },
+    { nome: "Runas em Basalto Vivo", paginas: 534, reino: "Silver Rise" },
+    { nome: "O Coração da Montanha", paginas: 678, reino: "Silver Rise" },
+    { nome: "As Tábuas de Ignar, o Primeiro Flamejante", paginas: 1456, reino: "Silver Rise" },
+    { nome: "O Milênio de Cinzas", paginas: 1892, reino: "Silver Rise" },
+    { nome: "A Quinta Chama", paginas: 1345, reino: "Silver Rise" },
+    { nome: "O Trono de Obsidiana", paginas: 1567, reino: "Silver Rise" },
+    { nome: "As Profundezas Rubras", paginas: 2001, reino: "Silver Rise" },
+    { nome: "Fragmento do Sol Caído", paginas: 2345, reino: "Silver Rise" },
+
+    // ========== NETHIS - VIGILÂNCIA ==========
+    { nome: "Manual da Vigilância Contínua", paginas: 734, reino: "Nethis" },
+    { nome: "O Código da Ordem", paginas: 892, reino: "Nethis" },
+    { nome: "Interrogatório e Investigação", paginas: 678, reino: "Nethis" },
+    { nome: "Relatórios das Fronteiras", paginas: 456, reino: "Nethis" },
+    { nome: "Psicologia do Comportamento Humano", paginas: 823, reino: "Nethis" },
+    { nome: "Estratégias de Contenção", paginas: 612, reino: "Nethis" },
+    { nome: "Guia do Magistrado", paginas: 534, reino: "Nethis" },
+    { nome: "Administração de Crises", paginas: 678, reino: "Nethis" },
+    { nome: "Crônicas de Arthen Valcor", paginas: 1234, reino: "Nethis" },
+    { nome: "Manual do Escrivão", paginas: 445, reino: "Nethis" },
+    { nome: "Táticas Urbanas", paginas: 567, reino: "Nethis" },
+    { nome: "Anatomia Forense", paginas: 789, reino: "Nethis" },
+    { nome: "A Arte da Observação", paginas: 512, reino: "Nethis" },
+    { nome: "Protocolos da Prisão de Nethis", paginas: 623, reino: "Nethis" },
+    { nome: "O Olho Sobre o Continente", paginas: 891, reino: "Nethis" },
+    { nome: "Os Cadernos de Arthen Valcor", paginas: 1567, reino: "Nethis" },
+    { nome: "O Milênio das Coroas Vazias", paginas: 1892, reino: "Nethis" },
+    { nome: "A Quinta Observação", paginas: 1345, reino: "Nethis" },
+    { nome: "Projeto Sentinela Absoluta", paginas: 2001, reino: "Nethis" },
+    { nome: "Prisioneiros sem Nome", paginas: 1678, reino: "Nethis" },
+    { nome: "Relatório Final de Nethis", paginas: 2456, reino: "Nethis" },
+
+    // ========== LUNARIS - ESTRELAS ==========
+    { nome: "Atlas das Constelações Eternas", paginas: 945, reino: "Lunaris" },
+    { nome: "Introdução à Magia Lunar", paginas: 678, reino: "Lunaris" },
+    { nome: "Cristais e Frequências Arcanas", paginas: 823, reino: "Lunaris" },
+    { nome: "Navegação nos Mares Astrais", paginas: 734, reino: "Lunaris" },
+    { nome: "O Véu Entre Mundos", paginas: 1012, reino: "Lunaris" },
+    { nome: "Matemática das Estrelas", paginas: 567, reino: "Lunaris" },
+    { nome: "As Correntes do Aether", paginas: 891, reino: "Lunaris" },
+    { nome: "Manual dos Runistas Celestes", paginas: 623, reino: "Lunaris" },
+    { nome: "Cartografia do Oceano Central", paginas: 789, reino: "Lunaris" },
+    { nome: "Arquitetura da Sentinela Aether", paginas: 678, reino: "Lunaris" },
+    { nome: "Bestiário das Sombras Lunares", paginas: 534, reino: "Lunaris" },
+    { nome: "Diplomacia entre Céu e Mar", paginas: 456, reino: "Lunaris" },
+    { nome: "Gravidade e Manipulação Arcana", paginas: 892, reino: "Lunaris" },
+    { nome: "Relatórios da Sentinela Celestial", paginas: 612, reino: "Lunaris" },
+    { nome: "O Brilho do Arco", paginas: 445, reino: "Lunaris" },
+    { nome: "Os Diários de Arkanis Virel", paginas: 1678, reino: "Lunaris" },
+    { nome: "O Milênio das Estrelas Mortas", paginas: 2001, reino: "Lunaris" },
+    { nome: "A Quinta Constelação", paginas: 1567, reino: "Lunaris" },
+    { nome: "Realidades Sobrepostas", paginas: 2345, reino: "Lunaris" },
+    { nome: "O Véu Rasgado", paginas: 1892, reino: "Lunaris" },
+    { nome: "Código Celestial Primordial", paginas: 2678, reino: "Lunaris" },
+
+    // ========== SYLVANORA - FLORESTA (SEGUNDO LOTE) ==========
+    { nome: "Ciclos da Floresta Eterna", paginas: 734, reino: "Sylvanora" },
+    { nome: "Herbologia de Luminathis", paginas: 892, reino: "Sylvanora" },
+    { nome: "Medicina das Águas de Estelaris", paginas: 678, reino: "Sylvanora" },
+    { nome: "Bestiário dos Rios Antigos", paginas: 823, reino: "Sylvanora" },
+    { nome: "A Linguagem das Árvores", paginas: 567, reino: "Sylvanora" },
+    { nome: "O Caminho do Guardião Verde", paginas: 612, reino: "Sylvanora" },
+    { nome: "Magia Natural para Iniciantes", paginas: 445, reino: "Sylvanora" },
+    { nome: "Os Ventos de Aerendell", paginas: 534, reino: "Sylvanora" },
+    { nome: "Enciclopédia dos Tritões", paginas: 789, reino: "Sylvanora" },
+    { nome: "Runas da Natureza Viva", paginas: 678, reino: "Sylvanora" },
+    { nome: "O Equilíbrio das Almas", paginas: 891, reino: "Sylvanora" },
+    { nome: "O Jardim dos Anciões", paginas: 1023, reino: "Sylvanora" },
+    { nome: "Poções de Silvalia", paginas: 456, reino: "Sylvanora" },
+    { nome: "Os Guardiões de Thalloran", paginas: 734, reino: "Sylvanora" },
+    { nome: "As Canções da Primeira Primavera", paginas: 612, reino: "Sylvanora" },
+    { nome: "O Legado de Aelarion Greenleaf", paginas: 1456, reino: "Sylvanora" },
+    { nome: "O Milênio Antes da Floresta", paginas: 1892, reino: "Sylvanora" },
+    { nome: "A Quinta Semente", paginas: 1345, reino: "Sylvanora" },
+    { nome: "As Raízes do Mundo", paginas: 1678, reino: "Sylvanora" },
+    { nome: "O Véu Verde Esquecido", paginas: 2001, reino: "Sylvanora" },
+    { nome: "Fragmentos da Primeira Árvore", paginas: 2567, reino: "Sylvanora" },
+
+    // ========== BLACK MARSH - PÂNTANO ==========
+    { nome: "Venenos e Antídotos do Pântano", paginas: 678, reino: "Black Marsh" },
+    { nome: "Anatomia das Serpentes Gigantes", paginas: 823, reino: "Black Marsh" },
+    { nome: "Caça Silenciosa", paginas: 534, reino: "Black Marsh" },
+    { nome: "O Manual do Coletor de Ervas Tóxicas", paginas: 612, reino: "Black Marsh" },
+    { nome: "Navegação em Águas Escuras", paginas: 456, reino: "Black Marsh" },
+    { nome: "Agricultura dos Pântanos", paginas: 523, reino: "Black Marsh" },
+    { nome: "Bestiário de Black Marsh", paginas: 891, reino: "Black Marsh" },
+    { nome: "A Arte da Camuflagem", paginas: 445, reino: "Black Marsh" },
+    { nome: "Construções Sobre as Águas", paginas: 678, reino: "Black Marsh" },
+    { nome: "Fungos do Brejo Profundo", paginas: 567, reino: "Black Marsh" },
+    { nome: "O Código das Escamas", paginas: 734, reino: "Black Marsh" },
+    { nome: "Técnicas de Sobrevivência Pantanosa", paginas: 489, reino: "Black Marsh" },
+    { nome: "Relatos dos Caçadores do Brejo", paginas: 789, reino: "Black Marsh" },
+    { nome: "As Águas que Curam", paginas: 534, reino: "Black Marsh" },
+    { nome: "O Olho da Serpente", paginas: 612, reino: "Black Marsh" },
+    { nome: "As Escamas de Sszaryth", paginas: 1456, reino: "Black Marsh" },
+    { nome: "O Milênio Afogado", paginas: 1892, reino: "Black Marsh" },
+    { nome: "A Quinta Maré", paginas: 1567, reino: "Black Marsh" },
+    { nome: "O Reino Sob o Brejo", paginas: 2001, reino: "Black Marsh" },
+    { nome: "Os Filhos da Profundeza", paginas: 2345, reino: "Black Marsh" },
+    { nome: "O Cântico das Águas Negras", paginas: 3001, reino: "Black Marsh" }
+];
+
+// ============================================
+// BIBLIOTECA PESSOAL - SISTEMA COMPLETO
+// ============================================
+
+let biblioteca = JSON.parse(localStorage.getItem("bibliotecaLivros")) || [];
+
+// Popular o select com os livros do catálogo
+function popularSelectLivros() {
+    const select = document.getElementById("nomeLivro");
+    if (!select) return;
+    
+    select.innerHTML = '<option value="">Selecione um Livro</option>';
+    
+    const reinosOrder = ["Primeiro Alvorecer", "Sylvanora", "Voldoun", "Zaharam", "Solharis", "Silver Rise", "Nethis", "Lunaris", "Black Marsh"];
+    
+    for (const reino of reinosOrder) {
+        const livrosDoReino = catalogoLivros.filter(l => l.reino === reino);
+        if (livrosDoReino.length) {
+            const optGroup = document.createElement("optgroup");
+            optGroup.label = `📚 ${reino}`;
+            livrosDoReino.forEach(livro => {
+                const option = document.createElement("option");
+                option.value = livro.nome;
+                option.setAttribute("data-paginas", livro.paginas);
+                option.setAttribute("data-reino", livro.reino);
+                option.textContent = `${livro.nome} (${livro.paginas} páginas)`;
+                optGroup.appendChild(option);
+            });
+            select.appendChild(optGroup);
+        }
+    }
+}
+
+// Atualizar info de páginas ao selecionar livro
+function atualizarPaginasPorLivro() {
+    const select = document.getElementById("nomeLivro");
+    const selectedOption = select.options[select.selectedIndex];
+    const infoDiv = document.getElementById("infoPaginas");
+    
+    if (selectedOption && selectedOption.value) {
+        const paginas = selectedOption.getAttribute("data-paginas");
+        const reino = selectedOption.getAttribute("data-reino");
+        if (paginas) {
+            infoDiv.innerHTML = `📖 Este livro possui <strong>${paginas}</strong> páginas.<br>🏛️ Reino: ${reino}`;
+        }
+    } else {
+        infoDiv.innerHTML = "";
+    }
+}
+
+// Salvar livro na biblioteca
+function salvarLivro() {
+    const select = document.getElementById("nomeLivro");
+    const nome = select.value;
+    const paginaAtual = parseInt(document.getElementById("paginaAtual").value) || 0;
+    
+    if (!nome) {
+        alert("❌ Selecione um livro.");
+        return;
+    }
+    
+    const livroCatalogo = catalogoLivros.find(l => l.nome === nome);
+    
+    if (!livroCatalogo) {
+        alert("❌ Livro não encontrado no catálogo.");
+        return;
+    }
+    
+    const existe = biblioteca.find(l => l.nome === nome);
+    if (existe) {
+        alert(`📕 "${nome}" já está na sua biblioteca!`);
+        fecharModal();
+        return;
+    }
+    
+    biblioteca.push({
+        nome: livroCatalogo.nome,
+        paginas: livroCatalogo.paginas,
+        atual: Math.min(paginaAtual, livroCatalogo.paginas),
+        reino: livroCatalogo.reino,
+        id: Date.now()
+    });
+    
+    salvarLocal();
+    renderizar();
+    fecharModal();
+    
+    document.getElementById("paginaAtual").value = 0;
+    document.getElementById("nomeLivro").value = "";
+    document.getElementById("infoPaginas").innerHTML = "";
+}
+
+// Atualizar progresso do livro
+function atualizarProgresso(id, novaPagina) {
+    const livro = biblioteca.find(l => l.id === id);
+    if (!livro) return;
+    
+    novaPagina = Math.min(Math.max(0, novaPagina), livro.paginas);
+    livro.atual = novaPagina;
+    
+    salvarLocal();
+    renderizar();
+}
+
+// Remover livro
+function removerLivro(id) {
+    const livro = biblioteca.find(l => l.id === id);
+    if (!confirm(`❌ Remover "${livro?.nome}" da biblioteca?`)) return;
+    
+    biblioteca = biblioteca.filter(l => l.id !== id);
+    salvarLocal();
+    renderizar();
+}
+
+// Salvar no localStorage
+function salvarLocal() {
+    localStorage.setItem("bibliotecaLivros", JSON.stringify(biblioteca));
+}
+
+// Variáveis de filtro
+let filtroReinoAtual = "";
+let buscaNomeAtual = "";
+
+function aplicarFiltros() {
+    filtroReinoAtual = document.getElementById("filtroReino").value;
+    buscaNomeAtual = document.getElementById("buscaNome").value.toLowerCase();
+    renderizar();
+}
+
+function limparFiltros() {
+    document.getElementById("filtroReino").value = "";
+    document.getElementById("buscaNome").value = "";
+    filtroReinoAtual = "";
+    buscaNomeAtual = "";
+    renderizar();
+}
+
+// Obter classe CSS do reino
+function getReinoClass(reino) {
+    const classes = {
+        "Primeiro Alvorecer": "reino-Primeiro",
+        "Sylvanora": "reino-Sylvanora",
+        "Voldoun": "reino-Voldoun",
+        "Zaharam": "reino-Zaharam",
+        "Solharis": "reino-Solharis",
+        "Silver Rise": "reino-Silver",
+        "Nethis": "reino-Nethis",
+        "Lunaris": "reino-Lunaris",
+        "Black Marsh": "reino-Black"
+    };
+    return classes[reino] || "reino-Primeiro";
+}
+
+// Renderizar tabela
+function renderizar() {
+    const tabela = document.getElementById("tabelaLivros");
+    if (!tabela) return;
+    
+    let livrosFiltrados = [...biblioteca];
+    
+    if (filtroReinoAtual) {
+        livrosFiltrados = livrosFiltrados.filter(l => l.reino === filtroReinoAtual);
+    }
+    
+    if (buscaNomeAtual) {
+        livrosFiltrados = livrosFiltrados.filter(l => l.nome.toLowerCase().includes(buscaNomeAtual));
+    }
+    
+    livrosFiltrados.sort((a, b) => {
+        const aConcluido = a.atual >= a.paginas;
+        const bConcluido = b.atual >= b.paginas;
+        if (aConcluido !== bConcluido) return aConcluido ? 1 : -1;
+        return a.nome.localeCompare(b.nome);
+    });
+    
+    if (livrosFiltrados.length === 0) {
+        tabela.innerHTML = `<tr><td colspan="6" class="vazio">📭 Nenhum livro encontrado...<br><small>Adicione livros clicando no botão acima</small></td></tr>`;
+    } else {
+        tabela.innerHTML = livrosFiltrados.map(livro => {
+            const progresso = Math.floor((livro.atual / livro.paginas) * 100);
+            const concluido = progresso >= 100;
+            const reinoClass = getReinoClass(livro.reino);
+            const incremento = Math.ceil(livro.paginas * 0.1);
+            
+            return `
+                <tr>
+                    <td style="text-align:left; font-weight:bold;">📖 ${livro.nome}</td>
+                    <td><span class="reino-badge ${reinoClass}">${livro.reino}</span></td>
+                    <td>${livro.atual} / ${livro.paginas}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-fill" style="width:${progresso}%"></div>
+                        </div>
+                        <small>${progresso}%</small>
+                    </td>
+                    <td class="${concluido ? 'status-concluido' : 'status-lendo'}">
+                        ${concluido ? '✅ Concluído' : '📖 Lendo'}
+                    </td>
+                    <td>
+                        <div class="actions">
+                            ${!concluido ? `<button class="btn-small edit" onclick="atualizarProgresso(${livro.id}, ${livro.atual + incremento})">+10%</button>` : ''}
+                            <button class="btn-small remove" onclick="removerLivro(${livro.id})">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+    
+    const totalLivros = biblioteca.length;
+    const concluidos = biblioteca.filter(l => l.atual >= l.paginas).length;
+    const lendo = totalLivros - concluidos;
+    const paginasLidas = biblioteca.reduce((acc, l) => acc + Math.min(l.atual, l.paginas), 0);
+    
+    document.getElementById("livrosTotal").innerText = totalLivros;
+    document.getElementById("livrosConcluidos").innerText = concluidos;
+    document.getElementById("livrosLeitura").innerText = lendo;
+    document.getElementById("paginasLidas").innerText = paginasLidas.toLocaleString();
+}
+
+// Modal functions
+function abrirModal() {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("paginaAtual").value = 0;
+    document.getElementById("infoPaginas").innerHTML = "";
+}
+
+function fecharModal() {
+    document.getElementById("modal").style.display = "none";
+    document.getElementById("nomeLivro").value = "";
+    document.getElementById("paginaAtual").value = 0;
+    document.getElementById("infoPaginas").innerHTML = "";
+}
+
+// Fechar modal clicando fora
+document.getElementById("modal")?.addEventListener("click", function(e) {
+    if (e.target === this) fecharModal();
+});
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", () => {
+    popularSelectLivros();
+    renderizar();
+});
+
+// Fechar modal com ESC
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") fecharModal();
+});
+
+</script>
+
+</body>
+</html>

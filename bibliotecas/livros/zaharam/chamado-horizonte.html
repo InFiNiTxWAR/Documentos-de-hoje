@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>O Chamado do Horizonte — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Primeiro Passo */
+.passo-destaque {
+    background: rgba(212,160,23,.15);
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.passo-destaque h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.passo-destaque .citacao {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* Além das Dunas */
+.dunas-descricao {
+    background: rgba(20,12,5,.85);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+}
+
+.dunas-descricao p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+/* Floresta Sem Fim */
+.floresta-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+}
+
+.floresta-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.floresta-card .caracteristicas {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+.floresta-card .caracteristicas p {
+    padding: 4px 0;
+}
+
+/* Tharzul */
+.tharzul-card {
+    background: linear-gradient(135deg, rgba(30,25,15,.95), rgba(25,20,10,.98));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.tharzul-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+/* Ruínas */
+.ruinas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.ruina-item {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Mar de Pedra */
+.mar-pedra {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+}
+
+.mar-pedra .caracteristicas {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.mar-pedra .caracteristicas span {
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 5px 15px;
+    font-size: 0.85rem;
+}
+
+/* Povos Esquecidos */
+.ensinamento {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    text-align: center;
+    font-style: italic;
+}
+
+.ensinamento p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+}
+
+/* Tiberio */
+.tiberio-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.tiberio-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.tiberio-card .relato {
+    margin-top: 10px;
+    font-style: italic;
+    color: #e8c68a;
+}
+
+/* Horizonte Verdadeiro */
+.horizonte-card {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.horizonte-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Últimas Anotações */
+.ultimas-anotacoes {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.ultimas-anotacoes p {
+    margin: 10px 0;
+    font-size: 0.95rem;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🌅 O Chamado do Horizonte</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> K'Thar, o Leão das Areias</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 624 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "O horizonte não existe para limitar nossos passos. Existe para nos convidar a continuar caminhando."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Entre todos os exploradores que já cruzaram Zaharam, poucos nomes são tão respeitados quanto o de <strong>K'Thar</strong>, o lendário guerreiro gnoll dos Garrakhai.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Embora seja lembrado por suas batalhas e feitos heroicos, poucos sabem que K'Thar também foi um viajante incansável.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            Durante décadas, ele percorreu regiões além dos mapas conhecidos, atravessando desertos, montanhas, florestas antigas e ruínas esquecidas.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-top: 15px;">
+            <strong>O Chamado do Horizonte</strong> reúne seus relatos pessoais, observações e reflexões sobre o mundo além das fronteiras de Zaharam.
+        </p>
+    </div>
+
+    <!-- O Primeiro Passo -->
+    <div class="passo-destaque">
+        <h3>👣 O Primeiro Passo</h3>
+        <p>Segundo K'Thar, a parte mais difícil de qualquer jornada não é sobreviver aos perigos.</p>
+        <p>É decidir partir.</p>
+        <div class="citacao">
+            "Muitos homens sonham com terras distantes.<br>
+            Poucos têm coragem de abandonar aquilo que conhecem."
+        </div>
+    </div>
+
+    <!-- Além das Dunas Eternas -->
+    <div class="section">
+        <h2 class="section-title">🌄 Além das Dunas Eternas</h2>
+        <p>Após anos viajando pelas rotas comerciais de Zaharam, K'Thar decidiu seguir para regiões que nenhum mapa registrava.</p>
+        
+        <div class="dunas-descricao">
+            <p><strong>Os primeiros relatos descrevem:</strong></p>
+            <p>🏔️ Cadeias montanhosas desconhecidas</p>
+            <p>🌾 Planícies sem fim</p>
+            <p>🌳 Florestas maiores que cidades inteiras</p>
+            <p>🌊 Rios tão largos que o outro lado não podia ser visto</p>
+        </div>
+        
+        <p><em>Essas terras eram praticamente desconhecidas pelos povos do deserto.</em></p>
+    </div>
+
+    <!-- A Floresta Sem Fim -->
+    <div class="section">
+        <h2 class="section-title">🌳 A Floresta Sem Fim</h2>
+        <p>Um dos capítulos mais extensos descreve uma floresta ancestral localizada além das fronteiras orientais.</p>
+        
+        <div class="floresta-card">
+            <h4>📜 Características registradas:</h4>
+            <div class="caracteristicas">
+                <p>🌲 Árvores com centenas de metros de altura</p>
+                <p>🦁 Animais jamais vistos em Zaharam</p>
+                <p>🌫️ Névoas permanentes</p>
+                <p>🏛️ Ruínas tomadas pela vegetação</p>
+            </div>
+        </div>
+        
+        <p><em>K'Thar afirma ter passado quase três meses perdido em seu interior.</em></p>
+    </div>
+
+    <!-- O Encontro com Tharzul -->
+    <div class="tharzul-card">
+        <h4>✨ O Encontro com Tharzul</h4>
+        <p>Durante uma de suas expedições, K'Thar conheceu aquele que se tornaria seu maior amigo.</p>
+        <p style="margin-top: 10px;"><strong>Tharzul</strong> — Um poderoso mago viajante e estudioso dos segredos antigos.</p>
+        <p>Inicialmente os dois desconfiavam um do outro. Porém, após sobreviverem juntos a uma emboscada de criaturas selvagens, iniciaram uma amizade que duraria décadas.</p>
+        <p style="margin-top: 10px;"><em>Diversos trechos do livro relatam aventuras compartilhadas entre ambos.</em></p>
+    </div>
+
+    <!-- As Ruínas das Estrelas -->
+    <div class="section">
+        <h2 class="section-title">⭐ As Ruínas das Estrelas</h2>
+        <p>Entre as descobertas mais intrigantes de K'Thar estão antigas ruínas encontradas no extremo norte.</p>
+        
+        <div class="ruinas-grid">
+            <div class="ruina-item">🏛️ Construções feitas de pedra negra</div>
+            <div class="ruina-item">🔣 Símbolos desconhecidos</div>
+            <div class="ruina-item">🕳️ Salões subterrâneos gigantescos</div>
+            <div class="ruina-item">✨ Inscrições relacionadas às estrelas</div>
+        </div>
+        
+        <p><em>Nem mesmo Tharzul conseguiu traduzir completamente os textos encontrados.</em></p>
+    </div>
+
+    <!-- O Mar de Pedra -->
+    <div class="section">
+        <h2 class="section-title">🪨 O Mar de Pedra</h2>
+        <p>Muito além das dunas, K'Thar encontrou uma região que chamou de Mar de Pedra.</p>
+        
+        <div class="mar-pedra">
+            <div class="caracteristicas">
+                <span>🪨 Rochas gigantescas</span>
+                <span>🏜️ Quase nenhuma vegetação</span>
+                <span>💨 Ventos extremamente fortes</span>
+                <span>🔊 Ecos que viajavam por quilômetros</span>
+            </div>
+        </div>
+        
+        <p><em>Segundo ele, o lugar parecia ter sido moldado por forças além da compreensão mortal.</em></p>
+    </div>
+
+    <!-- Povos Esquecidos -->
+    <div class="section">
+        <h2 class="section-title">👥 Povos Esquecidos</h2>
+        <p>Ao longo de suas viagens, K'Thar encontrou diversas culturas desconhecidas.</p>
+        
+        <div class="ensinamento">
+            <p>"Nem todo estranho é inimigo.</p>
+            <p>Nem todo amigo fala sua língua."</p>
+        </div>
+        
+        <p><em>Por esse motivo, o livro dedica vários capítulos à observação de costumes, tradições e formas de comunicação entre povos distantes.</em></p>
+    </div>
+
+    <!-- O Homem que Observava as Fissuras -->
+    <div class="section">
+        <h2 class="section-title">🌀 O Homem que Observava as Fissuras</h2>
+        <p>Em um trecho pouco conhecido da obra, K'Thar menciona ter encontrado um estudioso viajante durante uma expedição ao sul de Zaharam.</p>
+        <p>O homem carregava inúmeros pergaminhos e fazia anotações próximas a uma Fissura Profunda.</p>
+        <p>Seu nome era: <strong>Tiberio</strong></p>
+        
+        <div class="tiberio-card">
+            <h4>📜 Relato de K'Thar:</h4>
+            <p>"Ele fazia perguntas demais.</p>
+            <p>Perguntas sobre coisas que nenhum homem deveria desejar compreender."</p>
+            <div class="relato">Os dois conversaram apenas uma vez. Décadas depois, K'Thar ainda mencionava esse encontro em seus escritos.</div>
+        </div>
+    </div>
+
+    <!-- O Horizonte Verdadeiro -->
+    <div class="horizonte-card">
+        <p>Ao final de suas jornadas, K'Thar chegou a uma conclusão.</p>
+        <p>Não importa o quanto alguém viaje.</p>
+        <p>Sempre haverá algo desconhecido além do próximo horizonte.</p>
+        <p style="margin-top: 15px;"><strong>"O mundo não foi feito para ser completamente explorado.</strong></p>
+        <p><strong>Foi feito para que continuemos explorando."</strong></p>
+    </div>
+
+    <!-- Últimas Anotações -->
+    <div class="section">
+        <h2 class="section-title">📖 Últimas Anotações</h2>
+        
+        <div class="ultimas-anotacoes">
+            <p>Os capítulos finais foram escritos já durante a velhice de K'Thar.</p>
+            <p>Neles, o lendário explorador afirma que seu maior tesouro não foram armas, riquezas ou glória.</p>
+            <p>Foram as histórias.</p>
+            <p>As pessoas conhecidas.</p>
+            <p>Os amigos encontrados pelo caminho.</p>
+            <p>E os horizontes que ainda permaneciam inalcançáveis.</p>
+        </div>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"Quando eu era jovem, acreditava que procurava aventuras.</p>
+        <p>Hoje entendo que procurava conhecimento.</p>
+        <p>E descobri que o conhecimento não está escondido em ruínas ou tesouros.</p>
+        <p>Está na jornada."</p>
+        <div class="autor">— K'Thar, o Leão das Areias</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Relatos de regiões além dos desertos conhecidos</li>
+            <li>Descobertas realizadas por K'Thar durante suas expedições</li>
+            <li>Histórias sobre Tharzul e antigos exploradores</li>
+            <li>Registros de povos, ruínas e terras desconhecidas</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Explorador</div>
+        <div class="nea">+0,2% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

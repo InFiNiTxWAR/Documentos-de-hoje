@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Odrin — Arquivo das Sentinelas</title>
+
+   <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+   <style>
+      /* ===========================
+   RESET
+=========================== */
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      html {
+         scroll-behavior: smooth;
+      }
+
+      /* ===========================
+   BODY
+=========================== */
+
+      body {
+
+         min-height: 100vh;
+
+         background:
+            linear-gradient(rgba(8, 12, 8, .88),
+               rgba(6, 10, 6, .94)),
+
+            url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+
+         font-family: 'Cormorant Garamond', serif;
+
+         color: #f4e7c1;
+      }
+
+      /* ===========================
+   HEADER
+=========================== */
+
+      header {
+
+         padding: 70px 20px;
+
+         text-align: center;
+
+         border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+         backdrop-filter: blur(2px);
+      }
+
+      header h1 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 3.8rem;
+
+         color: #f5d48b;
+
+         text-shadow:
+            0 0 15px rgba(245, 212, 139, .35);
+
+         margin-bottom: 15px;
+      }
+
+      header .subtitulo {
+
+         font-size: 1.5rem;
+
+         color: #d8c79d;
+
+         font-style: italic;
+
+         margin-bottom: 20px;
+      }
+
+      header .descricao {
+
+         max-width: 900px;
+
+         margin: auto;
+
+         font-size: 1.25rem;
+
+         line-height: 1.7;
+
+         color: #e7d7b1;
+      }
+
+      /* ===========================
+   CONTAINER
+=========================== */
+
+      .container {
+
+         max-width: 1500px;
+
+         margin: auto;
+
+         padding: 50px 30px 80px;
+      }
+
+      /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+      .secao-titulo {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 2rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         text-shadow:
+            0 0 8px rgba(245, 212, 139, .25);
+      }
+
+      .secao-descricao {
+
+         font-size: 1.2rem;
+
+         color: #d7c59b;
+
+         margin-bottom: 30px;
+
+         line-height: 1.7;
+      }
+
+      .separador {
+
+         margin: 60px 0;
+
+         height: 2px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               rgba(214, 170, 83, .6),
+               transparent);
+      }
+
+      /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+      .grid {
+
+         display: grid;
+
+         grid-template-columns:
+            repeat(auto-fit, minmax(320px, 1fr));
+
+         gap: 25px;
+      }
+
+      /* ===========================
+   CARD PADRÃO
+=========================== */
+
+      .card {
+
+         background:
+            rgba(35, 25, 15, .93);
+
+         border: 2px solid #8f6b2c;
+
+         border-radius: 14px;
+
+         padding: 24px;
+
+         transition: .35s;
+
+         box-shadow:
+            0 0 15px rgba(0, 0, 0, .45);
+
+         position: relative;
+
+         overflow: hidden;
+      }
+
+      .card::before {
+
+         content: "";
+
+         position: absolute;
+
+         top: 0;
+         left: 0;
+
+         width: 100%;
+         height: 4px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d6aa53,
+               transparent);
+      }
+
+      .card:hover {
+
+         transform: translateY(-8px);
+
+         border-color: #d6aa53;
+
+         box-shadow:
+            0 0 25px rgba(214, 170, 83, .20);
+      }
+
+      .card h3 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 1.25rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         line-height: 1.4;
+      }
+
+      .categoria {
+
+         display: inline-block;
+
+         padding: 5px 10px;
+
+         background:
+            rgba(214, 170, 83, .12);
+
+         border: 1px solid rgba(214, 170, 83, .25);
+
+         border-radius: 20px;
+
+         font-size: .95rem;
+
+         margin-bottom: 15px;
+
+         color: #f3d18b;
+      }
+
+      .card p {
+
+         font-size: 1.08rem;
+
+         line-height: 1.6;
+
+         color: #e6d7b5;
+
+         margin-bottom: 18px;
+      }
+
+      /* ===========================
+   RECOMPENSAS
+=========================== */
+
+      .recompensa {
+
+         background:
+            rgba(0, 0, 0, .20);
+
+         border-left: 4px solid #d6aa53;
+
+         padding: 12px;
+
+         border-radius: 6px;
+
+         font-size: 1rem;
+
+         margin-bottom: 18px;
+
+         line-height: 1.6;
+      }
+
+      .recompensa strong {
+
+         color: #f5d48b;
+      }
+
+      /* ===========================
+   BOTÃO
+=========================== */
+
+      .btn {
+
+         width: 100%;
+
+         border: none;
+
+         cursor: pointer;
+
+         padding: 12px;
+
+         font-size: 1rem;
+
+         font-weight: bold;
+
+         font-family: 'Cinzel', serif;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         transition: .3s;
+      }
+
+      .btn:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   LIVRO RARO
+=========================== */
+
+      .raro {
+
+         border: 2px solid #c9a84a;
+
+         background:
+            rgba(58, 44, 18, .94);
+      }
+
+      .raro::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #ffd369,
+               transparent);
+      }
+
+      .raro h3 {
+
+         color: #ffd369;
+      }
+
+      /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+      .proibido {
+
+         background:
+            rgba(30, 10, 10, .95);
+
+         border: 2px solid #8f1d1d;
+      }
+
+      .proibido::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d64040,
+               transparent);
+      }
+
+      .proibido h3 {
+
+         color: #ff7b7b;
+      }
+
+      .proibido .categoria {
+
+         background:
+            rgba(255, 0, 0, .10);
+
+         border-color:
+            rgba(255, 0, 0, .25);
+
+         color: #ff9b9b;
+      }
+
+      .proibido .btn {
+
+         background: #7f1d1d;
+      }
+
+      .proibido .btn:hover {
+
+         background: #c73434;
+
+         color: white;
+      }
+
+      /* ===========================
+   VOLTAR
+=========================== */
+
+      .voltar {
+
+         text-align: center;
+
+         margin-top: 60px;
+      }
+
+      .voltar a {
+
+         display: inline-block;
+
+         text-decoration: none;
+
+         padding: 12px 25px;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         font-family: 'Cinzel', serif;
+
+         transition: .3s;
+      }
+
+      .voltar a:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+
+      footer {
+
+         text-align: center;
+
+         padding: 40px;
+
+         border-top: 1px solid rgba(214, 170, 83, .15);
+
+         color: #c9b27a;
+
+         font-size: 1rem;
+      }
+
+      /* ===========================
+   RESPONSIVO
+=========================== */
+
+      @media(max-width:768px) {
+
+         header h1 {
+            font-size: 2.5rem;
+         }
+
+         header .descricao {
+            font-size: 1.1rem;
+         }
+
+         .secao-titulo {
+            font-size: 1.6rem;
+         }
+
+         .grid {
+            grid-template-columns: 1fr;
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+
+      <h1>🛡️ Arquivo das Sentinelas</h1>
+
+      <div class="subtitulo">
+         "Observar é preservar."
+      </div>
+
+      <div class="descricao">
+
+         A mais controlada biblioteca do continente. Muitos documentos somente
+         podem ser acessados mediante autorização governamental. Seus registros
+         guardam informações estratégicas de valor inestimável.
+
+      </div>
+
+   </header>
+
+   <div class="container">
+      <!-- ====================================================
+🛡️ REGISTROS DISPONÍVEIS EM ODRIN
+==================================================== -->
+
+      <h2 class="secao-titulo">🛡️ Registros Disponíveis</h2>
+
+      <p class="secao-descricao">
+         O Arquivo das Sentinelas é o centro de inteligência e preservação histórica de Odrin.
+         Localizado abaixo da capital, seus corredores são protegidos por guardas e escribas estatais.
+         Em Odrin, conhecimento é uma ferramenta de controle.
+      </p>
+
+      <div class="grid">
+
+         <div class="card">
+            <h3>📖 Manual da Vigilância Contínua</h3>
+            <div class="categoria">Sentinela</div>
+            <p>Treinamento básico dos vigias das torres.</p>
+            <div class="recompensa">+35 EXP Sentinela<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('451')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Código da Ordem</h3>
+            <div class="categoria">Administrador</div>
+            <p>Leis fundamentais de Odrin.</p>
+            <div class="recompensa">+35 EXP Administrador<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('682')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Interrogatório e Investigação</h3>
+            <div class="categoria">Investigador</div>
+            <p>Métodos utilizados pelos oficiais do reino.</p>
+            <div class="recompensa">+40 EXP Investigador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('924')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Relatórios das Fronteiras</h3>
+            <div class="categoria">Cartógrafo</div>
+            <p>Mapas atualizados das fronteiras continentais.</p>
+            <div class="recompensa">+30 EXP Cartógrafo<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('318')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Psicologia do Comportamento Humano</h3>
+            <div class="categoria">Analista</div>
+            <p>Estudo sobre padrões sociais e comportamentais.</p>
+            <div class="recompensa">+40 EXP Analista<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('577')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Estratégias de Contenção</h3>
+            <div class="categoria">Estrategista</div>
+            <p>Táticas para neutralizar ameaças internas.</p>
+            <div class="recompensa">+40 EXP Estrategista<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('843')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Guia do Magistrado</h3>
+            <div class="categoria">Juiz</div>
+            <p>Aplicação de leis e julgamentos.</p>
+            <div class="recompensa">+35 EXP Juiz<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('166')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Administração de Crises</h3>
+            <div class="categoria">Governante</div>
+            <p>Gestão de emergências e revoltas.</p>
+            <div class="recompensa">+35 EXP Governante<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('735')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Crônicas de Arthen Valcor</h3>
+            <div class="categoria">Historiador</div>
+            <p>História da fundação de Odrin.</p>
+            <div class="recompensa">+40 EXP Historiador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('294')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Manual do Escrivão</h3>
+            <div class="categoria">Arquivista</div>
+            <p>Catalogação e preservação documental.</p>
+            <div class="recompensa">+30 EXP Arquivista<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('511')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Táticas Urbanas</h3>
+            <div class="categoria">Comandante</div>
+            <p>Combate e segurança em ambientes urbanos.</p>
+            <div class="recompensa">+40 EXP Comandante<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('878')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Anatomia Forense</h3>
+            <div class="categoria">Médico Forense</div>
+            <p>Investigação de mortes e evidências.</p>
+            <div class="recompensa">+40 EXP Médico Forense<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('623')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 A Arte da Observação</h3>
+            <div class="categoria">Espião</div>
+            <p>Métodos avançados de coleta de informações.</p>
+            <div class="recompensa">+35 EXP Espião<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('402')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Protocolos da Prisão Nethis</h3>
+            <div class="categoria">Carcereiro</div>
+            <p>Contenção de indivíduos perigosos.</p>
+            <div class="recompensa">+35 EXP Carcereiro<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('759')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Olho Sobre o Continente</h3>
+            <div class="categoria">Observador Estratégico</div>
+            <p>Relatórios compilados das torres de vigilância.</p>
+            <div class="recompensa">+40 EXP Observador Estratégico<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('981')">Ler Registro</button>
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <h2 class="secao-titulo">🌟 Registro Raro</h2>
+
+      <div class="grid">
+
+         <div class="card raro">
+
+            <h3>📜 Os Cadernos de Arthen Valcor</h3>
+
+            <div class="categoria">
+               Administrador / Estrategista
+            </div>
+
+            <p>
+               Uma coleção de documentos pessoais do fundador de Odrin.
+            </p>
+
+            <div class="recompensa">
+               +40 EXP Administrador<br>
+               +40 EXP Estrategista<br>
+               +0,5% NEA<br><br>
+
+               🛡️ Guardião da Ordem
+            </div>
+
+            <button class="btn" onclick="abrirLivro('999')">
+               Acessar Registro Raro
+            </button>
+
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <h2 class="secao-titulo">
+         🔒 Cofre das Sombras Vigilantes
+      </h2>
+
+      <p class="secao-descricao">
+         "O conhecimento mais perigoso não é o que destrói reinos. É o que revela quem realmente os governa."
+      </p>
+
+      <div class="grid">
+
+         <div class="card proibido">
+            <h3>📕 O Milênio das Coroas Vazias</h3>
+            <div class="categoria">História Proibida</div>
+            <p>Registros sobre governantes anteriores ao Milênio Perdido.</p>
+            <div class="recompensa">+40 EXP Historiador Arcano<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('741')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 A Quinta Observação</h3>
+            <div class="categoria">5th Magic</div>
+            <p>Primeiro documento de Odrin sobre a Quinta Magia.</p>
+            <div class="recompensa">+40 EXP Pesquisador Arcano<br>+40 EXP Analista<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('533')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 Projeto Sentinela Absoluta</h3>
+            <div class="categoria">Projeto Secreto</div>
+            <p>Plano secreto desenvolvido para monitorar todo o continente.</p>
+            <div class="recompensa">+40 EXP Observador Estratégico<br>+40 EXP Administrador<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('817')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 Os Prisioneiros Sem Nome</h3>
+            <div class="categoria">Classificação Restrita</div>
+            <p>Registros removidos da história oficial.</p>
+            <div class="recompensa">+40 EXP Investigador<br>+40 EXP Carcereiro<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('204')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Relatório Final de Nethis</h3>
+            <div class="categoria">Classificação Máxima</div>
+            <p>O documento mais restrito de todo Odrin.</p>
+            <div class="recompensa">
+               +40 EXP Investigador<br>
+               +40 EXP Pesquisador Arcano<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('001')">
+               Acessar Registro
+            </button>
+         </div>
+
+      </div>
+
+      <div class="voltar">
+         <a href="../bibliotecas.html">
+            ← Voltar às Bibliotecas
+         </a>
+      </div>
+   </div>
+
+   <footer>
+
+      Arquivo das Sentinelas • Reino de Odrin • Ano 5002
+
+   </footer>
+
+   <script>
+
+      const livros = {
+
+         /* ==========================
+            REGISTROS DISPONÍVEIS
+         ========================== */
+
+         "451": "livros/manual_vigilancia_continua.html",
+         "682": "livros/codigo_da_ordem.html",
+         "924": "livros/interrogatorio_investigacao.html",
+         "318": "livros/relatorios_fronteiras.html",
+         "577": "livros/psicologia_comportamento_humano.html",
+         "843": "livros/estrategias_contencao.html",
+         "166": "livros/guia_magistrado.html",
+         "735": "livros/administracao_crises.html",
+         "294": "livros/cronicas_arthen_valcor.html",
+         "511": "livros/manual_escrivao.html",
+         "878": "livros/taticas_urbanas.html",
+         "623": "livros/anatomia_forense.html",
+         "402": "livros/arte_observacao.html",
+         "759": "livros/protocolos_prisao_nethis.html",
+         "981": "livros/olho_sobre_continente.html",
+
+         /* ==========================
+            REGISTRO RARO
+         ========================== */
+
+         "999": "livros/cadernos_arthen_valcor.html",
+
+         /* ==========================
+            COFRE DAS SOMBRAS VIGILANTES
+         ========================== */
+
+         "741": "livros/milenio_coroas_vazias.html",
+         "533": "livros/quinta_observacao.html",
+         "817": "livros/projeto_sentinela_absoluta.html",
+         "204": "livros/prisioneiros_sem_nome.html",
+         "001": "livros/relatorio_final_nethis.html"
+
+      };
+
+      function abrirLivro(codigoEsperado) {
+
+         const codigo = prompt(
+            "🛡️ Insira o código de autorização da Sentinela:"
+         );
+
+         if (codigo === null) {
+            return;
+         }
+
+         if (codigo === codigoEsperado) {
+
+            window.location.href =
+               livros[codigoEsperado];
+
+         } else {
+
+            alert(
+               "❌ ACESSO NEGADO\n\nO Arquivo das Sentinelas recusou sua autorização.\nCódigo inválido."
+            );
+
+         }
+
+      }
+
+   </script>
+
+</body>
+
+</html>

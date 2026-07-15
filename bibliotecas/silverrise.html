@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>The Silver Rise — Forja dos Registros Ígneos</title>
+
+   <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+   <style>
+      /* ===========================
+   RESET
+=========================== */
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      html {
+         scroll-behavior: smooth;
+      }
+
+      /* ===========================
+   BODY
+=========================== */
+
+      body {
+
+         min-height: 100vh;
+
+         background:
+            linear-gradient(rgba(8, 12, 8, .88),
+               rgba(6, 10, 6, .94)),
+
+            url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+
+         font-family: 'Cormorant Garamond', serif;
+
+         color: #f4e7c1;
+      }
+
+      /* ===========================
+   HEADER
+=========================== */
+
+      header {
+
+         padding: 70px 20px;
+
+         text-align: center;
+
+         border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+         backdrop-filter: blur(2px);
+      }
+
+      header h1 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 3.8rem;
+
+         color: #f5d48b;
+
+         text-shadow:
+            0 0 15px rgba(245, 212, 139, .35);
+
+         margin-bottom: 15px;
+      }
+
+      header .subtitulo {
+
+         font-size: 1.5rem;
+
+         color: #d8c79d;
+
+         font-style: italic;
+
+         margin-bottom: 20px;
+      }
+
+      header .descricao {
+
+         max-width: 900px;
+
+         margin: auto;
+
+         font-size: 1.25rem;
+
+         line-height: 1.7;
+
+         color: #e7d7b1;
+      }
+
+      /* ===========================
+   CONTAINER
+=========================== */
+
+      .container {
+
+         max-width: 1500px;
+
+         margin: auto;
+
+         padding: 50px 30px 80px;
+      }
+
+      /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+      .secao-titulo {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 2rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         text-shadow:
+            0 0 8px rgba(245, 212, 139, .25);
+      }
+
+      .secao-descricao {
+
+         font-size: 1.2rem;
+
+         color: #d7c59b;
+
+         margin-bottom: 30px;
+
+         line-height: 1.7;
+      }
+
+      .separador {
+
+         margin: 60px 0;
+
+         height: 2px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               rgba(214, 170, 83, .6),
+               transparent);
+      }
+
+      /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+      .grid {
+
+         display: grid;
+
+         grid-template-columns:
+            repeat(auto-fit, minmax(320px, 1fr));
+
+         gap: 25px;
+      }
+
+      /* ===========================
+   CARD PADRÃO
+=========================== */
+
+      .card {
+
+         background:
+            rgba(35, 25, 15, .93);
+
+         border: 2px solid #8f6b2c;
+
+         border-radius: 14px;
+
+         padding: 24px;
+
+         transition: .35s;
+
+         box-shadow:
+            0 0 15px rgba(0, 0, 0, .45);
+
+         position: relative;
+
+         overflow: hidden;
+      }
+
+      .card::before {
+
+         content: "";
+
+         position: absolute;
+
+         top: 0;
+         left: 0;
+
+         width: 100%;
+         height: 4px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d6aa53,
+               transparent);
+      }
+
+      .card:hover {
+
+         transform: translateY(-8px);
+
+         border-color: #d6aa53;
+
+         box-shadow:
+            0 0 25px rgba(214, 170, 83, .20);
+      }
+
+      .card h3 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 1.25rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         line-height: 1.4;
+      }
+
+      .categoria {
+
+         display: inline-block;
+
+         padding: 5px 10px;
+
+         background:
+            rgba(214, 170, 83, .12);
+
+         border: 1px solid rgba(214, 170, 83, .25);
+
+         border-radius: 20px;
+
+         font-size: .95rem;
+
+         margin-bottom: 15px;
+
+         color: #f3d18b;
+      }
+
+      .card p {
+
+         font-size: 1.08rem;
+
+         line-height: 1.6;
+
+         color: #e6d7b5;
+
+         margin-bottom: 18px;
+      }
+
+      /* ===========================
+   RECOMPENSAS
+=========================== */
+
+      .recompensa {
+
+         background:
+            rgba(0, 0, 0, .20);
+
+         border-left: 4px solid #d6aa53;
+
+         padding: 12px;
+
+         border-radius: 6px;
+
+         font-size: 1rem;
+
+         margin-bottom: 18px;
+
+         line-height: 1.6;
+      }
+
+      .recompensa strong {
+
+         color: #f5d48b;
+      }
+
+      /* ===========================
+   BOTÃO
+=========================== */
+
+      .btn {
+
+         width: 100%;
+
+         border: none;
+
+         cursor: pointer;
+
+         padding: 12px;
+
+         font-size: 1rem;
+
+         font-weight: bold;
+
+         font-family: 'Cinzel', serif;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         transition: .3s;
+      }
+
+      .btn:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   LIVRO RARO
+=========================== */
+
+      .raro {
+
+         border: 2px solid #c9a84a;
+
+         background:
+            rgba(58, 44, 18, .94);
+      }
+
+      .raro::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #ffd369,
+               transparent);
+      }
+
+      .raro h3 {
+
+         color: #ffd369;
+      }
+
+      /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+      .proibido {
+
+         background:
+            rgba(30, 10, 10, .95);
+
+         border: 2px solid #8f1d1d;
+      }
+
+      .proibido::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d64040,
+               transparent);
+      }
+
+      .proibido h3 {
+
+         color: #ff7b7b;
+      }
+
+      .proibido .categoria {
+
+         background:
+            rgba(255, 0, 0, .10);
+
+         border-color:
+            rgba(255, 0, 0, .25);
+
+         color: #ff9b9b;
+      }
+
+      .proibido .btn {
+
+         background: #7f1d1d;
+      }
+
+      .proibido .btn:hover {
+
+         background: #c73434;
+
+         color: white;
+      }
+
+      /* ===========================
+   VOLTAR
+=========================== */
+
+      .voltar {
+
+         text-align: center;
+
+         margin-top: 60px;
+      }
+
+      .voltar a {
+
+         display: inline-block;
+
+         text-decoration: none;
+
+         padding: 12px 25px;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         font-family: 'Cinzel', serif;
+
+         transition: .3s;
+      }
+
+      .voltar a:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+
+      footer {
+
+         text-align: center;
+
+         padding: 40px;
+
+         border-top: 1px solid rgba(214, 170, 83, .15);
+
+         color: #c9b27a;
+
+         font-size: 1rem;
+      }
+
+      /* ===========================
+   RESPONSIVO
+=========================== */
+
+      @media(max-width:768px) {
+
+         header h1 {
+            font-size: 2.5rem;
+         }
+
+         header .descricao {
+            font-size: 1.1rem;
+         }
+
+         .secao-titulo {
+            font-size: 1.6rem;
+         }
+
+         .grid {
+            grid-template-columns: 1fr;
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+
+      <h1>🔥 Forja dos Registros Ígneos</h1>
+
+      <div class="subtitulo">
+         "O fogo destrói mentiras e revela verdades."
+      </div>
+
+      <div class="descricao">
+
+         Os registros desta biblioteca são gravados em placas vulcânicas resistentes
+         ao calor extremo. A forja preserva conhecimentos antigos, tratados e
+         descobertas sobrevivendo ao teste do fogo.
+
+      </div>
+
+   </header>
+
+   <div class="container">
+      <!-- ====================================================
+🔥 REGISTROS DISPONÍVEIS EM THE SILVER RISE
+==================================================== -->
+
+      <h2 class="secao-titulo">🔥 Registros Disponíveis</h2>
+
+      <p class="secao-descricao">
+         A Forja dos Registros Ígneos preserva conhecimento em placas de obsidiana,
+         basalto rúnico e ligas vulcânicas. Os Ifritianos acreditam que apenas aquilo
+         que sobrevive ao fogo merece ser lembrado.
+      </p>
+
+      <div class="grid">
+
+         <div class="card">
+            <h3>📖 O Caminho do Fogo Interior</h3>
+            <div class="categoria">Guerreiro Ifritiano</div>
+            <p>Técnicas de controle emocional e disciplina de combate.</p>
+            <div class="recompensa">+40 EXP Guerreiro Ifritiano<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('411')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Geologia das Profundezas</h3>
+            <div class="categoria">Geólogo</div>
+            <p>Formações vulcânicas e minerais raros.</p>
+            <div class="recompensa">+35 EXP Geólogo<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('622')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Forja Magmática</h3>
+            <div class="categoria">Ferreiro</div>
+            <p>Métodos utilizados para trabalhar metais em temperaturas extremas.</p>
+            <div class="recompensa">+40 EXP Ferreiro<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('845')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Criaturas do Núcleo Ardente</h3>
+            <div class="categoria">Caçador</div>
+            <p>Bestiário das regiões vulcânicas.</p>
+            <div class="recompensa">+35 EXP Caçador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('193')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Anatomia dos Ifritianos</h3>
+            <div class="categoria">Médico</div>
+            <p>Estudo da adaptação biológica ao calor extremo.</p>
+            <div class="recompensa">+35 EXP Médico<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('537')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Manual do Escalador Vulcânico</h3>
+            <div class="categoria">Explorador</div>
+            <p>Técnicas para atravessar terrenos instáveis.</p>
+            <div class="recompensa">+30 EXP Explorador<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('264')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 As Correntes de Magma</h3>
+            <div class="categoria">Arcanista</div>
+            <p>Fluxos energéticos encontrados sob a cordilheira.</p>
+            <div class="recompensa">+40 EXP Arcanista<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('901')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Construções Resistentes ao Fogo</h3>
+            <div class="categoria">Arquiteto</div>
+            <p>Métodos de engenharia utilizados pelos clãs.</p>
+            <div class="recompensa">+35 EXP Arquiteto<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('458')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Código dos Clãs Ardentes</h3>
+            <div class="categoria">Diplomata</div>
+            <p>Tradições e leis dos clãs ifritianos.</p>
+            <div class="recompensa">+30 EXP Diplomata<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('713')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Sobrevivência em Regiões Vulcânicas</h3>
+            <div class="categoria">Sobrevivencialista</div>
+            <p>Técnicas para resistir a calor extremo.</p>
+            <div class="recompensa">+40 EXP Sobrevivencialista<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('382')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Metalurgia das Chamas Eternas</h3>
+            <div class="categoria">Metalurgista</div>
+            <p>Criação de ligas resistentes à lava.</p>
+            <div class="recompensa">+40 EXP Metalurgista<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('664')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Legado dos Primeiros Ifritianos</h3>
+            <div class="categoria">Historiador</div>
+            <p>Relatos dos fundadores da cordilheira.</p>
+            <div class="recompensa">+40 EXP Historiador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('290')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Agricultura das Cavernas Quentes</h3>
+            <div class="categoria">Agricultor</div>
+            <p>Cultivo subterrâneo próximo a fontes termais.</p>
+            <div class="recompensa">+25 EXP Agricultor<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('144')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 As Runas do Basalto Vivo</h3>
+            <div class="categoria">Runista</div>
+            <p>Runas gravadas diretamente em rochas vulcânicas.</p>
+            <div class="recompensa">+40 EXP Runista<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('852')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Coração da Montanha</h3>
+            <div class="categoria">Pesquisador Geotérmico</div>
+            <p>Estudos sobre energia vulcânica.</p>
+            <div class="recompensa">+40 EXP Pesquisador Geotérmico<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('975')">Ler Registro</button>
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <h2 class="secao-titulo">🌟 Registro Lendário</h2>
+
+      <div class="grid">
+
+         <div class="card raro">
+
+            <h3>📜 As Tábuas de Ignar, o Primeiro Flamejante</h3>
+
+            <div class="categoria">
+               Guerreiro Ifritiano / Arcanista
+            </div>
+
+            <p>
+               Conjunto de placas ancestrais atribuídas ao líder que unificou os primeiros clãs.
+            </p>
+
+            <div class="recompensa">
+               +40 EXP Guerreiro Ifritiano<br>
+               +40 EXP Arcanista<br>
+               +0,5% NEA<br><br>
+
+               🔥 Filho das Chamas Eternas
+            </div>
+
+            <button class="btn" onclick="abrirLivro('999')">
+               Acessar Registro Lendário
+            </button>
+
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <h2 class="secao-titulo">
+         🔒 Núcleo da Primeira Erupção
+      </h2>
+
+      <p class="secao-descricao">
+         "O fogo revela a verdade. Por isso alguns registros foram selados."
+      </p>
+
+      <div class="grid">
+
+         <div class="card proibido">
+            <h3>📕 O Milênio das Cinzas</h3>
+            <div class="categoria">História Proibida</div>
+            <p>Relatos de uma civilização anterior aos Ifritianos.</p>
+            <div class="recompensa">+40 EXP Historiador Arcano<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('701')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 A Quinta Chama</h3>
+            <div class="categoria">5th Magic</div>
+            <p>Primeiro registro da Quinta Magia em Silver Rise.</p>
+            <div class="recompensa">+40 EXP Arcanista<br>+40 EXP Ferreiro<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('555')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Trono de Obsidiana</h3>
+            <div class="categoria">Classificação Restrita</div>
+            <p>Relatos sobre um governante apagado da história.</p>
+            <div class="recompensa">+40 EXP Historiador<br>+40 EXP Arqueólogo Arcano<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('818')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 As Profundezas Rubras</h3>
+            <div class="categoria">Mapas Restritos</div>
+            <p>Túneis ocultos abaixo das câmaras magmáticas.</p>
+            <div class="recompensa">+40 EXP Explorador<br>+40 EXP Geólogo<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('372')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Fragmento do Sol Caído</h3>
+            <div class="categoria">Classificação Máxima</div>
+            <p>A placa mais antiga já descoberta em Silver Rise.</p>
+            <div class="recompensa">
+               +40 EXP Arcanista<br>
+               +40 EXP Pesquisador Geotérmico<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('111')">
+               Acessar Registro
+            </button>
+         </div>
+
+      </div>
+
+      <div class="voltar">
+         <a href="../bibliotecas.html">
+            ← Voltar às Bibliotecas
+         </a>
+      </div>
+
+   </div>
+
+   <footer>
+
+      Forja dos Registros Ígneos • The Silver Rise • Ano 5002
+
+   </footer>
+
+   <script>
+
+      const livros = {
+
+         /* ==========================
+            REGISTROS DISPONÍVEIS
+         ========================== */
+
+         "411": "livros/caminho_fogo_interior.html",
+         "622": "livros/geologia_profundezas.html",
+         "845": "livros/forja_magmatica.html",
+         "193": "livros/criaturas_nucleo_ardente.html",
+         "537": "livros/anatomia_ifritianos.html",
+         "264": "livros/manual_escalador_vulcanico.html",
+         "901": "livros/correntes_magma.html",
+         "458": "livros/construcoes_resistentes_fogo.html",
+         "713": "livros/codigo_clas_ardentes.html",
+         "382": "livros/sobrevivencia_regioes_vulcanicas.html",
+         "664": "livros/metalurgia_chamas_eternas.html",
+         "290": "livros/legado_primeiros_ifritianos.html",
+         "144": "livros/agricultura_cavernas_quentes.html",
+         "852": "livros/runas_basalto_vivo.html",
+         "975": "livros/coracao_montanha.html",
+
+         /* ==========================
+            REGISTRO LENDÁRIO
+         ========================== */
+
+         "999": "livros/tabuas_ignar_primeiro_flamejante.html",
+
+         /* ==========================
+            NÚCLEO DA PRIMEIRA ERUPÇÃO
+         ========================== */
+
+         "701": "livros/milenio_cinzas.html",
+         "555": "livros/quinta_chama.html",
+         "818": "livros/trono_obsidiana.html",
+         "372": "livros/profundezas_rubras.html",
+         "111": "livros/fragmento_sol_caido.html"
+
+      };
+
+      function abrirLivro(codigoEsperado) {
+
+         const codigo = prompt(
+            "🔥 Insira o Código Ígneo de Acesso:"
+         );
+
+         if (codigo === null) {
+            return;
+         }
+
+         if (codigo === codigoEsperado) {
+
+            window.location.href =
+               livros[codigoEsperado];
+
+         } else {
+
+            alert(
+               "❌ ACESSO NEGADO\n\nAs chamas da Forja dos Registros Ígneos recusaram sua autorização.\nCódigo inválido."
+            );
+
+         }
+
+      }
+
+   </script>
+
+</body>
+
+</html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Construções Contra o Sol — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Primeiro Princípio */
+.principio-destaque {
+    background: rgba(212,160,23,.15);
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.principio-destaque h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.principio-destaque p {
+    font-size: 1.1rem;
+}
+
+.principio-destaque .objetivos {
+    margin-top: 15px;
+    text-align: left;
+    display: inline-block;
+}
+
+.principio-destaque .objetivos li {
+    padding: 4px 0;
+    list-style: none;
+}
+
+/* Materiais */
+.materiais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.material-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 18px;
+    transition: all .3s;
+}
+
+.material-card:hover {
+    background: rgba(30,18,8,.9);
+    transform: translateX(3px);
+}
+
+.material-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.material-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.material-card .propriedades {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+.material-card .propriedades p {
+    padding: 3px 0;
+    font-size: 0.9rem;
+}
+
+/* Segredo das Casas */
+.regras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.regra-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.regra-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.regra-card .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.regra-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.regra-card p {
+    font-size: 0.85rem;
+}
+
+/* Torres de Vento */
+.torres-destaque {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.torres-destaque h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.torres-destaque .beneficios {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.torres-destaque .beneficios span {
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+}
+
+/* Planejamento */
+.planejamento-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.planejamento-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.planejamento-list li::before {
+    content: "🏙️";
+    position: absolute;
+    left: 0;
+}
+
+.citacao-planejamento {
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+    color: #f2d49b;
+}
+
+/* Proteção */
+.protecao-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.protecao-item {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Reservatórios */
+.reservatorios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.reservatorio-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.reservatorio-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.reservatorio-card .emoji {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.reservatorio-card strong {
+    color: #f5c542;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Construções Famosas */
+famosas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.famosa-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.famosa-card .emoji {
+    font-size: 1.5rem;
+    margin-right: 8px;
+}
+
+.famosa-card strong {
+    color: #f5c542;
+    font-size: 1rem;
+}
+
+/* Mandamentos */
+.mandamentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.mandamento-card {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #f5c542;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .materiais-grid { grid-template-columns: 1fr; }
+    .regras-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🏛️ Construções Contra o Sol</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Nadir al-Mazhar, Arquiteto Real de Zaharam</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 534 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Uma boa construção protege da chuva. Uma grande construção protege do próprio mundo."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            As cidades de Zaharam foram erguidas em uma das regiões mais hostis do continente. O calor intenso, os ventos cortantes e as constantes tempestades de areia obrigaram gerações de arquitetos a desenvolver métodos únicos de construção.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            <strong>Construções Contra o Sol</strong> reúne séculos de conhecimento sobre engenharia desértica, planejamento urbano e técnicas utilizadas para manter edifícios habitáveis mesmo sob o clima mais extremo.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            A obra é considerada a fundação da arquitetura moderna de Zaharam.
+        </p>
+    </div>
+
+    <!-- O Primeiro Princípio -->
+    <div class="principio-destaque">
+        <h3>☀️ O Sol é o Verdadeiro Inimigo</h3>
+        <p>A maioria dos viajantes acredita que a areia representa a maior ameaça do deserto.</p>
+        <p>Os arquitetos sabem que o calor constante é muito mais perigoso.</p>
+        <div class="objetivos">
+            <p><strong>Toda construção deve ser planejada para:</strong></p>
+            <li>🏛️ Reduzir a absorção de calor</li>
+            <li>🏛️ Preservar temperaturas internas</li>
+            <li>🏛️ Aproveitar correntes naturais de vento</li>
+            <li>🏛️ Proteger seus ocupantes durante o dia</li>
+        </div>
+    </div>
+
+    <!-- Materiais Mais Utilizados -->
+    <div class="section">
+        <h2 class="section-title">🧱 Materiais Mais Utilizados</h2>
+        
+        <div class="materiais-grid">
+            <div class="material-card">
+                <span class="emoji">🪨</span><h4>Pedra Clara das Dunas</h4>
+                <p>Material abundante em Zaharam.</p>
+                <div class="propriedades">
+                    <p>✨ Reflete parte da luz solar</p>
+                    <p>✨ Grande durabilidade</p>
+                    <p>✨ Fácil manutenção</p>
+                </div>
+            </div>
+            
+            <div class="material-card">
+                <span class="emoji">🧱</span><h4>Argila Vermelha</h4>
+                <p>Utilizada na fabricação de tijolos.</p>
+                <div class="propriedades">
+                    <p>✨ Conserva temperaturas internas</p>
+                    <p>✨ Produção relativamente simples</p>
+                </div>
+            </div>
+            
+            <div class="material-card">
+                <span class="emoji">🌴</span><h4>Madeira de Oásis</h4>
+                <p>Material raro obtido próximo às regiões férteis.</p>
+                <div class="propriedades">
+                    <p>✨ Flexibilidade estrutural</p>
+                    <p>✨ Resistência moderada ao calor</p>
+                </div>
+            </div>
+            
+            <div class="material-card">
+                <span class="emoji">⚪</span><h4>Gesso Solar</h4>
+                <p>Utilizado como revestimento.</p>
+                <div class="propriedades">
+                    <p>✨ Reflete calor</p>
+                    <p>✨ Protege contra erosão causada pela areia</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- O Segredo das Casas de Zaharam -->
+    <div class="section">
+        <h2 class="section-title">🏠 O Segredo das Casas de Zaharam</h2>
+        <p>As residências tradicionais seguem três regras fundamentais.</p>
+        
+        <div class="regras-grid">
+            <div class="regra-card">
+                <span class="emoji">📏</span>
+                <h4>Tetos Altos</h4>
+                <p>Permitem que o ar quente permaneça acima das áreas habitadas</p>
+            </div>
+            <div class="regra-card">
+                <span class="emoji">🧱</span>
+                <h4>Paredes Espessas</h4>
+                <p>Diminuem a transferência de calor externo</p>
+            </div>
+            <div class="regra-card">
+                <span class="emoji">🚪</span>
+                <h4>Poucas Janelas Expostas</h4>
+                <p>Reduzem a entrada direta da luz solar</p>
+            </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 15px;"><em>Esses métodos podem diminuir drasticamente a temperatura interna.</em></p>
+    </div>
+
+    <!-- Torres de Vento -->
+    <div class="section">
+        <h2 class="section-title">🌬️ Torres de Vento</h2>
+        <p>Uma das maiores invenções arquitetônicas de Zaharam.</p>
+        
+        <div class="torres-destaque">
+            <h4>🌀 Funcionamento</h4>
+            <p>As torres capturam ventos em grandes alturas e os direcionam para o interior dos edifícios.</p>
+            <div class="beneficios">
+                <span>🌬️ Resfriamento natural</span>
+                <span>🌡️ Redução do calor acumulado</span>
+                <span>💨 Melhora da circulação de ar</span>
+            </div>
+        </div>
+        
+        <p style="text-align: center;"><em>Diversas cidades utilizam esse sistema até hoje.</em></p>
+    </div>
+
+    <!-- Planejamento das Cidades -->
+    <div class="section">
+        <h2 class="section-title">🗺️ Planejamento das Cidades</h2>
+        <p>Os antigos arquitetos não construíam aleatoriamente. As ruas eram projetadas para:</p>
+        
+        <ul class="planejamento-list">
+            <li>Criar sombra durante parte do dia</li>
+            <li>Canalizar ventos naturais</li>
+            <li>Facilitar acesso à água</li>
+            <li>Proteger áreas residenciais</li>
+        </ul>
+        
+        <div class="citacao-planejamento">
+            "Uma cidade mal planejada se torna uma prisão de calor."
+        </div>
+    </div>
+
+    <!-- Proteção Contra Tempestades -->
+    <div class="section">
+        <h2 class="section-title">🌪️ Proteção Contra Tempestades</h2>
+        <p>As construções devem resistir não apenas ao calor, mas também às areias. Métodos recomendados:</p>
+        
+        <div class="protecao-grid">
+            <div class="protecao-item">🏗️ Fundações profundas</div>
+            <div class="protecao-item">🚪 Portas reforçadas</div>
+            <div class="protecao-item">🪟 Janelas protegidas</div>
+            <div class="protecao-item">🧱 Muros corta-vento</div>
+            <div class="protecao-item">📦 Armazenamento interno de suprimentos</div>
+        </div>
+    </div>
+
+    <!-- Reservatórios de Água -->
+    <div class="section">
+        <h2 class="section-title">💧 Reservatórios de Água</h2>
+        <p>Nenhuma construção importante deve existir sem acesso à água. O livro descreve sistemas de:</p>
+        
+        <div class="reservatorios-grid">
+            <div class="reservatorio-card">
+                <span class="emoji">🏺</span>
+                <strong>Cisterna Subterrânea</strong>
+                <span>Armazena grandes quantidades de água</span>
+            </div>
+            <div class="reservatorio-card">
+                <span class="emoji">🚰</span>
+                <strong>Poço Comunitário</strong>
+                <span>Utilizado por bairros inteiros</span>
+            </div>
+            <div class="reservatorio-card">
+                <span class="emoji">⚠️</span>
+                <strong>Reservatório de Emergência</strong>
+                <span>Mantido para períodos de seca ou cerco</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Construções Famosas -->
+    <div class="section">
+        <h2 class="section-title">👑 Construções Famosas de Zaharam</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+            <div class="reservatorio-card" style="text-align: left;">
+                <span class="emoji">☀️</span>
+                <strong>Os Salões de Malik Azhar</strong>
+                <span>Conhecidos por permanecerem frescos mesmo durante os dias mais quentes.</span>
+            </div>
+            <div class="reservatorio-card" style="text-align: left;">
+                <span class="emoji">🏰</span>
+                <strong>A Fortaleza das Rochas Escarlates</strong>
+                <span>Exemplo clássico de defesa contra tempestades.</span>
+            </div>
+            <div class="reservatorio-card" style="text-align: left;">
+                <span class="emoji">🏪</span>
+                <strong>Os Mercados Cobertos de Solania</strong>
+                <span>Considerados uma obra-prima da arquitetura comercial antes da destruição da cidade.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Os Sete Mandamentos -->
+    <div class="section">
+        <h2 class="section-title">📜 Os Sete Mandamentos do Arquiteto do Deserto</h2>
+        
+        <div class="mandamentos-grid">
+            <div class="mandamento-card">1. Respeite o clima</div>
+            <div class="mandamento-card">2. Preserve a água</div>
+            <div class="mandamento-card">3. Aproveite o vento</div>
+            <div class="mandamento-card">4. Proteja contra a areia</div>
+            <div class="mandamento-card">5. Planeje para gerações futuras</div>
+            <div class="mandamento-card">6. Construa para a comunidade</div>
+            <div class="mandamento-card">7. Nunca desafie o deserto sem preparação</div>
+        </div>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"Os reis erguem palácios.</p>
+        <p>Os mercadores erguem mercados.</p>
+        <p>Mas os arquitetos erguem aquilo que permite que uma civilização sobreviva."</p>
+        <div class="autor">— Nadir al-Mazhar</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Técnicas de arquitetura desértica</li>
+            <li>Utilização de materiais resistentes ao calor</li>
+            <li>Construção de sistemas de ventilação natural</li>
+            <li>Planejamento urbano para regiões áridas</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+35 EXP Arquiteto</div>
+        <div class="nea">+0,1% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

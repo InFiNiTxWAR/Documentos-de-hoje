@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Zaharam — Arquivos das Mil Caravanas</title>
+
+   <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+   <style>
+      /* ===========================
+   RESET
+=========================== */
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      html {
+         scroll-behavior: smooth;
+      }
+
+      /* ===========================
+   BODY
+=========================== */
+
+      body {
+
+         min-height: 100vh;
+
+         background:
+            linear-gradient(rgba(8, 12, 8, .88),
+               rgba(6, 10, 6, .94)),
+
+            url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+
+         font-family: 'Cormorant Garamond', serif;
+
+         color: #f4e7c1;
+      }
+
+      /* ===========================
+   HEADER
+=========================== */
+
+      header {
+
+         padding: 70px 20px;
+
+         text-align: center;
+
+         border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+         backdrop-filter: blur(2px);
+      }
+
+      header h1 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 3.8rem;
+
+         color: #f5d48b;
+
+         text-shadow:
+            0 0 15px rgba(245, 212, 139, .35);
+
+         margin-bottom: 15px;
+      }
+
+      header .subtitulo {
+
+         font-size: 1.5rem;
+
+         color: #d8c79d;
+
+         font-style: italic;
+
+         margin-bottom: 20px;
+      }
+
+      header .descricao {
+
+         max-width: 900px;
+
+         margin: auto;
+
+         font-size: 1.25rem;
+
+         line-height: 1.7;
+
+         color: #e7d7b1;
+      }
+
+      /* ===========================
+   CONTAINER
+=========================== */
+
+      .container {
+
+         max-width: 1500px;
+
+         margin: auto;
+
+         padding: 50px 30px 80px;
+      }
+
+      /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+      .secao-titulo {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 2rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         text-shadow:
+            0 0 8px rgba(245, 212, 139, .25);
+      }
+
+      .secao-descricao {
+
+         font-size: 1.2rem;
+
+         color: #d7c59b;
+
+         margin-bottom: 30px;
+
+         line-height: 1.7;
+      }
+
+      .separador {
+
+         margin: 60px 0;
+
+         height: 2px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               rgba(214, 170, 83, .6),
+               transparent);
+      }
+
+      /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+      .grid {
+
+         display: grid;
+
+         grid-template-columns:
+            repeat(auto-fit, minmax(320px, 1fr));
+
+         gap: 25px;
+      }
+
+      /* ===========================
+   CARD PADRÃO
+=========================== */
+
+      .card {
+
+         background:
+            rgba(35, 25, 15, .93);
+
+         border: 2px solid #8f6b2c;
+
+         border-radius: 14px;
+
+         padding: 24px;
+
+         transition: .35s;
+
+         box-shadow:
+            0 0 15px rgba(0, 0, 0, .45);
+
+         position: relative;
+
+         overflow: hidden;
+      }
+
+      .card::before {
+
+         content: "";
+
+         position: absolute;
+
+         top: 0;
+         left: 0;
+
+         width: 100%;
+         height: 4px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d6aa53,
+               transparent);
+      }
+
+      .card:hover {
+
+         transform: translateY(-8px);
+
+         border-color: #d6aa53;
+
+         box-shadow:
+            0 0 25px rgba(214, 170, 83, .20);
+      }
+
+      .card h3 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 1.25rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         line-height: 1.4;
+      }
+
+      .categoria {
+
+         display: inline-block;
+
+         padding: 5px 10px;
+
+         background:
+            rgba(214, 170, 83, .12);
+
+         border: 1px solid rgba(214, 170, 83, .25);
+
+         border-radius: 20px;
+
+         font-size: .95rem;
+
+         margin-bottom: 15px;
+
+         color: #f3d18b;
+      }
+
+      .card p {
+
+         font-size: 1.08rem;
+
+         line-height: 1.6;
+
+         color: #e6d7b5;
+
+         margin-bottom: 18px;
+      }
+
+      /* ===========================
+   RECOMPENSAS
+=========================== */
+
+      .recompensa {
+
+         background:
+            rgba(0, 0, 0, .20);
+
+         border-left: 4px solid #d6aa53;
+
+         padding: 12px;
+
+         border-radius: 6px;
+
+         font-size: 1rem;
+
+         margin-bottom: 18px;
+
+         line-height: 1.6;
+      }
+
+      .recompensa strong {
+
+         color: #f5d48b;
+      }
+
+      /* ===========================
+   BOTÃO
+=========================== */
+
+      .btn {
+
+         width: 100%;
+
+         border: none;
+
+         cursor: pointer;
+
+         padding: 12px;
+
+         font-size: 1rem;
+
+         font-weight: bold;
+
+         font-family: 'Cinzel', serif;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         transition: .3s;
+      }
+
+      .btn:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   LIVRO RARO
+=========================== */
+
+      .raro {
+
+         border: 2px solid #c9a84a;
+
+         background:
+            rgba(58, 44, 18, .94);
+      }
+
+      .raro::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #ffd369,
+               transparent);
+      }
+
+      .raro h3 {
+
+         color: #ffd369;
+      }
+
+      /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+      .proibido {
+
+         background:
+            rgba(30, 10, 10, .95);
+
+         border: 2px solid #8f1d1d;
+      }
+
+      .proibido::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d64040,
+               transparent);
+      }
+
+      .proibido h3 {
+
+         color: #ff7b7b;
+      }
+
+      .proibido .categoria {
+
+         background:
+            rgba(255, 0, 0, .10);
+
+         border-color:
+            rgba(255, 0, 0, .25);
+
+         color: #ff9b9b;
+      }
+
+      .proibido .btn {
+
+         background: #7f1d1d;
+      }
+
+      .proibido .btn:hover {
+
+         background: #c73434;
+
+         color: white;
+      }
+
+      /* ===========================
+   VOLTAR
+=========================== */
+
+      .voltar {
+
+         text-align: center;
+
+         margin-top: 60px;
+      }
+
+      .voltar a {
+
+         display: inline-block;
+
+         text-decoration: none;
+
+         padding: 12px 25px;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         font-family: 'Cinzel', serif;
+
+         transition: .3s;
+      }
+
+      .voltar a:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+
+      footer {
+
+         text-align: center;
+
+         padding: 40px;
+
+         border-top: 1px solid rgba(214, 170, 83, .15);
+
+         color: #c9b27a;
+
+         font-size: 1rem;
+      }
+
+      /* ===========================
+   RESPONSIVO
+=========================== */
+
+      @media(max-width:768px) {
+
+         header h1 {
+            font-size: 2.5rem;
+         }
+
+         header .descricao {
+            font-size: 1.1rem;
+         }
+
+         .secao-titulo {
+            font-size: 1.6rem;
+         }
+
+         .grid {
+            grid-template-columns: 1fr;
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+
+      <h1>☀️ Grande Biblioteca Solar de Auroram</h1>
+
+      <div class="subtitulo">
+         "O progresso nasce do conhecimento."
+      </div>
+
+      <div class="descricao">
+
+         Maior centro de engenharia, estratégia e ciência heliônica do continente.
+         Suas galerias douradas preservam séculos de pesquisas, invenções e estudos
+         que impulsionaram o desenvolvimento tecnológico de Solharis.
+
+      </div>
+
+   </header>
+
+   <div class="container">
+
+      <!--
+
+<!-- ====================================================
+📚 LIVROS DISPONÍVEIS
+==================================================== -->
+
+      <h2 class="secao-titulo">📚 Livros Disponíveis</h2>
+
+      <p class="secao-descricao">
+         Localizados sob o Grande Oásis de Zaharam, os Arquivos das Mil Caravanas
+         guardam registros comerciais, mapas ancestrais, relatos de exploradores
+         e documentos preservados pelas areias há séculos.
+      </p>
+
+      <div class="grid">
+
+         <div class="card">
+            <h3>📖 Rotas das Dunas Eternas</h3>
+            <div class="categoria">Navegador do Deserto</div>
+            <p>Guia das principais rotas comerciais de Zaharam.</p>
+            <div class="recompensa">+35 EXP Navegador do Deserto<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('611')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Manual das Grandes Caravanas</h3>
+            <div class="categoria">Mercador</div>
+            <p>Organização e proteção de caravanas.</p>
+            <div class="recompensa">+40 EXP Mercador<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('284')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Sobrevivência Entre as Areias</h3>
+            <div class="categoria">Sobrevivencialista</div>
+            <p>Técnicas para sobreviver semanas no deserto.</p>
+            <div class="recompensa">+40 EXP Sobrevivencialista<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('853')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Código dos Mercadores Livres</h3>
+            <div class="categoria">Diplomata</div>
+            <p>Leis comerciais e negociações.</p>
+            <div class="recompensa">+35 EXP Diplomata<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('327')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Anatomia das Serpentes do Deserto</h3>
+            <div class="categoria">Médico</div>
+            <p>Tratamentos para venenos e acidentes comuns.</p>
+            <div class="recompensa">+35 EXP Médico<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('741')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Especiarias dos Cem Oásis</h3>
+            <div class="categoria">Cozinheiro</div>
+            <p>Receitas e ingredientes raros de Zaharam.</p>
+            <div class="recompensa">+30 EXP Cozinheiro<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('192')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 A Arte da Orientação Estelar</h3>
+            <div class="categoria">Astrônomo</div>
+            <p>Métodos utilizados pelos antigos guias.</p>
+            <div class="recompensa">+35 EXP Astrônomo<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('908')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Criação de Montarias do Deserto</h3>
+            <div class="categoria">Domador</div>
+            <p>Treinamento de animais para travessias longas.</p>
+            <div class="recompensa">+30 EXP Domador<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('465')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Construções Contra o Sol</h3>
+            <div class="categoria">Arquiteto</div>
+            <p>Arquitetura resistente ao calor extremo.</p>
+            <div class="recompensa">+35 EXP Arquiteto<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('536')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Relatos da Primeira Caravana</h3>
+            <div class="categoria">Historiador</div>
+            <p>A fundação das rotas comerciais zaharamitas.</p>
+            <div class="recompensa">+40 EXP Historiador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('218')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Mineração das Rochas Escarlates</h3>
+            <div class="categoria">Minerador</div>
+            <p>Exploração de jazidas desérticas.</p>
+            <div class="recompensa">+35 EXP Minerador<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('687')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 As Tribos de Malik Azhar</h3>
+            <div class="categoria">Historiador</div>
+            <p>História das tribos fundadoras.</p>
+            <div class="recompensa">+40 EXP Historiador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('954')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Ferraria das Dunas</h3>
+            <div class="categoria">Ferreiro</div>
+            <p>Métodos para trabalhar metais em clima extremo.</p>
+            <div class="recompensa">+35 EXP Ferreiro<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('374')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Chamado do Horizonte</h3>
+            <div class="categoria">Explorador</div>
+            <p>Relatos de expedições além dos desertos conhecidos.</p>
+            <div class="recompensa">+40 EXP Explorador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('825')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 As Cem Formas da Resistência</h3>
+            <div class="categoria">Guerreiro do Deserto</div>
+            <p>Treinamentos físicos utilizados pelos guardiões de Zaharam.</p>
+            <div class="recompensa">+40 EXP Guerreiro do Deserto<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('143')">Ler Livro</button>
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <h2 class="secao-titulo">🌟 Livro Raro</h2>
+
+      <div class="grid">
+
+         <div class="card raro">
+
+            <h3>📔 Memórias de Samira al-Nahir</h3>
+
+            <div class="categoria">
+               Diplomata / Guerreiro do Deserto
+            </div>
+
+            <p>
+               O diário pessoal da lendária Chama da Aurora.
+               Contém relatos das alianças comerciais, guerras das dunas,
+               estratégias de sobrevivência e histórias da antiga Zaharam.
+            </p>
+
+            <div class="recompensa">
+               +40 EXP Diplomata<br>
+               +40 EXP Guerreiro do Deserto<br>
+               +0,5% NEA<br><br>
+
+               🏜️ Herdeiro das Areias
+            </div>
+
+            <button class="btn" onclick="abrirLivro('999')">
+               Acessar Tomo Raro
+            </button>
+
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <h2 class="secao-titulo">
+         🔒 Cofre das Areias Silenciosas
+      </h2>
+
+      <p class="secao-descricao">
+         "Nem todas as caravanas chegaram ao destino. Algumas encontraram verdades que deveriam permanecer enterradas."
+      </p>
+
+      <div class="grid">
+
+         <div class="card proibido">
+            <h3>📕 O Milênio Sob as Dunas</h3>
+            <div class="categoria">História Proibida</div>
+            <p>Relatos de impérios soterrados muito antes da fundação de Zaharam.</p>
+            <div class="recompensa">+40 EXP Historiador Arcano<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('711')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 A Quinta Tempestade</h3>
+            <div class="categoria">5th Magic</div>
+            <p>Primeiro registro zaharamita sobre a Quinta Magia.</p>
+            <div class="recompensa">+40 EXP Arcanista<br>+40 EXP Pesquisador Arcano<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('522')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 Solânia: O Registro Original</h3>
+            <div class="categoria">Documento Secreto</div>
+            <p>Documentos sobre a verdadeira fundação de Solânia.</p>
+            <div class="recompensa">+40 EXP Historiador<br>+35 EXP Diplomata<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('304')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Coração Enterrado</h3>
+            <div class="categoria">Mapa Perdido</div>
+            <p>Mapa incompleto apontando para algo abaixo do Grande Deserto.</p>
+            <div class="recompensa">+40 EXP Explorador<br>+40 EXP Arqueólogo Arcano<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('877')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 Crônicas do Sol Negro</h3>
+            <div class="categoria">Classificação Máxima</div>
+            <p>O documento mais perigoso dos Arquivos das Mil Caravanas.</p>
+            <div class="recompensa">
+               +40 EXP Pesquisador Arcano<br>
+               +40 EXP Historiador Arcano<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('101')">
+               Acessar Registro
+            </button>
+         </div>
+
+      </div>
+
+      <div class="voltar">
+         <a href="../bibliotecas.html">
+            ← Voltar às Bibliotecas
+         </a>
+      </div>
+
+
+
+   </div>
+
+   <footer>
+
+      Arquivos das Mil Caravanas • Reino de Zaharam • Ano 5002
+
+   </footer>
+
+
+   <script>
+
+      const livros = {
+
+         /* ==========================
+            LIVROS DISPONÍVEIS
+         ========================== */
+
+         "611": "livros/zaharam/rotas-dunas-eternas.html",
+         "284": "livros/zaharam/manual-grandes-caravanas.html",
+         "853": "livros/zaharam/sobrevivencia-entre-areias.html",
+         "327": "livros/zaharam/codigo-mercadores-livres.html",
+         "741": "livros/zaharam/anatomia-serpentes-deserto.html",
+         "192": "livros/zaharam/especiarias-cem-oasis.html",
+         "908": "livros/zaharam/arte-orientacao-estelar.html",
+         "465": "livros/zaharam/criacao-montarias-deserto.html",
+         "536": "livros/zaharam/construcoes-contra-sol.html",
+         "218": "livros/zaharam/relatos-primeira-caravana.html",
+         "687": "livros/zaharam/mineracao-rochas-escarlates.html",
+         "954": "livros/zaharam/tribos-malik-azhar.html",
+         "374": "livros/zaharam/ferraria-dunas.html",
+         "825": "livros/zaharam/chamado-hor  izonte.html",
+         "143": "livros/zaharam/cem-formas-resistencia.html",
+
+         /* ==========================
+            LIVRO RARO
+         ========================== */
+
+         "999": "livros/zaharam/memorias-samira-al-nahir.html",
+
+         /* ==========================
+            COFRE DAS AREIAS SILENCIOSAS
+         ========================== */
+
+         "711": "livros/zaharam/milenio-sob-dunas.html",
+         "522": "livros/zaharam/quinta-tempestade.html",
+         "304": "livros/zaharam/solania-registro-original.html",
+         "877": "livros/zaharam/coracao-enterrado.html",
+         "101": "livros/zaharam/cronicas-sol-negro.html"
+
+      };
+
+      function abrirLivro(codigoEsperado) {
+
+         const codigo = prompt(
+            "🏜️ Insira o código do tomo zaharamita:"
+         );
+
+         if (codigo === null) {
+            return;
+         }
+
+         if (codigo === codigoEsperado) {
+
+            window.location.href =
+               livros[codigoEsperado];
+
+         } else {
+
+            alert(
+               "❌ Os Arquivistas das Mil Caravanas recusaram seu acesso.\n\nCódigo inválido."
+            );
+
+         }
+
+      }
+
+   </script>
+
+
+
+</body>
+
+</html>

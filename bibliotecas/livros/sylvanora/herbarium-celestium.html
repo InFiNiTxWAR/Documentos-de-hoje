@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Herbarium de Celestium — Biblioteca da Raiz Eterna</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(8,12,8,.92), rgba(6,10,6,.96)), url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f4e7c1;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(214,170,83,.3);
+    background: rgba(8,12,8,.7);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    color: #f5d48b;
+    text-shadow: 0 0 15px rgba(245,212,139,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(214,170,83,.15);
+    border: 1px solid rgba(214,170,83,.4);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #d8c79d;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #e7d7b1;
+    border-left: 3px solid #d6aa53;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,25,15,.7);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(214,170,83,.2);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5d48b;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(214,170,83,.4);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #d6aa53;
+    margin: 25px 0 15px;
+}
+
+/* Cards de ervas */
+.herb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.herb-card {
+    background: rgba(20,15,8,.8);
+    border: 1px solid rgba(214,170,83,.3);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.herb-card:hover {
+    border-color: #d6aa53;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,.3);
+}
+
+.herb-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #f5d48b;
+    margin-bottom: 8px;
+}
+
+.herb-rarity {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.rarity-comum { background: rgba(100,100,100,.5); color: #ccc; }
+.rarity-incomum { background: rgba(80,120,60,.6); color: #a8e6a0; }
+.rarity-raro { background: rgba(214,170,83,.3); color: #f5d48b; }
+
+.herb-props {
+    list-style: none;
+    margin-top: 12px;
+}
+
+.herb-props li {
+    padding: 4px 0;
+    font-size: 0.95rem;
+    border-left: 2px solid #d6aa53;
+    padding-left: 12px;
+    margin: 5px 0;
+}
+
+/* Regras */
+.rules-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.rules-list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.rules-list li::before {
+    content: "🌿";
+    position: absolute;
+    left: 0;
+}
+
+/* Classificação */
+.class-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.class-item {
+    flex: 1;
+    min-width: 120px;
+    background: rgba(0,0,0,.3);
+    border-left: 3px solid #d6aa53;
+    padding: 12px;
+    text-align: center;
+}
+
+.class-item strong {
+    color: #f5d48b;
+    display: block;
+    font-size: 1.1rem;
+}
+
+/* Ervas de valor */
+.valor-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.valor-item {
+    background: rgba(214,170,83,.1);
+    border: 1px solid rgba(214,170,83,.3);
+    border-radius: 30px;
+    padding: 5px 18px;
+    font-size: 0.9rem;
+}
+
+/* Advertência */
+.advertencia {
+    background: rgba(30,15,10,.8);
+    border-left: 4px solid #8f6b2c;
+    padding: 25px;
+    border-radius: 8px;
+    font-style: italic;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.advertencia p {
+    font-size: 1.2rem;
+}
+
+.advertencia .autor {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #d6aa53;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,25,15,.95), rgba(20,12,6,.95));
+    border: 2px solid #d6aa53;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5d48b;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5d48b;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #8f6b2c;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d6aa53;
+    color: #23170d;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(214,170,83,.15);
+    color: #c9b27a;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2.2rem; }
+    .section { padding: 20px; }
+    .herb-grid { grid-template-columns: 1fr; }
+    .class-grid { flex-direction: column; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>📖 Herbarium de Celestium</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Arquidruida Elowen Thalarys</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca da Raiz Eterna — Sylvanora</span>
+        <span class="header-badge"><i>📄</i> 734 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Toda erva possui uma voz. Algumas curam. Algumas matam. Algumas apenas aguardam quem saiba ouvi-las."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🌿 Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            O <strong>Herbarium de Celestium</strong> é considerado o mais completo catálogo botânico já produzido em Sylvanora. Durante séculos, Druidas, Curandeiros, Herbalistas e Guardiões da Floresta contribuíram para a compilação de mais de trezentas espécies de plantas conhecidas.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            A obra descreve métodos de coleta, cultivo, conservação e utilização de ervas medicinais, alquímicas e ritualísticas.<br>
+            Embora muitas espécies possam ser encontradas em florestas comuns, diversas plantas registradas neste tomo crescem apenas em regiões protegidas pela Raiz Eterna.
+        </p>
+    </div>
+
+    <!-- As Cinco Ervas Fundamentais -->
+    <div class="section">
+        <h2 class="section-title">🌱 As Cinco Ervas Fundamentais</h2>
+        
+        <div class="herb-grid">
+            <!-- Folha de Luminis -->
+            <div class="herb-card">
+                <div class="herb-name">🌿 Folha de Luminis</div>
+                <span class="herb-rarity rarity-comum">Comum</span>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Uma pequena planta de folhas douradas encontrada próxima a riachos mágicos.</p>
+                <ul class="herb-props">
+                    <li>Acelera cicatrização superficial</li>
+                    <li>Reduz febres leves</li>
+                    <li>Utilizada em poções de cura básica</li>
+                </ul>
+            </div>
+
+            <!-- Raiz de Verdan -->
+            <div class="herb-card">
+                <div class="herb-name">🌿 Raiz de Verdan</div>
+                <span class="herb-rarity rarity-incomum">Incomum</span>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Raiz espessa encontrada sob árvores antigas.</p>
+                <ul class="herb-props">
+                    <li>Fortalece o corpo</li>
+                    <li>Aumenta resistência física temporariamente</li>
+                    <li>Ingrediente comum em tônicos de vigor</li>
+                </ul>
+            </div>
+
+            <!-- Flor Celestium -->
+            <div class="herb-card">
+                <div class="herb-name">🌿 Flor Celestium</div>
+                <span class="herb-rarity rarity-raro">Rara</span>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">A planta que dá nome ao livro. Floresce apenas durante luas especiais e emite brilho azulado durante a noite.</p>
+                <ul class="herb-props">
+                    <li>Amplifica efeitos de cura</li>
+                    <li>Utilizada em rituais druídicos</li>
+                    <li>Serve como catalisador para magias naturais</li>
+                </ul>
+            </div>
+
+            <!-- Orquídea do Véu -->
+            <div class="herb-card">
+                <div class="herb-name">🌿 Orquídea do Véu</div>
+                <span class="herb-rarity rarity-raro">Rara</span>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Uma flor branca que cresce em locais onde a magia é abundante.</p>
+                <ul class="herb-props">
+                    <li>Purifica venenos leves</li>
+                    <li>Utilizada em poções de clareza mental</li>
+                    <li>Muito valorizada por alquimistas</li>
+                </ul>
+            </div>
+
+            <!-- Espinho Sombrio -->
+            <div class="herb-card">
+                <div class="herb-name">🌿 Espinho Sombrio</div>
+                <span class="herb-rarity rarity-incomum">Incomum</span>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Planta venenosa encontrada em áreas corrompidas.</p>
+                <ul class="herb-props">
+                    <li>Produz toxinas potentes</li>
+                    <li>Pode ser transformada em antídotos quando processada corretamente</li>
+                    <li>Extremamente perigosa para iniciantes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Métodos Corretos de Coleta -->
+    <div class="section">
+        <h2 class="section-title">✂️ Métodos Corretos de Coleta</h2>
+        <p>O livro dedica diversos capítulos à coleta adequada das ervas. Regras fundamentais:</p>
+        <ul class="rules-list">
+            <li>Nunca arrancar uma planta pela raiz sem necessidade</li>
+            <li>Coletar apenas a quantidade necessária</li>
+            <li>Evitar colher durante tempestades mágicas</li>
+            <li>Respeitar ciclos naturais de crescimento</li>
+            <li>Sempre agradecer à floresta após a coleta</li>
+        </ul>
+        <p style="margin-top: 15px;"><em>Segundo os Druidas Antigos, a floresta recorda aqueles que a exploram sem respeito.</em></p>
+    </div>
+
+    <!-- Classificação Herbal -->
+    <div class="section">
+        <h2 class="section-title">📂 Classificação Herbal</h2>
+        <p>As plantas são divididas em quatro categorias:</p>
+        <div class="class-grid">
+            <div class="class-item"><strong>🌿 Medicinais</strong><br>Utilizadas para cura e recuperação</div>
+            <div class="class-item"><strong>⚗️ Alquímicas</strong><br>Empregadas na criação de poções e reagentes</div>
+            <div class="class-item"><strong>🔮 Ritualísticas</strong><br>Necessárias para cerimônias mágicas e pactos naturais</div>
+            <div class="class-item"><strong>☠️ Tóxicas</strong><br>Capazes de causar doenças, paralisia ou morte</div>
+        </div>
+    </div>
+
+    <!-- Ervas de Grande Valor -->
+    <div class="section">
+        <h2 class="section-title">💎 Ervas de Grande Valor</h2>
+        <p>Algumas espécies são consideradas tesouros naturais:</p>
+        <div class="valor-list">
+            <span class="valor-item">✨ Flor Celestium</span>
+            <span class="valor-item">🌙 Lágrima da Lua Verde</span>
+            <span class="valor-item">🌳 Raiz Primordial</span>
+            <span class="valor-item">💧 Lírio das Mil Águas</span>
+            <span class="valor-item">🌸 Rosa da Primeira Primavera</span>
+        </div>
+        <p style="margin-top: 10px;"><em>O comércio dessas plantas é rigidamente controlado pelos Guardiões Verdes.</em></p>
+    </div>
+
+    <!-- Advertência -->
+    <div class="advertencia">
+        <p>"A diferença entre um remédio e um veneno raramente está na planta.</p>
+        <p>Está nas mãos de quem a utiliza."</p>
+        <div class="autor">— Arquidruida Elowen Thalarys</div>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>📜 Recompensa de Leitura</h3>
+        <p><strong>Conhecimento Adquirido:</strong></p>
+        <p style="margin-bottom: 20px;">• Identificação básica de ervas medicinais<br>
+        • Reconhecimento de plantas tóxicas comuns<br>
+        • Técnicas simples de coleta e preservação</p>
+        <hr style="border-color: rgba(214,170,83,.3); margin: 15px 0;">
+        <div class="exp">+40 EXP Herbalista</div>
+        <div class="nea">+0,4% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca da Raiz Eterna • Reino de Sylvanora • Ano 5002<br>
+    "Que as raízes guardem sua passagem."
+</footer>
+
+</body>
+</html>

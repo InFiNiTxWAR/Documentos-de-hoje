@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bibliotecas do Continente</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+min-height:100vh;
+
+background:
+linear-gradient(rgba(8,8,8,.90), rgba(8,8,8,.95)),
+url('https://images.unsplash.com/photo-1507842217343-583bb7270b66');
+
+background-size:cover;
+background-position:center;
+
+font-family:'Cormorant Garamond', serif;
+color:#f2e2b8;
+}
+
+header{
+text-align:center;
+padding:60px 20px;
+}
+
+header h1{
+font-family:'Cinzel', serif;
+font-size:3.5rem;
+color:#f5d48b;
+text-shadow:0 0 20px rgba(255,215,120,.4);
+}
+
+header p{
+margin-top:15px;
+font-size:1.3rem;
+color:#d8c79d;
+}
+
+.container{
+max-width:1500px;
+margin:auto;
+padding:40px;
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(350px,1fr));
+
+gap:30px;
+}
+
+.card{
+
+background:rgba(40,28,18,.92);
+
+border:2px solid #8f6b2c;
+
+border-radius:12px;
+
+padding:25px;
+
+transition:.3s;
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+border-color:#d6aa53;
+
+box-shadow:
+0 0 25px rgba(214,170,83,.25);
+
+}
+
+.card h2{
+font-family:'Cinzel', serif;
+color:#f5d48b;
+margin-bottom:10px;
+}
+
+.card h3{
+margin-bottom:12px;
+color:#e7c57c;
+}
+
+.card p{
+font-size:1.1rem;
+margin-bottom:20px;
+}
+
+.card a{
+
+display:inline-block;
+
+padding:10px 20px;
+
+background:#8f6b2c;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+border-radius:6px;
+
+transition:.3s;
+}
+
+.card a:hover{
+background:#d6aa53;
+color:#2a1b0d;
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#c9b27a;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<h1>📚 Bibliotecas do Continente</h1>
+
+<p>
+Selecione uma biblioteca para consultar seus registros, livros e arquivos históricos.
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+<h2>🌳 Sylvanora</h2>
+<h3>Biblioteca da Raiz Eterna</h3>
+<p>"Toda memória retorna às raízes."</p>
+<a href="bibliotecas/sylvanora.html">Entrar</a>
+</div>
+
+<div class="card">
+<h2>🌲 Elyndor</h2>
+<h3>Arquivo de Estelaris</h3>
+<p>"O conhecimento flui como os rios."</p>
+<a href="bibliotecas/elyndor.html">Entrar</a>
+</div>
+
+<div class="card">
+<h2>☀️ Solharis</h2>
+<h3>Grande Biblioteca Solar de Auroram</h3>
+<p>"O progresso nasce do conhecimento."</p>
+<a href="bibliotecas/solharis.html">Entrar</a>
+</div>
+
+<div class="card">
+<h2>🌙 Lunaris</h2>
+<h3>Biblioteca Celestial do Arco</h3>
+<p>"As estrelas registram aquilo que os homens esquecem."</p>
+<a href="bibliotecas/lunaris.html">Entrar</a>
+</div>
+
+<div class="card">
+<h2>🏜️ Zaharam</h2>
+<h3>Arquivos das Mil Caravanas</h3>
+<p>"Nenhuma estrada é esquecida."</p>
+<a href="bibliotecas/zaharam.html">Entrar</a>
+</div>
+
+<div class="card">
+<h2>⛰️ Voldoun</h2>
+<h3>Salão das Pedras Ancestrais</h3>
+<p>"A rocha guarda aquilo que o tempo não destrói."</p>
+<a href="bibliotecas/voldoun.html">Entrar</a>
+</div>
+
+<div class="card">
+<h2>🛡️ Odrin</h2>
+<h3>Arquivo das Sentinelas</h3>
+<p>"Observar é preservar."</p>
+<a href="bibliotecas/odrin.html">Entrar</a>
+</div>
+
+<div class="card">
+<h2>🔥 The Silver Rise</h2>
+<h3>Forja dos Registros Ígneos</h3>
+<p>"O fogo destrói mentiras e revela verdades."</p>
+<a href="bibliotecas/silverrise.html">Entrar</a>
+</div>
+
+<div class="card">
+<h2>🐍 Black Marsh</h2>
+<h3>Santuário das Águas Escuras</h3>
+<p>"Aquilo que afunda nunca desaparece."</p>
+<a href="bibliotecas/blackmarsh.html">Entrar</a>
+</div>
+
+<div class="card">
+
+<h2>🏛️ Biblioteca Imperial</h2>
+
+<h3>Biblioteca do Primeiro Alvorecer</h3>
+
+<p>
+"Antes dos reinos, existia o conhecimento."
+</p>
+
+<a href="bibliotecas/primeiro_alvorecer.html">
+Entrar
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+Arquivo Central do Continente • Ano 5002
+
+</footer>
+
+</body>
+</html>
+```

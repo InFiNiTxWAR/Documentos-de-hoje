@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sobrevivência Entre as Areias — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Primeira Regra */
+.regra-destaque {
+    background: rgba(212,160,23,.15);
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.regra-destaque h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.regra-destaque p {
+    font-size: 1.1rem;
+}
+
+.regra-destaque .citacao {
+    margin-top: 15px;
+    font-style: italic;
+    color: #f2d49b;
+}
+
+/* Encontrar Água */
+.agua-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.agua-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.agua-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.agua-card p {
+    font-size: 0.9rem;
+}
+
+/* Proteção contra Calor */
+.calor-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.calor-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.calor-list li::before {
+    content: "☀️";
+    position: absolute;
+    left: 0;
+}
+
+/* Abrigo */
+.abrigo-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.abrigo-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.abrigo-list li::before {
+    content: "🏕️";
+    position: absolute;
+    left: 0;
+}
+
+/* Alimentação */
+.alimento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.alimento-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+}
+
+.alimento-card .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.alimento-card strong {
+    color: #f5c542;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.alimento-card span {
+    font-size: 0.8rem;
+}
+
+/* Tempestades */
+.tempestade-list {
+    list-style: none;
+    margin: 15px 0;
+    counter-reset: tempestade;
+}
+
+.tempestade-list li {
+    padding: 8px 0;
+    padding-left: 32px;
+    position: relative;
+    counter-increment: tempestade;
+}
+
+.tempestade-list li::before {
+    content: counter(tempestade);
+    background: #d4a017;
+    color: #1a0f05;
+    font-weight: bold;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+
+/* Criaturas */
+.criaturas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.criatura-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.criatura-card:hover {
+    border-color: #e8a020;
+}
+
+.criatura-card strong {
+    color: #f5c542;
+    font-size: 1rem;
+    display: block;
+}
+
+.criatura-card span {
+    font-size: 0.8rem;
+}
+
+/* Desidratação */
+.desidratacao-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.desidratacao-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+    list-style: none;
+}
+
+/* Navegação */
+.navegacao-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.navegacao-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.navegacao-list li::before {
+    content: "⭐";
+    position: absolute;
+    left: 0;
+}
+
+/* Mandamentos */
+.mandamentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.mandamento-card {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #f5c542;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .agua-grid { grid-template-columns: 1fr; }
+    .alimento-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🏜️ Sobrevivência Entre as Areias</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Farid ibn Kassar, Explorador das Dunas Profundas</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 489 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "O deserto não mata rapidamente. Ele observa seus erros e cobra cada um deles."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Durante séculos, exploradores desapareceram nas vastidões de Zaharam. Alguns foram consumidos por tempestades, outros pela sede, pelo calor ou pelas criaturas ocultas sob as dunas.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            <strong>Sobrevivência Entre as Areias</strong> foi escrito após décadas de expedições realizadas por Farid ibn Kassar, um dos poucos exploradores conhecidos por atravessar sozinho regiões consideradas inabitáveis.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            O livro reúne técnicas práticas para sobreviver durante dias ou até semanas longe de cidades, caravanas ou fontes garantidas de suprimentos.
+        </p>
+    </div>
+
+    <!-- A Primeira Regra -->
+    <div class="regra-destaque">
+        <h3>💧 A Água é Vida</h3>
+        <p>Nenhum recurso possui mais valor no deserto.</p>
+        <p>O livro ensina que um sobrevivente deve priorizar:</p>
+        <p style="margin-top: 10px;"><strong>Encontrar água • Preservar água • Economizar água</strong></p>
+        <p>Antes mesmo de buscar comida.</p>
+        <div class="citacao">"A fome enfraquece. A sede mata."</div>
+    </div>
+
+    <!-- Como Encontrar Água -->
+    <div class="section">
+        <h2 class="section-title">💧 Como Encontrar Água</h2>
+        
+        <div class="agua-grid">
+            <div class="agua-card">
+                <h4>🌴 Vegetação Isolada</h4>
+                <p>Plantas saudáveis geralmente indicam presença de água subterrânea.</p>
+            </div>
+            <div class="agua-card">
+                <h4>🐾 Trilhas de Animais</h4>
+                <p>Muitas criaturas seguem rotas regulares até fontes de água. Observar pegadas pode salvar vidas.</p>
+            </div>
+            <div class="agua-card">
+                <h4>💧 Oásis Temporários</h4>
+                <p>Após certas tempestades, pequenos reservatórios podem surgir entre dunas. Porém desaparecem rapidamente.</p>
+            </div>
+            <div class="agua-card">
+                <h4>🪨 Rochas Escarlates</h4>
+                <p>Algumas formações rochosas acumulam umidade durante a noite.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proteção Contra o Calor -->
+    <div class="section">
+        <h2 class="section-title">☀️ Proteção Contra o Calor</h2>
+        <p>O erro mais comum dos viajantes é caminhar durante o horário mais quente do dia.</p>
+        <p style="margin-top: 10px;">Os sobreviventes experientes:</p>
+        
+        <ul class="calor-list">
+            <li>Viajam ao amanhecer</li>
+            <li>Descansam durante o pico do calor</li>
+            <li>Retomam a jornada ao entardecer</li>
+            <li>Caminham sob as estrelas durante a noite</li>
+        </ul>
+    </div>
+
+    <!-- Construindo Abrigo -->
+    <div class="section">
+        <h2 class="section-title">🏕️ Construindo Abrigo</h2>
+        <p>Mesmo no deserto, abrigo é essencial. Um abrigo adequado deve:</p>
+        
+        <ul class="abrigo-list">
+            <li>Bloquear o vento</li>
+            <li>Reduzir exposição ao sol</li>
+            <li>Conservar energia corporal</li>
+            <li>Servir como ponto de referência</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><em>O livro descreve diversos modelos utilizando tecidos, madeira e formações naturais.</em></p>
+    </div>
+
+    <!-- Alimentação no Deserto -->
+    <div class="section">
+        <h2 class="section-title">🍽️ Alimentação no Deserto</h2>
+        <p>Fontes comuns de alimento:</p>
+        
+        <div class="alimento-grid">
+            <div class="alimento-card">
+                <span class="emoji">🦂</span>
+                <strong>Escorpiões</strong>
+                <span>Necessitam preparo adequado para remover toxinas</span>
+            </div>
+            <div class="alimento-card">
+                <span class="emoji">🦎</span>
+                <strong>Lagartos das Dunas</strong>
+                <span>Carne magra e relativamente abundante</span>
+            </div>
+            <div class="alimento-card">
+                <span class="emoji">🌵</span>
+                <strong>Frutos do Cacto Solar</strong>
+                <span>Encontrados em regiões específicas de Zaharam</span>
+            </div>
+            <div class="alimento-card">
+                <span class="emoji">🌿</span>
+                <strong>Raiz das Areias</strong>
+                <span>Planta resistente que armazena nutrientes e água</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tempestades de Areia -->
+    <div class="section">
+        <h2 class="section-title">🌪️ Tempestades de Areia</h2>
+        <p>Quando uma tempestade surgir:</p>
+        
+        <ul class="tempestade-list">
+            <li>Procurar abrigo imediatamente</li>
+            <li>Cobrir nariz e boca</li>
+            <li>Proteger os olhos</li>
+            <li>Deitar-se próximo ao solo</li>
+            <li>Evitar caminhar sem visibilidade</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><em>Após o evento, o terreno pode estar completamente alterado.</em></p>
+    </div>
+
+    <!-- Criaturas Mais Perigosas -->
+    <div class="section">
+        <h2 class="section-title">🐍 Criaturas Mais Perigosas</h2>
+        <p>O livro alerta sobre:</p>
+        
+        <div class="criaturas-grid">
+            <div class="criatura-card"><strong>🐍 Serpentes das Dunas</strong><span>Predadores rápidos e silenciosos</span></div>
+            <div class="criatura-card"><strong>🦂 Escorpiões Colossais</strong><span>Capazes de destruir pequenas tendas</span></div>
+            <div class="criatura-card"><strong>🪱 Vermes das Areias Profundas</strong><span>Raramente vistos, mas amplamente temidos</span></div>
+            <div class="criatura-card"><strong>🐺 Hienas do Sol Negro</strong><span>Caçadores oportunistas que atacam viajantes exaustos</span></div>
+        </div>
+    </div>
+
+    <!-- Sinais de Desidratação -->
+    <div class="section">
+        <h2 class="section-title">⚠️ Sinais de Desidratação</h2>
+        <p>Os sintomas mais comuns:</p>
+        
+        <ul class="desidratacao-list">
+            <li>Tontura</li>
+            <li>Dor de cabeça</li>
+            <li>Confusão mental</li>
+            <li>Visão turva</li>
+            <li>Fraqueza extrema</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><em>O livro afirma que ignorar esses sinais geralmente leva à morte.</em></p>
+    </div>
+
+    <!-- Navegação de Emergência -->
+    <div class="section">
+        <h2 class="section-title">🧭 Navegação de Emergência</h2>
+        <p>Caso o viajante esteja perdido:</p>
+        
+        <ul class="navegacao-list">
+            <li>Manter uma direção fixa</li>
+            <li>Evitar andar em círculos</li>
+            <li>Utilizar estrelas para orientação</li>
+            <li>Procurar terrenos elevados para observação</li>
+            <li>Economizar energia</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><em>O pânico é descrito como um dos maiores inimigos do sobrevivente.</em></p>
+    </div>
+
+    <!-- Os Sete Mandamentos -->
+    <div class="section">
+        <h2 class="section-title">📜 Os Sete Mandamentos do Sobrevivente</h2>
+        
+        <div class="mandamentos-grid">
+            <div class="mandamento-card">1. Preserve sua água</div>
+            <div class="mandamento-card">2. Respeite o calor</div>
+            <div class="mandamento-card">3. Nunca viaje sem planejamento</div>
+            <div class="mandamento-card">4. Observe os sinais da natureza</div>
+            <div class="mandamento-card">5. Evite confrontos desnecessários</div>
+            <div class="mandamento-card">6. Controle o medo</div>
+            <div class="mandamento-card">7. Nunca desperdice energia</div>
+        </div>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"O deserto não recompensa força.</p>
+        <p>Não recompensa coragem.</p>
+        <p>Não recompensa orgulho.</p>
+        <p>Ele recompensa apenas aqueles que aprendem a sobreviver."</p>
+        <div class="autor">— Farid ibn Kassar</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Técnicas avançadas de sobrevivência no deserto</li>
+            <li>Identificação de fontes naturais de água</li>
+            <li>Construção de abrigos improvisados</li>
+            <li>Navegação e sobrevivência em situações extremas</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Sobrevivencialista</div>
+        <div class="nea">+0,2% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

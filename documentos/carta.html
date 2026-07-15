@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENTO V — DIÁRIO PESSOAL — PESQUISADOR CHEFE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0a;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 40% 35%, rgba(20, 15, 10, 0.6), transparent 70%),
+                radial-gradient(ellipse at 60% 65%, rgba(15, 10, 8, 0.4), transparent 60%),
+                #0a0a0a;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.004) 0px, rgba(255, 255, 255, 0.004) 2px, transparent 2px, transparent 4px);
+            z-index: 1;
+            animation: interference 0.5s infinite alternate;
+        }
+
+        @keyframes interference {
+            0% { opacity: 0.15; }
+            100% { opacity: 0.35; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(180, 150, 100, 0.10);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        .document-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .document {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1.35;
+            max-height: 85vh;
+            border-radius: 4px;
+            cursor: default;
+        }
+
+        .document-face {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            overflow-y: auto;
+            padding: 50px 45px;
+            background: #e8e0d4;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(190, 180, 165, 0.04) 0px, rgba(190, 180, 165, 0.04) 2px, transparent 2px, transparent 4px),
+                radial-gradient(ellipse at 35% 30%, rgba(170, 160, 145, 0.06), transparent 70%);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.7),
+                inset 0 0 80px rgba(100, 90, 75, 0.06),
+                inset 0 0 20px rgba(80, 70, 55, 0.04);
+            position: relative;
+        }
+
+        .document-face::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .document-face::-webkit-scrollbar-track {
+            background: rgba(180, 170, 155, 0.2);
+        }
+
+        .document-face::-webkit-scrollbar-thumb {
+            background: rgba(80, 70, 55, 0.3);
+            border-radius: 3px;
+        }
+
+        .document-face::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 4px;
+            background:
+                radial-gradient(ellipse at 6% 4%, rgba(60, 50, 40, 0.10), transparent 35%),
+                radial-gradient(ellipse at 94% 6%, rgba(50, 40, 30, 0.08), transparent 30%),
+                radial-gradient(ellipse at 8% 94%, rgba(55, 45, 35, 0.06), transparent 25%),
+                radial-gradient(ellipse at 92% 90%, rgba(45, 35, 25, 0.05), transparent 20%);
+            z-index: 10;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 50px;
+            right: 45px;
+            z-index: 5;
+            font-family: 'Courier New', monospace;
+            font-size: 1.0rem;
+            font-weight: 900;
+            color: rgba(80, 40, 20, 0.7);
+            border: 3px solid rgba(80, 40, 20, 0.5);
+            padding: 4px 14px;
+            transform: rotate(-6deg) scale(1.05);
+            letter-spacing: 2px;
+            background: rgba(80, 40, 20, 0.04);
+            border-radius: 2px;
+            text-align: center;
+        }
+
+        .document-header {
+            border-bottom: 3px solid rgba(60, 50, 40, 0.4);
+            padding-bottom: 18px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .document-header h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.0rem;
+            color: #2a1a0a;
+            letter-spacing: 4px;
+            font-weight: 700;
+        }
+
+        .document-header .sub {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        .document-header .classif {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #6a3a2a;
+            font-weight: bold;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        .doc-content {
+            font-family: 'Georgia', serif;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #2a1a0a;
+        }
+
+        .doc-content p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        .doc-content strong {
+            color: #3a2a1a;
+        }
+
+        .doc-content .rule {
+            border-top: 2px solid rgba(60, 50, 40, 0.25);
+            margin: 25px 0;
+        }
+
+        .doc-content .entry {
+            margin: 25px 0;
+            padding-left: 5px;
+        }
+
+        .doc-content .entry .entry-number {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #4a3a2a;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .doc-content .entry p {
+            margin-bottom: 12px;
+        }
+
+        .doc-content .entry .citacao {
+            font-style: italic;
+            color: #4a3a2a;
+            padding: 8px 15px;
+            border-left: 2px solid #6a5a4a;
+            margin: 10px 0;
+        }
+
+        .doc-content .alert-box {
+            border-left: 4px solid #6a3a2a;
+            padding: 15px 20px;
+            background: rgba(80, 40, 20, 0.04);
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+
+        .doc-content .alert-box strong {
+            color: #6a3a2a;
+        }
+
+        .doc-content .entry .deterioracao {
+            font-size: 0.9rem;
+            color: #5a4a3a;
+            font-style: italic;
+        }
+
+        .doc-content .ultima-pagina {
+            margin-top: 30px;
+            padding: 25px 30px;
+            background: rgba(60, 40, 20, 0.06);
+            border: 2px solid rgba(60, 40, 20, 0.3);
+            text-align: center;
+        }
+
+        .doc-content .ultima-pagina .frase-final {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #2a1a0a;
+            letter-spacing: 3px;
+            line-height: 1.5;
+        }
+
+        .doc-content .ultima-pagina .nome-completo {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3a2a1a;
+            letter-spacing: 4px;
+            font-family: 'Georgia', serif;
+            border-top: 1px solid rgba(60, 40, 20, 0.3);
+            padding-top: 15px;
+        }
+
+        .doc-content .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #4a3a2a;
+            border-top: 1px solid rgba(60, 50, 40, 0.3);
+            padding-top: 20px;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            font-family: 'Cinzel', serif;
+            background: rgba(40, 30, 20, 0.8);
+            color: #bca77a;
+            border: 1px solid #5e4720;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .back-btn:hover {
+            background: rgba(80, 60, 40, 0.9);
+            color: #f0cb7d;
+            border-color: #d4a74f;
+            box-shadow: 0 0 25px rgba(212, 167, 79, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .document-face { padding: 30px 25px; }
+            .document-header h1 { font-size: 1.5rem; }
+            .doc-content { font-size: 0.95rem; }
+            .stamp { font-size: 0.9rem; padding: 3px 10px; top: 30px; right: 25px; }
+            .document-wrapper { padding: 10px; }
+            .document { aspect-ratio: 1/1.4; }
+            .doc-content .ultima-pagina .frase-final { font-size: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .document-face { padding: 20px 18px; }
+            .document-header h1 { font-size: 1.1rem; }
+            .doc-content { font-size: 0.85rem; line-height: 1.7; }
+            .stamp { font-size: 0.7rem; padding: 2px 8px; top: 20px; right: 18px; }
+            .doc-content .ultima-pagina .frase-final { font-size: 1.0rem; }
+            .doc-content .ultima-pagina .nome-completo { font-size: 1.0rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+    <a href="/documentos.html" class="back-btn">← Voltar aos Arquivos</a>
+
+    <div class="document-wrapper">
+        <div class="document">
+            <div class="document-face" id="front">
+                <div class="stamp">RECUPERADO</div>
+
+                <div class="document-header">
+                    <h1>DIÁRIO PESSOAL</h1>
+                    <div class="sub">PESQUISADOR CHEFE</div>
+                    <div class="classif">(ÚLTIMAS PÁGINAS RECUPERADAS)</div>
+                    <div class="classif" style="color:#5a4a3a; font-weight:normal;">A maior parte do diário foi destruída pela umidade.</div>
+                    <div class="classif" style="color:#5a4a3a; font-weight:normal;">Restaram apenas algumas folhas.</div>
+                    <div class="classif" style="color:#6a3a2a; margin-top:5px;">A caligrafia piora a cada página.</div>
+                    <div class="classif" style="color:#6a3a2a; font-weight:normal; font-style:italic;">Como se o autor estivesse ficando cada vez mais cansado.</div>
+                </div>
+
+                <div class="doc-content">
+
+                    <!-- Entrada 214 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 214</div>
+                        <p>Hoje voltamos a ouvir o rádio.</p>
+                        <p>Nenhum equipamento estava ligado.</p>
+                        <p style="font-style:italic; color:#4a3a2a;">Mesmo assim...</p>
+                        <p>ele falou conosco.</p>
+                        <p>Não parecia uma transmissão. Parecia uma conversa interrompida.</p>
+                        <div class="citacao">"Como se estivéssemos ouvindo pessoas que nem sabiam da nossa existência."</div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Entrada 219 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 219</div>
+                        <p>Descobrimos algo estranho.</p>
+                        <p>As vozes não atravessam apenas o espaço.</p>
+                        <p style="font-weight:bold; color:#3a2a1a;">Elas atravessam histórias.</p>
+                        <p>Às vezes escutamos alguém chamando pelo pai. Às vezes por um amigo. Às vezes por alguém que jamais existiu neste mundo.</p>
+                        <div class="citacao">"Comecei a acreditar que toda frequência procura alguém."</div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Entrada 224 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 224</div>
+                        <p>Voltei à floresta. Não contei para ninguém.</p>
+                        <p>Queria provar que aquilo era apenas um efeito psicológico.</p>
+                        <p>Passei horas caminhando. Não encontrei saída. Não encontrei entrada.</p>
+                        <div class="citacao">"A floresta simplesmente... continuava."</div>
+                        <p>Até que ouvi passos. Pensei que fosse outro pesquisador.</p>
+                        <div class="citacao" style="border-left-color:#6a3a2a;">"Não era."</div>
+                        <p>Os passos paravam quando eu parava. Voltavam quando eu voltava. Nunca consegui vê-los.</p>
+                        <div class="alert-box">
+                            <p><strong>Mas eu sabia. Havia alguém ali.</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Entrada 230 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 230</div>
+                        <p>Hoje aconteceu algo impossível.</p>
+                        <p>Vi uma criança. Ela atravessou o corredor correndo. Desapareceu na parede.</p>
+                        <p>Os sensores não registraram nada. As câmeras também não.</p>
+                        <div class="citacao">"Mas encontrei pegadas molhadas. Pequenas."</div>
+                        <p style="font-style:italic; color:#4a3a2a;">Como se alguém tivesse acabado de sair de um rio.</p>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Entrada 236 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 236</div>
+                        <p>Estamos olhando para tudo da forma errada.</p>
+                        <p>Não existem invasões. Não existem portais. Não existem mundos entrando no nosso.</p>
+                        <div class="alert-box">
+                            <p><strong>Existem lugares... onde duas histórias resolveram acontecer ao mesmo tempo.</strong></p>
+                        </div>
+                        <div class="citacao">"Greyfield foi construída exatamente sobre um deles."</div>
+                        <p style="font-style:italic; color:#4a3a2a;">Talvez por acidente. Talvez não.</p>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Entrada 241 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 241</div>
+                        <p>Hoje sonhei novamente com aquele homem. O mesmo de sempre.</p>
+                        <p>Ele estava sentado. Silencioso.</p>
+                        <div class="citacao">"Como se soubesse exatamente o que iria acontecer."</div>
+                        <p>Não parecia feliz. Também não parecia triste.</p>
+                        <div class="citacao" style="border-left-color:#6a3a2a;">"Parecia... esperando."</div>
+                        <div class="alert-box">
+                            <p><strong>Quando acordei... havia lama na sola das minhas botas.</strong></p>
+                            <p style="margin-top:5px; font-style:italic; color:#4a3a2a;">Nunca saí do quarto.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Entrada 248 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 248</div>
+                        <p>Os rádios começaram a repetir uma frase. Sempre a mesma. Sempre na mesma voz.</p>
+                        <div class="citacao" style="border-left-color:#6a3a2a; font-size:1.1rem; text-align:center;">"Ela está acordando."</div>
+                        <p>Não sabemos quem. Não sabemos onde.</p>
+                        <div class="citacao">"Mas cada dia a transmissão fica mais forte."</div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Entrada 251 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 251</div>
+                        <p>Os funcionários começaram a desaparecer.</p>
+                        <p style="font-weight:bold; color:#3a2a1a;">Não morrer. Desaparecer.</p>
+                        <p>Primeiro esquecemos seus nomes. Depois esquecemos seus rostos. Depois encontramos fotografias... com pessoas que ninguém conseguia reconhecer.</p>
+                        <div class="citacao">"Mesmo estando ao lado delas."</div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Entrada 255 -->
+                    <div class="entry">
+                        <div class="entry-number">✦ Entrada 255</div>
+                        <p>Hoje encontrei meu próprio escritório vazio.</p>
+                        <p>Minha mesa estava limpa. Todos os documentos desapareceram. Meu nome havia sido removido da porta.</p>
+                        <p>Perguntei aos outros pesquisadores. Nenhum deles lembrava quem eu era.</p>
+                        <div class="alert-box">
+                            <p><strong>Mesmo falando comigo.</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- Última Entrada -->
+                    <div class="entry">
+                        <div class="entry-number" style="color:#6a3a2a;">✦ Última Entrada</div>
+                        <p>Se alguém estiver lendo isto... então Greyfield caiu.</p>
+                        <p>Não tentem impedir a Convergência. Ela começou muito antes de nós. Nós apenas fomos os primeiros a perceber.</p>
+                        <ul style="list-style:none; padding:0; margin:15px 0;">
+                            <li style="padding:6px 0 6px 28px; position:relative; line-height:1.6;">▸ Existe um homem. Ele procura alguém.</li>
+                            <li style="padding:6px 0 6px 28px; position:relative; line-height:1.6;">▸ Existe uma floresta. Ela espera por alguém.</li>
+                            <li style="padding:6px 0 6px 28px; position:relative; line-height:1.6; font-weight:bold; color:#3a2a1a;">▸ E existe uma estação... que jamais deveria ter sido construída.</li>
+                        </ul>
+                        <div class="alert-box">
+                            <p><strong>Se ainda houver tempo... não tentem salvar Greyfield.</strong></p>
+                            <p style="margin-top:5px; font-weight:bold; color:#6a3a2a;">Greyfield nunca foi a vítima. Ela sempre foi a porta.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <!-- A ÚLTIMA PÁGINA -->
+                    <div class="ultima-pagina">
+                        <p style="font-size:0.85rem; color:#5a4a3a; margin-bottom:15px; font-style:normal;">A ÚLTIMA PÁGINA</p>
+                        <p style="font-size:0.9rem; color:#5a4a3a; margin-bottom:15px;">Existe apenas uma frase. Escrita com uma letra completamente diferente de todo o restante do diário. A tinta parece recente. Como se tivesse sido escrita depois que o diário já estava abandonado.</p>
+                        <div class="frase-final">"Eu tentei avisá-los."</div>
+                        <div class="nome-completo">— Tiberio</div>
+                    </div>
+
+                    <div class="signature">
+                        <p><strong>Documento Recuperado</strong></p>
+                        <p>Arquivos da Estação Greyfield</p>
+                        <p>Últimas páginas do Diário do Pesquisador Chefe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 3 + 1) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 22 + 12) + 's';
+                particle.style.animationDelay = (Math.random() * 22) + 's';
+                particle.style.opacity = Math.random() * 0.25 + 0.05;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = 'documentos.html';
+            }
+        });
+
+        console.log('📄 DOCUMENTO V — DIÁRIO PESSOAL — PESQUISADOR CHEFE');
+        console.log('📖 As últimas páginas do diário.');
+        console.log('🔄 Aperte ESC para voltar aos arquivos.');
+    </script>
+
+</body>
+</html>

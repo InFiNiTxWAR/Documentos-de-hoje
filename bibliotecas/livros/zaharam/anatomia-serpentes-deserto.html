@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Anatomia das Serpentes do Deserto — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Estrutura Corporal */
+.estrutura-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.estrutura-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.estrutura-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.estrutura-card p {
+    font-size: 0.9rem;
+}
+
+/* Espécies */
+.especies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.especie-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.especie-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.especie-card .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.especie-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.especie-card .caracteristicas {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+.especie-card .veneno {
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.veneno-leve { color: #a8e6a0; }
+.veneno-moderado { color: #f5c542; }
+.veneno-grave { color: #e8a020; }
+.veneno-extremo { color: #d44545; }
+
+/* Sintomas */
+.sintomas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.sintoma-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+}
+
+.sintoma-card .nivel {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f5c542;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sintoma-card ul {
+    list-style: none;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.sintoma-card ul li {
+    padding: 4px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.sintoma-card ul li::before {
+    content: "•";
+    color: #d4a017;
+    position: absolute;
+    left: 5px;
+}
+
+/* Primeiros Socorros */
+.socorros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.socorro-card {
+    background: rgba(20,12,5,.85);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.socorro-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.socorro-card.ok {
+    border-left: 3px solid #2f8a42;
+}
+
+.socorro-card.warning {
+    border-left: 3px solid #d44545;
+}
+
+.socorro-card ul {
+    list-style: none;
+}
+
+.socorro-card ul li {
+    padding: 6px 0;
+    padding-left: 24px;
+    position: relative;
+}
+
+.socorro-card.ok ul li::before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+}
+
+.socorro-card.warning ul li::before {
+    content: "❌";
+    position: absolute;
+    left: 0;
+}
+
+.advertencia-socorro {
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+    color: #e8a020;
+}
+
+/* Antídotos Naturais */
+.antidotos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.antidoto-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.antidoto-card .emoji {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.antidoto-card strong {
+    color: #f5c542;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Prevenção */
+.prevencao-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.prevencao-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.prevencao-list li::before {
+    content: "🛡️";
+    position: absolute;
+    left: 0;
+}
+
+/* Relato */
+.relato {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.relato p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .especies-grid { grid-template-columns: 1fr; }
+    .socorros-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🐍 Anatomia das Serpentes do Deserto</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Hakim al-Zahir, Médico das Grandes Caravanas</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 523 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Conhecer uma serpente pode salvar uma vida. Conhecer seu veneno pode salvar centenas."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            As serpentes são algumas das criaturas mais comuns e temidas de Zaharam. Enquanto muitas espécies evitam contato com viajantes, outras são responsáveis por inúmeras mortes todos os anos.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            A obra <strong>Anatomia das Serpentes do Deserto</strong> foi criada para servir como guia médico e científico, reunindo décadas de observações feitas por curandeiros, caçadores e exploradores.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            O livro descreve as espécies mais conhecidas do reino, seus hábitos, seus venenos e os métodos utilizados para tratar vítimas de acidentes.
+        </p>
+    </div>
+
+    <!-- Estrutura Corporal -->
+    <div class="section">
+        <h2 class="section-title">🦴 Estrutura Corporal das Serpentes</h2>
+        <p>Apesar da grande variedade de espécies, a maioria apresenta características semelhantes.</p>
+        
+        <div class="estrutura-grid">
+            <div class="estrutura-card">
+                <h4>🐍 Cabeça</h4>
+                <p>Responsável pela localização de presas e aplicação do veneno. As presas venenosas localizam-se na parte frontal da mandíbula.</p>
+            </div>
+            <div class="estrutura-card">
+                <h4>⚗️ Glândulas de Veneno</h4>
+                <p>Órgãos especializados que armazenam toxinas. Algumas espécies podem produzir veneno suficiente para matar vários homens adultos.</p>
+            </div>
+            <div class="estrutura-card">
+                <h4>🛡️ Escamas</h4>
+                <p>Protegem contra calor extremo e perda de umidade. A coloração geralmente auxilia na camuflagem.</p>
+            </div>
+            <div class="estrutura-card">
+                <h4>🔔 Cauda</h4>
+                <p>Utilizada para equilíbrio, defesa e comunicação. Certas espécies produzem sons de alerta através de estruturas presentes na extremidade da cauda.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Espécies Mais Conhecidas -->
+    <div class="section">
+        <h2 class="section-title">🐍 Espécies Mais Conhecidas</h2>
+        
+        <div class="especies-grid">
+            <div class="especie-card">
+                <span class="emoji">🐍</span>
+                <h4>Serpente das Dunas</h4>
+                <p>A espécie mais comum de Zaharam.</p>
+                <div class="caracteristicas">
+                    <strong>Características:</strong> Cor amarelada, excelente camuflagem, comportamento defensivo
+                </div>
+                <div class="veneno veneno-moderado">Veneno: Moderado</div>
+            </div>
+            
+            <div class="especie-card">
+                <span class="emoji">🔴</span>
+                <h4>Víbora Escarlate</h4>
+                <p>Encontrada nas regiões das Rochas Escarlates.</p>
+                <div class="caracteristicas">
+                    <strong>Características:</strong> Escamas avermelhadas, extremamente agressiva
+                </div>
+                <div class="veneno veneno-grave">Veneno: Grave</div>
+            </div>
+            
+            <div class="especie-card">
+                <span class="emoji">🌑</span>
+                <h4>Cobra do Sol Negro</h4>
+                <p>Espécie rara associada a lendas do deserto profundo.</p>
+                <div class="caracteristicas">
+                    <strong>Características:</strong> Escamas negras, atividade predominantemente noturna
+                </div>
+                <div class="veneno veneno-extremo">Veneno: Extremamente perigoso</div>
+            </div>
+            
+            <div class="especie-card">
+                <span class="emoji">💧</span>
+                <h4>Serpente dos Oásis</h4>
+                <p>Habita áreas próximas a fontes de água.</p>
+                <div class="caracteristicas">
+                    <strong>Características:</strong> Menor porte, pouco agressiva
+                </div>
+                <div class="veneno veneno-leve">Veneno: Leve</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Identificação de Envenenamento -->
+    <div class="section">
+        <h2 class="section-title">⚠️ Identificação de Envenenamento</h2>
+        <p>Os sintomas variam conforme a espécie.</p>
+        
+        <div class="sintomas-grid">
+            <div class="sintoma-card">
+                <span class="nivel">🍃 Casos Leves</span>
+                <ul>
+                    <li>Dor localizada</li>
+                    <li>Inchaço</li>
+                    <li>Vermelhidão</li>
+                </ul>
+            </div>
+            <div class="sintoma-card">
+                <span class="nivel">⚠️ Casos Moderados</span>
+                <ul>
+                    <li>Febre</li>
+                    <li>Náusea</li>
+                    <li>Fraqueza muscular</li>
+                    <li>Tontura</li>
+                </ul>
+            </div>
+            <div class="sintoma-card">
+                <span class="nivel">💀 Casos Graves</span>
+                <ul>
+                    <li>Dificuldade respiratória</li>
+                    <li>Convulsões</li>
+                    <li>Perda de consciência</li>
+                    <li>Falência de órgãos</li>
+                </ul>
+            </div>
+        </div>
+        
+        <p style="margin-top: 10px; text-align: center;"><em>Sem tratamento rápido, a morte pode ocorrer em poucas horas.</em></p>
+    </div>
+
+    <!-- Primeiros Socorros -->
+    <div class="section">
+        <h2 class="section-title">🩺 Primeiros Socorros</h2>
+        <p>Ao sofrer uma picada:</p>
+        
+        <div class="socorros-grid">
+            <div class="socorro-card ok">
+                <h4>✅ O Que Fazer</h4>
+                <ul>
+                    <li>Manter a calma</li>
+                    <li>Limitar movimentos</li>
+                    <li>Limpar o local</li>
+                    <li>Buscar ajuda médica imediatamente</li>
+                    <li>Identificar a serpente, se possível</li>
+                </ul>
+            </div>
+            <div class="socorro-card warning">
+                <h4>❌ O Que Não Fazer</h4>
+                <ul>
+                    <li>Cortar a ferida</li>
+                    <li>Sugar o veneno</li>
+                    <li>Aplicar fogo</li>
+                    <li>Utilizar remédios desconhecidos</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="advertencia-socorro">
+            O livro afirma que muitos viajantes morrem mais pelos tratamentos incorretos do que pelo próprio veneno.
+        </div>
+    </div>
+
+    <!-- Antídotos Naturais -->
+    <div class="section">
+        <h2 class="section-title">🌿 Antídotos Naturais</h2>
+        <p>Diversas ervas são utilizadas pelos médicos de Zaharam.</p>
+        
+        <div class="antidotos-grid">
+            <div class="antidoto-card"><span class="emoji">🌿</span><strong>Folha de Areth</strong><span>Reduz inflamações</span></div>
+            <div class="antidoto-card"><span class="emoji">🌿</span><strong>Raiz do Sol Branco</strong><span>Auxilia na neutralização de toxinas leves</span></div>
+            <div class="antidoto-card"><span class="emoji">🌸</span><strong>Flor do Oásis Azul</strong><span>Ingrediente comum em antídotos avançados</span></div>
+            <div class="antidoto-card"><span class="emoji">💧</span><strong>Seiva de Kharim</strong><span>Utilizada apenas em casos graves devido à sua raridade</span></div>
+        </div>
+    </div>
+
+    <!-- Prevenção -->
+    <div class="section">
+        <h2 class="section-title">🛡️ Prevenção</h2>
+        <p>A melhor forma de sobreviver a uma picada é evitá-la. Os médicos recomendam:</p>
+        
+        <ul class="prevencao-list">
+            <li>Nunca caminhar descalço</li>
+            <li>Inspecionar tendas antes de dormir</li>
+            <li>Verificar botas e mochilas</li>
+            <li>Evitar colocar as mãos em fendas ou buracos</li>
+            <li>Carregar sempre um kit médico básico</li>
+        </ul>
+    </div>
+
+    <!-- Relato de Campo -->
+    <div class="relato">
+        <p><strong>📖 Relato de Campo</strong></p>
+        <p style="margin-top: 10px;">Um capítulo inteiro descreve a expedição de Hakim al-Zahir ao Deserto Profundo.</p>
+        <p>Durante quarenta dias, sua equipe catalogou mais de cinquenta espécies diferentes de serpentes, registrando hábitos, venenos e padrões migratórios.</p>
+        <p style="margin-top: 10px;"><em>Esses registros serviram como base para grande parte da medicina antiofídica moderna de Zaharam.</em></p>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"O medo leva muitos homens a matar serpentes.</p>
+        <p>O conhecimento ensina quais devem ser evitadas, quais devem ser estudadas e quais podem até salvar vidas."</p>
+        <div class="autor">— Hakim al-Zahir</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Anatomia básica das serpentes de Zaharam</li>
+            <li>Identificação de espécies venenosas</li>
+            <li>Tratamento de envenenamentos</li>
+            <li>Técnicas de prevenção e primeiros socorros</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+35 EXP Médico</div>
+        <div class="nea">+0,2% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

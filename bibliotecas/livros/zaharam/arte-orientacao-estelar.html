@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Arte da Orientação Estelar — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* O Céu como Mapa */
+.destaque-ceu {
+    background: rgba(212,160,23,.15);
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.destaque-ceu p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+}
+
+.destaque-ceu .frase {
+    margin-top: 15px;
+    font-style: italic;
+    color: #f2d49b;
+}
+
+/* Constelações */
+.constelacoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.constelacao-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.constelacao-card:hover {
+    background: rgba(30,18,8,.9);
+    transform: translateX(3px);
+}
+
+.constelacao-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.constelacao-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.constelacao-card .funcao {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+.constelacao-card .funcao p {
+    padding: 4px 0;
+}
+
+/* Como Encontrar Direção */
+.direcao-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.direcao-step {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all .3s;
+}
+
+.direcao-step:hover {
+    border-color: #d4a017;
+    transform: scale(1.05);
+}
+
+.direcao-step .numero {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f5c542;
+}
+
+.direcao-step span {
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+/* Relógio das Estrelas */
+.relogio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.relogio-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+}
+
+.relogio-card .emoji {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.relogio-card strong {
+    color: #f5c542;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Sinais Climáticos */
+.sinais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.sinal-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.sinal-card .condicao {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #f5c542;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Instrumentos */
+.instrumentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.instrumento-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.instrumento-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.instrumento-card .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.instrumento-card strong {
+    color: #f5c542;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Erros Comuns */
+.erros-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.erros-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.erros-list li::before {
+    content: "⚠️";
+    position: absolute;
+    left: 0;
+}
+
+.advertencia-erros {
+    margin-top: 15px;
+    font-style: italic;
+    text-align: center;
+    color: #e8a020;
+}
+
+/* Lenda */
+.lenda {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.lenda p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.lenda .titulo-lenda {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Mandamentos */
+.mandamentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.mandamento-card {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #f5c542;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .constelacoes-grid { grid-template-columns: 1fr; }
+    .direcao-steps { gap: 15px; }
+    .direcao-step { width: 70px; height: 70px; }
+    .direcao-step .numero { font-size: 1.3rem; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>⭐ A Arte da Orientação Estelar</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Nazir al-Hakam, Primeiro Navegador das Dunas Eternas</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 445 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Quando as pegadas desaparecem e as dunas mudam, apenas as estrelas permanecem."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Muito antes da criação dos primeiros mapas de Zaharam, os viajantes já cruzavam o deserto guiados pelas estrelas. Durante milhares de anos, navegadores, mercadores e exploradores desenvolveram métodos precisos de orientação observando os movimentos celestes.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            <strong>A Arte da Orientação Estelar</strong> reúne esse conhecimento ancestral, ensinando como localizar direções, prever mudanças climáticas e atravessar vastas regiões sem depender de estradas ou marcos terrestres.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            Até hoje, muitos mestres navegadores consideram este livro indispensável para qualquer jornada pelo deserto.
+        </p>
+    </div>
+
+    <!-- O Céu como Mapa -->
+    <div class="destaque-ceu">
+        <p>Os antigos ensinavam que o céu noturno é o maior mapa já criado.</p>
+        <p>Diferente das dunas:</p>
+        <p>✨ Não pode ser enterrado</p>
+        <p>✨ Não pode ser roubado</p>
+        <p>✨ Não pode ser destruído por tempestades</p>
+        <div class="frase">"Por isso, todo navegador deve aprender a reconhecer as principais constelações de Zaharam."</div>
+    </div>
+
+    <!-- As Cinco Constelações do Navegador -->
+    <div class="section">
+        <h2 class="section-title">⭐ As Cinco Constelações do Navegador</h2>
+        
+        <div class="constelacoes-grid">
+            <div class="constelacao-card">
+                <span class="emoji">⭐</span><h4>Olho de Malik</h4>
+                <p>A constelação mais utilizada pelos guias do deserto.</p>
+                <div class="funcao">
+                    <p>🧭 Determinar direção norte</p>
+                    <p>🧭 Servir como ponto de referência durante longas travessias</p>
+                </div>
+            </div>
+            
+            <div class="constelacao-card">
+                <span class="emoji">🐪</span><h4>Caravana Celestial</h4>
+                <p>Formação de estrelas alinhadas que lembra camelos em marcha.</p>
+                <div class="funcao">
+                    <p>🧭 Auxiliar na navegação leste-oeste</p>
+                    <p>🧭 Marcar períodos favoráveis para viagens</p>
+                </div>
+            </div>
+            
+            <div class="constelacao-card">
+                <span class="emoji">🗡️</span><h4>Lança do Sol</h4>
+                <p>Constelação associada aos antigos exploradores.</p>
+                <div class="funcao">
+                    <p>🧭 Determinar mudanças sazonais</p>
+                    <p>🧭 Identificar aproximação de ventos fortes</p>
+                </div>
+            </div>
+            
+            <div class="constelacao-card">
+                <span class="emoji">👑</span><h4>Coroa de Solania</h4>
+                <p>Recebe esse nome em homenagem à lendária cidade.</p>
+                <div class="funcao">
+                    <p>🧭 Referência para viajantes próximos às regiões centrais de Zaharam</p>
+                </div>
+            </div>
+            
+            <div class="constelacao-card">
+                <span class="emoji">🐍</span><h4>Serpente das Areias</h4>
+                <p>Constelação longa e sinuosa.</p>
+                <div class="funcao">
+                    <p>🧭 Utilizada para calcular horários durante a madrugada</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Como Encontrar Direção -->
+    <div class="section">
+        <h2 class="section-title">🧭 Como Encontrar Direção</h2>
+        <p>O método mais simples descrito no livro consiste em:</p>
+        
+        <div class="direcao-steps">
+            <div class="direcao-step">
+                <span class="numero">1</span>
+                <span>Localizar o Olho de Malik</span>
+            </div>
+            <div class="direcao-step">
+                <span class="numero">2</span>
+                <span>Identificar sua estrela principal</span>
+            </div>
+            <div class="direcao-step">
+                <span class="numero">3</span>
+                <span>Traçar linha até o horizonte</span>
+            </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 15px;"><em>Essa técnica permite orientação mesmo sem bússolas ou mapas.</em></p>
+    </div>
+
+    <!-- O Relógio das Estrelas -->
+    <div class="section">
+        <h2 class="section-title">⏰ O Relógio das Estrelas</h2>
+        <p>Os navegadores antigos utilizavam o movimento das constelações para estimar horários.</p>
+        
+        <div class="relogio-grid">
+            <div class="relogio-card">
+                <span class="emoji">🌙</span>
+                <strong>Início da madrugada</strong>
+            </div>
+            <div class="relogio-card">
+                <span class="emoji">🌌</span>
+                <strong>Meio da noite</strong>
+            </div>
+            <div class="relogio-card">
+                <span class="emoji">☀️</span>
+                <strong>Aproximação do amanhecer</strong>
+            </div>
+        </div>
+        
+        <p style="text-align: center;"><em>A precisão dependia da experiência do observador.</em></p>
+    </div>
+
+    <!-- Leitura dos Ventos Celestes -->
+    <div class="section">
+        <h2 class="section-title">🌬️ Leitura dos Ventos Celestes</h2>
+        <p>Segundo o livro, o céu também pode indicar alterações climáticas.</p>
+        
+        <div class="sinais-grid">
+            <div class="sinal-card">
+                <span class="condicao">✨ Brilho excessivo das estrelas</span>
+                <span>Clima estável</span>
+            </div>
+            <div class="sinal-card">
+                <span class="condicao">🌫️ Névoa luminosa</span>
+                <span>Possível tempestade</span>
+            </div>
+            <div class="sinal-card">
+                <span class="condicao">🌑 Desaparecimento repentino de constelações</span>
+                <span>Ventos fortes se aproximando</span>
+            </div>
+        </div>
+        
+        <p style="margin-top: 15px;"><em>Essas observações eram utilizadas pelas Grandes Caravanas para evitar tragédias.</em></p>
+    </div>
+
+    <!-- Instrumentos Tradicionais -->
+    <div class="section">
+        <h2 class="section-title">🔭 Instrumentos Tradicionais</h2>
+        
+        <div class="instrumentos-grid">
+            <div class="instrumento-card">
+                <span class="emoji">🔭</span>
+                <strong>Astrolábio das Dunas</strong>
+                <span>Ferramenta utilizada para medir posições estelares</span>
+            </div>
+            <div class="instrumento-card">
+                <span class="emoji">📜</span>
+                <strong>Cartas Celestes</strong>
+                <span>Mapas contendo registros das constelações</span>
+            </div>
+            <div class="instrumento-card">
+                <span class="emoji">🧭</span>
+                <strong>Disco de Orientação</strong>
+                <span>Equipamento criado pelos navegadores mais experientes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Erros Comuns dos Iniciantes -->
+    <div class="section">
+        <h2 class="section-title">⚠️ Erros Comuns dos Iniciantes</h2>
+        <p>O livro alerta sobre diversos erros frequentes:</p>
+        
+        <ul class="erros-list">
+            <li>Confiar apenas na memória</li>
+            <li>Observar poucas estrelas</li>
+            <li>Ignorar mudanças climáticas</li>
+            <li>Navegar durante tempestades</li>
+            <li>Confundir constelações semelhantes</li>
+        </ul>
+        
+        <div class="advertencia-erros">
+            Muitos exploradores perdidos cometeram pelo menos um desses erros.
+        </div>
+    </div>
+
+    <!-- A Lenda dos Primeiros Guias -->
+    <div class="lenda">
+        <div class="titulo-lenda">✨ A Lenda dos Primeiros Guias ✨</div>
+        <p>Os registros mais antigos mencionam um grupo de navegadores conhecidos como <strong>Filhos das Estrelas</strong>.</p>
+        <p>Diz-se que eles conseguiam atravessar o deserto mesmo durante tempestades completas, guiando-se apenas por breves vislumbres do céu noturno.</p>
+        <p style="margin-top: 10px;"><em>Embora muitos considerem a história exagerada, diversos métodos registrados neste livro são atribuídos a eles.</em></p>
+    </div>
+
+    <!-- Mandamentos do Navegador Estelar -->
+    <div class="section">
+        <h2 class="section-title">📜 Mandamentos do Navegador Estelar</h2>
+        
+        <div class="mandamentos-grid">
+            <div class="mandamento-card">1. Observe antes de caminhar</div>
+            <div class="mandamento-card">2. Confie nas estrelas mais do que nas dunas</div>
+            <div class="mandamento-card">3. Nunca viaje sem conhecer o céu</div>
+            <div class="mandamento-card">4. Registre suas observações</div>
+            <div class="mandamento-card">5. Respeite os sinais da natureza</div>
+        </div>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"O deserto muda a cada amanhecer.</p>
+        <p>As cidades surgem e desaparecem.</p>
+        <p>Mas as estrelas continuam observando, exatamente como faziam com os primeiros viajantes."</p>
+        <div class="autor">— Nazir al-Hakam</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Identificação das principais constelações de Zaharam</li>
+            <li>Navegação por observação estelar</li>
+            <li>Leitura climática através do céu noturno</li>
+            <li>Utilização básica de instrumentos astronômicos</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+35 EXP Astrônomo</div>
+        <div class="nea">+0,2% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

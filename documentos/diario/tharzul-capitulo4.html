@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grimório Ardente de Thar-Zul — Capítulo IV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Cormorant Garamond", serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .grimorio {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .grimorio::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 10;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .cabecalho .titulo-principal {
+            font-family: "Cinzel", serif;
+            font-size: 2.8rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: "Cinzel", serif;
+            font-size: 1.2rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+        }
+
+        .cabecalho .selo {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #6a3a2a;
+            border: 2px solid #6a3a2a;
+            padding: 4px 12px;
+            border-radius: 2px;
+            letter-spacing: 2px;
+            background: rgba(80,40,20,.1);
+        }
+
+        .cabecalho .data {
+            font-family: "Cinzel", serif;
+            font-size: 0.75rem;
+            color: #5a4a3a;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 5;
+        }
+
+        .conteudo p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .conteudo .dropcap {
+            font-size: 3.5rem;
+            font-family: "Cinzel", serif;
+            float: left;
+            line-height: 0.8;
+            margin-right: 12px;
+            color: #d4a74f;
+            text-shadow: 0 0 10px rgba(212,167,79,.15);
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+        }
+
+        .conteudo .citacao-dialogo {
+            font-style: italic;
+            color: #d4a74f;
+            padding: 12px 20px;
+            border-left: 3px solid #d4a74f;
+            margin: 15px 0 15px 20px;
+            background: rgba(40,30,15,.2);
+            border-radius: 4px;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-vermelho {
+            color: #b86a4a;
+            font-weight: bold;
+        }
+
+        .conteudo .simbolo {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #6a3a2a;
+            margin: 20px 0;
+            letter-spacing: 8px;
+        }
+
+        .conteudo .observacao {
+            margin: 30px 0;
+            padding: 20px 25px;
+            border-left: 3px solid #6a4a2a;
+            background: rgba(40,30,15,.2);
+            border-radius: 4px;
+        }
+
+        .conteudo .observacao .obs-titulo {
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .conteudo .objeto-misterioso {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            border: 1px solid #6a4a2a;
+            background: rgba(40,30,15,.3);
+            border-radius: 6px;
+        }
+
+        .conteudo .objeto-misterioso .icone {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .conteudo .objeto-misterioso .descricao {
+            font-style: italic;
+            color: #c4a86a;
+        }
+
+        .conteudo .objeto-misterioso .detalhe {
+            font-size: 0.85rem;
+            color: #8a6a3a;
+            margin-top: 5px;
+        }
+
+        .conteudo .sonho {
+            margin: 25px 0;
+            padding: 20px 25px;
+            border: 1px dashed #6a3a2a;
+            background: rgba(40,20,10,.2);
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        .conteudo .sonho .sonho-titulo {
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #6a3a2a;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-style: normal;
+        }
+
+        .assinatura {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: right;
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .assinatura .nome {
+            font-size: 1.2rem;
+            color: #d4a74f;
+        }
+
+        .navegacao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .navegacao .info {
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #6a4a2a;
+            letter-spacing: 2px;
+        }
+
+        .navegacao .btn-nav {
+            padding: 8px 25px;
+            background: #6a4a2a;
+            border: none;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #d4c8a0;
+            transition: .3s;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navegacao .btn-nav:hover {
+            background: #8a6a3a;
+            color: #f0e0b0;
+        }
+
+        .voltar-topo {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #4a3520;
+            border: 1px solid #6a4a2a;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #bca77a;
+            transition: .3s;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .voltar-topo:hover {
+            background: #6a4a2a;
+            color: #f0e0b0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .grimorio { padding: 30px 25px; }
+            .cabecalho .titulo-principal { font-size: 2rem; }
+            .cabecalho .selo { position: relative; top: 0; right: 0; display: inline-block; margin-top: 10px; }
+            .conteudo p { font-size: 1rem; }
+            .navegacao { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .grimorio { padding: 20px 15px; }
+            .cabecalho .titulo-principal { font-size: 1.5rem; }
+            .conteudo p { font-size: 0.9rem; }
+            .conteudo .dropcap { font-size: 2.5rem; }
+            .conteudo .citacao-dialogo { margin-left: 5px; padding: 10px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grimorio">
+
+        <div class="cabecalho">
+            <div class="selo">⚔️ IV ⚔️</div>
+            <div class="titulo-principal">Grimório Ardente</div>
+            <div class="subtitulo">de Thar-Zul</div>
+            <div style="margin-top:8px; font-family:'Cinzel',serif; font-size:0.8rem; color:#6a4a2a; letter-spacing:2px;">
+                Capítulo IV — O Eremita do Lago Celestium
+            </div>
+            <div class="data">Ano 730 — Início do Verão</div>
+        </div>
+
+        <div class="conteudo">
+
+            <p>
+                <span class="dropcap">A</span> viagem até <span class="destaque">Sylvanora</span> foi muito mais longa do que imaginei.
+            </p>
+
+            <p>
+                Dizem que as florestas escolhem quem pode atravessá-las.
+            </p>
+
+            <p>
+                Passei quatro dias caminhando em círculos.
+            </p>
+
+            <p>
+                Ou talvez... a floresta apenas quisesse medir minha paciência.
+            </p>
+
+            <p>
+                Nunca descobrirei.
+            </p>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Há uma paz estranha naquele reino.
+            </p>
+
+            <p>
+                Os pássaros não fogem quando alguém se aproxima. Os animais observam antes de decidir se devem correr. As árvores são tão antigas que suas raízes parecem montanhas enterradas.
+            </p>
+
+            <p>
+                <span class="destaque">Pela primeira vez senti que eu era jovem.</span>
+            </p>
+
+            <p>
+                Muito jovem.
+            </p>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Depois de dias caminhando encontrei o <span class="destaque">Lago Celestium</span>.
+            </p>
+
+            <p>
+                Jamais vi água daquela cor.
+            </p>
+
+            <p>
+                Mesmo durante a noite, sua superfície refletia estrelas que não existiam no céu.
+            </p>
+
+            <p>
+                Como se o lago enxergasse outro universo.
+            </p>
+
+            <p>
+                Ali compreendi por que tantos chamam aquele lugar de sagrado.
+            </p>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                O eremita realmente existia.
+            </p>
+
+            <p>
+                Morava sozinho. Sua cabana havia sido construída ao redor de uma árvore colossal. Não havia portas. Nem janelas. Apenas uma abertura onde o vento entrava livremente.
+            </p>
+
+            <p>
+                <span class="destaque">Ele parecia esperar minha chegada.</span>
+            </p>
+
+            <p>
+                Antes mesmo que eu dissesse meu nome...
+            </p>
+
+            <div class="citacao-dialogo">
+                "Você demorou."
+            </div>
+
+            <p>
+                Perguntei como sabia quem eu era.
+            </p>
+
+            <p>
+                Ele sorriu.
+            </p>
+
+            <div class="citacao-dialogo">
+                "Não sei."
+            </div>
+            <div class="citacao-dialogo">
+                "Mas sabia que alguém viria."
+            </div>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Mostrei minhas anotações sobre a Profecia.
+            </p>
+
+            <p>
+                Ele não leu. Nem sequer olhou para os pergaminhos.
+            </p>
+
+            <p>
+                Apenas fez uma única pergunta.
+            </p>
+
+            <div class="citacao-dialogo">
+                "Você procura respostas..."
+            </div>
+            <div class="citacao-dialogo" style="border-left-color:#8a4a2a;">
+                "...ou procura controlar o futuro?"
+            </div>
+
+            <p>
+                Fiquei em silêncio.
+            </p>
+
+            <p>
+                <span class="destaque">Nunca havia pensado na diferença.</span>
+            </p>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Passamos horas conversando.
+            </p>
+
+            <p>
+                Na maior parte do tempo... era ele quem fazia perguntas.
+            </p>
+
+            <p>
+                Pouquíssimas respostas.
+            </p>
+
+            <p>
+                Quando o sol começou a desaparecer atrás das árvores, finalmente perguntei algo que me perseguia desde Luminathis.
+            </p>
+
+            <p>
+                "Por que tantos registros desapareceram?"
+            </p>
+
+            <p>
+                O velho permaneceu olhando para o lago.
+            </p>
+
+            <p>
+                Depois respondeu.
+            </p>
+
+            <div class="citacao">
+                "Porque algumas verdades..."
+            </div>
+            <div class="citacao" style="border-left-color:#8a4a2a;">
+                "...não são apagadas pelos homens."
+            </div>
+            <div class="citacao" style="border-left-color:#6a3a2a;">
+                "São apagadas pelo próprio tempo."
+            </div>
+
+            <p>
+                Não compreendi.
+            </p>
+
+            <p>
+                Pensei que estivesse falando por metáforas.
+            </p>
+
+            <p>
+                Hoje... acho que ele falava literalmente.
+            </p>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Antes de eu partir, ele entrou na cabana.
+            </p>
+
+            <p>
+                Voltou segurando um pequeno objeto envolto em tecido.
+            </p>
+
+            <div class="objeto-misterioso">
+                <span class="icone">🧭</span>
+                <div class="descricao">Era uma bússola. Muito antiga.</div>
+                <div class="detalhe">O metal estava escurecido pelo tempo.</div>
+                <div class="detalhe">Mas a agulha... não apontava para o norte.</div>
+                <div class="detalhe" style="color:#d4a74f; font-style:italic;">Girava lentamente.</div>
+                <div class="detalhe" style="color:#d4a74f; font-style:italic;">Como se procurasse algo distante.</div>
+                <div class="detalhe" style="color:#d4a74f; font-style:italic;">Muito distante.</div>
+            </div>
+
+            <div class="citacao-dialogo">
+                "Ela não encontra lugares."
+            </div>
+            <div class="citacao-dialogo" style="border-left-color:#8a4a2a;">
+                "Ela encontra acontecimentos."
+            </div>
+
+            <p>
+                Franzi a testa.
+            </p>
+
+            <p>
+                Ele riu da minha expressão.
+            </p>
+
+            <div class="citacao-dialogo" style="border-left-color:#6a3a2a;">
+                "Quando a agulha parar... você terá chegado ao lugar onde sua vida deixará de lhe pertencer."
+            </div>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Perguntei de onde aquela bússola vinha.
+            </p>
+
+            <p>
+                Ele respondeu apenas:
+            </p>
+
+            <div class="citacao-dialogo">
+                "Ela pertenceu ao primeiro homem que tentou impedir a Profecia."
+            </div>
+
+            <p>
+                <span class="destaque">Meu coração acelerou.</span>
+            </p>
+
+            <p>
+                Perguntei quem era esse homem.
+            </p>
+
+            <p>
+                O velho fechou os olhos.
+            </p>
+
+            <p>
+                Depois de um longo silêncio... respondeu apenas:
+            </p>
+
+            <div class="citacao">
+                "Seu nome foi esquecido."
+            </div>
+
+            <div class="simbolo">· · ·</div>
+
+            <p>
+                Naquela noite dormi às margens do Lago Celestium.
+            </p>
+
+            <div class="sonho">
+                <div class="sonho-titulo">🌙 SONHO</div>
+                <p>Sonhei com um céu completamente vermelho.</p>
+                <p>Vi uma enorme sombra atravessando as nuvens.</p>
+                <p>Ouvi milhares de vozes repetindo a mesma palavra.</p>
+                <p style="font-size:1.2rem; color:#d4a74f; text-align:center; margin-top:10px;">"Alvorecer."</p>
+                <p style="margin-top:10px;">Acordei antes de conseguir ver o rosto da criatura.</p>
+            </div>
+
+            <div class="observacao">
+                <div class="obs-titulo">📜 Observação pessoal</div>
+                <p>A bússola continua girando.</p>
+                <p>Sem parar. Sem hesitar.</p>
+                <p>Ela parece ignorar completamente o norte.</p>
+                <p>Aponta para algo que ainda não aconteceu.</p>
+                <p style="margin-top:10px;">Não sei explicar por quê... mas sinto que, quando ela finalmente parar, minha vida jamais voltará a ser a mesma.</p>
+                <p style="margin-top:15px;">Amanhã deixarei Sylvanora.</p>
+                <p>Pretendo seguir para <span class="destaque">Auroram</span>, em <span class="destaque">Solharis</span>.</p>
+                <p>Dizem que lá existe um observatório onde antigos astrônomos registraram fenômenos que jamais se repetiram.</p>
+                <p style="font-style:italic; color:#c4a86a; margin-top:10px;">Talvez... o céu esconda respostas que a terra insiste em esquecer.</p>
+            </div>
+
+            <div class="assinatura">
+                <div class="nome">— Thar-Zul</div>
+                <div style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">O Eremita do Lago Celestium</div>
+            </div>
+
+        </div>
+
+        <div class="navegacao">
+            <span class="info">📜 Página 4 — Capítulo IV</span>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="tharzul-capitulo3.html" class="btn-nav">← Anterior</a>
+                <a href="tharzul-capitulo5.html" class="btn-nav">Próximo →</a>
+            </div>
+        </div>
+
+        <div class="text-center" style="margin-top:20px;">
+            <a href="../documentos.html" class="voltar-topo">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

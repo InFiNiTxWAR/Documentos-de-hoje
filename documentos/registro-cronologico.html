@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REINO DE ZAHARAM — REGISTRO CRONOLÓGICO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)),
+                url("https://images.unsplash.com/photo-1509316785289-025f5b846b35");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Cormorant Garamond", serif;
+            color: #f2e0b0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .documento {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #8a6a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .documento::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 10;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(138,106,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .cabecalho .titulo-principal {
+            font-family: "Cinzel", serif;
+            font-size: 2.5rem;
+            color: #f5c542;
+            text-shadow: 0 0 20px rgba(245,197,66,.15);
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: "Cinzel", serif;
+            font-size: 1rem;
+            color: #d4a017;
+            letter-spacing: 3px;
+        }
+
+        .cabecalho .classif {
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            border: 1px solid #6a4a2a;
+            padding: 4px 15px;
+            display: inline-block;
+            background: rgba(80,40,20,.1);
+        }
+
+        .cabecalho .info-arquivo {
+            font-size: 0.85rem;
+            color: #bca77a;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        .cabecalho .periodo {
+            font-family: "Cinzel", serif;
+            font-size: 0.75rem;
+            color: #8a6a3a;
+            margin-top: 8px;
+            letter-spacing: 2px;
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 5;
+        }
+
+        .conteudo .entry {
+            margin: 25px 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(138,106,42,.15);
+        }
+
+        .conteudo .entry:last-of-type {
+            border-bottom: none;
+        }
+
+        .conteudo .entry .data {
+            font-family: "Cinzel", serif;
+            font-size: 0.85rem;
+            color: #f5c542;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .conteudo .entry .titulo-entry {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #f2d49b;
+            margin-bottom: 8px;
+        }
+
+        .conteudo .entry p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #e8d0a0;
+            text-align: justify;
+            margin-bottom: 6px;
+        }
+
+        .conteudo .entry .destaque {
+            color: #f5c542;
+            font-weight: bold;
+        }
+
+        .conteudo .entry .destaque-vermelho {
+            color: #e8a020;
+            font-weight: bold;
+        }
+
+        .conteudo .entry .lista-nomes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 15px;
+            margin: 8px 0 12px 20px;
+        }
+
+        .conteudo .entry .lista-nomes span {
+            color: #f2d49b;
+            font-style: italic;
+        }
+
+        .conteudo .entry .citacao {
+            font-style: italic;
+            color: #d4a017;
+            padding: 10px 20px;
+            border-left: 3px solid #8a6a2a;
+            margin: 10px 0;
+            background: rgba(40,30,15,.2);
+            border-radius: 4px;
+        }
+
+        .conteudo .entry .anomalia {
+            background: rgba(138,106,42,.08);
+            border-left: 3px solid #d4a017;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .conteudo .entry .anomalia p {
+            font-size: 0.95rem;
+        }
+
+        .observacao-final {
+            margin-top: 30px;
+            padding: 20px 25px;
+            border-top: 2px solid rgba(138,106,42,.3);
+            border-bottom: 2px solid rgba(138,106,42,.3);
+            background: rgba(20,12,5,.4);
+        }
+
+        .observacao-final p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #e8d0a0;
+            text-align: justify;
+        }
+
+        .observacao-final .destaque {
+            color: #f5c542;
+            font-weight: bold;
+        }
+
+        .assinatura {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(138,106,42,.3);
+            text-align: right;
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .voltar-topo {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 25px;
+            background: #4a3520;
+            border: 1px solid #6a4a2a;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #bca77a;
+            transition: .3s;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .voltar-topo:hover {
+            background: #6a4a2a;
+            color: #f0e0b0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .documento { padding: 30px 25px; }
+            .cabecalho .titulo-principal { font-size: 1.8rem; }
+            .conteudo .entry .data { font-size: 0.75rem; }
+            .conteudo .entry p { font-size: 0.9rem; }
+        }
+
+        @media (max-width: 480px) {
+            .documento { padding: 20px 15px; }
+            .cabecalho .titulo-principal { font-size: 1.3rem; }
+            .conteudo .entry p { font-size: 0.85rem; }
+            .conteudo .entry .lista-nomes { margin-left: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="documento">
+
+        <div class="cabecalho">
+            <div class="titulo-principal">🏜️ REINO DE ZAHARAM</div>
+            <div class="subtitulo">ARQUIVO HISTÓRICO OFICIAL</div>
+            <div class="classif">DOCUMENTO OFICIAL DO REINO</div>
+            <div class="info-arquivo">📜 Arquivo: ZH-5000-221</div>
+            <div class="periodo">📅 Período Registrado: 19 de Maio de 5000 até 22 de Outubro de 5000</div>
+        </div>
+
+        <div class="conteudo">
+
+            <!-- Entrada 1 -->
+            <div class="entry">
+                <div class="data">📌 19 de Maio de 5000</div>
+                <div class="titulo-entry">Desaparecimento da Expedição Real</div>
+                <p>A expedição enviada ao <span class="destaque">Mar Lumívoro</span> perde completamente o contato.</p>
+                <p>Os aventureiros:</p>
+                <div class="lista-nomes">
+                    <span>✦ Élion Virellion Astrae</span>
+                    <span>✦ Evangeline</span>
+                    <span>✦ Eren Vortan</span>
+                    <span>✦ Caçador da Tribo Garkhai</span>
+                    <span>✦ Crocotop</span>
+                </div>
+                <p>são oficialmente declarados <span class="destaque-vermelho">Desaparecidos em Serviço Real</span>.</p>
+                <p><span class="destaque">Barn Clant</span> ordena buscas imediatas.</p>
+            </div>
+
+            <!-- Entrada 2 -->
+            <div class="entry">
+                <div class="data">📌 20–30 de Maio</div>
+                <p>Mais de vinte expedições procuram sobreviventes. Nenhum vestígio é encontrado.</p>
+                <p>Somente embarcações destruídas. Nenhum corpo. Nenhuma pista.</p>
+            </div>
+
+            <!-- Entrada 3 -->
+            <div class="entry">
+                <div class="data">📌 Junho</div>
+                <p>As buscas são encerradas. O Reino declara oficialmente:</p>
+                <div class="citacao">"Presumidos Mortos."</div>
+                <p>Uma cerimônia silenciosa acontece em Zaharam. Nenhum caixão. Nenhum corpo.</p>
+                <p>Apenas <span class="destaque-vermelho">cinco estandartes vazios</span>.</p>
+            </div>
+
+            <!-- Entrada 4 -->
+            <div class="entry">
+                <div class="data">📌 Junho</div>
+                <p>Rumores começam a surgir. Alguns afirmam ter visto luzes sobre o <span class="destaque">Mar Lumívoro</span>. Outros relatam vozes durante a noite.</p>
+                <p style="font-style:italic; color:#bca77a;">Nenhuma informação é confirmada.</p>
+            </div>
+
+            <!-- Entrada 5 -->
+            <div class="entry">
+                <div class="data">📌 Julho</div>
+                <p>A atividade mágica do <span class="destaque">Mar Lumívoro</span> aumenta. Diversos pesquisadores desaparecem.</p>
+                <p>Toda navegação passa a exigir autorização direta da <span class="destaque">Coroa</span>.</p>
+            </div>
+
+            <!-- Entrada 6 -->
+            <div class="entry">
+                <div class="data">📌 Agosto</div>
+                <p>Os reinos vizinhos começam a solicitar informações oficiais. As primeiras tensões diplomáticas aparecem.</p>
+                <p>Diversos governantes acusam Zaharam de esconder informações.</p>
+            </div>
+
+            <!-- Entrada 7 -->
+            <div class="entry">
+                <div class="data">📌 Agosto</div>
+                <p>As patrulhas militares no litoral são triplicadas. Torres de observação são construídas.</p>
+                <p>O acesso ao <span class="destaque">Mar Lumívoro</span> passa a ser <span class="destaque-vermelho">proibido para civis</span>.</p>
+            </div>
+
+            <!-- Entrada 8 -->
+            <div class="entry">
+                <div class="data">📌 Setembro</div>
+                <p>Magos relatam pequenas anomalias no fluxo de mana.</p>
+                <p style="font-style:italic; color:#bca77a;">Nenhuma conclusão é alcançada.</p>
+            </div>
+
+            <!-- Entrada 9 -->
+            <div class="entry">
+                <div class="data">📌 Setembro</div>
+                <div class="titulo-entry">Os Sonhos Coletivos</div>
+                <p>Relatórios chegam de vários reinos descrevendo:</p>
+                <div class="anomalia">
+                    <p>✦ uma floresta desconhecida;</p>
+                    <p>✦ árvores impossíveis;</p>
+                    <p>✦ uma figura observando à distância.</p>
+                </div>
+                <p style="font-style:italic; color:#bca77a;">Nenhum sobrevivente consegue recordar o rosto da figura.</p>
+            </div>
+
+            <!-- Entrada 10 -->
+            <div class="entry">
+                <div class="data">📌 Outubro</div>
+                <p>Relatos semelhantes passam a surgir simultaneamente em diversos continentes.</p>
+                <p>O número de testemunhos cresce rapidamente.</p>
+            </div>
+
+            <!-- Entrada 11 -->
+            <div class="entry">
+                <div class="data">📌 22 de Outubro de 5000 — 08:17</div>
+                <div class="titulo-entry">🌳 A Árvore Impossível</div>
+                <p>A <span class="destaque">Árvore Impossível</span> manifesta-se nas proximidades do <span class="destaque">Mar Lumívoro</span>.</p>
+                <p>Sua altura é estimada em <span class="destaque-vermelho">mais de trezentos metros</span>.</p>
+                <p style="font-style:italic; color:#bca77a;">Nenhum pesquisador consegue explicar sua origem.</p>
+            </div>
+
+            <!-- Entrada 12 -->
+            <div class="entry">
+                <div class="data">📌 22 de Outubro de 5000 — 09:40</div>
+                <p>A Coroa decreta <span class="destaque-vermelho">isolamento total</span> da região.</p>
+                <p>Mais de quatrocentos soldados cercam a área.</p>
+            </div>
+
+            <!-- Entrada 13 -->
+            <div class="entry">
+                <div class="data">📌 22 de Outubro de 5000 — 10:15</div>
+                <p>Magos confirmam que a árvore <span class="destaque-vermelho">não produz fluxo de mana</span>.</p>
+                <p>O fenômeno é considerado <span class="destaque">impossível</span>.</p>
+            </div>
+
+            <!-- Entrada 14 -->
+            <div class="entry">
+                <div class="data">📌 22 de Outubro de 5000 — 11:32</div>
+                <p>Sacerdotes de diferentes religiões iniciam estudos conjuntos.</p>
+                <p style="font-style:italic; color:#bca77a;">Nenhuma divindade responde às tentativas de comunicação.</p>
+            </div>
+
+            <!-- Entrada 15 -->
+            <div class="entry">
+                <div class="data">📌 22 de Outubro de 5000 — 11:58</div>
+                <p>Uma embarcação é vista aproximando-se lentamente do litoral.</p>
+                <p style="font-style:italic; color:#bca77a;">Inicialmente acredita-se tratar-se de destroços.</p>
+            </div>
+
+            <!-- Entrada 16 -->
+            <div class="entry">
+                <div class="data">📌 22 de Outubro de 5000 — 12:03</div>
+                <div class="titulo-entry" style="color:#f5c542;">⭐ O Retorno</div>
+                <p>São identificados <span class="destaque">cinco sobreviventes</span>.</p>
+                <p>A expedição desaparecida retorna.</p>
+                <div class="anomalia">
+                    <p>Nenhum dos aventureiros apresenta sinais de envelhecimento compatíveis com os seis meses transcorridos.</p>
+                    <p><span class="destaque">Todos afirmam ter permanecido apenas algumas horas em Greyfield.</span></p>
+                </div>
+            </div>
+
+            <!-- Entrada 17 -->
+            <div class="entry">
+                <div class="data">📌 22 de Outubro de 5000 — 12:26</div>
+                <p>Os sobreviventes são escoltados imediatamente até a Capital.</p>
+                <p><span class="destaque">Barn Clant</span> ordena prioridade máxima.</p>
+            </div>
+
+            <!-- Entrada 18 -->
+            <div class="entry">
+                <div class="data">📌 22 de Outubro de 5000 — 14:10</div>
+                <div class="titulo-entry">🏛️ Audiência Oficial</div>
+                <p>Inicia-se a audiência oficial no <span class="destaque">Salão do Trono</span>.</p>
+                <p>Pela primeira vez, o nome <span class="destaque-vermelho">Greyfield</span> passa a integrar os arquivos históricos do Reino de Zaharam.</p>
+            </div>
+
+            <!-- Observação Final -->
+            <div class="observacao-final">
+                <p><span class="destaque">📜 Observação Final</span></p>
+                <p>Os acontecimentos registrados neste documento alteraram definitivamente a estabilidade política, científica e religiosa do continente.</p>
+                <p>Todos os registros posteriores relacionados à <span class="destaque">Árvore Impossível</span>, <span class="destaque">Greyfield</span> e ao homem identificado como <span class="destaque">Tibério</span> deverão ser anexados a este arquivo principal por determinação direta de <span class="destaque">Sua Majestade Barn Clant</span>.</p>
+            </div>
+
+            <div class="assinatura">
+                <p>📜 Arquivo Histórico Oficial — Reino de Zaharam</p>
+                <p style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#6a4a2a;">ZH-5000-221 — Registro Encerrado</p>
+            </div>
+
+        </div>
+
+        <div class="text-center" style="margin-top:20px;">
+            <a href="../documentos.html" class="voltar-topo">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

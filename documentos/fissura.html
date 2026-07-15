@@ -1,0 +1,434 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro da Primeira Fissura</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                linear-gradient(rgba(10, 10, 10, .95), rgba(10, 10, 10, .95)),
+                url("https://images.unsplash.com/photo-1506744038136-46273834b3fb");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            padding: 60px;
+
+            color: #2e1b0f;
+
+        }
+
+        .documento {
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            background:
+                linear-gradient(to bottom,
+                    #f5e6c7,
+                    #edd7ae);
+
+            padding: 70px;
+
+            border: 8px solid #8c6a34;
+
+            box-shadow:
+                0 0 50px rgba(0, 0, 0, .8),
+                inset 0 0 80px rgba(0, 0, 0, .12);
+
+            position: relative;
+
+        }
+
+        .documento::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+
+            border: 2px solid rgba(90, 60, 30, .35);
+
+            pointer-events: none;
+
+        }
+
+        .selo {
+
+            text-align: center;
+
+            font-size: 70px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .classificacao {
+
+            text-align: center;
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 14px;
+
+            letter-spacing: 3px;
+
+            color: #5d0f0f;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+        }
+
+        .titulo {
+
+            font-family: 'Cinzel', serif;
+
+            text-align: center;
+
+            font-size: 48px;
+
+            margin-bottom: 5px;
+
+            color: #3a2313;
+
+        }
+
+        .subtitulo {
+
+            text-align: center;
+
+            font-style: italic;
+
+            font-size: 20px;
+
+            margin-bottom: 50px;
+
+            color: #5f4732;
+
+        }
+
+        h2 {
+
+            font-family: 'Cinzel', serif;
+
+            margin-top: 40px;
+            margin-bottom: 20px;
+
+            color: #402614;
+
+            font-size: 28px;
+
+            border-bottom: 2px solid rgba(80, 50, 25, .3);
+
+            padding-bottom: 8px;
+
+        }
+
+        p {
+
+            font-size: 24px;
+
+            line-height: 1.9;
+
+            margin-bottom: 20px;
+
+        }
+
+        .caixa {
+
+            background: rgba(100, 20, 20, .08);
+
+            border-left: 6px solid #5d0f0f;
+
+            padding: 25px;
+
+            margin-top: 30px;
+            margin-bottom: 30px;
+
+        }
+
+        .citacao {
+
+            font-style: italic;
+
+            font-size: 28px;
+
+            text-align: center;
+
+            padding: 30px;
+
+            margin: 40px 0;
+
+            border-top: 2px solid rgba(80, 80, 80, .2);
+            border-bottom: 2px solid rgba(80, 80, 80, .2);
+
+        }
+
+        .aviso {
+
+            text-align: center;
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 28px;
+
+            color: #5d0f0f;
+
+            margin-top: 40px;
+
+        }
+
+        .assinatura {
+
+            margin-top: 80px;
+
+            text-align: right;
+
+            font-style: italic;
+
+            font-size: 22px;
+
+            color: #4b3625;
+
+        }
+
+        .voltar {
+
+            display: inline-block;
+
+            margin-top: 50px;
+
+            background: #6f4b1e;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 25px;
+
+            font-family: 'Cinzel', serif;
+
+            transition: .3s;
+
+        }
+
+        .voltar:hover {
+
+            background: #a67b3c;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="documento">
+
+        <div class="selo">🌊</div>
+
+        <div class="classificacao">
+            ARQUIVOS PRÉ-IMPERIAIS
+        </div>
+
+        <h1 class="titulo">
+            REGISTRO DA PRIMEIRA FISSURA
+        </h1>
+
+        <div class="subtitulo">
+            Documento restaurado de fragmentos anteriores à fundação de Zaharam
+        </div>
+
+        <h2>Origem do Registro</h2>
+
+        <p>
+            Este documento foi recuperado de ruínas costeiras encontradas
+            sob camadas de pedra muito anteriores aos primeiros reinos conhecidos.
+        </p>
+
+        <p>
+            Grande parte do texto original encontra-se danificada.
+        </p>
+
+        <p>
+            Entretanto, diversos trechos puderam ser reconstruídos por estudiosos
+            da Biblioteca Arcana de Zaharam.
+        </p>
+
+        <h2>Relato Traduzido</h2>
+
+        <div class="caixa">
+
+            <p>
+                "O mar abriu."
+            </p>
+
+            <p>
+                "E aquilo que dormia abaixo observou."
+            </p>
+
+            <p>
+                "As ondas recuaram para além do horizonte."
+            </p>
+
+            <p>
+                "E vozes surgiram onde não havia boca."
+            </p>
+
+        </div>
+
+        <p>
+            Os registros descrevem um fenômeno semelhante
+            a uma ruptura entre planos.
+        </p>
+
+        <p>
+            Testemunhas afirmavam ouvir milhares de vozes simultaneamente,
+            mesmo quando estavam completamente sozinhas.
+        </p>
+
+        <h2>Consequências Registradas</h2>
+
+        <p>
+            Poucos sobreviventes deixaram relatos coerentes.
+        </p>
+
+        <p>
+            Ainda assim, diversas descrições aparecem repetidamente.
+        </p>
+
+        <div class="caixa">
+
+            <p>
+                "Reis enlouqueceram."
+            </p>
+
+            <p>
+                "Sacerdotes abandonaram seus templos."
+            </p>
+
+            <p>
+                "O céu apagou por três noites."
+            </p>
+
+            <p>
+                "Estrelas desapareceram."
+            </p>
+
+            <p>
+                "O oceano respondeu a algo vindo de baixo."
+            </p>
+
+        </div>
+
+        <h2>Comparação com Solania</h2>
+
+        <p>
+            Pesquisadores modernos classificaram este documento
+            como extremamente relevante após os eventos recentes
+            ocorridos em Solania.
+        </p>
+
+        <p>
+            As semelhanças observadas incluem:
+        </p>
+
+        <div class="caixa">
+
+            <p>• Ruptura dimensional.</p>
+
+            <p>• Alterações marítimas anormais.</p>
+
+            <p>• Vozes vindas do vazio.</p>
+
+            <p>• Instabilidade mágica em larga escala.</p>
+
+            <p>• Desaparecimentos inexplicáveis.</p>
+
+            <p>• Corrupção progressiva da realidade.</p>
+
+        </div>
+
+        <h2>Trecho Final Recuperado</h2>
+
+        <div class="citacao">
+
+            "Não selamos a entidade."
+
+            <br><br>
+
+            "Apenas atrasamos sua fome."
+
+        </div>
+
+        <p>
+            Após essa frase, o restante do documento encontra-se destruído.
+        </p>
+
+        <p>
+            Nenhum registro posterior explica quem realizou o ritual,
+            quem foi sacrificado ou o que exatamente permaneceu preso.
+        </p>
+
+        <p>
+            Os estudiosos concordam apenas em um ponto:
+        </p>
+
+        <p>
+            O autor acreditava que a ameaça nunca foi derrotada.
+        </p>
+
+        <p>
+            Somente contida.
+        </p>
+
+        <div class="aviso">
+
+            ⚠ CLASSIFICAÇÃO DE RISCO: EXTREMA ⚠
+
+        </div>
+
+        <div class="assinatura">
+
+            Arquivo Restaurado da Biblioteca Arcana de Zaharam<br>
+            Seção Pré-Imperial — Documento 01
+
+        </div>
+
+        <a href="index.html" class="voltar">
+            Retornar aos Arquivos
+        </a>
+
+    </div>
+
+</body>
+
+</html>
+```

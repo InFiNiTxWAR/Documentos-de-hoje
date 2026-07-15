@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Relatos da Primeira Caravana — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Era das Tribos */
+.tribos-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.tribos-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 1rem;
+}
+
+/* Surgimento */
+.surgimento-destaque {
+    background: rgba(212,160,23,.15);
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.surgimento-destaque h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.surgimento-destaque .registros {
+    margin-top: 15px;
+    text-align: left;
+    display: inline-block;
+}
+
+.surgimento-destaque .registros li {
+    padding: 4px 0;
+    list-style: none;
+}
+
+/* Vale Proibido */
+.vale-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.vale-card p {
+    margin: 8px 0;
+}
+
+/* Fissuras */
+.fissuras-destaque {
+    background: linear-gradient(135deg, rgba(20,12,5,.9), rgba(10,6,3,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.fissuras-destaque h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.fissuras-destaque .caracteristicas {
+    margin-top: 15px;
+    text-align: left;
+    display: inline-block;
+}
+
+.fissuras-destaque .caracteristicas li {
+    padding: 5px 0;
+    list-style: none;
+}
+
+.fissuras-destaque .caracteristicas li::before {
+    content: "🌀";
+    margin-right: 10px;
+}
+
+/* Tiberio */
+.tiberio-card {
+    background: rgba(212,160,23,.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.tiberio-card .nome {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* Manuscritos */
+.manuscritos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.manuscrito-item {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 0.95rem;
+}
+
+/* Diário Perdido */
+.diario-citacao {
+    background: rgba(20,12,5,.85);
+    border-left: 4px solid #d4a017;
+    padding: 25px;
+    margin: 20px 0;
+    font-style: italic;
+}
+
+.diario-citacao p {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+/* Teorias */
+.teorias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.teoria-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.teoria-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.teoria-card .emoji {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.teoria-card strong {
+    color: #f5c542;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Rotas */
+.rotas-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.rotas-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 1rem;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🐫 Relatos da Primeira Caravana</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Harun ibn Salek, Escriba das Dunas Antigas</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 789 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Antes das cidades existirem, existiam viajantes. Antes dos reinos prosperarem, existiam aqueles dispostos a cruzar o desconhecido."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            <strong>Relatos da Primeira Caravana</strong> é uma coletânea de diários, registros e mapas preservados desde os primórdios de Zaharam. A obra narra a lendária jornada da Primeira Caravana, responsável por conectar tribos isoladas, fundar rotas comerciais e descobrir segredos enterrados sob as areias do reino.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Mais do que um registro histórico, o livro é considerado uma das fontes mais antigas sobre os eventos que moldaram Zaharam antes mesmo do surgimento das grandes cidades.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            Diversos trechos do tomo foram recuperados de ruínas próximas às antigas regiões de Solania.
+        </p>
+    </div>
+
+    <!-- A Era das Tribos Errantes -->
+    <div class="section">
+        <h2 class="section-title">🏕️ A Era das Tribos Errantes</h2>
+        <p>Milhares de anos atrás, Zaharam não possuía cidades permanentes. O povo sobrevivia através de:</p>
+        
+        <ul class="tribos-list">
+            <li>Pequenos assentamentos temporários</li>
+            <li>Migrações constantes</li>
+            <li>Comércio limitado entre tribos</li>
+            <li>Caça e coleta nos oásis</li>
+        </ul>
+        
+        <p style="margin-top: 15px;">A travessia entre regiões era extremamente perigosa. Muitas expedições desapareciam sem deixar vestígios.</p>
+    </div>
+
+    <!-- O Surgimento da Primeira Caravana -->
+    <div class="surgimento-destaque">
+        <h3>🐫 O Surgimento da Primeira Caravana</h3>
+        <p>Segundo os registros, um líder chamado <strong>Malik Azhar</strong> reuniu dezenas de famílias, exploradores e mercadores com um objetivo simples:</p>
+        <p><strong>Encontrar um caminho seguro através do deserto.</strong></p>
+        <div class="registros">
+            <p><strong>Sua caravana viajou por meses, registrando:</strong></p>
+            <li>💧 Fontes de água</li>
+            <li>⚠️ Territórios hostis</li>
+            <li>🗺️ Rotas seguras</li>
+            <li>🪨 Formações rochosas</li>
+            <li>🏕️ Locais de descanso</li>
+        </div>
+        <p style="margin-top: 15px;"><em>Esses registros se tornariam a base das futuras rotas comerciais de Zaharam.</em></p>
+    </div>
+
+    <!-- O Vale Proibido -->
+    <div class="section">
+        <h2 class="section-title">🚫 O Vale Proibido</h2>
+        <p>Durante a jornada, a caravana encontrou uma região que não aparecia em nenhum mapa conhecido.</p>
+        
+        <div class="vale-card">
+            <p>📜 Os relatos descrevem:</p>
+            <p>• Rochas negras surgindo da areia</p>
+            <p>• Temperaturas anormalmente baixas</p>
+            <p>• Estranhas luzes durante a noite</p>
+            <p>• Animais evitando a região</p>
+        </div>
+        
+        <p style="margin-top: 10px;"><em>Muitos viajantes acreditavam que o local era amaldiçoado.</em></p>
+    </div>
+
+    <!-- As Primeiras Fissuras -->
+    <div class="section">
+        <h2 class="section-title">🌀 As Primeiras Fissuras</h2>
+        <p>É nesse ponto que os relatos se tornam mais misteriosos. Diversos diários mencionam enormes rachaduras espalhadas pelo deserto.</p>
+        
+        <div class="fissuras-destaque">
+            <h4>Fissuras Profundas</h4>
+            <p>Essas formações receberam esse nome. Segundo os exploradores:</p>
+            <div class="caracteristicas">
+                <li>Pareciam não possuir fundo visível</li>
+                <li>Emitiam brilho azulado durante a noite</li>
+                <li>Produziam ruídos semelhantes a sussurros distantes</li>
+                <li>Alteravam a bússola e os instrumentos de navegação</li>
+            </div>
+        </div>
+        
+        <p><em>Os registros mais antigos sugerem que as Fissuras já existiam muito antes do surgimento dos reinos modernos.</em></p>
+    </div>
+
+    <!-- O Homem das Fissuras -->
+    <div class="section">
+        <h2 class="section-title">👤 O Homem das Fissuras</h2>
+        <p>Entre os documentos mais antigos encontrados próximos às Fissuras existe a menção recorrente de um nome.</p>
+        
+        <div class="tiberio-card">
+            <div class="nome">Tiberio</div>
+            <p>Os registros não concordam sobre quem ele foi.</p>
+            <p>Alguns o descrevem como um poderoso mago vindo de terras distantes.</p>
+            <p>Outros afirmam que era apenas um estudioso obcecado pelos mistérios escondidos sob Zaharam.</p>
+            <p style="margin-top: 10px;"><em>Seu nome aparece em diversos manuscritos ligados às primeiras explorações das Fissuras Profundas.</em></p>
+        </div>
+    </div>
+
+    <!-- Os Manuscritos Perdidos -->
+    <div class="section">
+        <h2 class="section-title">📜 Os Manuscritos Perdidos</h2>
+        <p>Fragmentos atribuídos a Tiberio foram encontrados em ruínas próximas a Solania. Os textos mencionam:</p>
+        
+        <div class="manuscritos-grid">
+            <div class="manuscrito-item">🔮 Fenômenos mágicos desconhecidos</div>
+            <div class="manuscrito-item">⚡ Alterações na energia das Fissuras</div>
+            <div class="manuscrito-item">💎 Cristais luminosos encontrados nas profundezas</div>
+            <div class="manuscrito-item">🏛️ Estruturas impossíveis de explicar</div>
+        </div>
+        
+        <p><em>Grande parte desses registros foi perdida ou destruída ao longo dos séculos.</em></p>
+    </div>
+
+    <!-- O Diário Perdido de Rashid -->
+    <div class="section">
+        <h2 class="section-title">📔 O Diário Perdido de Rashid</h2>
+        <p>Um dos capítulos mais famosos reproduz parte dos escritos do explorador Rashid al-Karim. Ele descreve uma descida parcial a uma Fissura.</p>
+        
+        <div class="diario-citacao">
+            <p>"A luz não vinha do fundo. Ela vinha das próprias paredes."</p>
+            <p>"As pedras brilhavam como estrelas enterradas."</p>
+            <p>"Quanto mais avançávamos, mais o silêncio parecia nos observar."</p>
+        </div>
+        
+        <p><em>O grupo abandonou a exploração após o desaparecimento de dois membros da expedição.</em></p>
+    </div>
+
+    <!-- As Teorias de Tiberio -->
+    <div class="section">
+        <h2 class="section-title">📖 As Teorias de Tiberio</h2>
+        <p>Poucos registros sobreviveram, mas diversos estudiosos acreditam que Tiberio defendia uma teoria considerada absurda para sua época.</p>
+        
+        <div class="diario-citacao">
+            <p>"As Fissuras não são feridas da terra. São janelas para algo que ainda não compreendemos."</p>
+        </div>
+        
+        <p><em>A frase tornou-se famosa entre exploradores e acadêmicos de Zaharam. Até hoje ninguém sabe exatamente o que ela significa.</em></p>
+    </div>
+
+    <!-- O Desaparecimento -->
+    <div class="section">
+        <h2 class="section-title">❓ O Desaparecimento</h2>
+        <p>Os últimos registros relacionados a Tiberio terminam abruptamente.</p>
+        
+        <div class="vale-card">
+            <p>📜 Nenhum documento descreve sua morte.</p>
+            <p>📜 Nenhuma tumba foi encontrada.</p>
+            <p>📜 Nenhum sucessor reivindicou seus estudos.</p>
+        </div>
+        
+        <p>Alguns historiadores acreditam que ele morreu explorando as Fissuras. Outros afirmam que simplesmente desapareceu.</p>
+    </div>
+
+    <!-- Fundação das Rotas Comerciais -->
+    <div class="section">
+        <h2 class="section-title">🗺️ Fundação das Rotas Comerciais</h2>
+        <p>Após anos de viagem, a Primeira Caravana retornou. Os mapas produzidos permitiram:</p>
+        
+        <ul class="rotas-list">
+            <li>Criação das primeiras rotas permanentes</li>
+            <li>Surgimento de entrepostos comerciais</li>
+            <li>Fundação de futuras cidades</li>
+            <li>Desenvolvimento econômico de Zaharam</li>
+        </ul>
+        
+        <p><em>Muitos desses caminhos ainda existem nos dias atuais.</em></p>
+    </div>
+
+    <!-- Teorias dos Historiadores -->
+    <div class="section">
+        <h2 class="section-title">🤔 Teorias dos Historiadores</h2>
+        <p>O livro reúne diversas hipóteses sobre as Fissuras. As mais populares afirmam que elas seriam:</p>
+        
+        <div class="teorias-grid">
+            <div class="teoria-card"><span class="emoji">💥</span><strong>Cicatrizes</strong><span>deixadas por uma antiga catástrofe</span></div>
+            <div class="teoria-card"><span class="emoji">🚪</span><strong>Portais incompletos</strong><span>para outros planos</span></div>
+            <div class="teoria-card"><span class="emoji">🩸</span><strong>Feridas abertas</strong><span>na própria realidade</span></div>
+            <div class="teoria-card"><span class="emoji">⚡</span><strong>Fontes de energia</strong><span>desconhecida</span></div>
+        </div>
+        
+        <p><em>Nenhuma dessas teorias foi comprovada.</em></p>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"Nós partimos procurando caminhos entre as dunas.</p>
+        <p>Encontramos cidades, riquezas e novas terras.</p>
+        <p>Mas também encontramos algo muito mais antigo do que qualquer reino.</p>
+        <p>Algo que já estava esperando sob a areia."</p>
+        <div class="autor">— Trecho atribuído a Malik Azhar</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>História da Primeira Caravana de Zaharam</li>
+            <li>Fundação das rotas comerciais do reino</li>
+            <li>Primeiros registros das Fissuras</li>
+            <li>Lendas e estudos antigos sobre Tiberio</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Historiador</div>
+        <div class="nea">+0,2% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

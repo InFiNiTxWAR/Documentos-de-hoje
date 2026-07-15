@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>O Cultivo da Seiva Dourada — Biblioteca da Raiz Eterna</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(8,12,8,.92), rgba(6,10,6,.96)), url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f4e7c1;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(214,170,83,.3);
+    background: rgba(8,12,8,.7);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.2rem;
+    color: #f5d48b;
+    text-shadow: 0 0 15px rgba(245,212,139,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(214,170,83,.15);
+    border: 1px solid rgba(214,170,83,.4);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #d8c79d;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #e7d7b1;
+    border-left: 3px solid #d6aa53;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,25,15,.7);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(214,170,83,.2);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5d48b;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(214,170,83,.4);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #d6aa53;
+    margin: 25px 0 15px;
+}
+
+/* Cards e grids */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.info-card {
+    background: rgba(20,15,8,.8);
+    border: 1px solid rgba(214,170,83,.3);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.info-card:hover {
+    border-color: #d6aa53;
+    transform: translateY(-3px);
+}
+
+.info-card strong {
+    color: #f5d48b;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.requirements-list, .benefits-list, .pragas-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.requirements-list li, .benefits-list li, .pragas-list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.requirements-list li::before {
+    content: "🌱";
+    position: absolute;
+    left: 0;
+}
+
+.benefits-list li::before {
+    content: "✨";
+    position: absolute;
+    left: 0;
+}
+
+.pragas-list li::before {
+    content: "⚠️";
+    position: absolute;
+    left: 0;
+}
+
+/* Técnicas */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.tech-card {
+    background: rgba(20,15,8,.8);
+    border-left: 3px solid #d6aa53;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.tech-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5d48b;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.tech-card ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.tech-card ul li {
+    padding: 4px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.tech-card ul li::before {
+    content: "•";
+    color: #d6aa53;
+    position: absolute;
+    left: 5px;
+}
+
+/* Árvores */
+.tree-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.tree-item {
+    background: rgba(214,170,83,.1);
+    border: 1px solid rgba(214,170,83,.3);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Ensinamento */
+.ensinamento {
+    background: rgba(30,20,8,.8);
+    border-left: 4px solid #d6aa53;
+    padding: 25px;
+    border-radius: 8px;
+    font-style: italic;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.ensinamento p {
+    font-size: 1.2rem;
+}
+
+.ensinamento .autor {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #d6aa53;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,25,15,.95), rgba(20,12,6,.95));
+    border: 2px solid #d6aa53;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5d48b;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5d48b;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #8f6b2c;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d6aa53;
+    color: #23170d;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(214,170,83,.15);
+    color: #c9b27a;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .tech-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>📖 O Cultivo da Seiva Dourada</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Mestre Botânico Aelor Vensyl</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca da Raiz Eterna — Sylvanora</span>
+        <span class="header-badge"><i>📄</i> 512 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Toda planta pode crescer. Poucas alcançam a perfeição."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🌿 Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            A <strong>Seiva Dourada</strong> é considerada uma das substâncias naturais mais valiosas de Sylvanora. Produzida apenas por árvores antigas ligadas à Raiz Eterna, sua extração e cultivo exigem conhecimento, paciência e profundo respeito pela natureza.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Este tomo reúne séculos de estudos sobre métodos de cultivo mágico, aceleração controlada de crescimento e fortalecimento de plantas através da energia natural do mundo.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            Muitos Druidas afirmam que este livro marcou o início da agricultura arcana moderna.
+        </p>
+    </div>
+
+    <!-- O Que é a Seiva Dourada -->
+    <div class="section">
+        <h2 class="section-title">✨ O Que é a Seiva Dourada?</h2>
+        <p style="margin-bottom: 15px;">A Seiva Dourada não é uma planta, mas uma essência produzida por árvores extremamente antigas.</p>
+        
+        <div class="info-grid">
+            <div class="info-card"><strong>🎨 Coloração</strong>Dourada brilhante</div>
+            <div class="info-card"><strong>🔥 Toque</strong>Emite leve calor</div>
+            <div class="info-card"><strong>💚 Propriedades</strong>Regenerativas</div>
+            <div class="info-card"><strong>⚡ Energia</strong>Absorve energia natural</div>
+            <div class="info-card"><strong>⏳ Preservação</strong>Décadas</div>
+        </div>
+        
+        <p style="margin-top: 15px;">Quando refinada corretamente, torna-se ingrediente para poções, encantamentos e rituais de restauração.</p>
+    </div>
+
+    <!-- Requisitos para o Cultivo -->
+    <div class="section">
+        <h2 class="section-title">🏺 Requisitos para o Cultivo</h2>
+        <p>O livro destaca quatro elementos indispensáveis:</p>
+        
+        <ul class="requirements-list">
+            <li><strong>Solo Vivo</strong> — Terrenos ricos em matéria orgânica e energia natural. Plantas cultivadas em solo morto raramente sobrevivem.</li>
+            <li><strong>Água Pura</strong> — Águas contaminadas enfraquecem o desenvolvimento mágico. Fontes naturais e riachos encantados são recomendados.</li>
+            <li><strong>Luz Natural</strong> — A exposição equilibrada ao sol e à luz lunar fortalece a absorção energética. Excesso de qualquer um dos dois pode prejudicar o crescimento.</li>
+            <li><strong>Harmonia Espiritual</strong> — O estado emocional do cultivador influencia diretamente certas espécies mágicas. Raiva, medo e corrupção podem contaminar plantações sensíveis.</li>
+        </ul>
+    </div>
+
+    <!-- Técnicas Avançadas de Cultivo -->
+    <div class="section">
+        <h2 class="section-title">🔧 Técnicas Avançadas de Cultivo</h2>
+        
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h4>🌿 Crescimento Guiado</h4>
+                <p>Método que utiliza runas naturais para orientar raízes e galhos.</p>
+                <ul>
+                    <li>Crescimento mais uniforme</li>
+                    <li>Maior resistência</li>
+                    <li>Produção superior de frutos e ervas</li>
+                </ul>
+            </div>
+            
+            <div class="tech-card">
+                <h4>💧 Irrigação Arcana</h4>
+                <p>Infusão de pequenas quantidades de energia natural na água utilizada.</p>
+                <ul>
+                    <li>Desenvolvimento acelerado</li>
+                    <li>Melhor qualidade alquímica</li>
+                    <li>Menor risco de doenças vegetais</li>
+                </ul>
+            </div>
+            
+            <div class="tech-card">
+                <h4>🌀 Círculo da Fertilidade</h4>
+                <p>Ritual druídico realizado durante mudanças de estação.</p>
+                <ul>
+                    <li>Aumenta significativamente a produção</li>
+                    <li>Exige extrema precisão</li>
+                    <li>Evitar desequilíbrios naturais</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pragas e Corrupções -->
+    <div class="section">
+        <h2 class="section-title">⚠️ Pragas e Corrupções</h2>
+        <p>Nem todas as ameaças são comuns. Entre os perigos registrados estão:</p>
+        
+        <ul class="pragas-list">
+            <li><strong>Fungos Cinzentos</strong> — Consomem lentamente a energia das plantas.</li>
+            <li><strong>Larvas de Casca</strong> — Insetos que se alimentam das raízes mais profundas.</li>
+            <li><strong>Mofo Sombrio</strong> — Forma rara de corrupção vegetal associada à influência da Fissura.</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><em>Plantas contaminadas devem ser destruídas imediatamente.</em></p>
+    </div>
+
+    <!-- Árvores de Seiva Dourada Conhecidas -->
+    <div class="section">
+        <h2 class="section-title">🌳 Árvores de Seiva Dourada Conhecidas</h2>
+        <p>Espécies capazes de produzir a substância:</p>
+        
+        <div class="tree-list">
+            <span class="tree-item">Carvalho Celestium</span>
+            <span class="tree-item">Árvore da Primeira Primavera</span>
+            <span class="tree-item">Salgueiro de Estelaris</span>
+            <span class="tree-item">Raiz-Anciã de Thalloran</span>
+            <span class="tree-item">Cedro Dourado dos Guardiões</span>
+        </div>
+        
+        <p style="margin-top: 15px;"><em>Todas são protegidas pelas leis de Sylvanora.</em></p>
+    </div>
+
+    <!-- Ensinamento Final -->
+    <div class="ensinamento">
+        <p>"O agricultor comum cultiva alimentos.</p>
+        <p>O verdadeiro guardião cultiva o futuro."</p>
+        <div class="autor">— Mestre Botânico Aelor Vensyl</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="benefits-list">
+            <li>Técnicas avançadas de cultivo mágico</li>
+            <li>Identificação de pragas naturais e arcanas</li>
+            <li>Produção básica de Seiva Dourada</li>
+            <li>Conservação de árvores mágicas</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+30 EXP Herbalista</div>
+        <div class="nea">+0,3% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca da Raiz Eterna • Reino de Sylvanora • Ano 5002<br>
+    "Que as raízes guardem sua passagem."
+</footer>
+
+</body>
+</html>

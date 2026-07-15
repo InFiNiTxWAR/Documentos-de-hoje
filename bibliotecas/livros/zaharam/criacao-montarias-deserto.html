@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Criação de Montarias do Deserto — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Pilares */
+.pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.pilar-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.pilar-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.pilar-card .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pilar-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.pilar-card p {
+    font-size: 0.9rem;
+}
+
+/* Montarias */
+.montarias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.montaria-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.montaria-card:hover {
+    background: rgba(30,18,8,.9);
+    transform: translateX(3px);
+}
+
+.montaria-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.montaria-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.montaria-card .caracteristicas {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+.montaria-card .caracteristicas p {
+    padding: 4px 0;
+}
+
+.montaria-card .utilizacao {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+/* Treinamento */
+.treinamento-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.treinamento-step {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    width: 180px;
+    padding: 20px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.treinamento-step:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.treinamento-step .numero {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f5c542;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.treinamento-step strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.treinamento-step span {
+    font-size: 0.85rem;
+}
+
+/* Comandos */
+.comandos-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.comando-item {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 1rem;
+}
+
+/* Cuidados */
+.cuidados-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.cuidados-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.cuidados-list li::before {
+    content: "🐫";
+    position: absolute;
+    left: 0;
+}
+
+/* Doenças */
+.doencas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.doenca-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.doenca-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.doenca-card .sintomas {
+    margin-top: 8px;
+    padding-left: 15px;
+}
+
+.doenca-card .sintomas p {
+    padding: 2px 0;
+    font-size: 0.85rem;
+}
+
+/* Técnicas de Vínculo */
+.vinculo-list {
+    list-style: none;
+    margin: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.vinculo-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+}
+
+/* Seleção */
+.selecao-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.selecao-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+.advertencia-selecao {
+    margin-top: 15px;
+    font-style: italic;
+    text-align: center;
+    color: #e8a020;
+}
+
+/* Juramento */
+.juramento {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.juramento p {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .montarias-grid { grid-template-columns: 1fr; }
+    .treinamento-steps { flex-direction: column; align-items: center; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🐫 Criação de Montarias do Deserto</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Karim al-Sahir, Mestre dos Domadores de Zaharam</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 398 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Quem domina uma montaria conquista distância. Quem cria uma montaria conquista gerações."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            Desde os primeiros povos de Zaharam, as montarias foram essenciais para a sobrevivência no deserto. Sem elas, o transporte de pessoas, água e mercadorias através das Dunas Eternas seria praticamente impossível.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            <strong>Criação de Montarias do Deserto</strong> reúne conhecimentos acumulados por criadores, domadores e caravaneiros ao longo de séculos, ensinando como selecionar, treinar e cuidar dos animais mais resistentes do reino.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            A obra é considerada leitura obrigatória para qualquer Domador que deseje trabalhar com caravanas ou expedições de longa distância.
+        </p>
+    </div>
+
+    <!-- Os Pilares da Criação -->
+    <div class="section">
+        <h2 class="section-title">🏛️ Os Pilares da Criação</h2>
+        <p>Toda montaria saudável depende de quatro fundamentos.</p>
+        
+        <div class="pilares-grid">
+            <div class="pilar-card">
+                <span class="emoji">🍖</span>
+                <h4>Alimentação</h4>
+                <p>Uma dieta equilibrada garante força e resistência. Animais mal alimentados adoecem rapidamente durante travessias longas.</p>
+            </div>
+            <div class="pilar-card">
+                <span class="emoji">🏋️</span>
+                <h4>Treinamento</h4>
+                <p>Montarias devem aprender a obedecer comandos básicos antes de participar de viagens.</p>
+            </div>
+            <div class="pilar-card">
+                <span class="emoji">😴</span>
+                <h4>Descanso</h4>
+                <p>O excesso de trabalho reduz drasticamente a expectativa de vida dos animais.</p>
+            </div>
+            <div class="pilar-card">
+                <span class="emoji">🤝</span>
+                <h4>Confiança</h4>
+                <p>Uma montaria assustada ou desconfiada pode colocar toda uma caravana em risco.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tipos de Montarias -->
+    <div class="section">
+        <h2 class="section-title">🐫 Tipos de Montarias</h2>
+        
+        <div class="montarias-grid">
+            <div class="montaria-card">
+                <span class="emoji">🐪</span><h4>Camelo Dourado</h4>
+                <p>Considerado o animal mais importante de Zaharam.</p>
+                <div class="caracteristicas">
+                    <p><strong>Características:</strong> Grande resistência, capacidade de armazenar energia por longos períodos, adaptação natural ao calor extremo, temperamento relativamente dócil.</p>
+                </div>
+                <div class="utilizacao">
+                    <p><strong>Utilização:</strong> Transporte de mercadorias, viagens de longa distância, montaria pessoal.</p>
+                </div>
+            </div>
+            
+            <div class="montaria-card">
+                <span class="emoji">🦎</span><h4>Lagarto das Dunas</h4>
+                <p>Utilizado principalmente por exploradores e mensageiros.</p>
+                <div class="caracteristicas">
+                    <p><strong>Características:</strong> Velocidade elevada, boa mobilidade em terrenos difíceis, menor capacidade de carga.</p>
+                </div>
+                <div class="utilizacao">
+                    <p><strong>Utilização:</strong> Reconhecimento, entrega de mensagens, patrulhamento.</p>
+                </div>
+            </div>
+            
+            <div class="montaria-card">
+                <span class="emoji">🐴</span><h4>Cavalo Escarlate</h4>
+                <p>Espécie criada nas regiões das Rochas Escarlates.</p>
+                <div class="caracteristicas">
+                    <p><strong>Características:</strong> Grande velocidade, excelente resistência física, temperamento agressivo.</p>
+                </div>
+                <div class="utilizacao">
+                    <p><strong>Utilização:</strong> Escoltas, patrulhas militares, combate montado.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Primeiras Etapas do Treinamento -->
+    <div class="section">
+        <h2 class="section-title">🦸 Primeiras Etapas do Treinamento</h2>
+        <p>Os filhotes passam por três fases.</p>
+        
+        <div class="treinamento-steps">
+            <div class="treinamento-step">
+                <span class="numero">1</span>
+                <strong>Socialização</strong>
+                <span>Aprendem a conviver com pessoas e outros animais</span>
+            </div>
+            <div class="treinamento-step">
+                <span class="numero">2</span>
+                <strong>Obediência</strong>
+                <span>Desenvolvem resposta a comandos básicos</span>
+            </div>
+            <div class="treinamento-step">
+                <span class="numero">3</span>
+                <strong>Travessia</strong>
+                <span>Primeiro contato com viagens prolongadas</span>
+            </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 15px;"><strong>Comandos básicos:</strong></p>
+        <div class="comandos-list">
+            <span class="comando-item">Parar</span>
+            <span class="comando-item">Seguir</span>
+            <span class="comando-item">Ajoelhar</span>
+            <span class="comando-item">Retornar</span>
+        </div>
+        
+        <p style="text-align: center; margin-top: 15px;"><em>O treinamento deve ser gradual para evitar lesões.</em></p>
+    </div>
+
+    <!-- Cuidados Durante Longas Jornadas -->
+    <div class="section">
+        <h2 class="section-title">🛡️ Cuidados Durante Longas Jornadas</h2>
+        <p>O livro recomenda:</p>
+        
+        <ul class="cuidados-list">
+            <li>Inspecionar patas diariamente</li>
+            <li>Fornecer água em intervalos regulares</li>
+            <li>Evitar sobrecarga excessiva</li>
+            <li>Permitir períodos de descanso</li>
+            <li>Observar sinais de exaustão</li>
+        </ul>
+        
+        <p style="margin-top: 15px; text-align: center;"><em>Uma montaria saudável vale mais do que qualquer carga transportada.</em></p>
+    </div>
+
+    <!-- Doenças Comuns -->
+    <div class="section">
+        <h2 class="section-title">🩺 Doenças Comuns</h2>
+        
+        <div class="doencas-grid">
+            <div class="doenca-card">
+                <h4>🌡️ Febre das Dunas</h4>
+                <p>Provocada por calor excessivo.</p>
+                <div class="sintomas">
+                    <p><strong>Sintomas:</strong> Fraqueza, respiração acelerada, recusa em se alimentar.</p>
+                </div>
+            </div>
+            <div class="doenca-card">
+                <h4>🦶 Podridão da Patada</h4>
+                <p>Infecção causada por ferimentos não tratados.</p>
+            </div>
+            <div class="doenca-card">
+                <h4>😩 Fadiga de Travessia</h4>
+                <p>Extremamente comum em animais utilizados sem descanso adequado.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Técnicas de Vínculo -->
+    <div class="section">
+        <h2 class="section-title">🤝 Técnicas de Vínculo</h2>
+        <p>Os antigos domadores ensinavam que uma montaria não deve obedecer apenas pelo medo. Métodos recomendados:</p>
+        
+        <ul class="vinculo-list">
+            <li>Alimentação manual</li>
+            <li>Treinamento consistente</li>
+            <li>Recompensas após tarefas difíceis</li>
+            <li>Contato frequente</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><em>Animais que confiam em seus condutores costumam apresentar desempenho superior.</em></p>
+    </div>
+
+    <!-- Seleção de Animais -->
+    <div class="section">
+        <h2 class="section-title">🔍 Seleção de Animais</h2>
+        <p>Ao escolher uma montaria, observar:</p>
+        
+        <ul class="selecao-list">
+            <li>Saúde geral</li>
+            <li>Temperamento</li>
+            <li>Resistência física</li>
+            <li>Estado das patas</li>
+            <li>Capacidade de adaptação ao deserto</li>
+        </ul>
+        
+        <div class="advertencia-selecao">
+            O livro alerta que aparência raramente indica qualidade.
+        </div>
+    </div>
+
+    <!-- Juramento dos Domadores -->
+    <div class="juramento">
+        <p><strong>🤝 Juramento dos Domadores</strong></p>
+        <p style="margin-top: 15px;">"Que eu jamais exija de minha montaria aquilo que eu mesmo não suportaria.</p>
+        <p>Que eu respeite sua força.</p>
+        <p>Que eu reconheça seus limites.</p>
+        <p>E que nossas pegadas cruzem as dunas como uma só jornada."</p>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"O deserto é vasto demais para ser atravessado sozinho.</p>
+        <p>Por isso os sábios caminham ao lado de seus companheiros de quatro patas."</p>
+        <div class="autor">— Karim al-Sahir</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Criação de montarias do deserto</li>
+            <li>Treinamento básico e avançado</li>
+            <li>Cuidados veterinários fundamentais</li>
+            <li>Técnicas de vínculo entre domador e animal</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+30 EXP Domador</div>
+        <div class="nea">+0,1% NEA</div>
+    </div>
+
+   
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

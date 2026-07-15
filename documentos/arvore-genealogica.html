@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árvore Genealógica — Casa Zul</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Cormorant Garamond', serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 0;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cabecalho .titulo {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 6px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: #8a6a3a;
+            letter-spacing: 4px;
+            margin-top: 5px;
+        }
+
+        .cabecalho .lema {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #6a4a2a;
+            letter-spacing: 3px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* ============================================
+           ÁRVORE GENEALÓGICA
+        ============================================ */
+        .arvore {
+            position: relative;
+            z-index: 1;
+            padding: 20px 0;
+            overflow-x: auto;
+        }
+
+        .arvore::-webkit-scrollbar {
+            height: 6px;
+        }
+        .arvore::-webkit-scrollbar-track {
+            background: rgba(40,30,15,.2);
+            border-radius: 3px;
+        }
+        .arvore::-webkit-scrollbar-thumb {
+            background: #6a4a2a;
+            border-radius: 3px;
+        }
+
+        .nivel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .nivel-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .membro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 18px;
+            background: rgba(35,28,20,.8);
+            border: 2px solid #6a4a2a;
+            border-radius: 8px;
+            min-width: 120px;
+            transition: all .3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .membro:hover {
+            border-color: #d4a74f;
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(212,167,79,.15);
+        }
+
+        .membro .simbolo {
+            font-size: 1.2rem;
+            color: #6a4a2a;
+            margin-bottom: 4px;
+        }
+
+        .membro .nome {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: #d4c8a0;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .membro .titulo-membro {
+            font-size: 0.7rem;
+            color: #8a6a3a;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .membro .vida {
+            font-size: 0.65rem;
+            color: #5a4a3a;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .membro .status {
+            font-size: 0.6rem;
+            color: #6a3a2a;
+            text-align: center;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        /* Membro Principal - Destaque */
+        .membro.destaque {
+            border-color: #d4a74f;
+            background: rgba(50,40,25,.9);
+            box-shadow: 0 0 30px rgba(212,167,79,.1);
+        }
+
+        .membro.destaque .nome {
+            color: #f0d080;
+        }
+
+        .membro.destaque .simbolo {
+            color: #d4a74f;
+        }
+
+        /* Membro Desaparecido */
+        .membro.desaparecido {
+            border-color: #6a3a2a;
+            border-style: dashed;
+        }
+
+        .membro.desaparecido .nome {
+            color: #8a6a3a;
+        }
+
+        .membro.desaparecido .status {
+            color: #8a4a2a;
+        }
+
+        /* Conexões entre níveis */
+        .conexao {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            position: relative;
+        }
+
+        .conexao .linha {
+            flex: 1;
+            max-width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6a4a2a, transparent);
+            position: relative;
+        }
+
+        .conexao .linha-vertical {
+            width: 2px;
+            height: 30px;
+            background: #6a4a2a;
+            margin: 0 auto;
+        }
+
+        .conexao .linha-vertical-dupla {
+            display: flex;
+            gap: 80px;
+            justify-content: center;
+        }
+
+        .conexao .linha-vertical-dupla .linha-v {
+            width: 2px;
+            height: 30px;
+            background: #6a4a2a;
+        }
+
+        /* === REGISTROS APAGADOS === */
+        .registros-apagados {
+            margin: 35px 0 30px;
+            padding: 20px;
+            border-top: 2px solid rgba(106,74,42,.3);
+            border-bottom: 2px solid rgba(106,74,42,.3);
+            background: rgba(0,0,0,.2);
+            text-align: center;
+        }
+
+        .registros-apagados .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #5a3a2a;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+
+        .registros-apagados .linha-censurada {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 8px 0;
+        }
+
+        .registros-apagados .linha-censurada .bloco {
+            font-family: 'Cinzel', serif;
+            color: #3a2a1a;
+            background: #1a1008;
+            padding: 6px 20px;
+            border: 1px solid #3a2a1a;
+            border-radius: 4px;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            user-select: none;
+        }
+
+        .registros-apagados .linha-censurada .seta {
+            color: #3a2a1a;
+            font-size: 1.2rem;
+        }
+
+        /* === CASA CLANT === */
+        .casa-clant {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(106,74,42,.3);
+            text-align: center;
+        }
+
+        .casa-clant .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #6a4a2a;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .casa-clant .nivel-clant {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .casa-clant .conexao-clant {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 5px 0;
+        }
+
+        .casa-clant .conexao-clant .linha-clant {
+            width: 2px;
+            height: 25px;
+            background: #6a4a2a;
+        }
+
+        .membro.clant {
+            border-color: #5a4a3a;
+        }
+
+        .membro.clant:hover {
+            border-color: #d4a74f;
+        }
+
+        /* Tooltip interativo */
+        .membro .tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20,15,10,.95);
+            border: 1px solid #6a4a2a;
+            padding: 12px 18px;
+            border-radius: 6px;
+            min-width: 180px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #d4c8a0;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,.6);
+        }
+
+        .membro .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #6a4a2a;
+        }
+
+        .membro:hover .tooltip {
+            display: block;
+        }
+
+        .membro .tooltip .tt-titulo {
+            font-family: 'Cinzel', serif;
+            color: #d4a74f;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .membro .tooltip .tt-texto {
+            font-size: 0.75rem;
+            color: #b0a088;
+        }
+
+        .voltar {
+            text-align: center;
+            margin-top: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .voltar a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: rgba(60,50,35,0.6);
+            color: #b0a088;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: .3s;
+            border: 1px solid rgba(160,140,110,0.15);
+            border-radius: 4px;
+        }
+
+        .voltar a:hover {
+            background: rgba(80,70,50,0.8);
+            color: #d4c8b0;
+            border-color: rgba(160,140,110,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 25px; }
+            .cabecalho .titulo { font-size: 2rem; }
+            .nivel { gap: 20px; }
+            .membro { padding: 8px 12px; min-width: 80px; }
+            .membro .nome { font-size: 0.8rem; }
+            .conexao { gap: 40px; }
+            .conexao .linha { max-width: 100px; }
+            .membro .tooltip { min-width: 140px; font-size: 0.7rem; }
+            .registros-apagados .linha-censurada .bloco { font-size: 0.6rem; padding: 4px 12px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 15px; }
+            .cabecalho .titulo { font-size: 1.5rem; letter-spacing: 3px; }
+            .nivel { gap: 12px; flex-direction: column; }
+            .membro { min-width: 100px; width: 100%; max-width: 200px; }
+            .conexao { flex-direction: column; align-items: center; gap: 10px; }
+            .conexao .linha { max-width: 100%; width: 80%; }
+            .conexao .linha-vertical-dupla { gap: 40px; }
+            .membro .tooltip { min-width: 120px; }
+            .casa-clant .nivel-clant { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="cabecalho">
+            <div class="titulo">🏛️ CASA ZUL</div>
+            <div class="subtitulo">"O Conhecimento antes da Espada"</div>
+            <div class="lema">✦ ⋆ ✦ ⋆ ✦ ⋆ ✦</div>
+        </div>
+
+        <div class="arvore">
+
+            <!-- Nível 1: ZHAR-ZUL -->
+            <div class="nivel">
+                <div class="membro destaque">
+                    <span class="simbolo">🜂</span>
+                    <span class="nome">ZHAR-ZUL</span>
+                    <span class="titulo-membro">Patriarca da Casa Zul</span>
+                    <span class="vida">(† 742)</span>
+                    <div class="tooltip">
+                        <div class="tt-titulo">🜂 FUNDADOR</div>
+                        <div class="tt-texto">O primeiro Zul. Fundou a linhagem que moldaria o destino do continente.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conexao">
+                <div class="linha"></div>
+            </div>
+
+            <!-- Nível 2: MAER-ZUL e VALA-ZUL -->
+            <div class="nivel">
+                <div class="membro">
+                    <span class="simbolo">⚒️</span>
+                    <span class="nome">MAER-ZUL</span>
+                    <span class="titulo-membro">Mestre Ferreiro</span>
+                    <span class="vida">(† 781)</span>
+                    <div class="tooltip">
+                        <div class="tt-titulo">⚒️ O FORJADOR</div>
+                        <div class="tt-texto">Forjou as primeiras armas da Casa Zul. Mestre da metalurgia ancestral.</div>
+                    </div>
+                </div>
+
+                <div class="membro">
+                    <span class="simbolo">🔮</span>
+                    <span class="nome">VALA-ZUL</span>
+                    <span class="titulo-membro">Arquimaga</span>
+                    <span class="vida">(† 788)</span>
+                    <div class="tooltip">
+                        <div class="tt-titulo">🔮 A VIDENTE</div>
+                        <div class="tt-texto">Preservou os segredos arcanos da família. Guardiã do Grimório Ardente.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conexao">
+                <div class="linha"></div>
+            </div>
+
+            <!-- Nível 3: ORAN-ZUL -->
+            <div class="nivel">
+                <div class="membro">
+                    <span class="simbolo">⚔️</span>
+                    <span class="nome">ORAN-ZUL</span>
+                    <span class="titulo-membro">General Ifritiano</span>
+                    <span class="vida">(† 819)</span>
+                    <div class="tooltip">
+                        <div class="tt-titulo">⚔️ O GUERREIRO</div>
+                        <div class="tt-texto">Liderou exércitos ifritianos. Uniu forças entre Zul e Silver Rise.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conexao">
+                <div class="linha"></div>
+            </div>
+
+            <!-- Nível 4: THAR-ZUL e KTHAR-ZUL -->
+            <div class="nivel">
+                <div class="membro destaque desaparecido">
+                    <span class="simbolo">📖</span>
+                    <span class="nome">THAR-ZUL</span>
+                    <span class="titulo-membro">Arquimago e Pesquisador</span>
+                    <span class="status">(Desaparecido)</span>
+                    <div class="tooltip">
+                        <div class="tt-titulo">📖 O ESCRITO</div>
+                        <div class="tt-texto">Autor do Grimório Ardente. Desapareceu durante suas pesquisas sobre a Profecia.</div>
+                    </div>
+                </div>
+
+                <div class="membro destaque">
+                    <span class="simbolo">🛡️</span>
+                    <span class="nome">KTHAR-ZUL</span>
+                    <span class="titulo-membro">General Supremo</span>
+                    <span class="vida">(† 831)</span>
+                    <div class="tooltip">
+                        <div class="tt-titulo">🛡️ O PROTETOR</div>
+                        <div class="tt-texto">Último grande defensor da Casa Zul. Morreu defendendo os segredos da família.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REGISTROS APAGADOS -->
+            <div class="registros-apagados">
+                <div class="label">═══ REGISTROS APAGADOS ═══</div>
+                <div class="linha-censurada">
+                    <span class="bloco">███████████</span>
+                    <span class="seta">│</span>
+                    <span class="bloco">███████████</span>
+                    <span class="seta">│</span>
+                    <span class="bloco">███████████</span>
+                    <span class="seta">│</span>
+                    <span class="bloco">███████████</span>
+                    <span class="seta">│</span>
+                    <span class="bloco">███████████</span>
+                    <span class="seta">│</span>
+                    <span class="bloco">███████████</span>
+                </div>
+                <div style="font-size:0.6rem; color:#3a2a1a; margin-top:8px; letter-spacing:2px;">
+                    ✦ Seis gerações removidas da história ✦
+                </div>
+            </div>
+
+            <!-- CASA CLANT -->
+            <div class="casa-clant">
+                <div class="label">═══ CASA CLANT ═══</div>
+
+                <div class="nivel-clant">
+                    <div class="membro clant destaque">
+                        <span class="simbolo">👑</span>
+                        <span class="nome">BARN CLANT</span>
+                        <span class="titulo-membro">Rei de Zaharam</span>
+                        <span class="status">(Registro recuperado parcialmente)</span>
+                        <div class="tooltip">
+                            <div class="tt-titulo">👑 O REI</div>
+                            <div class="tt-texto">Monarca de Zaharam. Seu reinado foi marcado pela Expedição Greyfield.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conexao-clant">
+                    <div class="linha-clant"></div>
+                </div>
+
+                <div style="display:flex; justify-content:center; align-items:center; gap:15px; margin:5px 0;">
+                    <span style="font-size:0.7rem; color:#5a4a3a; letter-spacing:2px;">Casado com</span>
+                    <span style="font-size:1.2rem; color:#5a4a3a;">♥</span>
+                </div>
+
+                <div class="nivel-clant">
+                    <div class="membro clant">
+                        <span class="simbolo">👑</span>
+                        <span class="nome">NIX CLANT</span>
+                        <span class="titulo-membro">Rainha de Zaharam</span>
+                        <div class="tooltip">
+                            <div class="tt-titulo">👑 A RAINHA</div>
+                            <div class="tt-texto">Esposa de Barn Clant. Governante ao lado do rei.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conexao-clant">
+                    <div style="display:flex; gap:60px;">
+                        <div class="linha-clant"></div>
+                        <div class="linha-clant"></div>
+                    </div>
+                </div>
+
+                <div class="nivel-clant">
+                    <div class="membro clant">
+                        <span class="simbolo">⚜️</span>
+                        <span class="nome">KAEL CLANT</span>
+                        <span class="titulo-membro">Herdeiro de Zaharam</span>
+                        <div class="tooltip">
+                            <div class="tt-titulo">⚜️ O HERDEIRO</div>
+                            <div class="tt-texto">Primogênito da Casa Clant. Futuro governante de Zaharam.</div>
+                        </div>
+                    </div>
+
+                    <div class="membro clant destaque">
+                        <span class="simbolo">⚔️</span>
+                        <span class="nome">DRAVON CLANT</span>
+                        <span class="titulo-membro">Príncipe de Zaharam</span>
+                        <div class="tooltip">
+                            <div class="tt-titulo">⚔️ O PRÍNCIPE</div>
+                            <div class="tt-texto">Segundo filho da Casa Clant. Guerreiro e líder militar.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="voltar">
+            <a href="../documentos.html">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

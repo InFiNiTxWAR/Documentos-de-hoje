@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Quinta Tempestade — Livro Proibido — Arquivos Selados de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(5,3,8,.96), rgba(2,1,5,.98)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #7a6a8a;
+    position: relative;
+}
+
+/* Efeito de distorção arcana */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            rgba(100,50,150,.02) 0px,
+            rgba(100,50,150,.02) 2px,
+            transparent 2px,
+            transparent 8px
+        ),
+        radial-gradient(ellipse at 30% 40%, transparent 40%, rgba(80,40,120,.15) 100%);
+    z-index: 0;
+}
+
+/* Header Proibido */
+header {
+    padding: 60px 20px 50px;
+    text-align: center;
+    border-bottom: 2px solid rgba(120,50,180,.5);
+    background: rgba(0,0,0,.85);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 40px rgba(100,50,150,.2);
+}
+
+.forbidden-badge {
+    display: inline-block;
+    padding: 8px 30px;
+    background: linear-gradient(135deg, #3a1a6a, #1a0a3a);
+    border-radius: 0px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #9a7aba;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #5a2a9a;
+    box-shadow: 0 0 15px rgba(100,50,150,.4);
+    text-shadow: 0 0 3px rgba(100,50,150,.5);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #9a7aba;
+    text-shadow: 0 0 20px rgba(120,50,180,.4), 2px 2px 0 #1a0a3a;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(100,50,150,.2);
+    border: 1px solid rgba(120,50,180,.4);
+    border-radius: 0px;
+    font-size: 0.85rem;
+    margin: 8px 5px;
+    color: #8a6aaa;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #9a7aba;
+    border-left: 3px solid #7a3aba;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.epigrafe strong {
+    color: #ba8afa;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Advertência Arcana */
+.advertencia {
+    background: linear-gradient(135deg, rgba(25,10,45,.95), rgba(15,5,30,.98));
+    border: 2px solid #7a3aba;
+    border-radius: 0px;
+    padding: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(100,50,150,.3), inset 0 0 20px rgba(100,50,150,.05);
+}
+
+.advertencia h3 {
+    font-family: 'Cinzel', serif;
+    color: #ba8afa;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.advertencia p {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 10px 0;
+    color: #8a6aaa;
+}
+
+.advertencia .simbolo {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #7a3aba;
+}
+
+/* Páginas Proibidas */
+.forbidden-page {
+    background: linear-gradient(145deg, rgba(10,5,20,.96), rgba(5,2,15,.98));
+    border: 1px solid rgba(100,50,150,.4);
+    border-radius: 0px;
+    padding: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 5px 30px rgba(0,0,0,.8), inset 0 0 30px rgba(100,50,150,.05);
+}
+
+.forbidden-page::before {
+    content: "🌀";
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 0.9rem;
+    color: #7a3aba;
+    opacity: 0.5;
+}
+
+.forbidden-page::after {
+    content: "🌀";
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 0.9rem;
+    color: #7a3aba;
+    opacity: 0.5;
+}
+
+.page-number {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #7a3aba;
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+}
+
+.forbidden-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #ba8afa;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 5px rgba(100,50,150,.3);
+    border-bottom: 1px solid rgba(100,50,150,.3);
+    display: inline-block;
+    width: auto;
+    padding-bottom: 10px;
+}
+
+.forbidden-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: justify;
+    color: #8a6aaa;
+}
+
+.forbidden-text p {
+    margin-bottom: 20px;
+}
+
+.forbidden-text .dropcap {
+    font-size: 3.2rem;
+    font-family: 'Cinzel', serif;
+    float: left;
+    line-height: 0.8;
+    margin-right: 12px;
+    color: #ba8afa;
+    text-shadow: 0 0 5px rgba(100,50,150,.3);
+}
+
+.citacao-proibida {
+    font-style: italic;
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    border-top: 1px solid rgba(100,50,150,.3);
+    border-bottom: 1px solid rgba(100,50,150,.3);
+    font-size: 1rem;
+    color: #aa8aca;
+}
+
+/* Conceito da Quinta Magia */
+.quinta-magia {
+    background: rgba(100,50,150,.1);
+    border-left: 4px solid #7a3aba;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.quinta-magia .titulo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: #ba8afa;
+    margin-bottom: 15px;
+}
+
+/* Os Caminhantes da Tempestade */
+.caminhantes-card {
+    background: linear-gradient(135deg, rgba(25,10,45,.8), rgba(15,5,30,.9));
+    border: 1px solid #7a3aba;
+    padding: 25px;
+    margin: 25px 0;
+    text-align: center;
+}
+
+.caminhantes-card .nome {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #ba8afa;
+    margin-bottom: 15px;
+}
+
+/* Sinais da Tempestade */
+.sinais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.sinal-card {
+    background: rgba(0,0,0,.4);
+    border: 1px solid rgba(100,50,150,.3);
+    padding: 20px;
+    text-align: center;
+}
+
+.sinal-card .sinal-nome {
+    font-family: 'Cinzel', serif;
+    color: #ba8afa;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.sinal-card p {
+    font-size: 0.85rem;
+    color: #8a6aaa;
+}
+
+/* Ritual Inacabado */
+.ritual-card {
+    background: linear-gradient(135deg, rgba(30,10,60,.8), rgba(15,5,35,.9));
+    border: 2px solid #7a3aba;
+    padding: 30px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.ritual-card h4 {
+    color: #ba8afa;
+    margin-bottom: 20px;
+}
+
+.ritual-card .frases {
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.ritual-card .frases p {
+    margin: 8px 0;
+    color: #9a7aba;
+}
+
+/* Motivo da Proibição */
+.motivo-card {
+    background: rgba(0,0,0,.6);
+    border: 1px solid #7a3aba;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+.motivo-card h4 {
+    color: #ba8afa;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.motivo-card ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.motivo-card ul li {
+    background: rgba(100,50,150,.15);
+    padding: 5px 18px;
+    font-size: 0.85rem;
+    color: #8a6aaa;
+}
+
+/* Última Página */
+.ultima-pagina {
+    text-align: center;
+    font-style: italic;
+    font-size: 1rem;
+    margin: 40px 0 30px;
+    padding: 30px;
+    border-top: 2px solid rgba(100,50,150,.3);
+    border-bottom: 2px solid rgba(100,50,150,.3);
+    color: #9a7aba;
+}
+
+/* Conhecimento Proibido */
+.forbidden-knowledge {
+    background: linear-gradient(135deg, rgba(100,50,150,.15), rgba(100,50,150,.05));
+    border: 2px solid #7a3aba;
+    border-radius: 0px;
+    padding: 30px;
+    margin: 40px 0;
+}
+
+.forbidden-knowledge h3 {
+    font-family: 'Cinzel', serif;
+    color: #ba8afa;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.forbidden-knowledge .conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.forbidden-knowledge .conhecimento-list li {
+    background: rgba(100,50,150,.2);
+    border: 1px solid rgba(120,50,180,.4);
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    color: #aa8aca;
+}
+
+/* Recompensa Proibida */
+.recompensa-proibida {
+    background: linear-gradient(135deg, rgba(100,50,150,.2), rgba(10,3,20,.98));
+    border: 2px solid #7a3aba;
+    border-radius: 0px;
+    padding: 35px;
+    text-align: center;
+    margin: 40px 0 20px;
+    box-shadow: 0 0 30px rgba(100,50,150,.2);
+}
+
+.recompensa-proibida h3 {
+    font-family: 'Cinzel', serif;
+    color: #ba8afa;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.recompensa-proibida .exp {
+    font-size: 1.8rem;
+    color: #aa8aca;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.recompensa-proibida .nea {
+    font-size: 1.4rem;
+    color: #ba8afa;
+    margin: 10px 0;
+}
+
+.titulo-oculto {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(100,50,150,.2);
+    border: 1px solid #7a3aba;
+    display: inline-block;
+}
+
+.titulo-oculto span {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: #ba8afa;
+    letter-spacing: 2px;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 30px;
+    background: linear-gradient(135deg, #2a1a4a, #1a0a3a);
+    color: #9a7aba;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    transition: .3s;
+    border: 1px solid #5a2a9a;
+    letter-spacing: 1px;
+}
+
+.voltar a:hover {
+    background: linear-gradient(135deg, #4a2a7a, #2a1a5a);
+    color: #ba8afa;
+    box-shadow: 0 0 20px rgba(100,50,150,.4);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(100,50,150,.2);
+    color: #5a3a7a;
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .forbidden-page { padding: 25px; }
+    .forbidden-title { font-size: 1.2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="forbidden-badge">🌀 PROIBIDO - NÍVEL MÁXIMO 🌀</div>
+    <h1>📕 A Quinta Tempestade</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Autor: Desconhecido</span>
+        <span class="header-badge"><i>🏛️</i> Arquivos Selados de Zaharam</span>
+        <span class="header-badge"><i>⚠️</i> Classificação: PROIBIDO</span>
+        <span class="header-badge"><i>🔒</i> Nível de Restrição: Máximo</span>
+        <span class="header-badge"><i>📄</i> 973 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "As quatro magias moldam o mundo. A quinta molda aquilo que existe <strong>entre os mundos</strong>."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Advertência Arcana -->
+    <div class="advertencia">
+        <h3>⚠️ ADVERTÊNCIA ARCANO ⚠️</h3>
+        <div class="simbolo">◈ ◈ ◈</div>
+        <p>Por ordem de diversos Arquimagos, este tomo foi retirado das bibliotecas públicas há mais de quatro séculos.</p>
+        <p>A posse não autorizada desta obra é considerada crime em diversas regiões do continente.</p>
+        <p>Diversos estudiosos desapareceram após tentar reproduzir os experimentos descritos neste livro.</p>
+        <div class="simbolo">◈ ◈ ◈</div>
+    </div>
+
+    <!-- Introdução -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 INTRODUÇÃO 🌀</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">D</span>urante milhares de anos os magos acreditaram que toda magia derivava de quatro fundamentos: Criação, Destruição, Transformação e Manipulação.</p>
+            <p>Contudo, registros extremamente antigos mencionam uma quinta força. Uma força que não pertence a nenhuma das quatro categorias.</p>
+        </div>
+        
+        <div class="quinta-magia">
+            <div class="titulo">🌀 A Quinta Magia</div>
+            <p>Ou simplesmente:</p>
+            <div class="titulo">🌀 A Quinta Tempestade</div>
+        </div>
+    </div>
+
+    <!-- O Que é a Quinta Magia? -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 O QUE É A QUINTA MAGIA? 🌀</div>
+        
+        <div class="forbidden-text">
+            <p>Nenhum capítulo fornece uma definição completa. Todos os registros concordam apenas em uma coisa:</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "A Quinta Magia não altera a realidade. Ela altera as regras da realidade."
+        </div>
+        
+        <div class="forbidden-text">
+            <p>Enquanto um mago comum cria fogo. Um praticante da Quinta Magia poderia alterar a própria natureza do fogo.</p>
+            <p>Enquanto um mago comum manipula o tempo de um objeto. A Quinta Magia parece interagir com conceitos muito mais profundos.</p>
+        </div>
+    </div>
+
+    <!-- As Primeiras Referências -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 AS PRIMEIRAS REFERÊNCIAS 🌀</div>
+        
+        <div class="forbidden-text">
+            <p>Os registros mais antigos encontrados sob Zaharam descrevem indivíduos conhecidos como:</p>
+        </div>
+        
+        <div class="caminhantes-card">
+            <div class="nome">🌀 Os Caminhantes da Tempestade 🌀</div>
+            <p>Pouco se sabe sobre eles. Os fragmentos sobreviventes afirmam:</p>
+            <p style="margin-top: 10px;">✦ Não pertenciam a nenhum reino.<br>
+            ✦ Não obedeciam a nenhuma escola arcana.<br>
+            ✦ Possuíam conhecimentos impossíveis.<br>
+            ✦ Desapareceram antes da fundação dos primeiros impérios.</p>
+        </div>
+    </div>
+
+    <!-- A Relação com as Fissuras -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 A RELAÇÃO COM AS FISSURAS 🌀</div>
+        
+        <div class="forbidden-text">
+            <p>O livro dedica centenas de páginas às Fissuras.</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Toda Fissura produz ecos da Quinta Tempestade."
+        </div>
+        
+        <div class="forbidden-text">
+            <p><strong>Relatos antigos descrevem:</strong></p>
+            <p>✦ Alterações mágicas inexplicáveis.<br>
+            ✦ Distorções temporárias.<br>
+            ✦ Aparições de lugares inexistentes.<br>
+            ✦ Sonhos compartilhados entre estudiosos.</p>
+            <p>Por esse motivo, as Fissuras foram consideradas locais sagrados por alguns povos e amaldiçoados por outros.</p>
+        </div>
+    </div>
+
+    <!-- Os Estudos de Tharzul -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 OS ESTUDOS DE THARZUL 🌀</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">D</span>iversos capítulos reproduzem anotações atribuídas ao lendário arquimago <strong>Tharzul</strong>.</p>
+            <p>Após décadas explorando ruínas antigas, Tharzul concluiu que a Quinta Magia já havia sido dominada por uma civilização perdida.</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Não encontramos feitiços. Encontramos vestígios de algo muito maior."
+        </div>
+    </div>
+
+    <!-- O Aviso de K'Thar -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 O AVISO DE K'THAR 🌀</div>
+        
+        <div class="forbidden-text">
+            <p>Em uma passagem curiosa, o explorador <strong>K'Thar</strong> menciona ter acompanhado Tharzul durante parte dessas pesquisas.</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "As ruínas não me assustavam. As respostas assustavam."
+        </div>
+        
+        <div class="forbidden-text">
+            <p>K'Thar afirma que abandonou certas expedições após testemunhar fenômenos que preferiu jamais registrar completamente.</p>
+        </div>
+    </div>
+
+    <!-- O Estudioso das Perguntas Impossíveis -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 O ESTUDIOSO DAS PERGUNTAS IMPOSSÍVEIS 🌀</div>
+        
+        <div class="forbidden-text">
+            <p>Em vários trechos aparecem comentários escritos por um pesquisador posterior. O nome surge repetidamente nas margens do manuscrito.</p>
+        </div>
+        
+        <div class="caminhantes-card">
+            <div class="nome">🌀 Tiberio 🌀</div>
+        </div>
+        
+        <div class="forbidden-text">
+            <p>As anotações parecem ter sido feitas séculos após a criação da obra. Entre elas:</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Se a Quinta Magia existe, então existem leis acima das leis."
+        </div>
+        <div class="citacao-proibida">
+            "Se existem leis acima das leis, elas podem ser compreendidas."
+        </div>
+        <div class="citacao-proibida">
+            "E aquilo que pode ser compreendido pode ser alterado."
+        </div>
+        
+        <div class="forbidden-text">
+            <p><em>A identidade do autor dessas observações jamais foi oficialmente confirmada.</em></p>
+        </div>
+    </div>
+
+    <!-- Os Três Sinais da Tempestade -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 OS TRÊS SINAIS DA TEMPESTADE 🌀</div>
+        
+        <div class="forbidden-text">
+            <p>Segundo os registros proibidos, toda manifestação da Quinta Magia é precedida por três sinais.</p>
+        </div>
+        
+        <div class="sinais-grid">
+            <div class="sinal-card">
+                <div class="sinal-nome">🔇 O Silêncio</div>
+                <p>A magia ao redor enfraquece</p>
+            </div>
+            <div class="sinal-card">
+                <div class="sinal-nome">🌀 A Distorção</div>
+                <p>Objetos parecem deslocados da realidade</p>
+            </div>
+            <div class="sinal-card">
+                <div class="sinal-nome">🌙 O Eco</div>
+                <p>Pessoas diferentes começam a relatar os mesmos sonhos</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- O Ritual Inacabado -->
+    <div class="forbidden-page">
+        <div class="page-number">🌀 O RITUAL INACABADO 🌀</div>
+        
+        <div class="forbidden-text">
+            <p>As páginas mais danificadas do livro descrevem algo chamado apenas de:</p>
+        </div>
+        
+        <div class="ritual-card">
+            <h4>🌀 Ritual da Quinta Tempestade 🌀</h4>
+            <p>Quase todo o conteúdo foi removido.</p>
+            <div class="frases">
+                <p>"A barreira não é uma parede."</p>
+                <p>"A passagem já existe."</p>
+                <p>"A Tempestade não deve ser aberta novamente."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- O Motivo da Proibição -->
+    <div class="motivo-card">
+        <h4>⚠️ O Motivo da Proibição ⚠️</h4>
+        <p>Os Arquimagos de Zaharam justificaram a censura afirmando que o livro contém:</p>
+        <ul>
+            <li>Conhecimentos impossíveis de verificar</li>
+            <li>Métodos arcanos perigosos</li>
+            <li>Referências a magias perdidas</li>
+            <li>Informações capazes de ameaçar o equilíbrio mágico</li>
+        </ul>
+        <p style="margin-top: 15px;"><em>Diversos capítulos foram arrancados deliberadamente. Até hoje ninguém sabe por quem.</em></p>
+    </div>
+
+    <!-- Última Página -->
+    <div class="ultima-pagina">
+        <p>A página final contém apenas uma frase. Escrita por uma caligrafia diferente do restante do livro. Muitos acreditam que foi adicionada décadas depois.</p>
+        <div style="margin-top: 20px; font-size: 1.1rem;">
+            "Alguns buscam poder.<br>
+            Alguns buscam conhecimento.<br>
+            Mas sempre existe alguém disposto a desafiar a própria realidade."
+        </div>
+    </div>
+
+    <!-- Conhecimento Proibido -->
+    <div class="forbidden-knowledge">
+        <h3>📕 Conhecimento Proibido Adquirido</h3>
+        <ul class="conhecimento-list">
+            <li>Primeiros registros da Quinta Magia</li>
+            <li>Estudos perdidos de Tharzul</li>
+            <li>Relatos de K'Thar sobre ruínas ancestrais</li>
+            <li>Referências históricas a Tiberio</li>
+            <li>Relação entre as Fissuras e a Quinta Tempestade</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa Proibida -->
+    <div class="recompensa-proibida">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Arcanista</div>
+        <div class="exp">+40 EXP Pesquisador Arcano</div>
+        <div class="nea">+0,5% NEA</div>
+        
+        <div class="titulo-oculto">
+            <span>☠️ Título Oculto Obtido: Sobrevivente da Quinta Tempestade ☠️</span>
+        </div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Arquivos Selados de Zaharam • Zaharam • Ano 5002<br>
+    "Alguns conhecimentos não foram esquecidos. Foram trancados."
+</footer>
+
+</body>
+</html>

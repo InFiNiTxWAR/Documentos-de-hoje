@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRO SERPENTHARI — OBERON DE ELDORIA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Cormorant Garamond', serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .documento {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .documento::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 0;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cabecalho .titulo {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 6px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
+        .cabecalho .classif {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #5a4a3a;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            border: 1px solid #5a4a3a;
+            padding: 4px 15px;
+            display: inline-block;
+            background: rgba(40,30,15,.2);
+            border-radius: 3px;
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 1;
+        }
+
+        .conteudo .secao {
+            margin-bottom: 30px;
+        }
+
+        .conteudo .secao .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(106,74,42,.2);
+            padding-bottom: 5px;
+        }
+
+        .conteudo p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 16px;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-vermelho {
+            color: #b86a4a;
+            font-weight: bold;
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 20px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .conteudo .citacao-dupla {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 20px 30px;
+            border: 1px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.4);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .conteudo .nota {
+            margin-top: 25px;
+            padding: 20px 25px;
+            border-top: 2px solid rgba(106,74,42,.2);
+            border-bottom: 2px solid rgba(106,74,42,.2);
+            background: rgba(0,0,0,.2);
+        }
+
+        .conteudo .nota .label-nota {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #5a4a3a;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .conteudo .nota p {
+            font-size: 0.95rem;
+            color: #b0a088;
+        }
+
+        .conteudo .nota .destaque-nota {
+            color: #c4a86a;
+        }
+
+        .conteudo .lista-titulos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 15px;
+            margin: 10px 0 15px 20px;
+        }
+
+        .conteudo .lista-titulos li {
+            list-style: none;
+            color: #b0a088;
+            font-size: 0.95rem;
+            padding: 4px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .conteudo .lista-titulos li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #6a4a2a;
+        }
+
+        .conteudo .periodo {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+            margin: 10px 0;
+        }
+
+        .conteudo .nome-destaque {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #d4a74f;
+            text-align: center;
+            letter-spacing: 6px;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(212,167,79,.1);
+        }
+
+        .conteudo .linha-decorativa {
+            width: 60px;
+            height: 2px;
+            margin: 20px auto;
+            background: linear-gradient(90deg, transparent, #6a4a2a, transparent);
+        }
+
+        .assinatura {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: right;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .voltar {
+            text-align: center;
+            margin-top: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .voltar a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: rgba(60,50,35,0.6);
+            color: #b0a088;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: .3s;
+            border: 1px solid rgba(160,140,110,0.15);
+            border-radius: 4px;
+        }
+
+        .voltar a:hover {
+            background: rgba(80,70,50,0.8);
+            color: #d4c8b0;
+            border-color: rgba(160,140,110,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .documento { padding: 30px 25px; }
+            .cabecalho .titulo { font-size: 1.8rem; }
+            .conteudo p { font-size: 0.95rem; }
+            .conteudo .nome-destaque { font-size: 1.3rem; }
+            .conteudo .citacao-dupla { font-size: 1rem; padding: 15px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .documento { padding: 20px 15px; }
+            .cabecalho .titulo { font-size: 1.3rem; letter-spacing: 3px; }
+            .conteudo p { font-size: 0.85rem; }
+            .conteudo .nome-destaque { font-size: 1rem; letter-spacing: 3px; }
+            .conteudo .citacao { font-size: 0.9rem; padding: 12px 15px; }
+            .conteudo .citacao-dupla { font-size: 0.9rem; padding: 12px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="documento">
+
+        <div class="cabecalho">
+            <div class="titulo">📜 REGISTRO SERPENTHARI</div>
+            <div class="subtitulo">SOBRE OBERON</div>
+            <div class="classif">Documento preservado no Arquivo da Primeira Memória</div>
+            <div class="classif" style="margin-top:5px;">Classificação: Figuras Históricas do Período Pré-Guerra Escarlate</div>
+        </div>
+
+        <div class="conteudo">
+
+            <div class="secao">
+                <div class="label">📌 NOME REGISTRADO</div>
+                <div class="nome-destaque">OBERON DE ELDORIA</div>
+            </div>
+
+            <div class="secao">
+                <div class="label">🏛️ TÍTULOS CONHECIDOS</div>
+                <ul class="lista-titulos">
+                    <li>Arquimago de Eldoria</li>
+                    <li>Mestre da Academia Arcana</li>
+                    <li>Guardião dos Quatro Elementos</li>
+                    <li>Conselheiro de diversos reinos</li>
+                </ul>
+            </div>
+
+            <div class="secao">
+                <div class="label">📅 PERÍODO DE ATIVIDADE</div>
+                <p class="periodo">Final do século VIII até as primeiras décadas do século IX.</p>
+            </div>
+
+            <div class="secao">
+                <div class="label">📜 REGISTRO HISTÓRICO</div>
+                <p>Poucos mortais acumularam tanto conhecimento quanto Oberon.</p>
+                <p>Seu domínio sobre os elementos, sua compreensão da magia e sua influência sobre as academias transformaram-no em um dos maiores estudiosos já conhecidos.</p>
+                <p>Foi responsável pela formação de inúmeros magos que posteriormente mudariam a história de Elfheim.</p>
+                <p>Entre seus discípulos esteve aquele que mais tarde seria conhecido apenas como <span class="destaque">o Homem Branco</span>.</p>
+                <p>Seu talento jamais foi questionado.</p>
+                <p>Seu caráter, entretanto, sempre dividiu opiniões.</p>
+            </div>
+
+            <div class="secao">
+                <div class="label">🐍 AVALIAÇÃO DOS ARQUIVISTAS DE BLACK MARSH</div>
+                <p>Enquanto grande parte dos reinos descreve Oberon como um sábio benevolente e um herói da magia, os registros serpenthari apresentam uma visão diferente.</p>
+                <p>Para os Arquivistas, Oberon foi um homem extraordinariamente inteligente.</p>
+                <p>Mas <span class="destaque-vermelho">profundamente orgulhoso</span>.</p>
+                <p>Sua confiança frequentemente ultrapassava os limites da prudência. Em diversas ocasiões recusou advertências de outros estudiosos por acreditar que seu conhecimento era suficiente para compreender qualquer fenômeno.</p>
+                <p>Os registros descrevem que Oberon possuía dificuldade em admitir seus próprios erros, preferindo buscar novas respostas em vez de reconhecer seus fracassos.</p>
+                <p>Seu desejo incessante por compreender a magia fazia com que ignorasse os riscos de determinadas pesquisas.</p>
+                <p>Não era movido pela ambição de poder.</p>
+                <p>Era movido pela convicção de que <span class="destaque">nenhuma pergunta deveria permanecer sem resposta</span>.</p>
+                <p>Foi justamente essa característica que o aproximou de eventos que mais tarde ultrapassariam qualquer compreensão humana.</p>
+            </div>
+
+            <div class="secao">
+                <div class="label">📖 TRECHO DOS REGISTROS SERPENTHARI</div>
+                <div class="citacao-dupla">
+                    "Os outros enxergavam um mestre."
+                    <br>
+                    "Nós enxergávamos um homem incapaz de aceitar que existiam mistérios maiores do que ele."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">🌀 SOBRE SUA RELAÇÃO COM TIBERIO</div>
+                <p>Os registros indicam que Oberon encontrou em Tibério um talento jamais visto.</p>
+                <p>Inicialmente acreditou que poderia guiá-lo. Depois acreditou que poderia protegê-lo.</p>
+                <p>Por fim, percebeu que já não possuía poder suficiente para impedir aquilo que estava destinado a acontecer.</p>
+                <div class="citacao">
+                    "Os Arquivistas registram que, nesse momento, Oberon deixou de agir como mestre e passou a agir como homem."
+                </div>
+                <p style="font-style:italic; color:#b0a088;">Foi sua única derrota que jamais tentou esconder.</p>
+            </div>
+
+            <div class="secao">
+                <div class="label">👁️ OBSERVAÇÃO DOS ARQUIVISTAS</div>
+                <div class="citacao">
+                    "Os reinos recordam Oberon por sua genialidade."
+                    <br>
+                    "Nós o recordamos por seu maior erro."
+                    <br>
+                    "Não por ter ensinado magia."
+                    <br>
+                    "Mas por acreditar que todo conhecimento podia ser controlado."
+                </div>
+            </div>
+
+            <div class="nota">
+                <div class="label-nota">📌 NOTA HISTÓRICA</div>
+                <p>Nenhum registro encontrado em Black Marsh descreve Oberon como maligno. Também não o descreve como um herói.</p>
+                <p>Os Arquivistas concluem apenas:</p>
+                <div style="text-align:center; margin-top:12px; font-family:'Cinzel',serif; color:#d4a74f; font-size:1.05rem; line-height:2;">
+                    <span class="destaque-nota">"Foi um homem brilhante."</span>
+                    <br>
+                    <span class="destaque-nota">"Brilhante o bastante para mudar o mundo."</span>
+                    <br>
+                    <span class="destaque-vermelho">"E orgulhoso o bastante para acreditar que poderia impedir as consequências de suas próprias descobertas."</span>
+                </div>
+            </div>
+
+            <div class="assinatura">
+                <p>📜 Arquivo da Primeira Memória — Black Marsh</p>
+                <p style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">Registro Serpenthari — Oberon de Eldoria</p>
+            </div>
+
+        </div>
+
+        <div class="voltar">
+            <a href="../documentos.html">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

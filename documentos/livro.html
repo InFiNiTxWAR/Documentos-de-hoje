@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENTO IV — RELATÓRIO DE EXPLORAÇÃO Nº 09</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0a;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 30% 50%, rgba(10, 30, 20, 0.5), transparent 70%),
+                radial-gradient(ellipse at 70% 40%, rgba(5, 20, 15, 0.4), transparent 60%),
+                #0a0a0a;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.005) 0px, rgba(255, 255, 255, 0.005) 2px, transparent 2px, transparent 4px);
+            z-index: 1;
+            animation: interference 0.5s infinite alternate;
+        }
+
+        @keyframes interference {
+            0% { opacity: 0.15; }
+            100% { opacity: 0.35; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(100, 180, 140, 0.12);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        .document-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .document {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1.3;
+            max-height: 85vh;
+            border-radius: 4px;
+            cursor: default;
+        }
+
+        .document-face {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            overflow-y: auto;
+            padding: 50px 45px;
+            background: #e0e4dc;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(180, 190, 170, 0.04) 0px, rgba(180, 190, 170, 0.04) 2px, transparent 2px, transparent 4px),
+                radial-gradient(ellipse at 40% 30%, rgba(160, 170, 150, 0.06), transparent 70%);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.7),
+                inset 0 0 80px rgba(100, 110, 90, 0.06),
+                inset 0 0 20px rgba(80, 90, 70, 0.04);
+            position: relative;
+        }
+
+        .document-face::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .document-face::-webkit-scrollbar-track {
+            background: rgba(170, 180, 160, 0.2);
+        }
+
+        .document-face::-webkit-scrollbar-thumb {
+            background: rgba(70, 80, 60, 0.3);
+            border-radius: 3px;
+        }
+
+        .document-face::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 4px;
+            background:
+                radial-gradient(ellipse at 5% 4%, rgba(50, 60, 40, 0.10), transparent 35%),
+                radial-gradient(ellipse at 95% 6%, rgba(40, 50, 30, 0.08), transparent 30%),
+                radial-gradient(ellipse at 8% 94%, rgba(45, 55, 35, 0.06), transparent 25%),
+                radial-gradient(ellipse at 92% 90%, rgba(35, 45, 25, 0.05), transparent 20%);
+            z-index: 10;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 50px;
+            right: 45px;
+            z-index: 5;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: rgba(30, 80, 60, 0.85);
+            border: 4px solid rgba(30, 80, 60, 0.6);
+            padding: 6px 16px;
+            transform: rotate(-4deg) scale(1.05);
+            letter-spacing: 2px;
+            background: rgba(30, 80, 60, 0.06);
+            box-shadow: 0 0 30px rgba(30, 80, 60, 0.08);
+            border-radius: 2px;
+            text-align: center;
+        }
+
+        .document-header {
+            border-bottom: 3px solid rgba(50, 60, 40, 0.5);
+            padding-bottom: 18px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .document-header h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.0rem;
+            color: #1a2a1a;
+            letter-spacing: 4px;
+            font-weight: 700;
+        }
+
+        .document-header .sub {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #4a5a4a;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        .document-header .classif {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #2a5a3a;
+            font-weight: bold;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        .doc-content {
+            font-family: 'Georgia', serif;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #1a2a1a;
+        }
+
+        .doc-content p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        .doc-content strong {
+            color: #1a3a2a;
+        }
+
+        .doc-content .rule {
+            border-top: 2px solid rgba(50, 60, 40, 0.3);
+            margin: 25px 0;
+        }
+
+        .doc-content .alert-box {
+            border-left: 4px solid #2a5a3a;
+            padding: 15px 20px;
+            background: rgba(30, 80, 60, 0.04);
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+
+        .doc-content .alert-box strong {
+            color: #2a5a3a;
+        }
+
+        .doc-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .doc-content ul li {
+            padding: 6px 0 6px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .doc-content ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 4px;
+            color: #3a5a4a;
+        }
+
+        .doc-content .ocorrencia {
+            background: rgba(50, 80, 60, 0.04);
+            border-left: 3px solid #3a5a4a;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        .doc-content .ocorrencia .titulo-oc {
+            font-weight: bold;
+            color: #2a3a2a;
+            margin-bottom: 8px;
+        }
+
+        .doc-content .citacao {
+            font-style: italic;
+            color: #2a4a3a;
+            padding: 8px 15px;
+            border-left: 2px solid #3a5a4a;
+            margin: 10px 0;
+        }
+
+        .doc-content .sintomas-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 15px;
+            margin: 15px 0;
+        }
+
+        .doc-content .sintomas-list li {
+            padding: 4px 0 4px 0;
+            list-style: none;
+        }
+
+        .doc-content .sintomas-list li::before {
+            content: "•";
+            color: #3a5a4a;
+            margin-right: 8px;
+        }
+
+        .doc-content .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #3a4a3a;
+            border-top: 1px solid rgba(50, 60, 40, 0.3);
+            padding-top: 20px;
+        }
+
+        .doc-content .anotacao-final {
+            margin-top: 30px;
+            padding: 20px 25px;
+            background: rgba(50, 80, 60, 0.06);
+            border-left: 4px solid #2a3a2a;
+            font-style: italic;
+        }
+
+        .doc-content .anotacao-final .desenho {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #2a3a2a;
+            text-align: center;
+            margin: 12px 0;
+            line-height: 1.4;
+            letter-spacing: 2px;
+        }
+
+        .doc-content .anotacao-final .assinatura-t {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #1a2a1a;
+            letter-spacing: 8px;
+            font-family: 'Georgia', serif;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            font-family: 'Cinzel', serif;
+            background: rgba(40, 30, 20, 0.8);
+            color: #bca77a;
+            border: 1px solid #5e4720;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .back-btn:hover {
+            background: rgba(80, 60, 40, 0.9);
+            color: #f0cb7d;
+            border-color: #d4a74f;
+            box-shadow: 0 0 25px rgba(212, 167, 79, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .document-face { padding: 30px 25px; }
+            .document-header h1 { font-size: 1.5rem; }
+            .doc-content { font-size: 0.95rem; }
+            .stamp { font-size: 1rem; padding: 4px 12px; top: 30px; right: 25px; }
+            .document-wrapper { padding: 10px; }
+            .document { aspect-ratio: 1/1.4; }
+        }
+
+        @media (max-width: 480px) {
+            .document-face { padding: 20px 18px; }
+            .document-header h1 { font-size: 1.1rem; }
+            .doc-content { font-size: 0.85rem; line-height: 1.7; }
+            .stamp { font-size: 0.8rem; padding: 3px 10px; top: 20px; right: 18px; }
+            .doc-content .anotacao-final .desenho { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+    <a href="/documentos.html" class="back-btn">← Voltar aos Arquivos</a>
+
+    <div class="document-wrapper">
+        <div class="document">
+            <div class="document-face" id="front">
+                <div class="stamp">SIGILO<br>ABSOLUTO</div>
+
+                <div class="document-header">
+                    <h1>RELATÓRIO DE EXPLORAÇÃO Nº 09</h1>
+                    <div class="sub">LOCAL ANÔMALO — SETOR Φ</div>
+                    <div class="classif">CLASSIFICAÇÃO: SIGILO ABSOLUTO</div>
+                    <div class="classif">EQUIPE RESPONSÁVEL: EXPLORAÇÃO EXTERNA</div>
+                    <div class="classif" style="color:#3a5a2a;">STATUS: CANCELADO</div>
+                </div>
+
+                <div class="doc-content">
+                    <p><strong>PRIMEIRO CONTATO</strong></p>
+                    <p>Às 03:17 da manhã, uma porta surgiu no Corredor Leste.</p>
+                    <p>Ela não constava em nenhuma planta da estação. Nenhum funcionário lembrava de tê-la visto antes.</p>
+                    <p style="font-style:italic; color:#3a5a4a;">Mesmo assim... ela sempre pareceu estar ali.</p>
+                    <p>Após autorização da Diretoria, a Equipe Φ entrou.</p>
+                    <div class="alert-box">
+                        <p><strong>A porta não conduzia para outra sala.</strong></p>
+                        <p style="margin-top:5px;"><strong>Conduzia para um ambiente externo.</strong></p>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <p><strong>DESCRIÇÃO DO LOCAL</strong></p>
+                    <ul>
+                        <li>Floresta densa.</li>
+                        <li>Silêncio absoluto.</li>
+                        <li>Não havia vento.</li>
+                        <li>Não havia pássaros.</li>
+                        <li>Não havia insetos.</li>
+                    </ul>
+                    <p>Nenhum som. Nem mesmo nossos próprios passos pareciam produzir eco.</p>
+                    <p>A vegetação não correspondia a nenhuma espécie catalogada. As árvores possuíam troncos extremamente altos. As copas desapareciam completamente acima da névoa.</p>
+                    <p style="font-weight:bold; color:#2a3a2a;">Não era possível enxergar o céu.</p>
+
+                    <div class="rule"></div>
+
+                    <p><strong>ANOMALIAS</strong></p>
+                    <ul>
+                        <li>As bússolas deixaram de funcionar.</li>
+                        <li>Relógios marcaram horários diferentes.</li>
+                        <li>Instrumentos de medição registraram valores impossíveis.</li>
+                        <li>A luz parecia vir de todas as direções ao mesmo tempo.</li>
+                        <li>Nenhuma sombra permanecia fixa.</li>
+                    </ul>
+                    <p>Durante a exploração tivemos a constante sensação de estarmos sendo acompanhados.</p>
+                    <p style="font-style:italic; color:#3a5a4a;">Porém... nenhuma presença foi localizada.</p>
+
+                    <div class="rule"></div>
+
+                    <p><strong>OCORRÊNCIA Nº 03</strong></p>
+                    <p>Após aproximadamente vinte minutos de caminhada... todos os membros da equipe afirmaram ouvir passos.</p>
+                    <p>Os passos nunca diminuíam a distância. Mas também nunca se aproximavam.</p>
+                    <div class="citacao">"Era como se algo caminhasse exatamente na velocidade do grupo."</div>
+                    <p style="font-style:italic; color:#3a5a4a;">Sempre atrás.</p>
+
+                    <div class="rule"></div>
+
+                    <p><strong>OCORRÊNCIA Nº 05</strong></p>
+                    <p>Encontramos uma árvore muito diferente das demais. Seu tronco era negro. A superfície parecia pedra. Não madeira.</p>
+                    <p>Nenhuma folha caía ao seu redor. Nenhum animal se aproximava.</p>
+                    <p>Ao tocar sua casca... todos ouviram uma voz.</p>
+                    <p style="font-style:italic; color:#3a5a4a;">Nenhum membro conseguiu repetir exatamente o que escutou. Cada um afirmou ter ouvido algo diferente.</p>
+                    <div class="alert-box">
+                        <p><strong>Mas todos choraram.</strong></p>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <p><strong>OCORRÊNCIA Nº 08</strong></p>
+                    <p>Durante o retorno... o pesquisador Harold desapareceu.</p>
+                    <p>Não houve gritos. Não houve luta. Ele simplesmente deixou de caminhar conosco.</p>
+                    <p>Quando olhamos para trás... não existia mais ninguém.</p>
+                    <ul>
+                        <li>Nem pegadas.</li>
+                        <li>Nem equipamentos.</li>
+                        <li>Nem mochila.</li>
+                    </ul>
+                    <p style="font-style:italic; color:#3a5a4a;">Nada.</p>
+
+                    <div class="rule"></div>
+
+                    <p><strong>REGISTRO DA EQUIPE</strong></p>
+                    <p>Dos oito pesquisadores enviados... apenas cinco retornaram.</p>
+                    <p>Os sobreviventes apresentavam sintomas semelhantes.</p>
+                    <ul class="sintomas-list">
+                        <li>Insônia constante.</li>
+                        <li>Perda parcial da memória.</li>
+                        <li>Sensação contínua de estarem sendo observados.</li>
+                        <li>Episódios de silêncio absoluto diante de árvores.</li>
+                    </ul>
+                    <p>Um deles repetia apenas uma única frase. Durante dias.</p>
+                    <div class="citacao">"Ela não deixa ninguém realmente ir embora."</div>
+
+                    <div class="rule"></div>
+
+                    <p><strong>HIPÓTESE</strong></p>
+                    <p>Inicialmente acreditávamos tratar-se de um ambiente hostil.</p>
+                    <p style="font-weight:bold; color:#2a3a2a;">Hoje acreditamos que estávamos completamente errados.</p>
+                    <p>A floresta não tentou nos atacar.</p>
+                    <div class="alert-box">
+                        <p><strong>Ela apenas... nos observava.</strong></p>
+                        <p style="margin-top:5px;"><strong>Como alguém observa visitantes entrando em sua própria casa.</strong></p>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <p><strong>RECOMENDAÇÃO</strong></p>
+                    <ul>
+                        <li>Toda exploração futura está proibida.</li>
+                        <li style="font-weight:bold; color:#2a3a2a;">Caso uma porta semelhante volte a surgir...</li>
+                        <li style="font-weight:bold; color:#2a3a2a;">ela deverá permanecer fechada.</li>
+                        <li style="font-style:italic; color:#3a5a4a;">Independentemente do que exista do outro lado.</li>
+                    </ul>
+
+                    <div class="rule"></div>
+
+                    <div class="anotacao-final">
+                        <p style="font-size:0.85rem; color:#4a5a4a; font-style:normal; margin-bottom:10px;"><strong>ANOTAÇÃO ENCONTRADA NO VERSO</strong></p>
+                        <p style="font-size:0.9rem; color:#3a4a3a; font-style:normal; margin-bottom:12px;">A folha possui uma segunda caligrafia. Muito mais antiga. Não pertence a nenhum pesquisador da estação. A tinta parece impossível de datar. A frase foi escrita lentamente. Quase com carinho.</p>
+                        <p style="font-style:italic; margin-top:15px; font-size:1.05rem; color:#1a3a2a;">"Vocês deram muitos nomes para este lugar."</p>
+                        <p style="font-style:italic; font-size:1.05rem; color:#1a3a2a;">"Mas nenhum deles é o verdadeiro."</p>
+                        <p style="font-style:italic; font-size:1.05rem; color:#1a3a2a;">"Antes de existir qualquer reino..."</p>
+                        <p style="font-style:italic; font-size:1.05rem; color:#1a3a2a; font-weight:bold;">"...ela já estava aqui."</p>
+                        <div class="desenho">
+                            ═══╗<br>
+                            ║🌲║<br>
+                            ║🌲║<br>
+                            ═══╝<br>
+                            <span style="font-size:0.6rem;">─ · ─ · ─</span>
+                        </div>
+                        <div class="assinatura-t">T.</div>
+                    </div>
+
+                    <div class="signature">
+                        <p><strong>Diretoria Científica</strong></p>
+                        <p>Relatório Nº 09 — Encerrado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 3 + 1) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 22 + 12) + 's';
+                particle.style.animationDelay = (Math.random() * 22) + 's';
+                particle.style.opacity = Math.random() * 0.25 + 0.05;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = 'documentos.html';
+            }
+        });
+
+        console.log('📄 DOCUMENTO IV — RELATÓRIO DE EXPLORAÇÃO Nº 09');
+        console.log('🌲 A floresta observa.');
+        console.log('🔄 Aperte ESC para voltar aos arquivos.');
+    </script>
+
+</body>
+</html>

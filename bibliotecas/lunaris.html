@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Lunaris — Biblioteca Celestial do Arco</title>
+
+   <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+   <style>
+      /* ===========================
+   RESET
+=========================== */
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      html {
+         scroll-behavior: smooth;
+      }
+
+      /* ===========================
+   BODY
+=========================== */
+
+      body {
+
+         min-height: 100vh;
+
+         background:
+            linear-gradient(rgba(8, 12, 8, .88),
+               rgba(6, 10, 6, .94)),
+
+            url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+
+         font-family: 'Cormorant Garamond', serif;
+
+         color: #f4e7c1;
+      }
+
+      /* ===========================
+   HEADER
+=========================== */
+
+      header {
+
+         padding: 70px 20px;
+
+         text-align: center;
+
+         border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+         backdrop-filter: blur(2px);
+      }
+
+      header h1 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 3.8rem;
+
+         color: #f5d48b;
+
+         text-shadow:
+            0 0 15px rgba(245, 212, 139, .35);
+
+         margin-bottom: 15px;
+      }
+
+      header .subtitulo {
+
+         font-size: 1.5rem;
+
+         color: #d8c79d;
+
+         font-style: italic;
+
+         margin-bottom: 20px;
+      }
+
+      header .descricao {
+
+         max-width: 900px;
+
+         margin: auto;
+
+         font-size: 1.25rem;
+
+         line-height: 1.7;
+
+         color: #e7d7b1;
+      }
+
+      /* ===========================
+   CONTAINER
+=========================== */
+
+      .container {
+
+         max-width: 1500px;
+
+         margin: auto;
+
+         padding: 50px 30px 80px;
+      }
+
+      /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+      .secao-titulo {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 2rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         text-shadow:
+            0 0 8px rgba(245, 212, 139, .25);
+      }
+
+      .secao-descricao {
+
+         font-size: 1.2rem;
+
+         color: #d7c59b;
+
+         margin-bottom: 30px;
+
+         line-height: 1.7;
+      }
+
+      .separador {
+
+         margin: 60px 0;
+
+         height: 2px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               rgba(214, 170, 83, .6),
+               transparent);
+      }
+
+      /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+      .grid {
+
+         display: grid;
+
+         grid-template-columns:
+            repeat(auto-fit, minmax(320px, 1fr));
+
+         gap: 25px;
+      }
+
+      /* ===========================
+   CARD PADRÃO
+=========================== */
+
+      .card {
+
+         background:
+            rgba(35, 25, 15, .93);
+
+         border: 2px solid #8f6b2c;
+
+         border-radius: 14px;
+
+         padding: 24px;
+
+         transition: .35s;
+
+         box-shadow:
+            0 0 15px rgba(0, 0, 0, .45);
+
+         position: relative;
+
+         overflow: hidden;
+      }
+
+      .card::before {
+
+         content: "";
+
+         position: absolute;
+
+         top: 0;
+         left: 0;
+
+         width: 100%;
+         height: 4px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d6aa53,
+               transparent);
+      }
+
+      .card:hover {
+
+         transform: translateY(-8px);
+
+         border-color: #d6aa53;
+
+         box-shadow:
+            0 0 25px rgba(214, 170, 83, .20);
+      }
+
+      .card h3 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 1.25rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         line-height: 1.4;
+      }
+
+      .categoria {
+
+         display: inline-block;
+
+         padding: 5px 10px;
+
+         background:
+            rgba(214, 170, 83, .12);
+
+         border: 1px solid rgba(214, 170, 83, .25);
+
+         border-radius: 20px;
+
+         font-size: .95rem;
+
+         margin-bottom: 15px;
+
+         color: #f3d18b;
+      }
+
+      .card p {
+
+         font-size: 1.08rem;
+
+         line-height: 1.6;
+
+         color: #e6d7b5;
+
+         margin-bottom: 18px;
+      }
+
+      /* ===========================
+   RECOMPENSAS
+=========================== */
+
+      .recompensa {
+
+         background:
+            rgba(0, 0, 0, .20);
+
+         border-left: 4px solid #d6aa53;
+
+         padding: 12px;
+
+         border-radius: 6px;
+
+         font-size: 1rem;
+
+         margin-bottom: 18px;
+
+         line-height: 1.6;
+      }
+
+      .recompensa strong {
+
+         color: #f5d48b;
+      }
+
+      /* ===========================
+   BOTÃO
+=========================== */
+
+      .btn {
+
+         width: 100%;
+
+         border: none;
+
+         cursor: pointer;
+
+         padding: 12px;
+
+         font-size: 1rem;
+
+         font-weight: bold;
+
+         font-family: 'Cinzel', serif;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         transition: .3s;
+      }
+
+      .btn:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   LIVRO RARO
+=========================== */
+
+      .raro {
+
+         border: 2px solid #c9a84a;
+
+         background:
+            rgba(58, 44, 18, .94);
+      }
+
+      .raro::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #ffd369,
+               transparent);
+      }
+
+      .raro h3 {
+
+         color: #ffd369;
+      }
+
+      /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+      .proibido {
+
+         background:
+            rgba(30, 10, 10, .95);
+
+         border: 2px solid #8f1d1d;
+      }
+
+      .proibido::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d64040,
+               transparent);
+      }
+
+      .proibido h3 {
+
+         color: #ff7b7b;
+      }
+
+      .proibido .categoria {
+
+         background:
+            rgba(255, 0, 0, .10);
+
+         border-color:
+            rgba(255, 0, 0, .25);
+
+         color: #ff9b9b;
+      }
+
+      .proibido .btn {
+
+         background: #7f1d1d;
+      }
+
+      .proibido .btn:hover {
+
+         background: #c73434;
+
+         color: white;
+      }
+
+      /* ===========================
+   VOLTAR
+=========================== */
+
+      .voltar {
+
+         text-align: center;
+
+         margin-top: 60px;
+      }
+
+      .voltar a {
+
+         display: inline-block;
+
+         text-decoration: none;
+
+         padding: 12px 25px;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         font-family: 'Cinzel', serif;
+
+         transition: .3s;
+      }
+
+      .voltar a:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+
+      footer {
+
+         text-align: center;
+
+         padding: 40px;
+
+         border-top: 1px solid rgba(214, 170, 83, .15);
+
+         color: #c9b27a;
+
+         font-size: 1rem;
+      }
+
+      /* ===========================
+   RESPONSIVO
+=========================== */
+
+      @media(max-width:768px) {
+
+         header h1 {
+            font-size: 2.5rem;
+         }
+
+         header .descricao {
+            font-size: 1.1rem;
+         }
+
+         .secao-titulo {
+            font-size: 1.6rem;
+         }
+
+         .grid {
+            grid-template-columns: 1fr;
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+
+      <h1>🌙 Biblioteca Celestial do Arco</h1>
+
+      <div class="subtitulo">
+         "As estrelas registram aquilo que os homens esquecem."
+      </div>
+
+      <div class="descricao">
+
+         Localizada próxima ao lendário Arco de Lunaris, esta biblioteca abriga
+         mapas astrais, pesquisas dimensionais e registros sobre o Véu.
+         Seus estudiosos dedicam suas vidas aos mistérios do cosmos.
+
+      </div>
+
+   </header>
+
+   <div class="container">
+
+
+      <!-- ====================================================
+📚 LIVROS DISPONÍVEIS
+==================================================== -->
+
+      <h2 class="secao-titulo">📚 Livros Disponíveis</h2>
+
+      <p class="secao-descricao">
+         Localizada aos pés do Arco de Lunaris, esta biblioteca é considerada o maior centro de estudos astrais,
+         gravitacionais e dimensionais do continente.
+         Muitos dos seus corredores são iluminados por cristais lunares que jamais se apagam.
+      </p>
+
+      <div class="grid">
+
+         <div class="card">
+            <h3>📖 Atlas das Constelações Eternas</h3>
+            <div class="categoria">Astrônomo</div>
+            <p>Mapeamento das principais constelações observadas ao longo dos séculos.</p>
+            <div class="recompensa">+35 EXP Astrônomo<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('614')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Introdução à Magia Lunar</h3>
+            <div class="categoria">Mago Lunar</div>
+            <p>Manual utilizado por aprendizes do Arco.</p>
+            <div class="recompensa">+30 EXP Mago Lunar<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('238')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Cristais e Frequências Arcanas</h3>
+            <div class="categoria">Cristalista</div>
+            <p>Estudo das propriedades energéticas dos cristais de Lunaris.</p>
+            <div class="recompensa">+40 EXP Cristalista<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('857')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Navegação Pelas Marés Astrais</h3>
+            <div class="categoria">Navegador</div>
+            <p>Guia utilizado por exploradores oceânicos.</p>
+            <div class="recompensa">+30 EXP Navegador<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('491')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Véu Entre Mundos</h3>
+            <div class="categoria">Pesquisador Dimensional</div>
+            <p>Análise das fronteiras entre realidades.</p>
+            <div class="recompensa">+40 EXP Pesquisador Dimensional<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('726')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Matemática das Estrelas</h3>
+            <div class="categoria">Astrônomo</div>
+            <p>Cálculos utilizados para prever eventos celestes.</p>
+            <div class="recompensa">+35 EXP Astrônomo<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('375')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 As Correntes de Æther</h3>
+            <div class="categoria">Arcanista</div>
+            <p>Funcionamento da energia etérea.</p>
+            <div class="recompensa">+40 EXP Arcanista<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('942')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Manual dos Runistas Celestes</h3>
+            <div class="categoria">Runista</div>
+            <p>Runas utilizadas em Lunaris.</p>
+            <div class="recompensa">+35 EXP Runista<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('183')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Cartografia do Oceano Central</h3>
+            <div class="categoria">Cartógrafo</div>
+            <p>Mapas detalhados das rotas marítimas.</p>
+            <div class="recompensa">+30 EXP Cartógrafo<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('568')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Arquitetura da Sentinela de Æther</h3>
+            <div class="categoria">Arquiteto</div>
+            <p>Projetos utilizados para manter a ilha suspensa.</p>
+            <div class="recompensa">+40 EXP Arquiteto<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('804')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Bestiário das Sombras Lunares</h3>
+            <div class="categoria">Pesquisador Arcano</div>
+            <p>Criaturas associadas ao Véu.</p>
+            <div class="recompensa">+35 EXP Pesquisador Arcano<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('297')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Diplomacia Entre Céu e Mar</h3>
+            <div class="categoria">Diplomata</div>
+            <p>Relações entre Lunaris e os demais reinos.</p>
+            <div class="recompensa">+30 EXP Diplomata<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('653')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Gravidade e Manipulação Arcana</h3>
+            <div class="categoria">Manipulador Gravitacional</div>
+            <p>Fundamentos do controle gravitacional.</p>
+            <div class="recompensa">+40 EXP Manipulador Gravitacional<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('915')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Relatórios da Sentinela Celestial</h3>
+            <div class="categoria">Observador Astral</div>
+            <p>Registros de fenômenos observados no continente.</p>
+            <div class="recompensa">+35 EXP Observador Astral<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('432')">Ler Livro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Brilho do Arco</h3>
+            <div class="categoria">Pesquisador Lunar</div>
+            <p>Compilação dos maiores estudos sobre o Arco de Lunaris.</p>
+            <div class="recompensa">+40 EXP Pesquisador Lunar<br>+0,3% NEA</div>
+            <button class="btn" onclick="abrirLivro('781')">Ler Livro</button>
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <!-- ====================================================
+🌟 LIVRO RARO
+==================================================== -->
+
+      <h2 class="secao-titulo">🌟 Livro Raro</h2>
+
+      <div class="grid">
+
+         <div class="card raro">
+
+            <h3>📘 Os Diários de Arkanis Virel</h3>
+
+            <div class="categoria">
+               Pesquisador Dimensional / Arcanista
+            </div>
+
+            <p>
+               O único conjunto de anotações deixado pelo Guardião do Véu Celeste.
+               Contém estudos sobre o Arco, anomalias dimensionais, estruturas do Véu
+               e teorias sobre mundos paralelos.
+            </p>
+
+            <div class="recompensa">
+               +40 EXP Pesquisador Dimensional<br>
+               +40 EXP Arcanista<br>
+               +0,5% NEA<br><br>
+
+               🌙 Observador do Véu
+            </div>
+
+            <button class="btn" onclick="abrirLivro('999')">
+               Acessar Tomo Raro
+            </button>
+
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <!-- ====================================================
+🔒 OBSERVATÓRIO DO HORIZONTE NEGRO
+==================================================== -->
+
+      <h2 class="secao-titulo">
+         🔒 Observatório do Horizonte Negro
+      </h2>
+
+      <p class="secao-descricao">
+         "Algumas estrelas não iluminam. Elas observam."
+      </p>
+
+      <div class="grid">
+
+         <div class="card proibido">
+            <h3>📕 O Milênio Sob as Estrelas Mortas</h3>
+            <div class="categoria">História Proibida</div>
+            <p>Relatos do período perdido anterior ao surgimento do Arco.</p>
+            <div class="recompensa">
+               +40 EXP Historiador Arcano<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('741')">
+               Acessar Registro
+            </button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 A Quinta Constelação</h3>
+            <div class="categoria">5th Magic</div>
+            <p>Primeiro documento de Lunaris sobre a Quinta Magia.</p>
+            <div class="recompensa">
+               +40 EXP Arcanista<br>
+               +40 EXP Pesquisador Lunar<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('515')">
+               Acessar Registro
+            </button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 Teoria das Realidades Sobrepostas</h3>
+            <div class="categoria">Pesquisa Dimensional</div>
+            <p>Estudo sobre múltiplas versões da realidade.</p>
+            <div class="recompensa">
+               +40 EXP Pesquisador Dimensional<br>
+               +35 EXP Observador Astral<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('303')">
+               Acessar Registro
+            </button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Véu Rasgado</h3>
+            <div class="categoria">Anomalia Dimensional</div>
+            <p>Registro de uma falha dimensional ocorrida há milênios.</p>
+            <div class="recompensa">
+               +40 EXP Pesquisador Dimensional<br>
+               +40 EXP Arcanista<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('848')">
+               Acessar Registro
+            </button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Código Celestial Primordial</h3>
+            <div class="categoria">Classificação Máxima</div>
+            <p>O documento mais perigoso já armazenado em Lunaris.</p>
+            <div class="recompensa">
+               +40 EXP Pesquisador Lunar<br>
+               +40 EXP Arcanista<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('111')">
+               Acessar Registro
+            </button>
+         </div>
+
+      </div>
+
+      <div class="voltar">
+         <a href="../bibliotecas.html">
+            ← Voltar às Bibliotecas
+         </a>
+      </div>
+
+
+
+   </div>
+
+   <footer>
+
+      Biblioteca Celestial do Arco • Reino de Lunaris • Ano 5002
+
+   </footer>
+
+
+   <script>
+
+      const livros = {
+
+         /* ==========================
+            LIVROS DISPONÍVEIS
+         ========================== */
+
+         "614": "livros/atlas_constelacoes_eternas.html",
+         "238": "livros/introducao_magia_lunar.html",
+         "857": "livros/cristais_frequencias_arcanas.html",
+         "491": "livros/navegacao_mares_astrais.html",
+         "726": "livros/veu_entre_mundos.html",
+         "375": "livros/matematica_estrelas.html",
+         "942": "livros/correntes_aether.html",
+         "183": "livros/manual_runistas_celestes.html",
+         "568": "livros/cartografia_oceano_central.html",
+         "804": "livros/arquitetura_sentinela_aether.html",
+         "297": "livros/bestiario_sombras_lunares.html",
+         "653": "livros/diplomacia_ceu_mar.html",
+         "915": "livros/gravidade_manipulacao_arcana.html",
+         "432": "livros/relatorios_sentinela_celestial.html",
+         "781": "livros/brilho_do_arco.html",
+
+         /* ==========================
+            LIVRO RARO
+         ========================== */
+
+         "999": "livros/diarios_arkanis_virel.html",
+
+         /* ==========================
+            OBSERVATÓRIO DO HORIZONTE NEGRO
+         ========================== */
+
+         "741": "livros/milenio_estrelas_mortas.html",
+         "515": "livros/quinta_constelacao.html",
+         "303": "livros/realidades_sobrepostas.html",
+         "848": "livros/veu_rasgado.html",
+         "111": "livros/codigo_celestial_primordial.html"
+
+      };
+
+      function abrirLivro(codigoEsperado) {
+
+         const codigo = prompt(
+            "🌙 Insira o código do tomo celestial:"
+         );
+
+         if (codigo === null) {
+            return;
+         }
+
+         if (codigo === codigoEsperado) {
+
+            window.location.href =
+               livros[codigoEsperado];
+
+         } else {
+
+            alert(
+               "❌ O Observatório Celestial negou sua autorização.\n\nCódigo inválido."
+            );
+
+         }
+
+      }
+
+   </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQUIVO DA PRIMEIRA MEMÓRIA — REGISTRO DA GUERRA ESCARLATE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Cormorant Garamond', serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .documento {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .documento::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 0;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cabecalho .titulo {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 6px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
+        .cabecalho .classif {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #5a4a3a;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            border: 1px solid #5a4a3a;
+            padding: 4px 15px;
+            display: inline-block;
+            background: rgba(40,30,15,.2);
+            border-radius: 3px;
+        }
+
+        .cabecalho .status {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #8a6a3a;
+            margin-top: 8px;
+            letter-spacing: 2px;
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 1;
+        }
+
+        .conteudo .secao {
+            margin-bottom: 30px;
+        }
+
+        .conteudo .secao .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(106,74,42,.2);
+            padding-bottom: 5px;
+        }
+
+        .conteudo .secao .ano {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #d4a74f;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .conteudo p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 16px;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-vermelho {
+            color: #b86a4a;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-dourado {
+            color: #f0d080;
+            font-weight: bold;
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 20px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .conteudo .citacao-central {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 20px 30px;
+            border: 1px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.4);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .conteudo .fenomenos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 15px;
+            margin: 15px 0 20px;
+            justify-content: center;
+        }
+
+        .conteudo .fenomenos .fenomeno-item {
+            padding: 6px 16px;
+            border: 1px solid rgba(106,74,42,.3);
+            border-radius: 4px;
+            background: rgba(40,30,15,.2);
+            font-size: 0.9rem;
+            color: #b0a088;
+            letter-spacing: 1px;
+        }
+
+        .conteudo .linha-decorativa {
+            width: 60px;
+            height: 2px;
+            margin: 20px auto;
+            background: linear-gradient(90deg, transparent, #6a4a2a, transparent);
+        }
+
+        .conteudo .anotacao {
+            margin-top: 25px;
+            padding: 20px 25px;
+            border-left: 3px solid #6a4a2a;
+            background: rgba(40,30,15,.25);
+            border-radius: 4px;
+        }
+
+        .conteudo .anotacao .label-anotacao {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #5a4a3a;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .conteudo .anotacao p {
+            font-size: 0.95rem;
+            color: #b0a088;
+            font-style: italic;
+        }
+
+        .conteudo .anotacao .destaque-anotacao {
+            color: #c4a86a;
+        }
+
+        .conteudo .ultima-anotacao {
+            margin-top: 25px;
+            padding: 20px 25px;
+            border: 1px solid #6a4a2a;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .conteudo .ultima-anotacao p {
+            font-size: 1rem;
+            color: #c4a86a;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .conteudo .ultima-anotacao .destaque-ultima {
+            color: #f0d080;
+            font-weight: bold;
+        }
+
+        .conteudo .conclusao {
+            padding: 20px 25px;
+            border: 1px solid rgba(106,74,42,.3);
+            background: rgba(40,30,15,.2);
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .conteudo .conclusao p {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .assinatura {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: right;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .voltar {
+            text-align: center;
+            margin-top: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .voltar a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: rgba(60,50,35,0.6);
+            color: #b0a088;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: .3s;
+            border: 1px solid rgba(160,140,110,0.15);
+            border-radius: 4px;
+        }
+
+        .voltar a:hover {
+            background: rgba(80,70,50,0.8);
+            color: #d4c8b0;
+            border-color: rgba(160,140,110,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .documento { padding: 30px 25px; }
+            .cabecalho .titulo { font-size: 1.5rem; }
+            .conteudo p { font-size: 0.95rem; }
+            .conteudo .secao .ano { font-size: 1rem; }
+            .conteudo .citacao-central { font-size: 1rem; padding: 15px 20px; }
+            .conteudo .fenomenos .fenomeno-item { font-size: 0.8rem; padding: 4px 12px; }
+        }
+
+        @media (max-width: 480px) {
+            .documento { padding: 20px 15px; }
+            .cabecalho .titulo { font-size: 1.2rem; letter-spacing: 3px; }
+            .conteudo p { font-size: 0.85rem; }
+            .conteudo .secao .ano { font-size: 0.9rem; }
+            .conteudo .citacao { font-size: 0.9rem; padding: 12px 15px; }
+            .conteudo .citacao-central { font-size: 0.9rem; padding: 12px 15px; }
+            .conteudo .ultima-anotacao p { font-size: 0.85rem; }
+            .conteudo .fenomenos { gap: 5px 10px; }
+            .conteudo .fenomenos .fenomeno-item { font-size: 0.7rem; padding: 3px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="documento">
+
+        <div class="cabecalho">
+            <div class="titulo">📜 ARQUIVO DA PRIMEIRA MEMÓRIA</div>
+            <div class="subtitulo">Registro Histórico Nº 0001</div>
+            <div class="classif">Classificação: Conflitos Históricos</div>
+            <div class="status">Estado do Registro: Preservado parcialmente após a Guerra Escarlate</div>
+        </div>
+
+        <div class="conteudo">
+
+            <div class="secao">
+                <div class="label">⚔️ REGISTRO DA GUERRA ESCARLATE</div>
+                <div class="citacao" style="border-left-color:#b86a4a;">
+                    "Nenhuma guerra destruiu tanto quanto aquela cujo verdadeiro motivo foi esquecido."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="ano">📅 Ano 820</div>
+                <div class="label">Primeiros Registros da Profecia</div>
+                <p>Os Arquivistas registram o surgimento de múltiplas interpretações da <span class="destaque">Profecia da Última Aurora</span>.</p>
+                <p>Diversos reinos iniciam buscas por antigos manuscritos.</p>
+                <p>As primeiras disputas diplomáticas relacionadas à profecia são registradas.</p>
+            </div>
+
+            <div class="secao">
+                <div class="ano">📅 Anos 820–829</div>
+                <div class="label">Crescimento da Ordem Ifritiana</div>
+                <p>Grupos militares Ifritianos passam a procurar o indivíduo descrito nas antigas profecias.</p>
+                <p>Registros indicam inúmeras expedições secretas realizadas por diferentes regiões de Elfheim.</p>
+                <div class="citacao">
+                    "As razões permanecem controversas."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="ano">📅 Ano 830</div>
+                <div class="label">A Grande Perseguição</div>
+                <p>A busca pelo <span class="destaque-dourado">Homem Branco</span> torna-se pública.</p>
+                <p>Diversos conflitos regionais são registrados.</p>
+                <p>A tensão política entre os reinos alcança níveis jamais observados.</p>
+                <div class="citacao" style="border-left-color:#d4a74f;">
+                    "Os Arquivistas consideram este o verdadeiro início do colapso continental."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="ano">📅 Ano 830</div>
+                <div class="label">A Queda de Elyndra</div>
+                <p>Durante o confronto ocorrido nas proximidades de Auroram, <span class="destaque-dourado">Elyndra</span> realiza uma magia de Quinta Classe para proteger outra vida.</p>
+                <p>Seu sacrifício torna-se um dos acontecimentos mais importantes da história registrada.</p>
+                <div class="citacao" style="border-left-color:#f0d080;">
+                    "Os registros afirmam que, após sua morte, o Homem Branco jamais voltou a ser o mesmo."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="ano">📅 Ano 830</div>
+                <div class="label">A Queda de Auroram</div>
+                <p>Pouco tempo após os acontecimentos envolvendo Elyndra, Auroram torna-se o principal palco da Guerra Escarlate.</p>
+                <p>Grande parte da cidade é destruída. Milhares desaparecem.</p>
+                <div class="citacao">
+                    "Os registros sobreviventes divergem sobre os responsáveis."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="ano">📅 Ano 831</div>
+                <div class="label">Início da Quinta Tempestade</div>
+                <p>Os céus tornam-se permanentemente escarlates em diversas regiões.</p>
+                <p>Tempestades arcanas passam a atingir todo o continente.</p>
+                <p><span class="destaque-vermelho">Fenômenos impossíveis começam a ser registrados:</span></p>
+                <div class="fenomenos">
+                    <span class="fenomeno-item">🌀 Rupturas na realidade</span>
+                    <span class="fenomeno-item">⏳ Distorções temporais</span>
+                    <span class="fenomeno-item">🌳 Florestas surgindo onde não existiam</span>
+                    <span class="fenomeno-item">🗺️ Regiões inteiras desaparecendo</span>
+                    <span class="fenomeno-item">⚡ Alterações no fluxo natural da mana</span>
+                </div>
+                <div class="citacao">
+                    "Os Arquivistas identificam este período como o início da <span class="destaque">Quinta Tempestade Histórica</span>."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="ano">📅 Anos seguintes</div>
+                <div class="label">O Século Perdido</div>
+                <p>Grande parte da história anterior desaparece.</p>
+                <p>Bibliotecas são destruídas. Registros oficiais são reescritos. Linhagens inteiras deixam de existir nos documentos públicos.</p>
+                <p>A origem de inúmeros acontecimentos torna-se impossível de comprovar.</p>
+                <div class="citacao" style="border-left-color:#f0d080;">
+                    "É durante esse período que Black Marsh funda o <span class="destaque-dourado">Arquivo da Primeira Memória</span>, com o objetivo de preservar aquilo que o restante do continente escolheu apagar."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">🐍 Conclusão dos Arquivistas</div>
+                <div class="conclusao">
+                    <p>"Os povos perguntam quem venceu a Guerra Escarlate."</p>
+                    <p><span class="destaque-dourado">"Nós respondemos que ninguém."</span></p>
+                    <p>"Porque uma guerra onde a própria história foi perdida não produz vencedores."</p>
+                </div>
+            </div>
+
+            <div class="ultima-anotacao">
+                <p>"A Guerra Escarlate não terminou quando as espadas silenciaram.</p>
+                <p><span class="destaque-ultima">Ela terminou quando o mundo deixou de lembrar por que havia começado.</span>"</p>
+            </div>
+
+            <div class="assinatura">
+                <p>📜 Arquivo da Primeira Memória — Black Marsh</p>
+                <p style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">Registro Nº 0001 — Guerra Escarlate</p>
+            </div>
+
+        </div>
+
+        <div class="voltar">
+            <a href="../documentos.html">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

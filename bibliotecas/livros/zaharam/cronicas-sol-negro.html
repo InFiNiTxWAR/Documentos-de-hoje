@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crônicas do Sol Negro — Livro Proibido — Arquivos das Mil Caravanas</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(8,5,3,.96), rgba(3,1,0,.98)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #7a6a4a;
+    position: relative;
+}
+
+/* Efeito de corrupção máxima */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(80,40,20,.04) 0px,
+            rgba(80,40,20,.04) 2px,
+            transparent 2px,
+            transparent 6px
+        ),
+        radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(40,20,5,.2) 100%);
+    z-index: 0;
+}
+
+/* Header Máximo */
+header {
+    padding: 60px 20px 50px;
+    text-align: center;
+    border-bottom: 3px solid rgba(180,100,40,.6);
+    background: rgba(0,0,0,.9);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 50px rgba(180,80,30,.2);
+}
+
+.forbidden-badge {
+    display: inline-block;
+    padding: 10px 35px;
+    background: linear-gradient(135deg, #4a2000, #2a1000);
+    border-radius: 0px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #e8a050;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #b86020;
+    box-shadow: 0 0 20px rgba(180,80,30,.4);
+    text-shadow: 0 0 5px rgba(180,80,30,.5);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.2rem;
+    color: #e8a050;
+    text-shadow: 0 0 25px rgba(180,80,30,.5), 3px 3px 0 #2a1000;
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(100,60,30,.25);
+    border: 1px solid rgba(180,100,40,.5);
+    border-radius: 0px;
+    font-size: 0.85rem;
+    margin: 8px 5px;
+    color: #d09040;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #e8a050;
+    border-left: 4px solid #b86020;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.epigrafe strong {
+    color: #ffb860;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Aviso Máximo */
+.advertencia-maxima {
+    background: linear-gradient(135deg, rgba(40,15,5,.95), rgba(20,8,2,.98));
+    border: 3px solid #b86020;
+    border-radius: 0px;
+    padding: 35px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 0 40px rgba(180,80,30,.3), inset 0 0 30px rgba(180,80,30,.08);
+}
+
+.advertencia-maxima h3 {
+    font-family: 'Cinzel', serif;
+    color: #ffb860;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+}
+
+.advertencia-maxima p {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 10px 0;
+    color: #d09040;
+}
+
+.advertencia-maxima .simbolo {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 15px 0;
+    color: #b86020;
+}
+
+/* Capítulos */
+.chapter {
+    background: linear-gradient(145deg, rgba(12,6,2,.96), rgba(6,3,1,.98));
+    border: 1px solid rgba(180,100,40,.4);
+    border-radius: 0px;
+    padding: 55px;
+    margin-bottom: 60px;
+    position: relative;
+    box-shadow: 0 5px 35px rgba(0,0,0,.9), inset 0 0 30px rgba(180,100,40,.03);
+}
+
+.chapter::before {
+    content: "☀️";
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    font-size: 0.9rem;
+    color: #b86020;
+    opacity: 0.4;
+}
+
+.chapter::after {
+    content: "☀️";
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    font-size: 0.9rem;
+    color: #b86020;
+    opacity: 0.4;
+}
+
+.chapter-number {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #b86020;
+    margin-bottom: 30px;
+    letter-spacing: 6px;
+}
+
+.chapter-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #ffb860;
+    text-align: center;
+    margin-bottom: 35px;
+    text-shadow: 0 0 8px rgba(180,100,40,.3);
+    border-bottom: 2px solid rgba(180,100,40,.4);
+    display: inline-block;
+    width: auto;
+    padding-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+.chapter-text {
+    font-size: 1rem;
+    line-height: 1.85;
+    text-align: justify;
+    color: #c0a060;
+}
+
+.chapter-text p {
+    margin-bottom: 22px;
+}
+
+.chapter-text .dropcap {
+    font-size: 3.5rem;
+    font-family: 'Cinzel', serif;
+    float: left;
+    line-height: 0.8;
+    margin-right: 12px;
+    color: #ffb860;
+    text-shadow: 0 0 5px rgba(180,100,40,.3);
+}
+
+.citacao-maxima {
+    font-style: italic;
+    text-align: center;
+    margin: 35px 0;
+    padding: 25px;
+    border-top: 1px solid rgba(180,100,40,.4);
+    border-bottom: 1px solid rgba(180,100,40,.4);
+    font-size: 1.05rem;
+    color: #e0b070;
+}
+
+/* Era do Sol Negro */
+.solnegro-card {
+    background: linear-gradient(135deg, rgba(60,30,10,.6), rgba(40,20,5,.8));
+    border-left: 5px solid #b86020;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.solnegro-card .titulo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: #ffb860;
+    margin-bottom: 15px;
+}
+
+/* Três Homens */
+.trios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.trio-card {
+    background: rgba(0,0,0,.5);
+    border: 1px solid rgba(180,100,40,.4);
+    padding: 25px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.trio-card:hover {
+    border-color: #b86020;
+    transform: translateY(-3px);
+}
+
+.trio-card .nome {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #ffb860;
+    margin-bottom: 8px;
+}
+
+.trio-card .funcao {
+    font-size: 0.85rem;
+    color: #d09040;
+    margin-bottom: 10px;
+}
+
+.trio-card .desc {
+    font-size: 0.85rem;
+    color: #c0a060;
+}
+
+/* Câmara do Horizonte Morto */
+.horizonte-card {
+    background: linear-gradient(135deg, rgba(50,20,5,.9), rgba(30,10,2,.95));
+    border: 2px solid #b86020;
+    padding: 30px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.horizonte-card h4 {
+    color: #ffb860;
+    margin-bottom: 20px;
+}
+
+/* Último Relatório */
+.relatorio-card {
+    background: rgba(60,30,10,.3);
+    border-left: 4px solid #b86020;
+    padding: 25px;
+    margin: 25px 0;
+    font-style: italic;
+}
+
+/* Última Página */
+.ultima-pagina {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin: 50px 0 40px;
+    padding: 40px;
+    border-top: 2px solid rgba(180,100,40,.4);
+    border-bottom: 2px solid rgba(180,100,40,.4);
+    background: rgba(0,0,0,.4);
+}
+
+.ultima-pagina .frase {
+    font-size: 1.2rem;
+    color: #ffb860;
+    margin-bottom: 15px;
+}
+
+/* Conhecimento Proibido */
+.forbidden-knowledge {
+    background: linear-gradient(135deg, rgba(180,100,40,.15), rgba(100,60,30,.05));
+    border: 2px solid #b86020;
+    border-radius: 0px;
+    padding: 35px;
+    margin: 50px 0;
+}
+
+.forbidden-knowledge h3 {
+    font-family: 'Cinzel', serif;
+    color: #ffb860;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.forbidden-knowledge .conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.forbidden-knowledge .conhecimento-list li {
+    background: rgba(180,100,40,.2);
+    border: 1px solid rgba(180,100,40,.5);
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    color: #e0b070;
+}
+
+/* Recompensa Máxima */
+.recompensa-maxima {
+    background: linear-gradient(135deg, rgba(180,100,40,.25), rgba(10,5,2,.98));
+    border: 3px solid #b86020;
+    border-radius: 0px;
+    padding: 40px;
+    text-align: center;
+    margin: 50px 0 30px;
+    box-shadow: 0 0 40px rgba(180,80,30,.25);
+}
+
+.recompensa-maxima h3 {
+    font-family: 'Cinzel', serif;
+    color: #ffb860;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.recompensa-maxima .exp {
+    font-size: 2rem;
+    color: #e0b070;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.recompensa-maxima .nea {
+    font-size: 1.5rem;
+    color: #ffb860;
+    margin: 12px 0;
+}
+
+.titulo-lendario {
+    margin-top: 30px;
+    padding: 18px;
+    background: rgba(180,100,40,.25);
+    border: 1px solid #b86020;
+    display: inline-block;
+}
+
+.titulo-lendario span {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: #ffb860;
+    letter-spacing: 3px;
+}
+
+.efeito-narrativo {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(180,100,40,.1);
+    border-left: 4px solid #b86020;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #d0a060;
+}
+
+.efeito-narrativo strong {
+    color: #ffb860;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 15px 35px;
+    background: linear-gradient(135deg, #4a2000, #2a1000);
+    color: #e8a050;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    transition: .3s;
+    border: 1px solid #b86020;
+    letter-spacing: 2px;
+}
+
+.voltar a:hover {
+    background: linear-gradient(135deg, #6a3010, #4a2000);
+    color: #ffb860;
+    box-shadow: 0 0 25px rgba(180,100,40,.4);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 45px;
+    border-top: 1px solid rgba(180,100,40,.2);
+    color: #6a3a10;
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .chapter { padding: 25px; }
+    .chapter-title { font-size: 1.3rem; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="forbidden-badge">🔻 CLASSIFICAÇÃO MÁXIMA - EXISTÊNCIA NEGADA 🔻</div>
+    <h1>📕 Crônicas do Sol Negro</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Autor: Desconhecido</span>
+        <span class="header-badge"><i>🏛️</i> Arquivos das Mil Caravanas</span>
+        <span class="header-badge"><i>⚠️</i> Classificação: MÁXIMA</span>
+        <span class="header-badge"><i>🔒</i> Nível de Restrição: Absoluto</span>
+        <span class="header-badge"><i>👁️</i> Status: Existência Negada Oficialmente</span>
+        <span class="header-badge"><i>📄</i> 1.937 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Existem livros proibidos.<br>
+        Existem livros perigosos.<br>
+        E existe <strong>este</strong>."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Aviso Máximo -->
+    <div class="advertencia-maxima">
+        <h3>☀️ AVISO AOS LEITORES ☀️</h3>
+        <div class="simbolo">◈ ◈ ◈</div>
+        <p>Por ordem conjunta dos Arquimagos, Reis, Conselhos Arcanos, Arquivistas Imperiais e das antigas Guildas das Mil Caravanas, este documento jamais deveria ter sobrevivido.</p>
+        <p>Não por conter magia. Não por conter heresia. Mas porque reúne fragmentos de verdades que nunca deveriam ser vistas juntas.</p>
+        <p>Diversas páginas apresentam danos causados deliberadamente. Nomes foram removidos. Datas apagadas. Capítulos inteiros desapareceram.</p>
+        <p><strong>Mesmo assim, o que restou é suficiente para alterar completamente a compreensão da história conhecida.</strong></p>
+        <div class="simbolo">◈ ◈ ◈</div>
+    </div>
+
+    <!-- CAPÍTULO I -->
+    <div class="chapter">
+        <div class="chapter-number">☀️ CAPÍTULO I ☀️</div>
+        <div class="chapter-title">O Mundo Antes dos Reinos</div>
+        
+        <div class="chapter-text">
+            <p><span class="dropcap">O</span>s registros oficiais afirmam que a história começou com as tribos. Os registros antigos afirmam que começou com os impérios. As Crônicas afirmam algo diferente.</p>
+            <p>Segundo os documentos mais antigos encontrados sob Zaharam: nenhum dos reinos atuais foi o primeiro. Nem Zaharam. Nem Sylvanora. Nem Voldhoun. Nem Solharis. Nem Lunaris.</p>
+            <p>Antes deles existiram civilizações tão antigas que sequer possuíam nomes traduzíveis para os idiomas modernos.</p>
+        </div>
+        
+        <div class="solnegro-card">
+            <div class="titulo">🌑 A Era do Sol Negro 🌑</div>
+            <p>Os autores das Crônicas chamam esse período de A Era do Sol Negro.</p>
+        </div>
+        
+        <div class="chapter-text">
+            <p><strong>O Sol Negro</strong> — Nenhum capítulo explica exatamente o que ele era. As descrições variam: uma estrela, uma entidade, um fenômeno, uma magia, um mundo.</p>
+            <p>Todas as versões possuem algo em comum. O Sol Negro desapareceu. E sua queda alterou toda a realidade.</p>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO II -->
+    <div class="chapter">
+        <div class="chapter-number">☀️ CAPÍTULO II ☀️</div>
+        <div class="chapter-title">O Coração do Mundo</div>
+        
+        <div class="chapter-text">
+            <p>Os documentos conectam diretamente três mistérios considerados independentes.</p>
+        </div>
+        
+        <div class="citacao-maxima">
+            As Fissuras. O Coração Enterrado. A Quinta Magia.
+        </div>
+        
+        <div class="chapter-text">
+            <p>Segundo as Crônicas: são manifestações da mesma origem.</p>
+        </div>
+        
+        <div class="citacao-maxima">
+            "As Fissuras são feridas.<br>
+            O Coração era aquilo que existia antes da ferida.<br>
+            E a Quinta Tempestade foi aquilo que abriu o corte."
+        </div>
+        
+        <div class="chapter-text">
+            <p><em>Nenhuma explicação adicional foi encontrada.</em></p>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO III -->
+    <div class="chapter">
+        <div class="chapter-number">☀️ CAPÍTULO III ☀️</div>
+        <div class="chapter-title">A Cidade que Não Pertencia ao Mundo</div>
+        
+        <div class="chapter-text">
+            <p><span class="dropcap">O</span>s capítulos seguintes falam sobre Solânia. Mas não da forma conhecida.</p>
+            <p>Os registros afirmam que Solânia jamais foi construída. <strong>Ela chegou.</strong></p>
+            <p>Os documentos descrevem uma enorme massa territorial surgindo através de uma ruptura dimensional. Montanhas. Ruínas. Florestas petrificadas. Construções desconhecidas. Tudo apareceu simultaneamente.</p>
+        </div>
+        
+        <div class="citacao-maxima">
+            "Os homens chamaram aquilo de milagre. Os sábios chamaram de desastre."
+        </div>
+        
+        <div class="chapter-text">
+            <p><strong>A Fundação Impossível</strong> — Quando exploradores investigaram a base da região, descobriram algo aterrador. Não havia solo. Não havia montanha. Não havia fundação.</p>
+        </div>
+        
+        <div class="solnegro-card">
+            <div class="titulo">🌑 O Vazio 🌑</div>
+            <p>Não uma caverna. Não um abismo. Mas uma ausência completa de matéria.</p>
+        </div>
+        
+        <div class="chapter-text">
+            <p><strong>A Intervenção de Voldhoun</strong> — As Crônicas registram a participação dos maiores engenheiros anões já reunidos. Durante décadas eles construíram estruturas ciclópicas sob a cidade. Runas. Condutores. Núcleos gravitacionais. Mecanismos capazes de sustentar uma região inteira.</p>
+        </div>
+        
+        <div class="citacao-maxima">
+            "Uma ilha arrancada de outra realidade."
+        </div>
+    </div>
+
+    <!-- CAPÍTULO IV -->
+    <div class="chapter">
+        <div class="chapter-number">☀️ CAPÍTULO IV ☀️</div>
+        <div class="chapter-title">Os Três Homens</div>
+        
+        <div class="chapter-text">
+            <p>Entre as centenas de nomes presentes nas Crônicas, apenas três aparecem repetidamente.</p>
+        </div>
+        
+        <div class="trios-grid">
+            <div class="trio-card">
+                <div class="nome">🦁 K'Thar</div>
+                <div class="funcao">O Explorador</div>
+                <div class="desc">Buscava respostas.</div>
+            </div>
+            <div class="trio-card">
+                <div class="nome">🌀 Tharzul</div>
+                <div class="funcao">O Arquimago</div>
+                <div class="desc">Buscava compreensão.</div>
+            </div>
+            <div class="trio-card">
+                <div class="nome">📖 Tiberio</div>
+                <div class="funcao">O Observador</div>
+                <div class="desc">Buscava <strong>algo mais</strong>.</div>
+            </div>
+        </div>
+        
+        <div class="chapter-text">
+            <p>Curiosamente, os três estiveram envolvidos em eventos ligados às Fissuras. Mas de maneiras completamente diferentes.</p>
+            <p><em>Os autores jamais explicam o quê.</em></p>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO V -->
+    <div class="chapter">
+        <div class="chapter-number">☀️ CAPÍTULO V ☀️</div>
+        <div class="chapter-title">O Homem que Fez Perguntas Demais</div>
+        
+        <div class="chapter-text">
+            <p><span class="dropcap">D</span>iversos capítulos parecem ter sido escritos por pessoas que conheceram Tiberio. Nenhum deles o descreve como maligno. Nenhum o descreve como cruel. Nenhum o descreve como conquistador.</p>
+            <p>Todos repetem a mesma característica.</p>
+        </div>
+        
+        <div class="citacao-maxima">
+            "Ele sempre fazia perguntas."
+        </div>
+        
+        <div class="chapter-text">
+            <p>Perguntas sobre o tempo, as Fissuras, os impérios desaparecidos, a Quinta Magia, o Coração.</p>
+        </div>
+        
+        <div class="citacao-maxima">
+            "Entre todos os estudiosos que conheci, Tiberio era o único que nunca aceitava uma resposta incompleta."
+        </div>
+        
+        <div class="citacao-maxima">
+            "Foi nesse momento que começou a nos assustar."
+        </div>
+    </div>
+
+    <!-- CAPÍTULO VI -->
+    <div class="chapter">
+        <div class="chapter-number">☀️ CAPÍTULO VI ☀️</div>
+        <div class="chapter-title">A Câmara do Horizonte Morto</div>
+        
+        <div class="chapter-text">
+            <p>Este é considerado o trecho mais perigoso do documento. As páginas seguintes foram queimadas em quase todas as cópias encontradas. Restaram apenas fragmentos.</p>
+            <p>Segundo o texto: K'Thar, Tharzul e Tiberio teriam participado da mesma expedição. <strong>Uma única vez.</strong></p>
+            <p>O destino era uma estrutura localizada abaixo do Grande Deserto. Próxima ao local indicado pelo mapa do Coração Enterrado.</p>
+        </div>
+        
+        <div class="horizonte-card">
+            <h4>🌑 O grupo encontrou: 🌑</h4>
+            <p>• Um salão impossível</p>
+            <p>• Portões gigantescos</p>
+            <p>• Mecanismos desconhecidos</p>
+            <p>• Símbolos ligados à Quinta Tempestade</p>
+            <p style="margin-top: 15px;"><strong>E algo mais.</strong></p>
+            <p><em>Algo que nenhuma página descreve.</em></p>
+        </div>
+        
+        <div class="citacao-maxima">
+            O trecho seguinte foi completamente removido.
+        </div>
+    </div>
+
+    <!-- CAPÍTULO VII -->
+    <div class="chapter">
+        <div class="chapter-number">☀️ CAPÍTULO VII ☀️</div>
+        <div class="chapter-title">O Último Relatório de Tharzul</div>
+        
+        <div class="relatorio-card">
+            <p>"Agora entendo por que os antigos esconderam isso."</p>
+            <p>"Agora entendo por que as cidades desapareceram."</p>
+            <p>"Agora entendo por que o Sol Negro caiu."</p>
+            <p style="margin-top: 15px;">"E espero que Tiberio jamais descubra o restante."</p>
+        </div>
+        
+        <div class="chapter-text">
+            <p><em>Nenhum documento posterior de Tharzul menciona o assunto novamente.</em></p>
+        </div>
+    </div>
+
+    <!-- CAPÍTULO VIII -->
+    <div class="chapter">
+        <div class="chapter-number">☀️ CAPÍTULO VIII ☀️</div>
+        <div class="chapter-title">O Registro Final</div>
+        
+        <div class="chapter-text">
+            <p>As últimas páginas parecem ter sido escritas por vários autores ao longo de séculos. Alguns acreditam que arquivistas continuaram adicionando informações conforme descobriam novos fragmentos.</p>
+        </div>
+        
+        <div class="citacao-maxima">
+            "K'Thar morreu sem encontrar todas as respostas."<br>
+            "Tharzul morreu escondendo parte delas."<br>
+            "Tiberio continuou procurando."<br>
+            <p style="margin-top: 15px;">"Talvez tenha sido esse o início de tudo."</p>
+        </div>
+    </div>
+
+    <!-- Última Página -->
+    <div class="ultima-pagina">
+        <div class="frase">"Se o Sol Negro despertar novamente, os reinos não cairão."</div>
+        <div class="frase">"Eles descobrirão que já caíram há muito tempo."</div>
+        <p style="margin-top: 20px;">Escrita com tinta diferente do restante do manuscrito.</p>
+    </div>
+
+    <!-- Conhecimento Proibido -->
+    <div class="forbidden-knowledge">
+        <h3>📕 Conhecimento Proibido Adquirido</h3>
+        <ul class="conhecimento-list">
+            <li>A Era do Sol Negro</li>
+            <li>A ligação entre as Fissuras, o Coração Enterrado e a Quinta Magia</li>
+            <li>A verdadeira natureza de Solânia</li>
+            <li>A participação conjunta de K'Thar, Tharzul e Tiberio</li>
+            <li>Fragmentos da história anterior aos impérios conhecidos</li>
+            <li>O mistério do Horizonte Morto</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa Máxima -->
+    <div class="recompensa-maxima">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Pesquisador Arcano</div>
+        <div class="exp">+40 EXP Historiador Arcano</div>
+        <div class="nea">+0,5% NEA</div>
+        
+        <div class="titulo-lendario">
+            <span>☠️ Título Lendário Obtido: Portador das Crônicas do Sol Negro ☠️</span>
+        </div>
+        
+        <div class="efeito-narrativo">
+            <strong>⚠️ Efeito Narrativo</strong><br>
+            Após ler este livro, o personagem passa a compreender que a história oficial do continente está incompleta. Certos eventos, ruínas e artefatos podem revelar informações adicionais relacionadas ao Sol Negro, ao Coração Enterrado e à Quinta Tempestade.
+        </div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Arquivos das Mil Caravanas • Zaharam • Ano 5002<br>
+    "Alguns conhecimentos não foram esquecidos. Foram negados."
+</footer>
+
+</body>
+</html>

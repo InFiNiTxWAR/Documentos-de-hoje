@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arquivo Central de Elyndor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+min-height:100vh;
+
+background:
+linear-gradient(rgba(8,8,8,.85), rgba(8,8,8,.92)),
+url('https://images.unsplash.com/photo-1507842217343-583bb7270b66');
+
+background-size:cover;
+background-position:center;
+
+font-family:'Cormorant Garamond', serif;
+color:#f2e2b8;
+}
+
+header{
+text-align:center;
+padding:80px 20px;
+}
+
+header h1{
+font-family:'Cinzel', serif;
+font-size:4rem;
+color:#f5d48b;
+text-shadow:0 0 20px rgba(255,215,120,.4);
+}
+
+header p{
+margin-top:20px;
+font-size:1.4rem;
+color:#d8c79d;
+max-width:900px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px 40px 80px;
+}
+
+.menu{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:40px;
+margin-top:40px;
+}
+
+.card{
+
+background:rgba(35,25,15,.92);
+
+border:2px solid #8f6b2c;
+
+padding:40px;
+
+border-radius:14px;
+
+text-align:center;
+
+transition:.3s;
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+border-color:#d6aa53;
+
+box-shadow:
+0 0 25px rgba(214,170,83,.3);
+
+}
+
+.card h2{
+font-family:'Cinzel', serif;
+font-size:2rem;
+margin-bottom:15px;
+color:#f5d48b;
+}
+
+.card p{
+font-size:1.2rem;
+margin-bottom:25px;
+}
+
+.card a{
+
+display:inline-block;
+
+padding:12px 25px;
+
+background:#8f6b2c;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+border-radius:8px;
+
+transition:.3s;
+}
+
+.card a:hover{
+background:#d6aa53;
+color:#22160c;
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#c9b27a;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<h1>Arquivo Central do Continente</h1>
+
+<p>
+Todo conhecimento preservado pelos reinos encontra-se catalogado neste grande arquivo.
+Explore bibliotecas ancestrais, registros históricos, documentos públicos e segredos esquecidos.
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="menu">
+
+<div class="card">
+
+<h2>📚 Bibliotecas</h2>
+
+<p>
+Acesse os grandes acervos de conhecimento mantidos pelos reinos do continente.
+</p>
+
+<a href="bibliotecas.html">
+Entrar
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h2>📜 Arquivos Públicos</h2>
+
+<p>
+Documentos liberados para consulta geral, relatórios históricos e registros conhecidos.
+</p>
+
+<a href="documentos.html">
+Entrar
+</a>
+
+</div>
+
+</div>
+<div class="card">
+
+<h2>📖 Progresso de Leitura</h2>
+
+<p>
+Gerencie seus livros em leitura, acompanhe páginas concluídas, registre novas obras e visualize seu progresso em toda a Biblioteca do Continente.
+</p>
+
+<a href="biblioteca-progresso.html">
+Entrar
+</a>
+
+</div>
+</div>
+
+<footer>
+Arquivo Central • Ano 5002
+</footer>
+
+</body>
+</html>
+

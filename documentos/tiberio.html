@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENTO III — DOSSIÊ DE INVESTIGAÇÃO — TIBERIO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0a;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 35% 45%, rgba(30, 20, 40, 0.5), transparent 70%),
+                radial-gradient(ellipse at 65% 55%, rgba(20, 10, 30, 0.4), transparent 60%),
+                #0a0a0a;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.006) 0px, rgba(255, 255, 255, 0.006) 2px, transparent 2px, transparent 4px);
+            z-index: 1;
+            animation: interference 0.5s infinite alternate;
+        }
+
+        @keyframes interference {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.4; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(150, 130, 200, 0.15);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        .document-wrapper {
+            position: relative;
+            z-index: 2;
+            perspective: 1800px;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .document {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1.3;
+            max-height: 85vh;
+            border-radius: 4px;
+            cursor: default;
+        }
+
+        .document-face {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            overflow-y: auto;
+            padding: 50px 45px;
+            background: #ece4dc;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(190, 180, 170, 0.04) 0px, rgba(190, 180, 170, 0.04) 2px, transparent 2px, transparent 4px),
+                radial-gradient(ellipse at 30% 40%, rgba(160, 150, 140, 0.06), transparent 70%);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.7),
+                inset 0 0 80px rgba(100, 90, 80, 0.06),
+                inset 0 0 20px rgba(80, 70, 60, 0.04);
+            position: relative;
+        }
+
+        .document-face::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .document-face::-webkit-scrollbar-track {
+            background: rgba(180, 170, 160, 0.2);
+        }
+
+        .document-face::-webkit-scrollbar-thumb {
+            background: rgba(80, 70, 60, 0.3);
+            border-radius: 3px;
+        }
+
+        .document-face::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 4px;
+            background:
+                radial-gradient(ellipse at 6% 4%, rgba(60, 50, 40, 0.10), transparent 35%),
+                radial-gradient(ellipse at 94% 8%, rgba(50, 40, 30, 0.08), transparent 30%),
+                radial-gradient(ellipse at 8% 92%, rgba(55, 45, 35, 0.06), transparent 25%),
+                radial-gradient(ellipse at 92% 90%, rgba(45, 35, 25, 0.05), transparent 20%);
+            z-index: 10;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 50px;
+            right: 45px;
+            z-index: 5;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: rgba(120, 30, 40, 0.85);
+            border: 4px solid rgba(120, 30, 40, 0.6);
+            padding: 6px 16px;
+            transform: rotate(-6deg) scale(1.05);
+            letter-spacing: 2px;
+            background: rgba(120, 30, 40, 0.06);
+            box-shadow: 0 0 30px rgba(120, 30, 40, 0.08);
+            border-radius: 2px;
+            text-align: center;
+        }
+
+        .document-header {
+            border-bottom: 3px solid rgba(60, 50, 40, 0.5);
+            padding-bottom: 18px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .document-header h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.2rem;
+            color: #1a1a2a;
+            letter-spacing: 4px;
+            font-weight: 700;
+        }
+
+        .document-header .sub {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #4a4a5a;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        .document-header .classif {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #6a2a3a;
+            font-weight: bold;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        .doc-content {
+            font-family: 'Georgia', serif;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #1a1a2a;
+        }
+
+        .doc-content p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        .doc-content strong {
+            color: #2a1a3a;
+        }
+
+        .doc-content .rule {
+            border-top: 2px solid rgba(60, 50, 40, 0.3);
+            margin: 25px 0;
+        }
+
+        .doc-content .alert-box {
+            border-left: 4px solid #5a2a3a;
+            padding: 15px 20px;
+            background: rgba(120, 30, 40, 0.04);
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+
+        .doc-content .alert-box strong {
+            color: #5a2a3a;
+        }
+
+        .doc-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .doc-content ul li {
+            padding: 6px 0 6px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .doc-content ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 4px;
+            color: #5a4a6a;
+        }
+
+        .doc-content .ocurrencia {
+            background: rgba(80, 60, 100, 0.04);
+            border-left: 3px solid #5a4a6a;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        .doc-content .ocurrencia .titulo-oc {
+            font-weight: bold;
+            color: #3a2a4a;
+            margin-bottom: 8px;
+        }
+
+        .doc-content .citacao {
+            font-style: italic;
+            color: #3a2a4a;
+            padding: 8px 15px;
+            border-left: 2px solid #5a4a6a;
+            margin: 10px 0;
+        }
+
+        .doc-content .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #3a3a4a;
+            border-top: 1px solid rgba(60, 50, 40, 0.3);
+            padding-top: 20px;
+        }
+
+        .doc-content .manuscrito-final {
+            margin-top: 30px;
+            padding: 20px 25px;
+            background: rgba(80, 60, 100, 0.06);
+            border-left: 4px solid #3a2a4a;
+            font-style: italic;
+        }
+
+        .doc-content .manuscrito-final .assinatura-t {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #1a1a3a;
+            letter-spacing: 8px;
+            font-family: 'Georgia', serif;
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            font-family: 'Cinzel', serif;
+            background: rgba(40, 30, 20, 0.8);
+            color: #bca77a;
+            border: 1px solid #5e4720;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .back-btn:hover {
+            background: rgba(80, 60, 40, 0.9);
+            color: #f0cb7d;
+            border-color: #d4a74f;
+            box-shadow: 0 0 25px rgba(212, 167, 79, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .document-face { padding: 30px 25px; }
+            .document-header h1 { font-size: 1.6rem; }
+            .doc-content { font-size: 0.95rem; }
+            .stamp { font-size: 1rem; padding: 4px 12px; top: 30px; right: 25px; }
+            .document-wrapper { padding: 10px; }
+            .document { aspect-ratio: 1/1.4; }
+        }
+
+        @media (max-width: 480px) {
+            .document-face { padding: 20px 18px; }
+            .document-header h1 { font-size: 1.2rem; }
+            .doc-content { font-size: 0.85rem; line-height: 1.7; }
+            .stamp { font-size: 0.8rem; padding: 3px 10px; top: 20px; right: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+    <a href="/documentos.html" class="back-btn">← Voltar aos Arquivos</a>
+
+    <div class="document-wrapper">
+        <div class="document">
+            <div class="document-face" id="front">
+                <div class="stamp">SIGILO<br>MÁXIMO</div>
+
+                <div class="document-header">
+                    <h1>DOSSIÊ DE INVESTIGAÇÃO</h1>
+                    <div class="sub">REFERÊNCIA DESCONHECIDA — "TIBERIO"</div>
+                    <div class="classif">CLASSIFICAÇÃO: SIGILO MÁXIMO</div>
+                    <div class="classif">AUTORIZAÇÃO: DIRETORIA CIENTÍFICA</div>
+                    <div class="classif" style="color:#6a2a2a;">STATUS: INCONCLUSIVO</div>
+                </div>
+
+                <div class="doc-content">
+                    <p><strong>INTRODUÇÃO</strong></p>
+                    <p>Durante as últimas semanas, uma única palavra começou a surgir repetidamente em diferentes setores da Estação Greyfield.</p>
+                    <p>Ela apareceu em documentos que nunca haviam sido escritos. Em gravações onde ninguém pronunciava aquele nome. Em fotografias reveladas dias depois de serem tiradas. Em páginas completamente em branco.</p>
+                    <p>Sempre a mesma palavra.</p>
+                    <div class="alert-box">
+                        <p style="font-size:1.8rem; font-weight:bold; text-align:center; color:#3a1a3a; letter-spacing:6px;">TIBERIO</p>
+                    </div>
+                    <p>Nenhum funcionário possui esse nome. Nenhum pesquisador utilizou essa assinatura. Nenhum registro civil conhecido contém qualquer referência compatível.</p>
+                    <p style="font-weight:bold; color:#3a1a3a;">Mesmo assim... o nome continua aparecendo.</p>
+
+                    <div class="rule"></div>
+
+                    <p><strong>OCORRÊNCIAS REGISTRADAS</strong></p>
+
+                    <div class="ocurrencia">
+                        <div class="titulo-oc">📻 Registro 03</div>
+                        <p>Um rádio desligado permaneceu transmitindo durante quarenta e dois minutos.</p>
+                        <p>Após limpeza do áudio, apenas uma frase pôde ser compreendida.</p>
+                        <div class="citacao">"...Tiberio..."</div>
+                    </div>
+
+                    <div class="ocurrencia">
+                        <div class="titulo-oc">📄 Registro 07</div>
+                        <p>Durante inspeção da Ala Norte, uma pesquisadora encontrou a palavra escrita na parede utilizando carvão.</p>
+                        <p>Ao retornar minutos depois com reforços...</p>
+                        <p style="font-style:italic; color:#4a3a5a;">a parede estava limpa.</p>
+                    </div>
+
+                    <div class="ocurrencia">
+                        <div class="titulo-oc">📷 Registro 11</div>
+                        <p>Uma fotografia da Sala 4 revelou uma figura desconhecida refletida no vidro.</p>
+                        <p>Nenhum funcionário estava presente.</p>
+                        <p>Na parte inferior da foto apareceu uma anotação que não existia no negativo original.</p>
+                        <div class="citacao">"Ele ainda procura."</div>
+                    </div>
+
+                    <div class="ocurrencia">
+                        <div class="titulo-oc">💭 Registro 15</div>
+                        <p>Diversos funcionários começaram a sonhar com o mesmo homem. Nenhum deles conseguiu descrevê-lo completamente. As descrições possuíam pequenas diferenças.</p>
+                        <p>Mas todos concordavam em três detalhes.</p>
+                        <ul>
+                            <li>Usava um longo manto escuro.</li>
+                            <li>Carregava um cajado.</li>
+                            <li>Parecia extremamente cansado.</li>
+                        </ul>
+                        <p style="font-style:italic; color:#4a3a5a;">Nenhum deles relatou medo. Apenas uma profunda tristeza.</p>
+                    </div>
+
+                    <div class="ocurrencia">
+                        <div class="titulo-oc">📜 Registro 18</div>
+                        <p>Foi encontrada uma página antiga presa atrás de uma parede falsa.</p>
+                        <p>O texto estava praticamente ilegível. Somente algumas palavras puderam ser recuperadas.</p>
+                        <div class="citacao">"...maior..."</div>
+                        <div class="citacao">"...mago..."</div>
+                        <div class="citacao">"...fadas..."</div>
+                        <div class="citacao">"...tempo..."</div>
+                        <div class="citacao">"...Ely..."</div>
+                        <p style="font-style:italic; color:#4a3a5a;">O restante estava destruído.</p>
+                    </div>
+
+                    <div class="ocurrencia">
+                        <div class="titulo-oc">🌀 Registro 21</div>
+                        <p>Durante uma Convergência, sensores detectaram uma presença imóvel dentro da Sala de Observação.</p>
+                        <p>As câmeras não registraram ninguém. Os operadores afirmaram que havia alguém sentado na cadeira.</p>
+                        <p>Quando perguntados sobre sua aparência, responderam exatamente a mesma frase.</p>
+                        <div class="citacao">"Parecia alguém esperando por outra pessoa."</div>
+                    </div>
+
+                    <div class="rule"></div>
+
+                    <p><strong>HIPÓTESE</strong></p>
+                    <p>Inicialmente acreditávamos que "Tiberio" fosse:</p>
+                    <ul>
+                        <li>um pesquisador desaparecido;</li>
+                        <li>um codinome;</li>
+                        <li>uma inteligência artificial;</li>
+                        <li>uma entidade produzida pelas Convergências.</li>
+                    </ul>
+                    <p style="font-weight:bold; color:#3a1a3a;">Nenhuma hipótese permaneceu consistente.</p>
+
+                    <div class="rule"></div>
+
+                    <p><strong>FATO CURIOSO</strong></p>
+                    <p>Sempre que o nome "Tiberio" é pronunciado próximo aos equipamentos de rádio, ocorre uma pequena alteração na frequência de transmissão.</p>
+                    <p style="font-style:italic;">Ainda não sabemos por quê.</p>
+
+                    <div class="rule"></div>
+
+                    <p><strong>RECOMENDAÇÃO</strong></p>
+                    <ul>
+                        <li>Evitar qualquer tentativa de contato direto.</li>
+                        <li>Caso novas informações sejam encontradas, encaminhar imediatamente para a Diretoria.</li>
+                        <li style="font-weight:bold; color:#3a1a3a;">Não iniciar investigações independentes.</li>
+                    </ul>
+
+                    <div class="rule"></div>
+
+                    <div class="manuscrito-final">
+                        <p style="font-size:0.85rem; color:#4a4a5a; font-style:normal; margin-bottom:10px;"><strong>ANOTAÇÃO MANUSCRITA</strong></p>
+                        <p>No rodapé existe uma escrita feita posteriormente. A tinta parece muito mais recente que o restante do documento. A letra é elegante. Extremamente firme.</p>
+                        <p style="font-style:italic; margin-top:15px; font-size:1.05rem; color:#2a1a3a;">"Vocês continuam procurando meu nome..."</p>
+                        <p style="font-style:italic; font-size:1.05rem; color:#2a1a3a;">"Quando deveriam estar procurando o motivo pelo qual ele nunca desaparece."</p>
+                        <div class="assinatura-t">T.</div>
+                    </div>
+
+                    <div class="signature">
+                        <p><strong>Diretoria Científica</strong></p>
+                        <p>Dossiê Encerrado — Inconclusivo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 3 + 1) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 22 + 12) + 's';
+                particle.style.animationDelay = (Math.random() * 22) + 's';
+                particle.style.opacity = Math.random() * 0.25 + 0.05;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = 'documentos.html';
+            }
+        });
+
+        console.log('📄 DOCUMENTO III — DOSSIÊ DE INVESTIGAÇÃO — TIBERIO');
+        console.log('🔍 "Tiberio" continua aparecendo.');
+        console.log('🔄 Aperte ESC para voltar aos arquivos.');
+    </script>
+
+</body>
+</html>

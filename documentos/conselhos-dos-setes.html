@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSELHO DOS SETE — CONVOCAÇÃO OFICIAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Cormorant Garamond", serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .documento {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .documento::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 10;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .cabecalho .titulo {
+            font-family: "Cinzel", serif;
+            font-size: 2.5rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 6px;
+            margin-bottom: 5px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: "Cinzel", serif;
+            font-size: 1rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+        }
+
+        .cabecalho .classif {
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #6a3a2a;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            border: 1px solid #6a3a2a;
+            padding: 4px 15px;
+            display: inline-block;
+            background: rgba(80,40,20,.1);
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 5;
+        }
+
+        .conteudo p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 16px;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-vermelho {
+            color: #b86a4a;
+            font-weight: bold;
+        }
+
+        .conteudo .label {
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            display: block;
+        }
+
+        .conteudo .caixa-destinatario {
+            background: rgba(40,30,15,.4);
+            border: 1px solid #6a4a2a;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .conteudo .caixa-destinatario .nome-destino {
+            font-family: "Cinzel", serif;
+            font-size: 1.6rem;
+            color: #d4a74f;
+            letter-spacing: 4px;
+        }
+
+        .conteudo .caixa-destinatario .registro {
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            margin-top: 5px;
+        }
+
+        .conteudo .caixa-destinatario .status {
+            font-size: 0.9rem;
+            color: #b86a4a;
+            margin-top: 8px;
+        }
+
+        .conteudo .caixa-destinatario .local {
+            font-style: italic;
+            color: #c4a86a;
+            margin-top: 8px;
+        }
+
+        .conteudo .selos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0 20px;
+            padding: 20px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            border-bottom: 1px solid rgba(106,74,42,.3);
+        }
+
+        .conteudo .selos .selo-item {
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #8a6a3a;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .conteudo .selos .selo-item .circulo {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #6a3a2a;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            background: radial-gradient(ellipse at center, rgba(80,40,20,.2), transparent 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #6a3a2a;
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 20px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .conteudo .convocacao-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 15px 20px;
+        }
+
+        .conteudo .convocacao-list li {
+            padding: 6px 0 6px 28px;
+            position: relative;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .conteudo .convocacao-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 4px;
+            color: #d4a74f;
+        }
+
+        .conteudo .obrigatorio {
+            text-align: center;
+            font-weight: bold;
+            color: #b86a4a;
+            padding: 10px;
+            border: 1px solid #6a3a2a;
+            margin: 20px 0;
+            background: rgba(80,40,20,.05);
+            font-size: 1.05rem;
+        }
+
+        .assinatura {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: center;
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .assinatura .conselho {
+            font-size: 1.1rem;
+            color: #d4a74f;
+        }
+
+        /* Sistema de senha */
+        .senha-area {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(106,74,42,.4);
+            text-align: center;
+        }
+
+        .senha-area label {
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .senha-area .input-senha {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .senha-area input {
+            padding: 12px 20px;
+            background: #1d1a16;
+            border: 1px solid #6a4a2a;
+            color: #d4c8a0;
+            font-size: 1.1rem;
+            font-family: "Cormorant Garamond", serif;
+            outline: none;
+            border-radius: 4px;
+            width: 250px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .senha-area input:focus {
+            border-color: #d4a74f;
+        }
+
+        .senha-area .btn-acessar {
+            padding: 12px 30px;
+            background: #6a4a2a;
+            border: none;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #d4c8a0;
+            transition: .3s;
+            border-radius: 4px;
+            letter-spacing: 2px;
+        }
+
+        .senha-area .btn-acessar:hover {
+            background: #8a6a3a;
+            color: #f0e0b0;
+        }
+
+        .senha-area .erro {
+            color: #b86a4a;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .senha-area .erro.visible {
+            display: block;
+        }
+
+        .conteudo-oculto {
+            display: none;
+        }
+
+        .conteudo-oculto.visible {
+            display: block;
+        }
+
+        .voltar-topo {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #4a3520;
+            border: 1px solid #6a4a2a;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #bca77a;
+            transition: .3s;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .voltar-topo:hover {
+            background: #6a4a2a;
+            color: #f0e0b0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .documento { padding: 30px 25px; }
+            .cabecalho .titulo { font-size: 1.8rem; }
+            .conteudo p { font-size: 0.95rem; }
+            .senha-area input { width: 180px; }
+            .conteudo .caixa-destinatario .nome-destino { font-size: 1.2rem; }
+            .conteudo .selos { gap: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .documento { padding: 20px 15px; }
+            .cabecalho .titulo { font-size: 1.3rem; }
+            .conteudo p { font-size: 0.85rem; }
+            .senha-area input { width: 140px; font-size: 0.9rem; }
+            .conteudo .caixa-destinatario .nome-destino { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="documento">
+
+        <div class="cabecalho">
+            <div class="titulo">CONSELHO DOS SETE</div>
+            <div class="subtitulo">CONVOCAÇÃO OFICIAL Nº 01/5000</div>
+            <div class="classif">CLASSIFICAÇÃO: NÍVEL VII — AMEAÇA CONTINENTAL</div>
+            <div style="font-size:0.7rem; color:#5a4a3a; margin-top:5px; letter-spacing:1px;">
+                AUTORIDADE EMISSORA: Conselho dos Sete Reinos de Elfheim
+            </div>
+        </div>
+
+        <div class="conteudo">
+
+            <!-- Destinatário (oculto até senha) -->
+            <div id="destinatarioArea">
+                <span class="label">DESTINATÁRIO</span>
+                <div class="caixa-destinatario" id="destinoDisplay">
+                    <div class="nome-destino" id="nomeDestino">—</div>
+                    <div class="registro" id="registroDestino">REGISTRO OFICIAL</div>
+                    <div class="status" id="statusDestino">—</div>
+                    <div class="local" id="localDestino">—</div>
+                </div>
+            </div>
+
+            <!-- Conteúdo do documento (oculto até senha) -->
+            <div id="conteudoDocumento" class="conteudo-oculto">
+
+                <p>
+                    <span class="destaque">REGISTRO OFICIAL</span>
+                </p>
+
+                <p>
+                    O indivíduo acima identificado foi declarado oficialmente desaparecido durante a <span class="destaque">Expedição Greyfield</span>.
+                </p>
+
+                <p>
+                    <span class="label">Último registro confirmado</span>
+                    <span style="display:block; font-family:'Cinzel',serif; color:#d4a74f; letter-spacing:1px; font-size:0.9rem;">
+                        19 de Maio de 5000 — 12:00
+                    </span>
+                    <span style="display:block; color:#c4a86a; font-style:italic;">
+                        Mar Lumívoro — Reino de Zaharam
+                    </span>
+                </p>
+
+                <p>
+                    Após buscas conduzidas pelas forças militares, exploradores e estudiosos dos reinos aliados, nenhuma evidência referente ao paradeiro do indivíduo foi localizada durante os meses seguintes.
+                </p>
+
+                <p>
+                    <span class="label">NOVO REGISTRO</span>
+                    <span style="display:block; font-family:'Cinzel',serif; color:#d4a74f; letter-spacing:1px; font-size:0.9rem;">
+                        O indivíduo foi oficialmente reencontrado.
+                    </span>
+                    <span style="display:block; font-family:'Cinzel',serif; color:#8a6a3a; letter-spacing:1px; font-size:0.8rem;">
+                        22 de Outubro de 5000
+                    </span>
+                    <span style="display:block; color:#c4a86a; font-style:italic;">
+                        Capital de Zaharam
+                    </span>
+                    <span style="display:block; color:#bca77a; font-size:0.9rem;">
+                        Retornando juntamente aos demais sobreviventes da Expedição Greyfield.
+                    </span>
+                </p>
+
+                <div class="citacao">
+                    "Pela estabilidade de Elfheim e pela preservação da história."
+                </div>
+
+                <p>
+                    <span class="destaque">CONVOCAÇÃO</span>
+                </p>
+
+                <p>
+                    Por decisão unânime do Conselho dos Sete Reinos, fica o cidadão acima convocado para comparecer perante o Conselho, a fim de prestar depoimento oficial acerca dos seguintes acontecimentos:
+                </p>
+
+                <ul class="convocacao-list">
+                    <li>Desaparecimento coletivo da Expedição Greyfield.</li>
+                    <li>Fenômenos observados na Estação Greyfield.</li>
+                    <li>Surgimento da denominada <span class="destaque">Árvore Impossível</span>.</li>
+                    <li>Anomalias temporais verificadas durante a expedição.</li>
+                    <li>Contato com indivíduo ainda não identificado oficialmente.</li>
+                    <li>Possíveis riscos à estabilidade continental.</li>
+                </ul>
+
+                <p>
+                    <span class="label">COMPARECIMENTO</span>
+                </p>
+
+                <p>
+                    Data, horário e local serão informados por <span class="destaque">Sua Majestade Barn Clant, Rei de Zaharam</span>.
+                </p>
+
+                <div class="obrigatorio">
+                    ⚔️ O comparecimento é obrigatório.<br>
+                    A ausência sem justificativa será considerada desacato às determinações do Conselho dos Sete.
+                </div>
+
+                <div class="selos">
+                    <div class="selo-item">
+                        <span class="circulo">🏛️</span>
+                        Zaharam
+                    </div>
+                    <div class="selo-item">
+                        <span class="circulo">🌿</span>
+                        Sylvanora
+                    </div>
+                    <div class="selo-item">
+                        <span class="circulo">⛰️</span>
+                        Voldoun
+                    </div>
+                    <div class="selo-item">
+                        <span class="circulo">☀️</span>
+                        Solharis
+                    </div>
+                    <div class="selo-item">
+                        <span class="circulo">🌙</span>
+                        Lunaris
+                    </div>
+                    <div class="selo-item">
+                        <span class="circulo">🔥</span>
+                        Silver Rise
+                    </div>
+                    <div class="selo-item">
+                        <span class="circulo">🛡️</span>
+                        Nethis
+                    </div>
+                </div>
+
+                <div class="assinatura">
+                    <div class="conselho">CONSELHO DOS SETE</div>
+                    <div style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">
+                        (Sete selos de cera — um para cada reino membro)
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sistema de Senha -->
+            <div class="senha-area" id="senhaArea">
+                <label>🔐 INSIRA O NOME DO DESTINATÁRIO PARA ACESSAR</label>
+                <div class="input-senha">
+                    <input type="text" id="senhaInput" placeholder="Ex: Elion, Evangelyne, Eren..." onkeydown="if(event.key==='Enter') verificarSenha()">
+                    <button class="btn-acessar" onclick="verificarSenha()">Acessar</button>
+                </div>
+                <div class="erro" id="erroMsg">❌ Nome não encontrado. Verifique a ortografia.</div>
+            </div>
+
+        </div>
+
+        <div class="text-center" style="margin-top:25px;">
+            <a href="../documentos.html" class="voltar-topo">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================
+        // DADOS DOS DESTINATÁRIOS
+        // ============================================
+        const destinatarios = [
+            {
+                nome: "Elion",
+                nomeCompleto: "Élion Virellion Astrae",
+                registro: "REGISTRO OFICIAL",
+                status: "DESAPARECIDO — REENCONTRADO",
+                local: "Mar Lumívoro → Capital de Zaharam"
+            },
+            {
+                nome: "Evangelyne",
+                nomeCompleto: "Evangelyne",
+                registro: "REGISTRO OFICIAL",
+                status: "DESAPARECIDA — REENCONTRADA",
+                local: "Mar Lumívoro → Capital de Zaharam"
+            },
+            {
+                nome: "Eren",
+                nomeCompleto: "Eren Vortan",
+                registro: "REGISTRO OFICIAL",
+                status: "DESAPARECIDO — REENCONTRADO",
+                local: "Mar Lumívoro → Capital de Zaharam"
+            },
+            {
+                nome: "Garkhai",
+                nomeCompleto: "Caçador da Tribo Garkhai",
+                registro: "REGISTRO OFICIAL",
+                status: "DESAPARECIDO — REENCONTRADO",
+                local: "Mar Lumívoro → Capital de Zaharam"
+            },
+            {
+                nome: "Crocotop",
+                nomeCompleto: "Crocotop",
+                registro: "REGISTRO OFICIAL",
+                status: "DESAPARECIDO — REENCONTRADO",
+                local: "Mar Lumívoro → Capital de Zaharam"
+            }
+        ];
+
+        // ============================================
+        // FUNÇÃO DE VERIFICAÇÃO
+        // ============================================
+        function verificarSenha() {
+            const input = document.getElementById('senhaInput');
+            const erro = document.getElementById('erroMsg');
+            const nomeDigitado = input.value.trim();
+
+            // Buscar destinatário (case insensitive)
+            const encontrado = destinatarios.find(d =>
+                d.nome.toLowerCase() === nomeDigitado.toLowerCase()
+            );
+
+            if (encontrado) {
+                // Atualizar destinatário
+                document.getElementById('nomeDestino').textContent = encontrado.nomeCompleto;
+                document.getElementById('registroDestino').textContent = encontrado.registro;
+                document.getElementById('statusDestino').textContent = encontrado.status;
+                document.getElementById('localDestino').textContent = encontrado.local;
+
+                // Mostrar conteúdo do documento
+                document.getElementById('conteudoDocumento').classList.add('visible');
+
+                // Esconder área de senha
+                document.getElementById('senhaArea').style.display = 'none';
+
+                // Esconder erro
+                erro.classList.remove('visible');
+
+                // Scroll para o topo do documento
+                document.querySelector('.documento').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                console.log(`📄 Documento acessado por: ${encontrado.nomeCompleto}`);
+            } else {
+                erro.classList.add('visible');
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        // ============================================
+        // FECHAR COM ESC
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = '../documentos.html';
+            }
+        });
+
+        console.log('📄 CONSELHO DOS SETE — CONVOCAÇÃO OFICIAL');
+        console.log('🔐 Insira o nome do destinatário para acessar:');
+        console.log('   • Elion');
+        console.log('   • Evangelyne');
+        console.log('   • Eren');
+        console.log('   • Garkhai');
+        console.log('   • Crocotop');
+    </script>
+
+</body>
+</html>

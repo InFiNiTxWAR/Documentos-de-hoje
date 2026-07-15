@@ -1,0 +1,472 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Relatório de Emergência — Vila de Ashara</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                linear-gradient(rgba(10, 10, 10, .92), rgba(10, 10, 10, .92)),
+                url("https://images.unsplash.com/photo-1518709268805-4e9042af2176");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            padding: 60px;
+
+            color: #2e1b0f;
+
+        }
+
+        .documento {
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            background:
+                linear-gradient(to bottom,
+                    #f8ebcc,
+                    #ecd4a6);
+
+            padding: 70px;
+
+            border: 8px solid #8b6a35;
+
+            box-shadow:
+                0 0 60px rgba(0, 0, 0, .75),
+                inset 0 0 80px rgba(0, 0, 0, .12);
+
+            position: relative;
+
+        }
+
+        .documento::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 18px;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
+
+            border: 2px solid rgba(80, 60, 30, .35);
+
+            pointer-events: none;
+
+        }
+
+        .selo {
+
+            font-size: 70px;
+
+            text-align: center;
+
+            margin-bottom: 15px;
+
+            color: #9f2200;
+
+        }
+
+        h1 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 52px;
+
+            text-align: center;
+
+            margin-bottom: 10px;
+
+            color: #3a2313;
+
+        }
+
+        h2 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 24px;
+
+            text-align: center;
+
+            font-style: italic;
+
+            margin-bottom: 30px;
+
+            color: #5f4732;
+
+        }
+
+        .classificacao {
+
+            text-align: center;
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 15px;
+
+            letter-spacing: 2px;
+
+            font-weight: bold;
+
+            color: #8d0000;
+
+            margin-bottom: 30px;
+
+            line-height: 1.8;
+
+        }
+
+        hr {
+
+            border: none;
+
+            height: 2px;
+
+            background: rgba(80, 60, 30, .25);
+
+            margin-bottom: 35px;
+
+        }
+
+        h3 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 28px;
+
+            margin-top: 40px;
+
+            margin-bottom: 15px;
+
+            border-bottom: 2px solid rgba(90, 60, 30, .25);
+
+            padding-bottom: 8px;
+
+        }
+
+        p {
+
+            font-size: 24px;
+
+            line-height: 1.8;
+
+            margin-bottom: 18px;
+
+        }
+
+        ul {
+
+            margin-left: 40px;
+
+            margin-top: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+        li {
+
+            font-size: 22px;
+
+            margin-bottom: 10px;
+
+            line-height: 1.6;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 20px;
+            margin-bottom: 35px;
+
+        }
+
+        table th {
+
+            background: #7a2a00;
+
+            color: white;
+
+            padding: 15px;
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 18px;
+
+        }
+
+        table td {
+
+            padding: 14px;
+
+            font-size: 21px;
+
+            border: 1px solid rgba(80, 60, 30, .20);
+
+        }
+
+        blockquote {
+
+            font-size: 30px;
+
+            font-style: italic;
+
+            text-align: center;
+
+            padding: 30px;
+
+            margin: 40px 0;
+
+            border-top: 2px solid rgba(80, 60, 30, .25);
+            border-bottom: 2px solid rgba(80, 60, 30, .25);
+
+            color: #4d2d17;
+
+        }
+
+        .alerta {
+
+            background: rgba(140, 0, 0, .08);
+
+            border-left: 6px solid #8d0000;
+
+            padding: 25px;
+
+            margin: 35px 0;
+
+            font-size: 24px;
+
+            font-family: 'Cinzel', serif;
+
+            font-weight: bold;
+
+            color: #7d0000;
+
+        }
+
+        .assinatura {
+
+            margin-top: 80px;
+
+            text-align: right;
+
+        }
+
+        .assinatura p {
+
+            font-size: 22px;
+
+            font-style: italic;
+
+            margin-bottom: 15px;
+
+        }
+
+        .assinatura span {
+
+            display: block;
+
+            font-size: 34px;
+
+            font-family: 'Cinzel', serif;
+
+            letter-spacing: 6px;
+
+            color: #5a1d00;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="documento">
+
+        <div class="selo">🔥</div>
+
+        <h1>Relatório de Emergência</h1>
+
+        <h2>Vila de Ashara</h2>
+
+        <div class="classificacao">
+            ARQUIVO OFICIAL DE ZAHARAM<br>
+            NÍVEL DE ALERTA: VERMELHO<br>
+            DISTRIBUIÇÃO RESTRITA
+        </div>
+
+        <hr>
+
+        <p>
+            Documento elaborado após a destruição completa da Vila de Ashara,
+            localizada ao sul das fronteiras de Zaharam.
+        </p>
+
+        <p>
+            As investigações preliminares indicam que a tragédia foi causada
+            por uma criatura dracônica de grandes proporções.
+        </p>
+
+        <h3>Dados Gerais</h3>
+
+        <table>
+
+            <tr>
+                <th>Informação</th>
+                <th>Registro</th>
+            </tr>
+
+            <tr>
+                <td>Localização</td>
+                <td>Deserto do Sul de Zaharam</td>
+            </tr>
+
+            <tr>
+                <td>Distância da Capital</td>
+                <td>2 dias de viagem</td>
+            </tr>
+
+            <tr>
+                <td>Horário do Ataque</td>
+                <td>Pouco antes do pôr do sol</td>
+            </tr>
+
+            <tr>
+                <td>Duração Estimada</td>
+                <td>Menos de 15 minutos</td>
+            </tr>
+
+        </table>
+
+        <h3>Baixas Confirmadas</h3>
+
+        <table>
+
+            <tr>
+                <th>Categoria</th>
+                <th>Total</th>
+            </tr>
+
+            <tr>
+                <td>Mortos Confirmados</td>
+                <td>317</td>
+            </tr>
+
+            <tr>
+                <td>Desaparecidos</td>
+                <td>89</td>
+            </tr>
+
+            <tr>
+                <td>Feridos Graves</td>
+                <td>41</td>
+            </tr>
+
+            <tr>
+                <td>Sobreviventes</td>
+                <td>67</td>
+            </tr>
+
+        </table>
+
+        <h3>Estruturas Destruídas</h3>
+
+        <ul>
+            <li>Distrito residencial.</li>
+            <li>Templo local.</li>
+            <li>Celeiros principais.</li>
+            <li>Poços de abastecimento.</li>
+            <li>Mercado central.</li>
+            <li>Armazéns de mantimentos.</li>
+        </ul>
+
+        <h3>Relatos das Testemunhas</h3>
+
+        <blockquote>
+            "O céu escureceu antes mesmo das chamas aparecerem."
+        </blockquote>
+
+        <blockquote>
+            "As chamas eram azuis. Nunca vimos fogo daquela cor."
+        </blockquote>
+
+        <blockquote>
+            "O dragão rugia como se estivesse sofrendo."
+        </blockquote>
+
+        <blockquote>
+            "Ele não destruía tudo. Escolhia lugares específicos."
+        </blockquote>
+
+        <h3>Análise dos Investigadores</h3>
+
+        <p>
+            A criatura não apresentou comportamento típico de predador.
+        </p>
+
+        <p>
+            Nenhum tesouro foi saqueado.
+            Nenhum animal foi consumido.
+            Nenhum corpo foi devorado.
+        </p>
+
+        <p>
+            Os ataques foram direcionados para pontos específicos da vila,
+            demonstrando precisão incompatível com um ataque bestial comum.
+        </p>
+
+        <div class="alerta">
+            CONCLUSÃO PRELIMINAR:
+            O ATAQUE APRESENTA PADRÃO MILITAR ESTRUTURADO.
+        </div>
+
+        <p>
+            Especialistas recomendam investigação imediata sobre possível
+            controle externo da criatura responsável.
+        </p>
+
+        <div class="assinatura">
+
+            <p>
+                Arquivado pelo Conselho Regente de Zaharam
+            </p>
+
+            <span>
+                ⚔ ZAHARAM ⚔
+            </span>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+```

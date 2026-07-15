@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rotas das Dunas Eternas — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #d4a017;
+    margin: 25px 0 15px;
+}
+
+/* Princípios */
+.principios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.principio-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.principio-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.principio-card h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.principio-card p {
+    font-size: 0.95rem;
+}
+
+/* Rotas */
+.rotas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.rota-card {
+    background: rgba(20,12,5,.85);
+    border-left: 4px solid #d4a017;
+    border-radius: 8px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.rota-card:hover {
+    background: rgba(30,18,8,.9);
+    transform: translateX(3px);
+}
+
+.rota-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.rota-card .perigos {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+.rota-card .perigos strong {
+    color: #e8a020;
+}
+
+.rota-card .perigos ul {
+    list-style: none;
+    margin-top: 8px;
+}
+
+.rota-card .perigos ul li {
+    padding: 3px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.rota-card .perigos ul li::before {
+    content: "⚠️";
+    position: absolute;
+    left: 0;
+    font-size: 0.75rem;
+}
+
+/* Sinais */
+.sinais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.sinal-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+}
+
+.sinal-card strong {
+    color: #f5c542;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Sobrevivência */
+.sobrevivencia-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.sobrevivencia-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.sobrevivencia-list li::before {
+    content: "🏜️";
+    position: absolute;
+    left: 0;
+}
+
+/* Perigos */
+.perigos-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.perigo-item {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+/* Conselhos */
+.conselhos {
+    background: rgba(30,18,8,.8);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.conselhos p {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 12px 0;
+    color: #f2d49b;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .principios-grid { grid-template-columns: 1fr; }
+    .rotas-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🏜️ Rotas das Dunas Eternas</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Malik ibn Rashad, Mestre das Grandes Caravanas</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 567 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "No deserto, perder o caminho significa perder a vida."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🌵 Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            As vastas extensões de Zaharam são conhecidas por sua beleza cruel. Entre mares de areia, tempestades repentinas e ruínas esquecidas pelo tempo, apenas aqueles que compreendem as rotas ancestrais conseguem atravessar o reino com segurança.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            <strong>Rotas das Dunas Eternas</strong> reúne séculos de conhecimento acumulado por mercadores, exploradores, guias e navegadores do deserto. O tomo registra os caminhos mais seguros entre cidades, oásis e postos avançados, além de alertar sobre perigos conhecidos.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            Todo Navegador do Deserto respeitado estudou este livro em algum momento de sua vida.
+        </p>
+    </div>
+
+    <!-- Princípios da Navegação nas Areias -->
+    <div class="section">
+        <h2 class="section-title">🧭 Princípios da Navegação nas Areias</h2>
+        <p>Antes de iniciar qualquer travessia, o viajante deve compreender três verdades fundamentais:</p>
+        
+        <div class="principios-grid">
+            <div class="principio-card">
+                <h3>🌬️ A Areia se Move</h3>
+                <p>Dunas mudam de posição constantemente. Mapas antigos podem tornar-se inúteis após grandes tempestades.</p>
+            </div>
+            
+            <div class="principio-card">
+                <h3>💧 A Água Vale Mais que Ouro</h3>
+                <p>Toda rota deve ser planejada considerando as fontes de água disponíveis. A maioria das mortes em Zaharam ocorre por desidratação.</p>
+            </div>
+            
+            <div class="principio-card">
+                <h3>⭐ As Estrelas Nunca Mentem</h3>
+                <p>Os navegadores utilizam constelações específicas para manter direção durante a noite. Quando o sol desaparece, o céu torna-se o melhor mapa do viajante.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- As Cinco Grandes Rotas Comerciais -->
+    <div class="section">
+        <h2 class="section-title">🐫 As Cinco Grandes Rotas Comerciais</h2>
+        
+        <div class="rotas-grid">
+            <div class="rota-card">
+                <h4>🏛️ Caminho de Solania</h4>
+                <p>Antiga rota que ligava diversos assentamentos ao redor da lendária cidade de Solania. Mesmo após sua destruição, muitos trechos continuam sendo utilizados.</p>
+                <div class="perigos">
+                    <strong>⚠️ Perigos:</strong>
+                    <ul>
+                        <li>Tempestades de areia</li>
+                        <li>Ruínas instáveis</li>
+                        <li>Criaturas atraídas pela energia remanescente</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rota-card">
+                <h4>💧 Estrada dos Cem Oásis</h4>
+                <p>Principal rota de comércio de especiarias. Conecta dezenas de pequenas comunidades espalhadas pelo deserto.</p>
+                <div class="perigos">
+                    <strong>⚠️ Perigos:</strong>
+                    <ul>
+                        <li>Assaltantes</li>
+                        <li>Mercadores fraudulentos</li>
+                        <li>Escassez temporária de água</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rota-card">
+                <h4>🪨 Caminho das Rochas Escarlates</h4>
+                <p>Utilizado principalmente por mineradores e ferreiros. Transporta metais raros extraídos das montanhas vermelhas.</p>
+                <div class="perigos">
+                    <strong>⚠️ Perigos:</strong>
+                    <ul>
+                        <li>Deslizamentos</li>
+                        <li>Serpentes das rochas</li>
+                        <li>Calor extremo</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rota-card">
+                <h4>🏺 Trilha de Malik Azhar</h4>
+                <p>Uma das rotas mais antigas de Zaharam. Criada pelas primeiras tribos nômades.</p>
+                <div class="perigos">
+                    <strong>⚠️ Perigos:</strong>
+                    <ul>
+                        <li>Tempestades frequentes</li>
+                        <li>Desorientação magnética</li>
+                        <li>Predadores do deserto profundo</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rota-card">
+                <h4>✨ Rota do Horizonte Dourado</h4>
+                <p>Utilizada por comerciantes ricos e caravanas imperiais. Conhecida por possuir postos de descanso protegidos.</p>
+                <div class="perigos">
+                    <strong>⚠️ Perigos:</strong>
+                    <ul>
+                        <li>Cobranças ilegais</li>
+                        <li>Ataques organizados de saqueadores</li>
+                        <li>Disputas territoriais</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sinais Utilizados pelos Navegadores -->
+    <div class="section">
+        <h2 class="section-title">🏷️ Sinais Utilizados pelos Navegadores</h2>
+        <p>Os navegadores experientes reconhecem diversos sinais deixados nas areias.</p>
+        
+        <div class="sinais-grid">
+            <div class="sinal-card">
+                <strong>🪨 Pilhas de Pedra</strong>
+                <span>Indicam direção segura</span>
+            </div>
+            <div class="sinal-card">
+                <strong>📍 Estacas Marcadas</strong>
+                <span>Apontam fontes de água próximas</span>
+            </div>
+            <div class="sinal-card">
+                <strong>🏺 Símbolos Tribais</strong>
+                <span>Alertam sobre áreas perigosas, territórios protegidos ou rotas bloqueadas</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sobrevivência Durante Tempestades -->
+    <div class="section">
+        <h2 class="section-title">🌪️ Sobrevivência Durante Tempestades</h2>
+        <p>Quando uma tempestade surgir:</p>
+        
+        <ul class="sobrevivencia-list">
+            <li>Nunca correr contra o vento</li>
+            <li>Proteger boca e olhos imediatamente</li>
+            <li>Abaixar-se próximo ao solo</li>
+            <li>Manter o grupo unido</li>
+            <li>Nunca abandonar os animais de carga</li>
+        </ul>
+        
+        <p style="margin-top: 15px;"><em>Após a tempestade, recomenda-se recalcular toda a rota.</em></p>
+    </div>
+
+    <!-- Perigos Registrados -->
+    <div class="section">
+        <h2 class="section-title">⚠️ Perigos Registrados</h2>
+        <p>Diversos relatos mencionam ameaças encontradas nas rotas. Entre elas:</p>
+        
+        <div class="perigos-list">
+            <span class="perigo-item">🐍 Serpentes Gigantes das Dunas</span>
+            <span class="perigo-item">🦂 Escorpiões Colossais</span>
+            <span class="perigo-item">🏴‍☠️ Saqueadores Nômades</span>
+            <span class="perigo-item">👻 Espíritos Errantes do Deserto</span>
+            <span class="perigo-item">🌀 Criaturas atraídas pela Fissura</span>
+        </div>
+        
+        <p style="margin-top: 15px;"><em>O livro recomenda evitar confrontos sempre que possível.</em></p>
+    </div>
+
+    <!-- Conselhos dos Mestres das Caravanas -->
+    <div class="conselhos">
+        <p>"Leve sempre o dobro da água que acredita precisar."</p>
+        <p>"Confie nas estrelas antes de confiar em um mapa."</p>
+        <p>"Uma boa caravana retorna para casa. Uma excelente caravana retorna com todos vivos."</p>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"As dunas mudam.</p>
+        <p>Os reinos mudam.</p>
+        <p>As cidades desaparecem.</p>
+        <p>Mas o deserto sempre permanece."</p>
+        <div class="autor">— Malik ibn Rashad</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Principais rotas comerciais de Zaharam</li>
+            <li>Navegação por estrelas</li>
+            <li>Identificação de sinais de caravanas</li>
+            <li>Técnicas básicas de sobrevivência no deserto</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+35 EXP Navegador do Deserto</div>
+        <div class="nea">+0,1% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

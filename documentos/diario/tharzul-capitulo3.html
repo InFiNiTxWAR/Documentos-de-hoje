@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grimório Ardente de Thar-Zul — Capítulo III</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Cormorant Garamond", serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .grimorio {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .grimorio::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 10;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .cabecalho .titulo-principal {
+            font-family: "Cinzel", serif;
+            font-size: 2.8rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: "Cinzel", serif;
+            font-size: 1.2rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+        }
+
+        .cabecalho .selo {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #6a3a2a;
+            border: 2px solid #6a3a2a;
+            padding: 4px 12px;
+            border-radius: 2px;
+            letter-spacing: 2px;
+            background: rgba(80,40,20,.1);
+        }
+
+        .cabecalho .data {
+            font-family: "Cinzel", serif;
+            font-size: 0.75rem;
+            color: #5a4a3a;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 5;
+        }
+
+        .conteudo p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .conteudo .dropcap {
+            font-size: 3.5rem;
+            font-family: "Cinzel", serif;
+            float: left;
+            line-height: 0.8;
+            margin-right: 12px;
+            color: #d4a74f;
+            text-shadow: 0 0 10px rgba(212,167,79,.15);
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+        }
+
+        .conteudo .citacao-profecia {
+            font-style: italic;
+            color: #d4a74f;
+            padding: 20px 30px;
+            border: 1px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.4);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.15rem;
+            line-height: 2;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .simbolo {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #6a3a2a;
+            margin: 20px 0;
+            letter-spacing: 8px;
+        }
+
+        .conteudo .aviso {
+            margin: 30px 0;
+            padding: 20px 25px;
+            border: 1px solid #6a3a2a;
+            background: rgba(80,40,20,.08);
+            border-radius: 6px;
+            font-style: italic;
+            color: #c49a6a;
+        }
+
+        .conteudo .aviso strong {
+            color: #d4a74f;
+            font-style: normal;
+        }
+
+        .conteudo .observacao {
+            margin: 30px 0;
+            padding: 20px 25px;
+            border-left: 3px solid #6a4a2a;
+            background: rgba(40,30,15,.2);
+            border-radius: 4px;
+        }
+
+        .conteudo .observacao .obs-titulo {
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .conteudo ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 15px 20px;
+        }
+
+        .conteudo ul li {
+            padding: 6px 0 6px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .conteudo ul li::before {
+            content: "✦";
+            position: absolute;
+            left: 4px;
+            color: #6a4a2a;
+        }
+
+        .assinatura {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: right;
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .assinatura .nome {
+            font-size: 1.2rem;
+            color: #d4a74f;
+        }
+
+        .navegacao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .navegacao .info {
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #6a4a2a;
+            letter-spacing: 2px;
+        }
+
+        .navegacao .btn-nav {
+            padding: 8px 25px;
+            background: #6a4a2a;
+            border: none;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #d4c8a0;
+            transition: .3s;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navegacao .btn-nav:hover {
+            background: #8a6a3a;
+            color: #f0e0b0;
+        }
+
+        .voltar-topo {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #4a3520;
+            border: 1px solid #6a4a2a;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #bca77a;
+            transition: .3s;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .voltar-topo:hover {
+            background: #6a4a2a;
+            color: #f0e0b0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .grimorio { padding: 30px 25px; }
+            .cabecalho .titulo-principal { font-size: 2rem; }
+            .cabecalho .selo { position: relative; top: 0; right: 0; display: inline-block; margin-top: 10px; }
+            .conteudo p { font-size: 1rem; }
+            .navegacao { flex-direction: column; text-align: center; }
+            .conteudo .citacao-profecia { font-size: 1rem; padding: 15px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .grimorio { padding: 20px 15px; }
+            .cabecalho .titulo-principal { font-size: 1.5rem; }
+            .conteudo p { font-size: 0.9rem; }
+            .conteudo .dropcap { font-size: 2.5rem; }
+            .conteudo .citacao-profecia { font-size: 0.9rem; padding: 12px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grimorio">
+
+        <div class="cabecalho">
+            <div class="selo">⚔️ III ⚔️</div>
+            <div class="titulo-principal">Grimório Ardente</div>
+            <div class="subtitulo">de Thar-Zul</div>
+            <div style="margin-top:8px; font-family:'Cinzel',serif; font-size:0.8rem; color:#6a4a2a; letter-spacing:2px;">
+                Capítulo III — A Profecia das Cinzas
+            </div>
+            <div class="data">Ano 730 — Primavera</div>
+        </div>
+
+        <div class="conteudo">
+
+            <p>
+                <span class="dropcap">H</span>oje compreendi que conhecimento e sabedoria são coisas completamente diferentes.
+            </p>
+
+            <p>
+                Passei minha infância acreditando que, se estudasse o suficiente, nenhum mistério permaneceria oculto.
+            </p>
+
+            <p>
+                Meu mestre dizia que a magia recompensa os curiosos.
+            </p>
+
+            <p>
+                <span class="destaque">Nunca me contou o preço.</span>
+            </p>
+
+            <p>
+                Há três semanas viajei até Luminathis, em Elyndor.
+            </p>
+
+            <p>
+                A cidade é diferente de qualquer lugar que já visitei.
+            </p>
+
+            <p>
+                As árvores parecem respirar. As folhas murmuram quando o vento passa. Até o silêncio daquele reino parece vivo.
+            </p>
+
+            <p>
+                Fui recebido na biblioteca dos Anciões graças a uma carta de recomendação de meu antigo professor.
+            </p>
+
+            <p>
+                Não procurava feitiços. Nem artefatos. Nem poder.
+            </p>
+
+            <p>
+                <span class="destaque">Procurava apenas uma resposta.</span>
+            </p>
+
+            <p>
+                Em dezenas de manuscritos antigos encontrei sempre a mesma referência.
+            </p>
+
+            <div class="citacao">
+                "Alvorecer."
+            </div>
+
+            <p>
+                No início pensei que fosse apenas uma metáfora.
+            </p>
+
+            <p>
+                Depois encontrei outro texto. Depois outro. Depois outro.
+            </p>
+
+            <p>
+                Escritos por autores separados por séculos. Todos mencionavam o mesmo acontecimento. Nenhum explicava completamente.
+            </p>
+
+            <div class="citacao">
+                "Como se alguém tivesse removido partes da história."
+            </div>
+
+            <p>
+                Foi então que um dos druidas mais antigos permitiu que eu consultasse um manuscrito proibido.
+            </p>
+
+            <p>
+                Suas folhas estavam quebradiças. A tinta desaparecia lentamente. Era tão antigo que sequer possuía autor.
+            </p>
+
+            <p>
+                No centro da primeira página havia uma frase.
+            </p>
+
+            <div class="citacao-profecia">
+                "Quando a Última Aurora nascer,<br>
+                o mundo conhecerá seu maior salvador...<br>
+                <span class="destaque">ou seu último amanhecer.</span>"
+            </div>
+
+            <p>
+                Abaixo do texto existiam diversas ilustrações.
+            </p>
+
+            <ul>
+                <li>Um homem envolto por luz.</li>
+                <li>Uma coroa partida em vários fragmentos.</li>
+                <li>Um dragão.</li>
+                <li>Uma espada.</li>
+                <li>E... um céu completamente tomado pelo fogo.</li>
+            </ul>
+
+            <p>
+                Perguntei ao druida quem havia escrito aquilo.
+            </p>
+
+            <div class="citacao">
+                "Não sabemos."
+            </div>
+
+            <p>
+                Perguntei quando aquilo aconteceria.
+            </p>
+
+            <div class="citacao" style="border-left-color:#6a4a2a;">
+                "Esperamos nunca descobrir."
+            </div>
+
+            <p>
+                Passei os dias seguintes copiando tudo o que pude.
+            </p>
+
+            <p>
+                Quase todas as páginas estavam incompletas. Algumas pareciam ter sido arrancadas. Outras haviam simplesmente perdido as palavras.
+            </p>
+
+            <div class="citacao">
+                "Como se a própria tinta tivesse desistido de existir."
+            </div>
+
+            <p>
+                <span class="destaque">Jamais vi magia semelhante.</span>
+            </p>
+
+            <p>
+                Antes de partir, o velho druida segurou meu braço.
+            </p>
+
+            <p>
+                Nunca esquecerei seus olhos. Não havia medo. Havia tristeza.
+            </p>
+
+            <div class="aviso">
+                <strong>"Muitos vieram atrás desta profecia."</strong>
+                <br>
+                "Todos acreditavam que poderiam impedir seu destino."
+                <br>
+                <strong>"Nenhum voltou sendo a mesma pessoa."</strong>
+            </div>
+
+            <p>
+                Perguntei o motivo.
+            </p>
+
+            <p>
+                Ele permaneceu em silêncio.
+            </p>
+
+            <p>
+                Deixei Luminathis levando apenas minhas anotações.
+            </p>
+
+            <p>
+                E <span class="destaque">mais perguntas do que respostas.</span>
+            </p>
+
+            <p>
+                Hoje percebo que aquele foi o verdadeiro início da minha jornada.
+            </p>
+
+            <p>
+                Não porque encontrei a Profecia.
+            </p>
+
+            <div class="citacao" style="border-left-color:#8a4a2a;">
+                "Mas porque... naquele dia... a Profecia também encontrou a mim."
+            </div>
+
+            <div class="observacao">
+                <div class="obs-titulo">📜 Observação pessoal</div>
+                <p>Há algo estranho acontecendo.</p>
+                <p>Desde que li aquele manuscrito, tenho a sensação de ser observado.</p>
+                <p>Duas noites seguidas encontrei pegadas ao redor do acampamento. Nenhuma criatura comum deixa marcas tão profundas.</p>
+                <p>Amanhã seguirei para o sul.</p>
+                <p>Disseram existir um antigo eremita vivendo próximo ao Lago Celestium, em Sylvanora.</p>
+                <p>Talvez ele saiba explicar por que tantos registros da Profecia parecem ter sido apagados da história.</p>
+                <p style="font-style:italic; color:#c4a86a; margin-top:10px;">Ou talvez... eu esteja seguindo exatamente o caminho que alguém deseja que eu percorra.</p>
+            </div>
+
+            <div class="assinatura">
+                <div class="nome">— Thar-Zul</div>
+                <div style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">A Profecia das Cinzas</div>
+            </div>
+
+        </div>
+
+        <div class="navegacao">
+            <span class="info">📜 Página 3 — Capítulo III</span>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="tharzul-capitulo2.html" class="btn-nav">← Anterior</a>
+                <a href="tharzul-capitulo4.html" class="btn-nav">Próximo →</a>
+            </div>
+        </div>
+
+        <div class="text-center" style="margin-top:20px;">
+            <a href="/documentos.html" class="voltar-topo">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

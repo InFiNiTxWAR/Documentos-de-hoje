@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Solânia: O Registro Original — Livro Proibido — Arquivos Selados</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(10,8,15,.96), rgba(5,3,10,.98)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #7a6a8a;
+    position: relative;
+}
+
+/* Efeito de fragmentação */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            rgba(80,60,120,.02) 0px,
+            rgba(80,60,120,.02) 2px,
+            transparent 2px,
+            transparent 8px
+        ),
+        radial-gradient(ellipse at 70% 30%, transparent 50%, rgba(60,40,100,.1) 100%);
+    z-index: 0;
+}
+
+/* Header Proibido */
+header {
+    padding: 60px 20px 50px;
+    text-align: center;
+    border-bottom: 2px solid rgba(100,70,150,.5);
+    background: rgba(0,0,0,.85);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 40px rgba(80,50,130,.2);
+}
+
+.forbidden-badge {
+    display: inline-block;
+    padding: 8px 30px;
+    background: linear-gradient(135deg, #2a1a5a, #1a0a3a);
+    border-radius: 0px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #aa8ada;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #6a3aba;
+    box-shadow: 0 0 15px rgba(100,50,150,.4);
+    text-shadow: 0 0 3px rgba(100,50,150,.5);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    color: #aa8ada;
+    text-shadow: 0 0 20px rgba(120,50,180,.4), 2px 2px 0 #1a0a3a;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(80,50,130,.2);
+    border: 1px solid rgba(100,70,150,.4);
+    border-radius: 0px;
+    font-size: 0.85rem;
+    margin: 8px 5px;
+    color: #9a7aca;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #aa8ada;
+    border-left: 3px solid #8a5aca;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.epigrafe strong {
+    color: #caaaff;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Advertência */
+.advertencia {
+    background: linear-gradient(135deg, rgba(20,10,40,.95), rgba(10,5,25,.98));
+    border: 2px solid #7a4aca;
+    border-radius: 0px;
+    padding: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(100,50,150,.3), inset 0 0 20px rgba(100,50,150,.05);
+}
+
+.advertencia h3 {
+    font-family: 'Cinzel', serif;
+    color: #caaaff;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.advertencia p {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 10px 0;
+    color: #9a7aca;
+}
+
+.advertencia .simbolo {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #7a4aca;
+}
+
+/* Páginas Proibidas */
+.forbidden-page {
+    background: linear-gradient(145deg, rgba(8,5,18,.96), rgba(4,2,12,.98));
+    border: 1px solid rgba(100,70,150,.4);
+    border-radius: 0px;
+    padding: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 5px 30px rgba(0,0,0,.8), inset 0 0 30px rgba(100,50,150,.05);
+}
+
+.forbidden-page::before {
+    content: "◈";
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 0.9rem;
+    color: #7a4aca;
+    opacity: 0.6;
+}
+
+.forbidden-page::after {
+    content: "◈";
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 0.9rem;
+    color: #7a4aca;
+    opacity: 0.6;
+}
+
+.page-number {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #8a5aca;
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+}
+
+.forbidden-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #caaaff;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 5px rgba(100,50,150,.3);
+    border-bottom: 1px solid rgba(100,70,150,.3);
+    display: inline-block;
+    width: auto;
+    padding-bottom: 10px;
+}
+
+.forbidden-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: justify;
+    color: #9a7aca;
+}
+
+.forbidden-text p {
+    margin-bottom: 20px;
+}
+
+.forbidden-text .dropcap {
+    font-size: 3.2rem;
+    font-family: 'Cinzel', serif;
+    float: left;
+    line-height: 0.8;
+    margin-right: 12px;
+    color: #caaaff;
+    text-shadow: 0 0 5px rgba(100,50,150,.3);
+}
+
+.citacao-proibida {
+    font-style: italic;
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    border-top: 1px solid rgba(100,70,150,.3);
+    border-bottom: 1px solid rgba(100,70,150,.3);
+    font-size: 1rem;
+    color: #bbaae0;
+}
+
+/* Terra Que Veio de Outro Mundo */
+.mundo-card {
+    background: rgba(80,50,130,.1);
+    border-left: 4px solid #8a5aca;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.mundo-card .titulo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: #caaaff;
+    margin-bottom: 15px;
+}
+
+.nomes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.nomes-list span {
+    background: rgba(100,50,150,.15);
+    border: 1px solid rgba(120,70,180,.3);
+    padding: 5px 18px;
+    font-size: 0.85rem;
+    color: #bbaae0;
+}
+
+/* Tiberio */
+.tiberio-card {
+    background: linear-gradient(135deg, rgba(25,10,45,.8), rgba(15,5,30,.9));
+    border: 1px solid #8a5aca;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.tiberio-card .nome {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: #caaaff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Grande Vazio */
+.vazio-card {
+    background: rgba(0,0,0,.5);
+    border: 2px solid #7a4aca;
+    padding: 30px;
+    margin: 25px 0;
+    text-align: center;
+}
+
+.vazio-card h4 {
+    color: #caaaff;
+    margin-bottom: 15px;
+}
+
+/* Engenharia Anã */
+.engenharia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.engenharia-item {
+    background: rgba(0,0,0,.4);
+    border: 1px solid rgba(100,70,150,.3);
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #bbaae0;
+}
+
+/* Semelhança */
+.semelhanca-card {
+    background: rgba(80,50,130,.15);
+    border-left: 4px solid #8a5aca;
+    padding: 20px;
+    margin: 25px 0;
+}
+
+.semelhanca-card strong {
+    color: #caaaff;
+}
+
+/* Relatório Final */
+.relatorio-card {
+    background: linear-gradient(135deg, rgba(30,10,60,.8), rgba(15,5,35,.9));
+    border: 2px solid #8a5aca;
+    padding: 30px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.relatorio-card .frase {
+    font-style: italic;
+    font-size: 1rem;
+    color: #caaaff;
+}
+
+/* Último Registro */
+.ultimo-registro {
+    text-align: center;
+    font-style: italic;
+    font-size: 1rem;
+    margin: 40px 0 30px;
+    padding: 30px;
+    border-top: 2px solid rgba(100,70,150,.3);
+    border-bottom: 2px solid rgba(100,70,150,.3);
+    color: #bbaae0;
+}
+
+/* Conhecimento Proibido */
+.forbidden-knowledge {
+    background: linear-gradient(135deg, rgba(100,70,150,.15), rgba(80,50,130,.05));
+    border: 2px solid #8a5aca;
+    border-radius: 0px;
+    padding: 30px;
+    margin: 40px 0;
+}
+
+.forbidden-knowledge h3 {
+    font-family: 'Cinzel', serif;
+    color: #caaaff;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.forbidden-knowledge .conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.forbidden-knowledge .conhecimento-list li {
+    background: rgba(100,70,150,.2);
+    border: 1px solid rgba(120,70,180,.4);
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    color: #bbaae0;
+}
+
+/* Recompensa Proibida */
+.recompensa-proibida {
+    background: linear-gradient(135deg, rgba(100,70,150,.2), rgba(10,3,20,.98));
+    border: 2px solid #8a5aca;
+    border-radius: 0px;
+    padding: 35px;
+    text-align: center;
+    margin: 40px 0 20px;
+    box-shadow: 0 0 30px rgba(100,50,150,.2);
+}
+
+.recompensa-proibida h3 {
+    font-family: 'Cinzel', serif;
+    color: #caaaff;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.recompensa-proibida .exp {
+    font-size: 1.8rem;
+    color: #bbaae0;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.recompensa-proibida .nea {
+    font-size: 1.4rem;
+    color: #caaaff;
+    margin: 10px 0;
+}
+
+.titulo-oculto {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(100,70,150,.2);
+    border: 1px solid #8a5aca;
+    display: inline-block;
+}
+
+.titulo-oculto span {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: #caaaff;
+    letter-spacing: 2px;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 30px;
+    background: linear-gradient(135deg, #2a1a5a, #1a0a3a);
+    color: #aa8ada;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    transition: .3s;
+    border: 1px solid #6a3aba;
+    letter-spacing: 1px;
+}
+
+.voltar a:hover {
+    background: linear-gradient(135deg, #4a2a8a, #2a1a6a);
+    color: #caaaff;
+    box-shadow: 0 0 20px rgba(100,70,150,.4);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(100,70,150,.2);
+    color: #5a3a8a;
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .forbidden-page { padding: 25px; }
+    .forbidden-title { font-size: 1.2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="forbidden-badge">🔒 PROIBIDO - NÍVEL MÁXIMO 🔒</div>
+    <h1>📕 Solânia: O Registro Original</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Arquivo Anônimo Recuperado das Ruínas de Solânia</span>
+        <span class="header-badge"><i>🏛️</i> Cofres Selados da Antiga Administração Solaniana</span>
+        <span class="header-badge"><i>⚠️</i> Classificação: PROIBIDO</span>
+        <span class="header-badge"><i>🔒</i> Nível de Restrição: Máximo</span>
+        <span class="header-badge"><i>📄</i> 658 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "A maior mentira da história não foi a destruição de Solânia.<br>
+        Foi <strong>sua origem</strong>."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Advertência -->
+    <div class="advertencia">
+        <h3>⚠️ ADVERTÊNCIA ⚠️</h3>
+        <div class="simbolo">◈ ◈ ◈</div>
+        <p>Por séculos, os registros oficiais afirmaram que Solânia foi uma cidade construída sobre uma formação rochosa natural elevada acima do deserto.</p>
+        <p>Os documentos contidos neste tomo contradizem completamente essa versão.</p>
+        <p>Diversas cópias foram destruídas. Outras desapareceram.</p>
+        <p>As poucas que sobreviveram permanecem classificadas como material proibido.</p>
+        <div class="simbolo">◈ ◈ ◈</div>
+    </div>
+
+    <!-- Introdução -->
+    <div class="forbidden-page">
+        <div class="page-number">◈ INTRODUÇÃO ◈</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">S</span>egundo os registros encontrados nos cofres subterrâneos de Solânia, a cidade jamais pertenceu originalmente ao continente conhecido.</p>
+            <p>Ela não surgiu em Zaharam. Não foi construída sobre uma montanha. Não foi fundada por nenhuma tribo do deserto.</p>
+            <p>A verdade registrada nestes documentos afirma algo muito mais perturbador.</p>
+        </div>
+    </div>
+
+    <!-- A Terra Que Veio de Outro Mundo -->
+    <div class="forbidden-page">
+        <div class="page-number">◈ A TERRA QUE VEIO DE OUTRO MUNDO ◈</div>
+        
+        <div class="forbidden-text">
+            <p>Os textos descrevem que a região onde Solânia foi construída fazia parte de uma massa continental desconhecida. Um fragmento de um mundo que não existe em nenhum mapa conhecido.</p>
+        </div>
+        
+        <div class="mundo-card">
+            <div class="titulo">📜 Os registros utilizam diversos nomes para esse lugar:</div>
+            <div class="nomes-list">
+                <span>Terra Perdida</span>
+                <span>Reino Além do Véu</span>
+                <span>Continente Sem Sol</span>
+                <span>Mundo Esquecido</span>
+            </div>
+            <p style="margin-top: 15px;"><em>Nenhum deles foi confirmado.</em></p>
+        </div>
+    </div>
+
+    <!-- A Chegada Através das Fendas -->
+    <div class="forbidden-page">
+        <div class="page-number">◈ A CHEGADA ATRAVÉS DAS FENDAS ◈</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">S</span>egundo os documentos mais antigos, durante os eventos ligados à manifestação da Quinta Magia, enormes Fendas surgiram entre realidades.</p>
+            <p>Essas rupturas não transportavam apenas energia. Transportavam matéria. Montanhas. Pedras. Ruínas. Territórios inteiros.</p>
+            <p>Foi durante esse período que a região que se tornaria Solânia apareceu em Zaharam.</p>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Como se tivesse sido arrancada de outro mundo e lançada no continente."
+        </div>
+    </div>
+
+    <!-- O Nome de Tiberio -->
+    <div class="forbidden-page">
+        <div class="page-number">◈ O NOME DE TIBERIO ◈</div>
+        
+        <div class="forbidden-text">
+            <p>Embora os documentos não afirmem que Tiberio tenha criado Solânia, seu nome aparece diversas vezes.</p>
+            <p>Os registros descrevem que suas pesquisas envolvendo as Fendas e a Quinta Magia contribuíram para eventos que alteraram profundamente a estabilidade da realidade.</p>
+        </div>
+        
+        <div class="tiberio-card">
+            <div class="nome">🌀 Tiberio 🌀</div>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Quando as barreiras enfraqueceram, partes de lugares distantes atravessaram os vazios."
+        </div>
+        
+        <div class="citacao-proibida">
+            "Nem mesmo Tiberio parecia compreender completamente as consequências da Tempestade."
+        </div>
+        
+        <div class="forbidden-text">
+            <p><em>O restante do texto foi destruído.</em></p>
+        </div>
+    </div>
+
+    <!-- O Grande Vazio -->
+    <div class="forbidden-page">
+        <div class="page-number">◈ O GRANDE VAZIO ◈</div>
+        
+        <div class="forbidden-text">
+            <p>Expedições realizadas séculos depois descobriram algo impossível.</p>
+            <p>Abaixo de Solânia não existiam cavernas. Não existiam montanhas. Não existiam fundações naturais.</p>
+        </div>
+        
+        <div class="vazio-card">
+            <h4>🌀 O Abismo sem Fundo 🌀</h4>
+            <p>Havia apenas um vazio colossal. Um abismo sem fundo visível.</p>
+            <p style="margin-top: 10px;">Os relatórios afirmam que a própria estrutura da cidade permanecia suspensa acima desse vazio.</p>
+            <p><em>Como se desafiasse todas as leis naturais.</em></p>
+        </div>
+    </div>
+
+    <!-- A Intervenção dos Anões -->
+    <div class="forbidden-page">
+        <div class="page-number">◈ A INTERVENÇÃO DOS ANÕES DE VOLDHOUN ◈</div>
+        
+        <div class="forbidden-text">
+            <p><span class="dropcap">É</span> nesse ponto que entram os registros de Voldhoun.</p>
+            <p>Os documentos confirmam que mestres engenheiros anões foram convocados para estudar a anomalia. Após décadas de trabalho, eles desenvolveram um sistema gigantesco de sustentação arcana.</p>
+        </div>
+        
+        <div class="engenharia-grid">
+            <div class="engenharia-item">🏛️ Pilares rúnicos</div>
+            <div class="engenharia-item">⚡ Condutores de energia</div>
+            <div class="engenharia-item">🌀 Núcleos gravitacionais</div>
+            <div class="engenharia-item">🔒 Câmaras de estabilização</div>
+        </div>
+        
+        <div class="citacao-proibida">
+            "Grande parte dessas construções foi instalada abaixo da cidade."
+        </div>
+    </div>
+
+    <!-- A Engenharia Impossível -->
+    <div class="forbidden-page">
+        <div class="page-number">◈ A ENGENHARIA IMPOSSÍVEL ◈</div>
+        
+        <div class="citacao-proibida">
+            "Uma ilha suspensa sobre o nada."
+        </div>
+        
+        <div class="forbidden-text">
+            <p>Os sistemas criados pelos engenheiros não mantinham apenas edifícios. Mantinham uma região inteira estável.</p>
+            <p>Alguns documentos chegam a comparar Solânia a uma fortaleza flutuante.</p>
+        </div>
+    </div>
+
+    <!-- A Semelhança com Sentinela Aether -->
+    <div class="forbidden-page">
+        <div class="page-number">◈ A SEMELHANÇA COM SENTINELA AETHER ◈</div>
+        
+        <div class="forbidden-text">
+            <p>Entre os registros recuperados existe uma observação curiosa.</p>
+            <p>Os estudiosos perceberam que os mecanismos utilizados para estabilizar Solânia apresentavam princípios semelhantes aos observados em:</p>
+        </div>
+        
+        <div class="semelhanca-card">
+            <p style="text-align: center; font-size: 1.2rem;"><strong>🌀 Sentinela Aether 🌀</strong></p>
+            <p style="margin-top: 10px;">Embora os dois locais tenham origens diferentes, ambos desafiam a gravidade de maneira semelhante.</p>
+            <p>Por esse motivo, diversos pesquisadores acreditam que os fenômenos possam compartilhar uma origem comum.</p>
+            <p><em>Nenhuma prova definitiva foi encontrada.</em></p>
+        </div>
+    </div>
+
+    <!-- O Relatório Final -->
+    <div class="relatorio-card">
+        <h4>📜 O Relatório Final</h4>
+        <p>O documento mais recente encontrado nos arquivos de Solânia apresenta uma conclusão alarmante.</p>
+        <div class="frase" style="margin-top: 15px;">
+            "Se os estabilizadores falharem, a cidade retornará ao vazio do qual surgiu."
+        </div>
+        <p style="margin-top: 10px;"><em>Não existe explicação sobre o significado exato dessa frase.</em></p>
+    </div>
+
+    <!-- Último Registro -->
+    <div class="ultimo-registro">
+        <p>A última página do tomo contém apenas uma anotação.</p>
+        <p>Sem assinatura. Sem data. Sem identificação.</p>
+        <div style="margin-top: 20px;">
+            "Solânia nunca pertenceu a este mundo.<br>
+            Talvez um dia tente voltar para casa."
+        </div>
+    </div>
+
+    <!-- Conhecimento Proibido -->
+    <div class="forbidden-knowledge">
+        <h3>📕 Conhecimento Proibido Adquirido</h3>
+        <ul class="conhecimento-list">
+            <li>A verdadeira origem de Solânia</li>
+            <li>Relação entre as Fendas e a Quinta Magia</li>
+            <li>Participação indireta de Tiberio nos eventos</li>
+            <li>Engenharia secreta dos anões de Voldhoun</li>
+            <li>O Grande Vazio sob Solânia</li>
+            <li>Semelhanças entre Solânia e Sentinela Aether</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa Proibida -->
+    <div class="recompensa-proibida">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+40 EXP Historiador</div>
+        <div class="exp">+35 EXP Diplomata</div>
+        <div class="nea">+0,5% NEA</div>
+        
+        <div class="titulo-oculto">
+            <span>☠️ Título Oculto Obtido: Guardião do Registro Original ☠️</span>
+        </div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Arquivos Selados da Antiga Administração Solaniana • Zaharam • Ano 5002<br>
+    "Alguns conhecimentos não foram esquecidos. Foram trancados."
+</footer>
+
+</body>
+</html>

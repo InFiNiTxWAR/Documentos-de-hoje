@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Profecia da Última Aurora — Pedra Ancestral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0806;
+            font-family: 'Cormorant Garamond', serif;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* Fundo com textura de pedra */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at center, rgba(40,35,25,0.6), rgba(10,8,6,0.95)),
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(60,55,45,0.03) 0px,
+                    rgba(60,55,45,0.03) 2px,
+                    transparent 2px,
+                    transparent 6px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    rgba(50,45,35,0.02) 0px,
+                    rgba(50,45,35,0.02) 3px,
+                    transparent 3px,
+                    transparent 8px
+                );
+            z-index: 0;
+        }
+
+        .pedra {
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            background:
+                linear-gradient(170deg,
+                    rgba(70,60,45,0.95),
+                    rgba(45,38,28,0.97),
+                    rgba(35,30,20,0.98)
+                );
+            border: 3px solid rgba(120,100,70,0.4);
+            border-radius: 8px;
+            padding: 60px 55px;
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.9),
+                inset 0 0 60px rgba(80,60,30,0.05),
+                inset 0 0 20px rgba(160,140,100,0.03);
+            position: relative;
+        }
+
+        /* Textura de pedra lascada */
+        .pedra::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 8px;
+            background:
+                radial-gradient(ellipse at 10% 15%, rgba(180,160,120,0.04), transparent 50%),
+                radial-gradient(ellipse at 90% 85%, rgba(160,140,100,0.03), transparent 40%),
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(100,85,65,0.03) 0px,
+                    rgba(100,85,65,0.03) 1px,
+                    transparent 1px,
+                    transparent 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(100,85,65,0.02) 0px,
+                    rgba(100,85,65,0.02) 1px,
+                    transparent 1px,
+                    transparent 5px
+                );
+            z-index: 2;
+        }
+
+        /* Bordas desgastadas */
+        .pedra::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 8px;
+            background:
+                radial-gradient(ellipse at 0% 0%, rgba(0,0,0,0.2), transparent 30%),
+                radial-gradient(ellipse at 100% 0%, rgba(0,0,0,0.15), transparent 25%),
+                radial-gradient(ellipse at 0% 100%, rgba(0,0,0,0.2), transparent 30%),
+                radial-gradient(ellipse at 100% 100%, rgba(0,0,0,0.15), transparent 25%);
+            z-index: 3;
+        }
+
+        /* Símbolo rúnico no topo */
+        .simbolo-topo {
+            text-align: center;
+            font-size: 2.5rem;
+            color: rgba(180,160,120,0.15);
+            letter-spacing: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 5;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Título esculpido */
+        .titulo-pedra {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            text-align: center;
+            color: #c4b08a;
+            text-shadow: 0 0 30px rgba(180,160,120,0.08);
+            letter-spacing: 6px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 5;
+            font-weight: 700;
+        }
+
+        .subtitulo-pedra {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            text-align: center;
+            color: rgba(160,140,110,0.4);
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 5;
+            font-weight: 400;
+        }
+
+        .linha-decorativa {
+            width: 80px;
+            height: 2px;
+            margin: 0 auto 35px;
+            background: linear-gradient(90deg, transparent, rgba(160,140,110,0.3), transparent);
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Texto da profecia */
+        .profecia {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+        }
+
+        .profecia .versiculo {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: #d4c8b0;
+            margin-bottom: 18px;
+            padding: 0 10px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .profecia .versiculo .destaque {
+            color: #e8d4a0;
+            font-weight: 500;
+        }
+
+        .profecia .versiculo .destaque-forte {
+            color: #f0d080;
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .profecia .versiculo .numero {
+            color: rgba(180,160,120,0.3);
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .separador-runa {
+            text-align: center;
+            font-size: 1.8rem;
+            color: rgba(160,140,110,0.15);
+            margin: 25px 0;
+            letter-spacing: 12px;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Advertência final */
+        .advertencia {
+            margin-top: 45px;
+            padding: 25px 30px;
+            border-top: 1px solid rgba(160,140,110,0.15);
+            border-bottom: 1px solid rgba(160,140,110,0.15);
+            background: rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 5;
+            border-radius: 4px;
+        }
+
+        .advertencia .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: rgba(180,160,120,0.3);
+            letter-spacing: 4px;
+            text-align: center;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .advertencia p {
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: #b0a088;
+            text-align: center;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .advertencia p .destaque-advertencia {
+            color: #c4a870;
+            font-weight: 500;
+        }
+
+        /* Selo final */
+        .selo-final {
+            text-align: center;
+            margin-top: 35px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .selo-final .simbolo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: rgba(180,160,120,0.12);
+            letter-spacing: 10px;
+        }
+
+        .selo-final .texto-selo {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            color: rgba(160,140,110,0.2);
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
+        .selo-final .texto-selo strong {
+            color: rgba(180,160,120,0.3);
+        }
+
+        /* Botão voltar */
+        .voltar {
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .voltar a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: rgba(60,50,35,0.6);
+            color: #b0a088;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: .3s;
+            border: 1px solid rgba(160,140,110,0.15);
+            border-radius: 4px;
+        }
+
+        .voltar a:hover {
+            background: rgba(80,70,50,0.8);
+            color: #d4c8b0;
+            border-color: rgba(160,140,110,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .pedra { padding: 35px 25px; }
+            .titulo-pedra { font-size: 2rem; }
+            .profecia .versiculo { font-size: 1rem; line-height: 2; }
+            .advertencia { padding: 20px; }
+            .advertencia p { font-size: 0.85rem; }
+        }
+
+        @media (max-width: 480px) {
+            .pedra { padding: 25px 15px; }
+            .titulo-pedra { font-size: 1.5rem; letter-spacing: 3px; }
+            .profecia .versiculo { font-size: 0.9rem; padding: 0; }
+            .simbolo-topo { font-size: 1.5rem; }
+            .advertencia p { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pedra">
+
+        <div class="simbolo-topo">✦ ✦ ✦</div>
+
+        <div class="titulo-pedra">A PROFECIA DA ÚLTIMA AURORA</div>
+        <div class="subtitulo-pedra">(Tradução oficial dos Arquivistas de Black Marsh)</div>
+        <div class="linha-decorativa"></div>
+
+        <div class="profecia">
+
+            <div class="versiculo">
+                <span class="numero">✦ I ✦</span>
+                Antes da primeira aurora...
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ II ✦</span>
+                ...haverá <span class="destaque">cinco tempestades</span>.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ III ✦</span>
+                A primeira romperá a paz.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ IV ✦</span>
+                A segunda apagará a verdade.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ V ✦</span>
+                A terceira dividirá o sangue.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ VI ✦</span>
+                A quarta consumirá o tempo.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ VII ✦</span>
+                E a quinta anunciará o retorno daquilo que jamais partiu.
+            </div>
+
+            <div class="separador-runa">✦ ✧ ✦</div>
+
+            <div class="versiculo">
+                <span class="numero">✦ VIII ✦</span>
+                Quando a árvore nascer onde nunca existiu...
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ IX ✦</span>
+                quando suas raízes tocarem <span class="destaque">todas as terras</span>...
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ X ✦</span>
+                quando o céu deixar de reconhecer o próprio amanhecer...
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XI ✦</span>
+                a memória voltará antes da esperança.
+            </div>
+
+            <div class="separador-runa">✦ ✧ ✦</div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XII ✦</span>
+                <span class="destaque-forte">O Homem Branco</span> caminhará novamente.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XIII ✦</span>
+                Não como rei. Não como salvador. Não como conquistador.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XIV ✦</span>
+                Mas como <span class="destaque">aquele que se recusou a esquecer</span>.
+            </div>
+
+            <div class="separador-runa">✦ ✧ ✦</div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XV ✦</span>
+                Muitos desejarão sua morte.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XVI ✦</span>
+                Muitos desejarão seu perdão.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XVII ✦</span>
+                Poucos compreenderão seu silêncio.
+            </div>
+
+            <div class="separador-runa">✦ ✧ ✦</div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XVIII ✦</span>
+                A mulher que caiu continuará caminhando.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XIX ✦</span>
+                Não em carne. Não em espírito.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XX ✦</span>
+                Mas em toda escolha que desafiar o destino.
+            </div>
+
+            <div class="separador-runa">✦ ✧ ✦</div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XXI ✦</span>
+                O discípulo herdará as perguntas.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XXII ✦</span>
+                O mestre herdará a culpa.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XXIII ✦</span>
+                E ambos compreenderão tarde demais...
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XXIV ✦</span>
+                que o inimigo jamais esteve diante deles.
+            </div>
+
+            <div class="separador-runa">✦ ✧ ✦</div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XXV ✦</span>
+                Quando os <span class="destaque">sete</span> voltarem a reunir-se...
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XXVI ✦</span>
+                as coroas nada decidirão.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XXVII ✦</span>
+                Os deuses permanecerão calados.
+            </div>
+
+            <div class="versiculo">
+                <span class="numero">✦ XXVIII ✦</span>
+                E apenas aqueles que atravessaram duas realidades poderão escolher qual mundo continuará existindo.
+            </div>
+
+            <div class="separador-runa">✦ ✧ ✦</div>
+
+            <div class="versiculo" style="font-size:1.3rem; margin-top:10px;">
+                <span class="numero">✦ XXIX ✦</span>
+                <span class="destaque-forte">Então... A Última Aurora nascerá.</span>
+            </div>
+
+            <div class="versiculo" style="font-size:1.3rem;">
+                <span class="numero">✦ XXX ✦</span>
+                <span class="destaque-forte">Ou jamais nascerá.</span>
+            </div>
+
+        </div>
+
+        <div class="separador-runa" style="margin:35px 0;">✦ ✧ ✦</div>
+
+        <!-- ADVERTÊNCIA FINAL -->
+        <div class="advertencia">
+            <span class="label">⚔️ ADVERTÊNCIA ⚔️</span>
+            <p>
+                <span class="destaque-advertencia">"Aqueles que lerem estas palavras antes da Quinta Tempestade</span>
+                <span class="destaque-advertencia">acreditarão que falam do futuro.</span>
+            </p>
+            <p>
+                <span class="destaque-advertencia">Aqueles que as lerem depois</span>
+                <span class="destaque-advertencia">compreenderão que sempre falaram do passado."</span>
+            </p>
+        </div>
+
+        <!-- SELO FINAL -->
+        <div class="selo-final">
+            <div class="simbolo">✦ ◈ ✦</div>
+            <div class="texto-selo"><strong>✦</strong> PEDRA ANCESTRAL — BLACK MARSH <strong>✦</strong></div>
+            <div class="texto-selo" style="margin-top:3px; color:rgba(160,140,110,0.1);">ARQUIVO PROIBIDO — CÓDIGO: BP-0001</div>
+        </div>
+
+        <div class="voltar">
+            <a href="../documentos.html">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Especiarias dos Cem Oásis — Biblioteca das Areias de Zaharam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgba(30,20,10,.92), rgba(20,12,5,.96)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f2e0b0;
+}
+
+/* Header */
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,160,23,.4);
+    background: rgba(20,12,5,.8);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f5c542;
+    text-shadow: 0 0 15px rgba(245,197,66,.35);
+    margin-bottom: 10px;
+}
+
+.header-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(212,160,23,.15);
+    border: 1px solid rgba(212,160,23,.5);
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 10px 5px;
+    color: #e8c68a;
+}
+
+.header-badge i {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.epigrafe {
+    max-width: 700px;
+    margin: 30px auto 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f2d49b;
+    border-left: 3px solid #d4a017;
+    padding-left: 25px;
+    text-align: left;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 30px;
+}
+
+/* Seções */
+.section {
+    margin-bottom: 50px;
+    background: rgba(35,22,10,.75);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(212,160,23,.3);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f5c542;
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(212,160,23,.5);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Filosofia */
+.filosofia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.filosofia-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all .3s;
+}
+
+.filosofia-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.filosofia-card .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.filosofia-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.filosofia-card p {
+    font-size: 0.9rem;
+}
+
+/* Especiarias */
+.especiarias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.especie-card {
+    background: rgba(20,12,5,.85);
+    border-left: 3px solid #d4a017;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.especie-card:hover {
+    background: rgba(30,18,8,.9);
+    transform: translateX(3px);
+}
+
+.especie-card .emoji {
+    font-size: 1.8rem;
+    margin-right: 10px;
+}
+
+.especie-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.especie-card .propriedades {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+.especie-card .propriedades p {
+    padding: 3px 0;
+}
+
+/* Ingredientes Raros */
+.ingredientes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.ingrediente-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 10px 18px;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: all .3s;
+}
+
+.ingrediente-card:hover {
+    border-color: #d4a017;
+    transform: scale(1.02);
+}
+
+.ingrediente-card .emoji {
+    margin-right: 5px;
+}
+
+/* Receitas */
+.receitas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.receita-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all .3s;
+}
+
+.receita-card:hover {
+    border-color: #d4a017;
+    transform: translateY(-3px);
+}
+
+.receita-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.receita-card .sub {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #e8c68a;
+    margin-bottom: 12px;
+}
+
+.receita-card strong {
+    color: #f5c542;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.receita-card ul {
+    list-style: none;
+    margin-left: 15px;
+}
+
+.receita-card ul li {
+    padding: 3px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.receita-card ul li::before {
+    content: "•";
+    color: #d4a017;
+    position: absolute;
+    left: 5px;
+}
+
+.receita-card .beneficios {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(212,160,23,.3);
+}
+
+/* Conservação */
+.conservacao-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.conservacao-card {
+    background: rgba(20,12,5,.85);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+}
+
+.conservacao-card .emoji {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.conservacao-card strong {
+    color: #f5c542;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Banquetes */
+.banquete-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.banquete-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+    list-style: none;
+}
+
+/* Etiqueta */
+.etiqueta-list {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.etiqueta-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+}
+
+.etiqueta-list li::before {
+    content: "🍽️";
+    position: absolute;
+    left: 0;
+}
+
+/* Trecho Final */
+.trecho-final {
+    background: linear-gradient(135deg, rgba(30,20,8,.9), rgba(20,12,5,.95));
+    border: 1px solid #d4a017;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.trecho-final p {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.trecho-final .autor {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #d4a017;
+}
+
+/* Conhecimento */
+.conhecimento-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.conhecimento-list li {
+    background: rgba(212,160,23,.1);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+}
+
+/* Recompensa */
+.recompensa-box {
+    background: linear-gradient(135deg, rgba(35,22,10,.95), rgba(20,12,5,.98));
+    border: 2px solid #d4a017;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.recompensa-box h3 {
+    font-family: 'Cinzel', serif;
+    color: #f5c542;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.recompensa-box .exp {
+    font-size: 1.8rem;
+    color: #a8e6a0;
+    font-weight: bold;
+}
+
+.recompensa-box .nea {
+    font-size: 1.3rem;
+    color: #f5c542;
+}
+
+/* Botão voltar */
+.voltar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.voltar a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background: #b8860b;
+    color: white;
+    font-family: 'Cinzel', serif;
+    transition: .3s;
+}
+
+.voltar a:hover {
+    background: #d4a017;
+    color: #1a0f05;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(212,160,23,.2);
+    color: #c9a03d;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .section { padding: 20px; }
+    .especiarias-grid { grid-template-columns: 1fr; }
+    .receitas-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🌶️ Especiarias dos Cem Oásis</h1>
+    <div>
+        <span class="header-badge"><i>✍️</i> Samira al-Nahir, Mestre Culinária de Zaharam</span>
+        <span class="header-badge"><i>🏛️</i> Biblioteca das Areias de Zaharam</span>
+        <span class="header-badge"><i>📄</i> 678 Páginas</span>
+    </div>
+    <div class="epigrafe">
+        "Uma refeição alimenta o corpo. Uma especiaria alimenta a memória."
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Introdução -->
+    <div class="section">
+        <h2 class="section-title">🏜️ Introdução</h2>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            As caravanas de Zaharam não transportam apenas ouro, seda e cristais raros. Durante séculos, o verdadeiro tesouro do deserto esteve escondido em pequenos sacos de couro carregando pós coloridos, sementes aromáticas e ervas exóticas.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 15px;">
+            <strong>Especiarias dos Cem Oásis</strong> é a maior coletânea gastronômica já produzida no reino, reunindo ingredientes raros, técnicas culinárias e receitas transmitidas entre gerações de cozinheiros, mercadores e tribos nômades.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7;">
+            O livro ensina que cozinhar é uma arte tão importante quanto a guerra, a diplomacia ou o comércio.
+        </p>
+    </div>
+
+    <!-- A Filosofia da Cozinha Zahariana -->
+    <div class="section">
+        <h2 class="section-title">🍽️ A Filosofia da Cozinha Zahariana</h2>
+        <p>Segundo os mestres cozinheiros, uma refeição perfeita deve possuir quatro elementos:</p>
+        
+        <div class="filosofia-grid">
+            <div class="filosofia-card">
+                <span class="emoji">🌬️</span>
+                <h4>Aroma</h4>
+                <p>O cheiro deve despertar o apetite antes mesmo do primeiro prato ser servido.</p>
+            </div>
+            <div class="filosofia-card">
+                <span class="emoji">👅</span>
+                <h4>Sabor</h4>
+                <p>Cada ingrediente deve ser capaz de ser identificado sem dominar completamente os demais.</p>
+            </div>
+            <div class="filosofia-card">
+                <span class="emoji">⚖️</span>
+                <h4>Equilíbrio</h4>
+                <p>Doce, salgado, amargo e picante devem coexistir em harmonia.</p>
+            </div>
+            <div class="filosofia-card">
+                <span class="emoji">📖</span>
+                <h4>Memória</h4>
+                <p>Uma refeição inesquecível vale mais do que um banquete extravagante.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- As Cinco Especiarias Sagradas -->
+    <div class="section">
+        <h2 class="section-title">✨ As Cinco Especiarias Sagradas</h2>
+        
+        <div class="especiarias-grid">
+            <div class="especie-card">
+                <span class="emoji">🌶️</span><h4>Pó Solar</h4>
+                <p>Obtido através da moagem de pimentas douradas.</p>
+                <div class="propriedades">
+                    <p>🔥 Aroma intenso</p>
+                    <p>🔥 Sensação de aquecimento corporal</p>
+                    <p>🔥 Muito utilizado em carnes</p>
+                </div>
+            </div>
+            
+            <div class="especie-card">
+                <span class="emoji">🌿</span><h4>Açafrão das Dunas</h4>
+                <p>Cultivado próximo aos oásis mais antigos.</p>
+                <div class="propriedades">
+                    <p>✨ Cor dourada</p>
+                    <p>✨ Sabor delicado</p>
+                    <p>✨ Ingrediente de pratos nobres</p>
+                </div>
+            </div>
+            
+            <div class="especie-card">
+                <span class="emoji">🌰</span><h4>Semente de Kharim</h4>
+                <p>Pequena semente extremamente aromática.</p>
+                <div class="propriedades">
+                    <p>✨ Realça sabores</p>
+                    <p>✨ Utilizada em pães e ensopados</p>
+                </div>
+            </div>
+            
+            <div class="especie-card">
+                <span class="emoji">🌿</span><h4>Hortelã do Oásis</h4>
+                <p>Muito valorizada pelos viajantes.</p>
+                <div class="propriedades">
+                    <p>🍃 Refrescante</p>
+                    <p>🍃 Auxilia na digestão</p>
+                    <p>🍃 Base de diversas bebidas</p>
+                </div>
+            </div>
+            
+            <div class="especie-card">
+                <span class="emoji">🌶️</span><h4>Pimenta Escarlate</h4>
+                <p>Uma das especiarias mais fortes de Zaharam.</p>
+                <div class="propriedades">
+                    <p>⚠️ Picância extrema</p>
+                    <p>⚠️ Conservação de alimentos</p>
+                    <p>⚠️ Uso medicinal em pequenas quantidades</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ingredientes Raros -->
+    <div class="section">
+        <h2 class="section-title">💎 Ingredientes Raros</h2>
+        <p>Os Cem Oásis são conhecidos por produzir ingredientes únicos. Entre eles:</p>
+        
+        <div class="ingredientes-grid">
+            <div class="ingrediente-card"><span class="emoji">🍯</span> Mel do Sol Poente</div>
+            <div class="ingrediente-card"><span class="emoji">🍒</span> Tâmara Rubra</div>
+            <div class="ingrediente-card"><span class="emoji">🍋</span> Limão de Areth</div>
+            <div class="ingrediente-card"><span class="emoji">🥛</span> Leite de Camelo Dourado</div>
+            <div class="ingrediente-card"><span class="emoji">🍈</span> Figo das Dunas</div>
+            <div class="ingrediente-card"><span class="emoji">🌸</span> Flor de Safira do Deserto</div>
+        </div>
+        
+        <p style="margin-top: 10px;"><em>Esses ingredientes costumam ser reservados para festivais e celebrações importantes.</em></p>
+    </div>
+
+    <!-- Receitas Tradicionais -->
+    <div class="section">
+        <h2 class="section-title">📖 Receitas Tradicionais</h2>
+        
+        <div class="receitas-grid">
+            <div class="receita-card">
+                <h4>🍲 Ensopado das Caravanas</h4>
+                <div class="sub">Prato consumido por mercadores durante longas viagens</div>
+                <strong>Ingredientes:</strong>
+                <ul>
+                    <li>Carne seca</li>
+                    <li>Tâmara Rubra</li>
+                    <li>Açafrão das Dunas</li>
+                    <li>Raiz de Kharim</li>
+                    <li>Água limpa</li>
+                </ul>
+                <strong>Preparo:</strong>
+                <p style="margin-top: 5px;">Cozinhar lentamente durante várias horas até que os sabores se misturem.</p>
+                <p style="margin-top: 5px;"><em>O prato pode permanecer conservado por dias.</em></p>
+            </div>
+            
+            <div class="receita-card">
+                <h4>🍵 Chá dos Navegadores</h4>
+                <div class="sub">Bebida consumida antes de grandes travessias</div>
+                <strong>Ingredientes:</strong>
+                <ul>
+                    <li>Hortelã do Oásis</li>
+                    <li>Mel do Sol Poente</li>
+                    <li>Casca de Limão de Areth</li>
+                </ul>
+                <div class="beneficios">
+                    <strong>Benefícios:</strong>
+                    <p>🌿 Reduz fadiga</p>
+                    <p>🌿 Melhora concentração</p>
+                    <p>🌿 Ajuda na hidratação</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conservação de Alimentos -->
+    <div class="section">
+        <h2 class="section-title">📦 Conservação de Alimentos</h2>
+        <p>O livro dedica vários capítulos à preservação de provisões. Métodos mais comuns:</p>
+        
+        <div class="conservacao-grid">
+            <div class="conservacao-card">
+                <span class="emoji">☀️</span>
+                <strong>Secagem Solar</strong>
+                <span>Utilizada para frutas e carnes</span>
+            </div>
+            <div class="conservacao-card">
+                <span class="emoji">🧂</span>
+                <strong>Sal das Dunas</strong>
+                <span>Permite armazenamento prolongado</span>
+            </div>
+            <div class="conservacao-card">
+                <span class="emoji">🫒</span>
+                <strong>Conservação em Óleos Aromáticos</strong>
+                <span>Muito utilizada por cozinheiros nobres</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banquetes das Grandes Casas -->
+    <div class="section">
+        <h2 class="section-title">👑 Banquetes das Grandes Casas</h2>
+        <p>As famílias mais influentes de Zaharam costumam servir:</p>
+        
+        <ul class="banquete-list">
+            <li>Carnes assadas com Açafrão das Dunas</li>
+            <li>Pães de Kharim</li>
+            <li>Tâmaras caramelizadas</li>
+            <li>Chás aromáticos raros</li>
+            <li>Sobremesas feitas com mel e figos</li>
+        </ul>
+        
+        <p style="margin-top: 10px;"><em>Segundo o livro, a qualidade da refeição demonstra o respeito oferecido aos convidados.</em></p>
+    </div>
+
+    <!-- Etiqueta à Mesa -->
+    <div class="section">
+        <h2 class="section-title">🥂 Etiqueta à Mesa</h2>
+        <p>Em Zaharam, existem tradições importantes.</p>
+        
+        <ul class="etiqueta-list">
+            <li>Nunca recusar o primeiro copo de chá</li>
+            <li>Elogiar o cozinheiro é sinal de respeito</li>
+            <li>Compartilhar alimentos fortalece alianças</li>
+            <li>Comer sozinho durante festividades é considerado indelicado</li>
+        </ul>
+    </div>
+
+    <!-- Trecho Final -->
+    <div class="trecho-final">
+        <p>"Os impérios são construídos por reis.</p>
+        <p>As guerras são vencidas por soldados.</p>
+        <p>Mas são as refeições compartilhadas que transformam estranhos em amigos."</p>
+        <div class="autor">— Samira al-Nahir</div>
+    </div>
+
+    <!-- Conhecimento Adquirido -->
+    <div class="section">
+        <h2 class="section-title">📜 Conhecimento Adquirido</h2>
+        <ul class="conhecimento-list">
+            <li>Ingredientes raros de Zaharam</li>
+            <li>Uso culinário de especiarias</li>
+            <li>Técnicas de conservação de alimentos</li>
+            <li>Receitas tradicionais das caravanas e dos oásis</li>
+        </ul>
+    </div>
+
+    <!-- Recompensa -->
+    <div class="recompensa-box">
+        <h3>🏆 Recompensa de Leitura</h3>
+        <div class="exp">+30 EXP Cozinheiro</div>
+        <div class="nea">+0,1% NEA</div>
+    </div>
+
+    <!-- Botão voltar -->
+    <div class="voltar">
+        <a href="/bibliotecas.html">← Voltar à Biblioteca</a>
+    </div>
+
+</div>
+
+<footer>
+    Biblioteca das Areias de Zaharam • Reino de Zaharam • Ano 5002<br>
+    "Que as dunas guiem seus passos."
+</footer>
+
+</body>
+</html>

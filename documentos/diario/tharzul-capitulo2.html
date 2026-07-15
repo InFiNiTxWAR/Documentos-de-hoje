@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grimório Ardente de Thar-Zul — Capítulo II</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Cormorant Garamond", serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .grimorio {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .grimorio::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 10;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .cabecalho .titulo-principal {
+            font-family: "Cinzel", serif;
+            font-size: 2.8rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: "Cinzel", serif;
+            font-size: 1.2rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+        }
+
+        .cabecalho .selo {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #6a3a2a;
+            border: 2px solid #6a3a2a;
+            padding: 4px 12px;
+            border-radius: 2px;
+            letter-spacing: 2px;
+            background: rgba(80,40,20,.1);
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 5;
+        }
+
+        .conteudo p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .conteudo .dropcap {
+            font-size: 3.5rem;
+            font-family: "Cinzel", serif;
+            float: left;
+            line-height: 0.8;
+            margin-right: 12px;
+            color: #d4a74f;
+            text-shadow: 0 0 10px rgba(212,167,79,.15);
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .simbolo {
+            text-align: center;
+            font-size: 2rem;
+            color: #6a3a2a;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        .conteudo .aviso {
+            margin: 30px 0;
+            padding: 20px 25px;
+            border: 1px solid #6a3a2a;
+            background: rgba(80,40,20,.08);
+            border-radius: 6px;
+            font-style: italic;
+            color: #c49a6a;
+        }
+
+        .conteudo .aviso strong {
+            color: #d4a74f;
+            font-style: normal;
+        }
+
+        .conteudo .carta {
+            background: rgba(40,30,15,.4);
+            border: 1px solid #6a4a2a;
+            padding: 25px 30px;
+            margin: 25px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .conteudo .carta .texto-carta {
+            font-style: italic;
+            font-size: 1.15rem;
+            color: #d4a74f;
+            line-height: 1.8;
+        }
+
+        .conteudo .carta .selo-carta {
+            margin-top: 15px;
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #6a3a2a;
+            letter-spacing: 4px;
+        }
+
+        .assinatura {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: right;
+            font-family: "Cinzel", serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .assinatura .nome {
+            font-size: 1.2rem;
+            color: #d4a74f;
+        }
+
+        .navegacao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .navegacao .info {
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #6a4a2a;
+            letter-spacing: 2px;
+        }
+
+        .navegacao .btn-nav {
+            padding: 8px 25px;
+            background: #6a4a2a;
+            border: none;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.8rem;
+            color: #d4c8a0;
+            transition: .3s;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navegacao .btn-nav:hover {
+            background: #8a6a3a;
+            color: #f0e0b0;
+        }
+
+        .voltar-topo {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #4a3520;
+            border: 1px solid #6a4a2a;
+            cursor: pointer;
+            font-family: "Cinzel", serif;
+            font-size: 0.7rem;
+            color: #bca77a;
+            transition: .3s;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .voltar-topo:hover {
+            background: #6a4a2a;
+            color: #f0e0b0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .grimorio { padding: 30px 25px; }
+            .cabecalho .titulo-principal { font-size: 2rem; }
+            .cabecalho .selo { position: relative; top: 0; right: 0; display: inline-block; margin-top: 10px; }
+            .conteudo p { font-size: 1rem; }
+            .navegacao { flex-direction: column; text-align: center; }
+            .conteudo .carta { padding: 15px 18px; }
+        }
+
+        @media (max-width: 480px) {
+            .grimorio { padding: 20px 15px; }
+            .cabecalho .titulo-principal { font-size: 1.5rem; }
+            .conteudo p { font-size: 0.9rem; }
+            .conteudo .dropcap { font-size: 2.5rem; }
+            .conteudo .carta .texto-carta { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grimorio">
+
+        <div class="cabecalho">
+            <div class="selo">⚔️ II ⚔️</div>
+            <div class="titulo-principal">Grimório Ardente</div>
+            <div class="subtitulo">de Thar-Zul</div>
+            <div style="margin-top:8px; font-family:'Cinzel',serif; font-size:0.8rem; color:#6a4a2a; letter-spacing:2px;">
+                Capítulo II — A Carta Sem Remetente
+            </div>
+        </div>
+
+        <div class="conteudo">
+
+            <p>
+                <span class="dropcap">P</span>assei dias tentando convencer a mim mesmo de que tudo não passava de coincidência.
+            </p>
+
+            <p>
+                Não consegui.
+            </p>
+
+            <p>
+                Na manhã seguinte ao início deste diário, encontrei uma carta repousando sobre minha mesa.
+            </p>
+
+            <p>
+                Não havia pegadas. Nenhum selo. Nenhum mensageiro.
+            </p>
+
+            <p>
+                Apenas um envelope negro, feito de um material que não reconheci.
+            </p>
+
+            <p>
+                Meu nome estava escrito em uma caligrafia perfeita. A tinta ainda parecia fresca.
+            </p>
+
+            <p>
+                Dentro havia somente uma folha. Nenhuma assinatura. Nenhuma explicação.
+            </p>
+
+            <div class="carta">
+                <div class="texto-carta">
+                    "A verdade não vive nas bibliotecas. Ela dorme onde até a luz teme entrar."
+                </div>
+                <div class="selo-carta">
+                    ✦ ✦ ✦
+                </div>
+            </div>
+
+            <p>
+                Na parte inferior da folha havia um símbolo.
+            </p>
+
+            <div class="simbolo">◈ ── ◈</div>
+
+            <p>
+                Um círculo incompleto, atravessado por uma linha vertical envolta por pequenas chamas.
+            </p>
+
+            <p>
+                Nunca havia visto aquele selo.
+            </p>
+
+            <p>
+                <span class="destaque">Ainda assim... eu tinha absoluta certeza de que o conhecia.</span>
+            </p>
+
+            <p>
+                Passei semanas pesquisando em arquivos públicos, coleções privadas e templos antigos.
+            </p>
+
+            <p>
+                Nada. Nem um único registro.
+            </p>
+
+            <p>
+                Até que um velho bibliotecário, cuja idade parecia desafiar o próprio tempo, observou o desenho por alguns segundos.
+            </p>
+
+            <p>
+                Seu rosto perdeu toda a cor. Ele devolveu o pergaminho sem dizer uma palavra.
+            </p>
+
+            <p>
+                Quando insisti por respostas...
+            </p>
+
+            <div class="citacao">
+                "Se esse símbolo o encontrou... já é tarde demais para voltar."
+            </div>
+
+            <p>
+                Na manhã seguinte, a biblioteca estava fechada.
+            </p>
+
+            <p>
+                Disseram-me que o velho havia desaparecido durante a madrugada.
+            </p>
+
+            <p>
+                Nenhum corpo. Nenhum vestígio.
+            </p>
+
+            <p>
+                Seu nome foi retirado dos registros <span class="destaque">como se jamais tivesse existido.</span>
+            </p>
+
+            <p>
+                Naquele instante compreendi algo que mudaria minha vida.
+            </p>
+
+            <div class="aviso">
+                <strong>⚠️ Alguém... ou alguma coisa... estava apagando as pessoas que sabiam demais.</strong>
+            </div>
+
+            <p>
+                Foi então que decidi abandonar o conforto dos estudos.
+            </p>
+
+            <p>
+                Pela primeira vez em muitos anos, deixei minha torre sem saber se algum dia retornaria.
+            </p>
+
+            <p>
+                Meu destino apontava para o norte.
+            </p>
+
+            <p>
+                Para uma terra cujos mapas terminavam em páginas em branco.
+            </p>
+
+            <p>
+                Na época, eu ainda não sabia seu nome.
+            </p>
+
+            <div class="citacao" style="border-left-color:#8a4a2a;">
+                "Hoje... Gostaria de nunca tê-lo descoberto."
+            </div>
+
+            <div class="assinatura">
+                <div class="nome">— Thar-Zul</div>
+                <div style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">A Carta Sem Remetente</div>
+            </div>
+
+        </div>
+
+        <div class="navegacao">
+            <span class="info">📜 Página 2 — Capítulo II</span>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="tharzul-capitulo1.html" class="btn-nav">← Anterior</a>
+                <a href="tharzul-capitulo3.html" class="btn-nav">Próximo →</a>
+            </div>
+        </div>
+
+        <div class="text-center" style="margin-top:20px;">
+            <a href="/documentos.html" class="voltar-topo">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

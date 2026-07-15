@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Elyndor — Arquivo de Estelaris</title>
+
+   <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+   <style>
+      /* ===========================
+   RESET
+=========================== */
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      html {
+         scroll-behavior: smooth;
+      }
+
+      /* ===========================
+   BODY
+=========================== */
+
+      body {
+
+         min-height: 100vh;
+
+         background:
+            linear-gradient(rgba(8, 12, 8, .88),
+               rgba(6, 10, 6, .94)),
+
+            url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+
+         font-family: 'Cormorant Garamond', serif;
+
+         color: #f4e7c1;
+      }
+
+      /* ===========================
+   HEADER
+=========================== */
+
+      header {
+
+         padding: 70px 20px;
+
+         text-align: center;
+
+         border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+         backdrop-filter: blur(2px);
+      }
+
+      header h1 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 3.8rem;
+
+         color: #f5d48b;
+
+         text-shadow:
+            0 0 15px rgba(245, 212, 139, .35);
+
+         margin-bottom: 15px;
+      }
+
+      header .subtitulo {
+
+         font-size: 1.5rem;
+
+         color: #d8c79d;
+
+         font-style: italic;
+
+         margin-bottom: 20px;
+      }
+
+      header .descricao {
+
+         max-width: 900px;
+
+         margin: auto;
+
+         font-size: 1.25rem;
+
+         line-height: 1.7;
+
+         color: #e7d7b1;
+      }
+
+      /* ===========================
+   CONTAINER
+=========================== */
+
+      .container {
+
+         max-width: 1500px;
+
+         margin: auto;
+
+         padding: 50px 30px 80px;
+      }
+
+      /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+      .secao-titulo {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 2rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         text-shadow:
+            0 0 8px rgba(245, 212, 139, .25);
+      }
+
+      .secao-descricao {
+
+         font-size: 1.2rem;
+
+         color: #d7c59b;
+
+         margin-bottom: 30px;
+
+         line-height: 1.7;
+      }
+
+      .separador {
+
+         margin: 60px 0;
+
+         height: 2px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               rgba(214, 170, 83, .6),
+               transparent);
+      }
+
+      /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+      .grid {
+
+         display: grid;
+
+         grid-template-columns:
+            repeat(auto-fit, minmax(320px, 1fr));
+
+         gap: 25px;
+      }
+
+      /* ===========================
+   CARD PADRÃO
+=========================== */
+
+      .card {
+
+         background:
+            rgba(35, 25, 15, .93);
+
+         border: 2px solid #8f6b2c;
+
+         border-radius: 14px;
+
+         padding: 24px;
+
+         transition: .35s;
+
+         box-shadow:
+            0 0 15px rgba(0, 0, 0, .45);
+
+         position: relative;
+
+         overflow: hidden;
+      }
+
+      .card::before {
+
+         content: "";
+
+         position: absolute;
+
+         top: 0;
+         left: 0;
+
+         width: 100%;
+         height: 4px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d6aa53,
+               transparent);
+      }
+
+      .card:hover {
+
+         transform: translateY(-8px);
+
+         border-color: #d6aa53;
+
+         box-shadow:
+            0 0 25px rgba(214, 170, 83, .20);
+      }
+
+      .card h3 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 1.25rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         line-height: 1.4;
+      }
+
+      .categoria {
+
+         display: inline-block;
+
+         padding: 5px 10px;
+
+         background:
+            rgba(214, 170, 83, .12);
+
+         border: 1px solid rgba(214, 170, 83, .25);
+
+         border-radius: 20px;
+
+         font-size: .95rem;
+
+         margin-bottom: 15px;
+
+         color: #f3d18b;
+      }
+
+      .card p {
+
+         font-size: 1.08rem;
+
+         line-height: 1.6;
+
+         color: #e6d7b5;
+
+         margin-bottom: 18px;
+      }
+
+      /* ===========================
+   RECOMPENSAS
+=========================== */
+
+      .recompensa {
+
+         background:
+            rgba(0, 0, 0, .20);
+
+         border-left: 4px solid #d6aa53;
+
+         padding: 12px;
+
+         border-radius: 6px;
+
+         font-size: 1rem;
+
+         margin-bottom: 18px;
+
+         line-height: 1.6;
+      }
+
+      .recompensa strong {
+
+         color: #f5d48b;
+      }
+
+      /* ===========================
+   BOTÃO
+=========================== */
+
+      .btn {
+
+         width: 100%;
+
+         border: none;
+
+         cursor: pointer;
+
+         padding: 12px;
+
+         font-size: 1rem;
+
+         font-weight: bold;
+
+         font-family: 'Cinzel', serif;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         transition: .3s;
+      }
+
+      .btn:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   LIVRO RARO
+=========================== */
+
+      .raro {
+
+         border: 2px solid #c9a84a;
+
+         background:
+            rgba(58, 44, 18, .94);
+      }
+
+      .raro::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #ffd369,
+               transparent);
+      }
+
+      .raro h3 {
+
+         color: #ffd369;
+      }
+
+      /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+      .proibido {
+
+         background:
+            rgba(30, 10, 10, .95);
+
+         border: 2px solid #8f1d1d;
+      }
+
+      .proibido::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d64040,
+               transparent);
+      }
+
+      .proibido h3 {
+
+         color: #ff7b7b;
+      }
+
+      .proibido .categoria {
+
+         background:
+            rgba(255, 0, 0, .10);
+
+         border-color:
+            rgba(255, 0, 0, .25);
+
+         color: #ff9b9b;
+      }
+
+      .proibido .btn {
+
+         background: #7f1d1d;
+      }
+
+      .proibido .btn:hover {
+
+         background: #c73434;
+
+         color: white;
+      }
+
+      /* ===========================
+   VOLTAR
+=========================== */
+
+      .voltar {
+
+         text-align: center;
+
+         margin-top: 60px;
+      }
+
+      .voltar a {
+
+         display: inline-block;
+
+         text-decoration: none;
+
+         padding: 12px 25px;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         font-family: 'Cinzel', serif;
+
+         transition: .3s;
+      }
+
+      .voltar a:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+
+      footer {
+
+         text-align: center;
+
+         padding: 40px;
+
+         border-top: 1px solid rgba(214, 170, 83, .15);
+
+         color: #c9b27a;
+
+         font-size: 1rem;
+      }
+
+      /* ===========================
+   RESPONSIVO
+=========================== */
+
+      @media(max-width:768px) {
+
+         header h1 {
+            font-size: 2.5rem;
+         }
+
+         header .descricao {
+            font-size: 1.1rem;
+         }
+
+         .secao-titulo {
+            font-size: 1.6rem;
+         }
+
+         .grid {
+            grid-template-columns: 1fr;
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+
+      <header>
+
+         <h1>🌲 Arquivo de Estelaris</h1>
+
+         <div class="subtitulo">
+            "Todo conhecimento floresce onde a natureza o protege."
+         </div>
+
+         <div class="descricao">
+
+            Localizado às margens do Lago Estelaris, o Arquivo de Estelaris
+            é considerado o maior centro de conhecimento natural do continente.
+            Seus livros são preservados por druidas, magos naturais e guardiões
+            da floresta há séculos, mantendo viva a sabedoria ancestral de Elyndor.
+
+         </div>
+
+      </header>
+
+      <div class="container">
+
+         <!-- ====================================================
+📚 LIVROS DISPONÍVEIS
+==================================================== -->
+
+         <h2 class="secao-titulo">📚 Livros Disponíveis</h2>
+
+         <p class="secao-descricao">
+            Localizado nas margens do Lago Estelaris, o Arquivo de Estelaris é considerado o maior centro de
+            conhecimento natural do continente.
+            Seus livros são preservados por druidas e magos naturais há séculos.
+         </p>
+
+         <div class="grid">
+
+            <div class="card">
+               <h3>📖 Os Ciclos da Floresta Eterna</h3>
+               <div class="categoria">Druida</div>
+               <p>Estudo sobre os ciclos naturais e sua influência na magia.</p>
+               <div class="recompensa">+35 EXP Druida<br>+0,3% NEA</div>
+               <button class="btn" onclick="abrirLivro('412')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Herbologia de Luminathis</h3>
+               <div class="categoria">Herbalista</div>
+               <p>Guia completo sobre ervas de Elyndor.</p>
+               <div class="recompensa">+40 EXP Herbalista<br>+0,3% NEA</div>
+               <button class="btn" onclick="abrirLivro('538')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Medicina das Águas de Estelaris</h3>
+               <div class="categoria">Médico</div>
+               <p>Tratamentos naturais utilizando águas encantadas.</p>
+               <div class="recompensa">+35 EXP Médico<br>+0,2% NEA</div>
+               <button class="btn" onclick="abrirLivro('184')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Bestiário dos Rios Antigos</h3>
+               <div class="categoria">Biólogo Arcano</div>
+               <p>Criaturas aquáticas e seus comportamentos.</p>
+               <div class="recompensa">+30 EXP Biólogo Arcano<br>+0,2% NEA</div>
+               <button class="btn" onclick="abrirLivro('726')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 A Linguagem das Árvores</h3>
+               <div class="categoria">Druida</div>
+               <p>Métodos para compreender espíritos vegetais.</p>
+               <div class="recompensa">+40 EXP Druida<br>+0,4% NEA</div>
+               <button class="btn" onclick="abrirLivro('301')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 O Caminho do Guardião Verde</h3>
+               <div class="categoria">Patrulheiro</div>
+               <p>Treinamentos dos protetores de Elyndor.</p>
+               <div class="recompensa">+30 EXP Patrulheiro<br>+0,2% NEA</div>
+               <button class="btn" onclick="abrirLivro('877')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Magia Natural para Iniciantes</h3>
+               <div class="categoria">Mago Natural</div>
+               <p>Livro básico das academias.</p>
+               <div class="recompensa">+20 EXP Mago Natural<br>+0,1% NEA</div>
+               <button class="btn" onclick="abrirLivro('142')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Os Ventos de Aerendell</h3>
+               <div class="categoria">Invocador</div>
+               <p>Manipulação dos ventos naturais.</p>
+               <div class="recompensa">+30 EXP Invocador<br>+0,3% NEA</div>
+               <button class="btn" onclick="abrirLivro('665')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Enciclopédia dos Tritões</h3>
+               <div class="categoria">Historiador Arcano</div>
+               <p>Costumes e tradições dos Tritões.</p>
+               <div class="recompensa">+35 EXP Historiador Arcano<br>+0,2% NEA</div>
+               <button class="btn" onclick="abrirLivro('229')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Runas da Natureza Viva</h3>
+               <div class="categoria">Runista</div>
+               <p>Runas utilizadas pelos druidas ancestrais.</p>
+               <div class="recompensa">+40 EXP Runista<br>+0,3% NEA</div>
+               <button class="btn" onclick="abrirLivro('903')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 O Equilíbrio das Almas</h3>
+               <div class="categoria">Clérigo</div>
+               <p>Estudo espiritual dos ciclos de vida.</p>
+               <div class="recompensa">+30 EXP Clérigo<br>+0,4% NEA</div>
+               <button class="btn" onclick="abrirLivro('517')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 O Jardim dos Anciões</h3>
+               <div class="categoria">Jardineiro Espiritual</div>
+               <p>Cultivo de plantas mágicas raras.</p>
+               <div class="recompensa">+35 EXP Jardineiro Espiritual<br>+0,2% NEA</div>
+               <button class="btn" onclick="abrirLivro('784')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Poções de Silvália</h3>
+               <div class="categoria">Alquimista</div>
+               <p>Receitas utilizadas pelos alquimistas da floresta.</p>
+               <div class="recompensa">+40 EXP Alquimista<br>+0,3% NEA</div>
+               <button class="btn" onclick="abrirLivro('366')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Os Guardiões de Thalloran</h3>
+               <div class="categoria">Guerreiro Druídico</div>
+               <p>Relatos dos maiores protetores do reino.</p>
+               <div class="recompensa">+30 EXP Guerreiro Druídico<br>+0,2% NEA</div>
+               <button class="btn" onclick="abrirLivro('691')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+               <h3>📖 Canções da Primeira Primavera</h3>
+               <div class="categoria">Bardo Natural</div>
+               <p>Músicas ancestrais utilizadas em rituais.</p>
+               <div class="recompensa">+25 EXP Bardo Natural<br>+0,3% NEA</div>
+               <button class="btn" onclick="abrirLivro('255')">Ler Livro</button>
+            </div>
+
+         </div>
+
+         <div class="separador"></div>
+
+         <h2 class="secao-titulo">🌟 Livro Raro</h2>
+
+         <div class="grid">
+
+            <div class="card raro">
+
+               <h3>📗 O Legado de Aelarion Greenleaf</h3>
+
+               <div class="categoria">
+                  Druida / Mago Natural
+               </div>
+
+               <p>
+                  Escrito pelo próprio Guardião da Floresta.
+                  Relata a fundação de Elyndor, pactos antigos,
+                  magia natural avançada e técnicas perdidas dos primeiros druidas.
+               </p>
+
+               <div class="recompensa">
+                  +40 EXP Druida<br>
+                  +40 EXP Mago Natural<br>
+                  +0,5% NEA<br><br>
+                  🌿 Discípulo de Greenleaf
+               </div>
+
+               <button class="btn" onclick="abrirLivro('999')">
+                  Acessar Tomo Raro
+               </button>
+
+            </div>
+
+         </div>
+
+         <div class="separador"></div>
+
+         <h2 class="secao-titulo">🔒 Câmara das Folhas Silenciadas</h2>
+
+         <p class="secao-descricao">
+            "Nem toda raiz deve ser desenterrada."
+         </p>
+
+         <div class="grid">
+
+            <div class="card proibido">
+               <h3>📕 O Milênio Antes da Floresta</h3>
+               <div class="categoria">Arquivo Proibido</div>
+               <p>Relatos de uma época onde Elyndor ainda não existia.</p>
+               <div class="recompensa">+40 EXP Historiador Arcano<br>+0,5% NEA</div>
+               <button class="btn" onclick="abrirLivro('741')">Acessar Registro</button>
+            </div>
+
+            <div class="card proibido">
+               <h3>📕 A Quinta Semente</h3>
+               <div class="categoria">5th Magic</div>
+               <p>Primeiro registro encontrado em Elyndor sobre a Quinta Magia.</p>
+               <div class="recompensa">+40 EXP Pesquisador Arcano<br>+0,5% NEA</div>
+               <button class="btn" onclick="abrirLivro('515')">Acessar Registro</button>
+            </div>
+
+            <div class="card proibido">
+               <h3>📕 As Raízes do Mundo</h3>
+               <div class="categoria">Energia Primordial</div>
+               <p>Teoria sobre a rede invisível que conecta todo o continente.</p>
+               <div class="recompensa">+35 EXP Druida<br>+40 EXP Arcanista<br>+0,5% NEA</div>
+               <button class="btn" onclick="abrirLivro('303')">Acessar Registro</button>
+            </div>
+
+            <div class="card proibido">
+               <h3>📕 O Véu Verde Esquecido</h3>
+               <div class="categoria">Magia Proibida</div>
+               <p>Relatos sobre druidas capazes de alterar estações inteiras.</p>
+               <div class="recompensa">+40 EXP Druida<br>+0,5% NEA</div>
+               <button class="btn" onclick="abrirLivro('848')">Acessar Registro</button>
+            </div>
+
+            <div class="card proibido">
+               <h3>📕 Fragmentos da Primeira Árvore</h3>
+               <div class="categoria">Classificação Máxima</div>
+               <p>O documento mais antigo preservado por Elyndor.</p>
+               <div class="recompensa">
+                  +40 EXP Clérigo<br>
+                  +40 EXP Druida<br>
+                  +0,5% NEA
+               </div>
+               <button class="btn" onclick="abrirLivro('111')">
+                  Acessar Registro
+               </button>
+            </div>
+
+         </div>
+
+         <div class="voltar">
+            <a href="../bibliotecas.html">
+               ← Voltar às Bibliotecas
+            </a>
+         </div>
+
+
+
+      </div>
+
+      <footer>
+
+         Arquivo de Estelaris • Reino de Elyndor • Ano 5002
+
+      </footer>
+
+
+      <script>
+
+         const livros = {
+
+            /* ==========================
+               LIVROS DISPONÍVEIS
+            ========================== */
+
+            "412": "livros/ciclos_floresta_eterna.html",
+            "538": "livros/herbologia_luminathis.html",
+            "184": "livros/medicina_aguas_estelaris.html",
+            "726": "livros/bestiario_rios_antigos.html",
+            "301": "livros/linguagem_arvores.html",
+            "877": "livros/caminho_guardiao_verde.html",
+            "142": "livros/magia_natural_iniciantes.html",
+            "665": "livros/ventos_aerendell.html",
+            "229": "livros/enciclopedia_tritoes.html",
+            "903": "livros/runas_natureza_viva.html",
+            "517": "livros/equilibrio_almas.html",
+            "784": "livros/jardim_ancioes.html",
+            "366": "livros/pocoes_silvalia.html",
+            "691": "livros/guardioes_thalloran.html",
+            "255": "livros/cancoes_primeira_primavera.html",
+
+            /* ==========================
+               LIVRO RARO
+            ========================== */
+
+            "999": "livros/legado_aelarion_greenleaf.html",
+
+            /* ==========================
+               CÂMARA DAS FOLHAS SILENCIADAS
+            ========================== */
+
+            "741": "livros/milenio_antes_floresta.html",
+            "515": "livros/quinta_semente.html",
+            "303": "livros/raizes_do_mundo.html",
+            "848": "livros/veu_verde_esquecido.html",
+            "111": "livros/fragmentos_primeira_arvore.html"
+
+         };
+
+         function abrirLivro(codigoEsperado) {
+
+            const codigo = prompt(
+               "🌲 Insira o código do tomo:"
+            );
+
+            if (codigo === null) {
+               return;
+            }
+
+            if (codigo === codigoEsperado) {
+
+               window.location.href =
+                  livros[codigoEsperado];
+
+            } else {
+
+               alert(
+                  "❌ Os espíritos de Estelaris recusam sua autorização.\n\nCódigo inválido."
+               );
+
+            }
+
+         }
+
+      </script>
+
+
+
+</body>
+
+</html>
