@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQUIVO DA PRIMEIRA MEMÓRIA — O NASCIMENTO DA PRIMEIRA MANA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(10,8,6,.96), rgba(6,4,3,.98)),
+                url("https://images.unsplash.com/photo-1512820790803-83ca734da794");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Cormorant Garamond', serif;
+            color: #d4c8a0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .documento {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(25,18,10,.94);
+            border: 2px solid #6a4a2a;
+            border-radius: 12px;
+            padding: 50px 55px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 80px rgba(80,50,20,.05);
+        }
+
+        .documento::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background:
+                radial-gradient(ellipse at 5% 3%, rgba(100,60,30,.08), transparent 40%),
+                radial-gradient(ellipse at 95% 8%, rgba(80,50,20,.06), transparent 35%),
+                radial-gradient(ellipse at 10% 92%, rgba(90,55,25,.05), transparent 30%),
+                radial-gradient(ellipse at 88% 90%, rgba(70,45,20,.04), transparent 25%);
+            z-index: 0;
+        }
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid rgba(106,74,42,.5);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cabecalho .titulo {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #d4a74f;
+            text-shadow: 0 0 20px rgba(212,167,79,.15);
+            letter-spacing: 6px;
+        }
+
+        .cabecalho .subtitulo {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
+        .cabecalho .classif {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #5a4a3a;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            border: 1px solid #5a4a3a;
+            padding: 4px 15px;
+            display: inline-block;
+            background: rgba(40,30,15,.2);
+            border-radius: 3px;
+        }
+
+        .cabecalho .status {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #8a6a3a;
+            margin-top: 8px;
+            letter-spacing: 2px;
+        }
+
+        .conteudo {
+            position: relative;
+            z-index: 1;
+        }
+
+        .conteudo .secao {
+            margin-bottom: 30px;
+        }
+
+        .conteudo .secao .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(106,74,42,.2);
+            padding-bottom: 5px;
+        }
+
+        .conteudo p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #d4c8a0;
+            text-align: justify;
+            margin-bottom: 16px;
+        }
+
+        .conteudo .destaque {
+            color: #d4a74f;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-dourado {
+            color: #f0d080;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-verde {
+            color: #8aba7a;
+            font-weight: bold;
+        }
+
+        .conteudo .destaque-vermelho {
+            color: #b86a4a;
+            font-weight: bold;
+        }
+
+        .conteudo .citacao {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 15px 25px;
+            border-left: 3px solid #6a4a2a;
+            margin: 20px 0;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .conteudo .citacao-central {
+            font-style: italic;
+            color: #c4a86a;
+            padding: 20px 30px;
+            border: 1px solid #6a4a2a;
+            margin: 25px 0;
+            background: rgba(40,30,15,.4);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .conteudo .povos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 15px;
+            margin: 15px 0 20px;
+            justify-content: center;
+        }
+
+        .conteudo .povos .povo-item {
+            padding: 6px 16px;
+            border: 1px solid rgba(106,74,42,.3);
+            border-radius: 4px;
+            background: rgba(40,30,15,.2);
+            font-size: 0.9rem;
+            color: #b0a088;
+            letter-spacing: 1px;
+        }
+
+        .conteudo .linha-decorativa {
+            width: 60px;
+            height: 2px;
+            margin: 20px auto;
+            background: linear-gradient(90deg, transparent, #6a4a2a, transparent);
+        }
+
+        .conteudo .anotacao {
+            margin-top: 25px;
+            padding: 20px 25px;
+            border-left: 3px solid #6a4a2a;
+            background: rgba(40,30,15,.25);
+            border-radius: 4px;
+        }
+
+        .conteudo .anotacao .label-anotacao {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: #5a4a3a;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .conteudo .anotacao p {
+            font-size: 0.95rem;
+            color: #b0a088;
+            font-style: italic;
+        }
+
+        .conteudo .anotacao .destaque-anotacao {
+            color: #c4a86a;
+        }
+
+        .conteudo .ultima-anotacao {
+            margin-top: 25px;
+            padding: 20px 25px;
+            border: 1px solid #6a4a2a;
+            background: rgba(40,30,15,.3);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .conteudo .ultima-anotacao p {
+            font-size: 1rem;
+            color: #c4a86a;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .conteudo .ultima-anotacao .destaque-ultima {
+            color: #f0d080;
+            font-weight: bold;
+        }
+
+        .assinatura {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(106,74,42,.3);
+            text-align: right;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: #8a6a3a;
+            letter-spacing: 2px;
+        }
+
+        .voltar {
+            text-align: center;
+            margin-top: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .voltar a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: rgba(60,50,35,0.6);
+            color: #b0a088;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: .3s;
+            border: 1px solid rgba(160,140,110,0.15);
+            border-radius: 4px;
+        }
+
+        .voltar a:hover {
+            background: rgba(80,70,50,0.8);
+            color: #d4c8b0;
+            border-color: rgba(160,140,110,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .documento { padding: 30px 25px; }
+            .cabecalho .titulo { font-size: 1.5rem; }
+            .conteudo p { font-size: 0.95rem; }
+            .conteudo .citacao-central { font-size: 1rem; padding: 15px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .documento { padding: 20px 15px; }
+            .cabecalho .titulo { font-size: 1.2rem; letter-spacing: 3px; }
+            .conteudo p { font-size: 0.85rem; }
+            .conteudo .citacao { font-size: 0.9rem; padding: 12px 15px; }
+            .conteudo .citacao-central { font-size: 0.9rem; padding: 12px 15px; }
+            .conteudo .ultima-anotacao p { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="documento">
+
+        <div class="cabecalho">
+            <div class="titulo">📜 ARQUIVO DA PRIMEIRA MEMÓRIA</div>
+            <div class="subtitulo">Registro Histórico Nº 0000</div>
+            <div class="classif">Classificação: Período Pré-Élfico</div>
+            <div class="status">Estado do Registro: Baseado nas Tábuas Ancestrais e na Tradição Oral Serpenthari</div>
+        </div>
+
+        <div class="conteudo">
+
+            <div class="secao">
+                <div class="label">🌿 O NASCIMENTO DA PRIMEIRA MANA</div>
+                <div class="citacao" style="border-left-color:#f0d080;">
+                    "Antes dos reinos... antes dos magos... antes mesmo dos elfos... existia apenas um mundo selvagem."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">🌍 O MUNDO PRIMITIVO</div>
+                <p>Os registros mais antigos descrevem uma época em que não existiam nações, escrita ou civilizações organizadas.</p>
+                <p>As terras eram ocupadas por povos primitivos e criaturas selvagens.</p>
+                <p>Entre eles estavam:</p>
+                <div class="povos">
+                    <span class="povo-item">🐺 Gnolls</span>
+                    <span class="povo-item">🐴 Centauros</span>
+                    <span class="povo-item">🧑 Humanos primitivos</span>
+                    <span class="povo-item">🦁 Grandes feras ancestrais</span>
+                </div>
+                <p>Nesse período ainda não existiam monstros como os conhecidos atualmente.</p>
+                <div class="citacao">
+                    "A própria magia era rara."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">✨ AS PRIMEIRAS GUARDIÃS DA MANA</div>
+                <p>Entre todas as criaturas daquele mundo havia apenas um povo verdadeiramente ligado à essência da mana.</p>
+                <p><span class="destaque-dourado">As Fadas.</span></p>
+                <p>Pequenas entidades aladas, medindo poucos centímetros de altura. Viviam escondidas nas florestas que futuramente seriam conhecidas como <span class="destaque-verde">Sylvanora</span>.</p>
+                <div class="citacao">
+                    "Segundo os registros, delas fluía naturalmente a mana que alimentava toda a floresta."
+                </div>
+                <p>Por essa razão são consideradas, pelos Arquivistas, as <span class="destaque">primeiras guardiãs da magia</span>.</p>
+            </div>
+
+            <div class="secao">
+                <div class="label">🤝 O ENCONTRO COM OS HUMANOS</div>
+                <p>Décadas depois, grupos humanos alcançaram as florestas ancestrais.</p>
+                <p>A travessia era extremamente difícil. Centauros protegiam os caminhos. A mata era praticamente impenetrável.</p>
+                <p>Mesmo assim, alguns conseguiram chegar até as Fadas.</p>
+                <p>As Fadas receberam os visitantes sem medo. Compartilharam alimento. Ensinaram a conviver com a mana. Mostraram aos humanos como ouvir a floresta.</p>
+                <div class="citacao">
+                    "Durante muitos anos acreditaram ter encontrado novos aliados."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">🔮 O SEGREDO DAS FADAS</div>
+                <p>As Tábuas Ancestrais registram que as Fadas escondiam uma característica desconhecida por quase todos os povos.</p>
+                <p>Durante algumas horas da madrugada, entre a segunda e a quarta hora da noite, suas formas mudavam temporariamente.</p>
+                <p>Assumiam uma aparência semelhante à humana, mantendo apenas parte de sua afinidade mágica.</p>
+                <div class="citacao">
+                    "As próprias Fadas jamais trataram essa transformação como um segredo vergonhoso. Era apenas parte de sua natureza."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">🧝 O PRIMEIRO ELFO</div>
+                <p>Entre as inúmeras Fadas existiu uma cujo verdadeiro nome jamais chegou aos Arquivistas.</p>
+                <p>Os registros afirmam apenas que ela desenvolveu grande amizade com um humano chamado <span class="destaque">Infernoth</span>.</p>
+                <p>Com o passar dos anos, dessa união nasceu uma criança.</p>
+                <div class="citacao" style="border-left-color:#f0d080;">
+                    "Segundo a tradição preservada em Black Marsh, essa criança foi o primeiro ser conhecido como <span class="destaque-dourado">Elfo</span>."
+                </div>
+                <p>Os registros também afirmam que sua mãe morreu durante o parto. Seu nome perdeu-se no tempo.</p>
+                <div class="citacao">
+                    "Seu sacrifício, porém, jamais foi esquecido."
+                </div>
+                <p>Os antigos povos passaram a venerá-la como aquela que mais tarde seria conhecida como a <span class="destaque-dourado">Deusa Angelical</span>, guardiã da vida e da esperança.</p>
+            </div>
+
+            <div class="secao">
+                <div class="label">💔 A QUEDA DE INFERNOTH</div>
+                <p>Após a morte da Fada, Infernoth tornou-se líder entre os humanos.</p>
+                <p>Os Arquivistas descrevem que, consumido pela ambição, rompeu todos os juramentos feitos às Fadas.</p>
+                <p>As florestas deixaram de ser um lugar de amizade. Tornaram-se um lugar de perseguição.</p>
+                <p>As Fadas foram capturadas, escravizadas e privadas de sua liberdade. Muitas tiveram suas asas arrancadas para impedir sua fuga.</p>
+                <div class="citacao" style="border-left-color:#b86a4a;">
+                    "Os registros antigos descrevem esse período como <span class="destaque-vermelho">A Primeira Grande Traição</span>."
+                </div>
+                <p>Diversos detalhes desse tempo perderam-se ao longo dos milênios, mas todos os relatos concordam em um ponto:</p>
+                <div class="citacao-central" style="border-color:#b86a4a;">
+                    <span style="color:#b86a4a; font-weight:bold;">"Foi nesse momento que a inocência abandonou o mundo."</span>
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">⚖️ O JULGAMENTO DE INFERNOTH</div>
+                <p>A tradição serpenthari afirma que Infernoth não morreu em batalha.</p>
+                <p>Nem pelas mãos de um rei. Nem por uma criatura lendária.</p>
+                <p>Sua morte ocorreu de forma simples. Ao perseguir mais uma de suas vítimas, caiu de um grande penhasco e morreu.</p>
+                <div class="citacao">
+                    "Os Arquivistas consideram esse acontecimento simbólico."
+                </div>
+                <p>Segundo os registros espirituais preservados em Black Marsh, sua alma recusou-se a aceitar o próprio julgamento.</p>
+                <p>Foi então lançada ao <span class="destaque-vermelho">Reino Inferior</span>, onde passou a reunir outras almas condenadas.</p>
+                <div class="citacao">
+                    "Com o passar das eras, esse domínio tornou-se conhecido como o <span class="destaque">Submundo</span>."
+                </div>
+            </div>
+
+            <div class="secao">
+                <div class="label">🌌 O EQUILÍBRIO DAS ALMAS</div>
+                <p>Após esses acontecimentos, os antigos sacerdotes registram o surgimento dos dois grandes caminhos espirituais.</p>
+                <p><span class="destaque-dourado">O Reino Celeste</span>, destinado às almas que viveram em harmonia com o mundo.</p>
+                <p><span class="destaque-vermelho">O Submundo</span>, destinado àqueles consumidos pela crueldade, pela ambição e pela destruição.</p>
+                <div class="citacao">
+                    "Os Arquivistas reconhecem que a origem exata desses reinos permanece objeto de debate entre estudiosos."
+                </div>
+                <p>Entretanto, todas as tradições preservadas concordam que foi a tragédia envolvendo Infernoth e as Fadas que marcou o início dessa divisão.</p>
+            </div>
+
+            <div class="ultima-anotacao">
+                <p>"Os homens costumam dizer que a magia nasceu das Fadas.</p>
+                <p><span class="destaque-ultima">Nós acreditamos que nasceu de sua bondade.</span></p>
+                <p>E que foi a ambição dos homens que ensinou ao mundo, pela primeira vez, o significado da palavra <span class="destaque-ultima">tragédia</span>."</p>
+            </div>
+
+            <div class="assinatura">
+                <p>📜 Arquivo da Primeira Memória — Black Marsh</p>
+                <p style="font-size:0.7rem; margin-top:5px; letter-spacing:1px; color:#5a4a3a;">Registro Nº 0000 — O Nascimento da Primeira Mana</p>
+            </div>
+
+        </div>
+
+        <div class="voltar">
+            <a href="../documentos.html">← Voltar aos Arquivos</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
